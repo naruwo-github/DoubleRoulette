@@ -94,7 +94,7 @@ class ViewController: UIViewController {
         let clockHandOuter = CAShapeLayer()
         clockHandOuter.strokeColor = UIColor.white.cgColor
         clockHandOuter.fillColor = UIColor.black.cgColor
-        clockHandOuter.lineWidth = 2.0
+        clockHandOuter.lineWidth = 1.0
         
         let triangleOuter = UIBezierPath()
         triangleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: 300))
@@ -112,7 +112,7 @@ class ViewController: UIViewController {
         let clockHandInner = CAShapeLayer()
         clockHandInner.strokeColor = UIColor.white.cgColor
         clockHandInner.fillColor = UIColor.black.cgColor
-        clockHandInner.lineWidth = 2.0
+        clockHandInner.lineWidth = 1.0
         
         let triangleInner = UIBezierPath()
         triangleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: 300 + 150))
