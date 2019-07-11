@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529A99822CC991400F5ECB6 /* MyPieChartView.swift */; };
+		0590A0C822D7F38D004BB8CA /* roulette-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */; };
+		05AF43E422C974D2007A236D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AF43E322C974D2007A236D /* AppDelegate.swift */; };
+		05AF43E622C974D2007A236D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AF43E522C974D2007A236D /* ViewController.swift */; };
+		05AF43E922C974D2007A236D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05AF43E722C974D2007A236D /* Main.storyboard */; };
+		05AF43EB22C974D4007A236D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05AF43EA22C974D4007A236D /* Assets.xcassets */; };
+		05AF43EE22C974D4007A236D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05AF43EC22C974D4007A236D /* LaunchScreen.storyboard */; };
+		05D3D9D422C9D431007D24FF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3D9D322C9D431007D24FF /* TableViewController.swift */; };
+		05D3D9D722C9D475007D24FF /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3D9D522C9D475007D24FF /* TableViewCell.swift */; };
+		18D3217A7E609E7DFF081944 /* Pods_DoubleRoulette.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 900A8DDB992024885EAA9F37 /* Pods_DoubleRoulette.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0529A99822CC991400F5ECB6 /* MyPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPieChartView.swift; sourceTree = "<group>"; };
+		0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "roulette-sound.mp3"; sourceTree = "<group>"; };
+		05AF43E022C974D2007A236D /* DoubleRoulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoubleRoulette.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05AF43E322C974D2007A236D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		05AF43E522C974D2007A236D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		05AF43E822C974D2007A236D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05AF43EA22C974D4007A236D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		05AF43ED22C974D4007A236D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		05AF43EF22C974D4007A236D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05D3D9D322C9D431007D24FF /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		05D3D9D522C9D475007D24FF /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		2D1E8F670281D253E3F70D58 /* Pods-DoubleRoulette.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRoulette.debug.xcconfig"; path = "Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette.debug.xcconfig"; sourceTree = "<group>"; };
+		900A8DDB992024885EAA9F37 /* Pods_DoubleRoulette.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubleRoulette.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93214C384C1F68552E28F145 /* Pods-DoubleRoulette.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRoulette.release.xcconfig"; path = "Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		05AF43DD22C974D2007A236D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18D3217A7E609E7DFF081944 /* Pods_DoubleRoulette.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05AF43D722C974D2007A236D = {
+			isa = PBXGroup;
+			children = (
+				05AF43E222C974D2007A236D /* DoubleRoulette */,
+				05AF43E122C974D2007A236D /* Products */,
+				AC0B03B588244F2B8D54DF3F /* Pods */,
+				E0ECE7BCFD34E1EE363BB70A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		05AF43E122C974D2007A236D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				05AF43E022C974D2007A236D /* DoubleRoulette.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		05AF43E222C974D2007A236D /* DoubleRoulette */ = {
+			isa = PBXGroup;
+			children = (
+				0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */,
+				05AF43E322C974D2007A236D /* AppDelegate.swift */,
+				05AF43E522C974D2007A236D /* ViewController.swift */,
+				05AF43E722C974D2007A236D /* Main.storyboard */,
+				0529A99822CC991400F5ECB6 /* MyPieChartView.swift */,
+				05D3D9D322C9D431007D24FF /* TableViewController.swift */,
+				05D3D9D522C9D475007D24FF /* TableViewCell.swift */,
+				05AF43EA22C974D4007A236D /* Assets.xcassets */,
+				05AF43EC22C974D4007A236D /* LaunchScreen.storyboard */,
+				05AF43EF22C974D4007A236D /* Info.plist */,
+			);
+			path = DoubleRoulette;
+			sourceTree = "<group>";
+		};
+		AC0B03B588244F2B8D54DF3F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2D1E8F670281D253E3F70D58 /* Pods-DoubleRoulette.debug.xcconfig */,
+				93214C384C1F68552E28F145 /* Pods-DoubleRoulette.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E0ECE7BCFD34E1EE363BB70A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				900A8DDB992024885EAA9F37 /* Pods_DoubleRoulette.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		05AF43DF22C974D2007A236D /* DoubleRoulette */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05AF43F222C974D4007A236D /* Build configuration list for PBXNativeTarget "DoubleRoulette" */;
+			buildPhases = (
+				CC3180F0EFD224095355A8EE /* [CP] Check Pods Manifest.lock */,
+				05AF43DC22C974D2007A236D /* Sources */,
+				05AF43DD22C974D2007A236D /* Frameworks */,
+				05AF43DE22C974D2007A236D /* Resources */,
+				2CB2E6CE60E36187D41B0B5E /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DoubleRoulette;
+			productName = DoubleRoulette;
+			productReference = 05AF43E022C974D2007A236D /* DoubleRoulette.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		05AF43D822C974D2007A236D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Narumi Nogawa";
+				TargetAttributes = {
+					05AF43DF22C974D2007A236D = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 05AF43DB22C974D2007A236D /* Build configuration list for PBXProject "DoubleRoulette" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 05AF43D722C974D2007A236D;
+			productRefGroup = 05AF43E122C974D2007A236D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				05AF43DF22C974D2007A236D /* DoubleRoulette */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		05AF43DE22C974D2007A236D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05AF43EE22C974D4007A236D /* LaunchScreen.storyboard in Resources */,
+				0590A0C822D7F38D004BB8CA /* roulette-sound.mp3 in Resources */,
+				05AF43EB22C974D4007A236D /* Assets.xcassets in Resources */,
+				05AF43E922C974D2007A236D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2CB2E6CE60E36187D41B0B5E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC3180F0EFD224095355A8EE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DoubleRoulette-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		05AF43DC22C974D2007A236D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */,
+				05D3D9D722C9D475007D24FF /* TableViewCell.swift in Sources */,
+				05AF43E622C974D2007A236D /* ViewController.swift in Sources */,
+				05AF43E422C974D2007A236D /* AppDelegate.swift in Sources */,
+				05D3D9D422C9D431007D24FF /* TableViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		05AF43E722C974D2007A236D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05AF43E822C974D2007A236D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		05AF43EC22C974D4007A236D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05AF43ED22C974D4007A236D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		05AF43F022C974D4007A236D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		05AF43F122C974D4007A236D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		05AF43F322C974D4007A236D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D1E8F670281D253E3F70D58 /* Pods-DoubleRoulette.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMBT5JZV43;
+				INFOPLIST_FILE = DoubleRoulette/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.kero0711tennis.DoubleRoulette;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		05AF43F422C974D4007A236D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93214C384C1F68552E28F145 /* Pods-DoubleRoulette.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMBT5JZV43;
+				INFOPLIST_FILE = DoubleRoulette/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.kero0711tennis.DoubleRoulette;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		05AF43DB22C974D2007A236D /* Build configuration list for PBXProject "DoubleRoulette" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05AF43F022C974D4007A236D /* Debug */,
+				05AF43F122C974D4007A236D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05AF43F222C974D4007A236D /* Build configuration list for PBXNativeTarget "DoubleRoulette" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05AF43F322C974D4007A236D /* Debug */,
+				05AF43F422C974D4007A236D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 05AF43D822C974D2007A236D /* Project object */;
+}
