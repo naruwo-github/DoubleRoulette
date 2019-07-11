@@ -1,0 +1,6 @@
+framework module Pods_DoubleRoulette {
+  umbrella header "Pods-DoubleRoulette-umbrella.h"
+
+  export *
+  module * { export * }
+}
