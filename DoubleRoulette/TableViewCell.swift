@@ -41,7 +41,6 @@ class TableViewCell: UITableViewCell, NSSecureCoding, UITextFieldDelegate{
         // Configure the view for the selected state
     }
     
-    /*
     func textFieldDidBeginEditing(itemName: UITextField){
         self.name = itemName.text ?? "Item"
         self.color = itemColor.backgroundColor ?? UIColor.init(red: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), green: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), blue: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), alpha: CGFloat(1))
@@ -63,7 +62,6 @@ class TableViewCell: UITableViewCell, NSSecureCoding, UITextFieldDelegate{
         */
         itemName.resignFirstResponder()
     }
-    */
     
     
     /*
@@ -77,6 +75,5 @@ class TableViewCell: UITableViewCell, NSSecureCoding, UITextFieldDelegate{
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         itemName.resignFirstResponder()
-    }
- */
+    }*/
 }
