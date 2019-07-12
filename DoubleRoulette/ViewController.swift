@@ -171,11 +171,11 @@ class ViewController: UIViewController {
         //円を描く
         let outerCircleLayer = CAShapeLayer()
         let innerCircleLayer = CAShapeLayer()
-        outerCircleLayer.strokeColor = UIColor.init(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.1).cgColor
-        outerCircleLayer.fillColor = UIColor.init(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.1).cgColor
+        outerCircleLayer.strokeColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
+        outerCircleLayer.fillColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
         outerCircleLayer.lineWidth = 2.0
-        innerCircleLayer.strokeColor = UIColor.init(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.1).cgColor
-        innerCircleLayer.fillColor = UIColor.init(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.1).cgColor
+        innerCircleLayer.strokeColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
+        innerCircleLayer.fillColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
         innerCircleLayer.lineWidth = 2.0
         
         let outerCircle = UIBezierPath()
