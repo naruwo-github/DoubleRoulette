@@ -27,66 +27,9 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        /*
-        //例を入れて初期化
-        //prepare  new cell
-        let item = TableViewCell()
-        //item.itemName.text = "A"
-        //item.itemColor.backgroundColor = UIColor.red
-        //item.itemType.selectedSegmentIndex = 0
-        //insert new cell
-        self.itemData.insert(item, at: 0)
-        self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.right)
-        (self.tableView.cellForRow(at: [0,0])?.contentView.viewWithTag(1) as? UITextField)?.text = "A"
-        (self.tableView.cellForRow(at: [0,0])?.contentView.viewWithTag(2) as? UIButton)?.backgroundColor = UIColor.red
-        (self.tableView.cellForRow(at: [0, 0])?.contentView.viewWithTag(3) as? UISegmentedControl)?.selectedSegmentIndex = 0
-        self.itemName.insert(item.name, at: 0)
-        self.itemColor.insert(item.color, at: 0)
-        self.itemType.insert(item.type, at: 0)
-        itemName[0] = "A"
-        itemColor[0] = UIColor.red
-        itemType[0] = 0
-        
-        tableView.reloadData()
- */
-        
         //セルの高さ
         configureTableView()
     }
-    
-    /*
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let userDefaults = UserDefaults.standard
-        if userDefaults.object(forKey: "itemName") != nil {
-            itemName = userDefaults.object(forKey: "itemName") as! [String]
-        }
-        if userDefaults.object(forKey: "itemColor") != nil {
-            itemColor = userDefaults.object(forKey: "itemColor") as! [UIColor]
-        }
-        if userDefaults.object(forKey: "itemType") != nil {
-            itemType = userDefaults.object(forKey: "itemType") as! [Int]
-        }
-        
-        if itemName.count != 0 {
-            for i in 0..<itemName.count {
-                //prepare  new cell
-                let item = TableViewCell()
-                item.itemName.text = itemName[i]
-                item.itemColor.backgroundColor = itemColor[i]
-                item.itemType.selectedSegmentIndex = itemType[i]
-                self.itemData.insert(item, at: 0)
-                self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.right)
-            }
-        }
-        
-        print(itemName.count)
-        //セルの処理をおこなう。tableView.reloadData()とか。
-        
-        
-    }
- */
     
     func configureTableView() {
         tableView.rowHeight = 60
@@ -104,22 +47,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
         self.itemName.insert(item.name, at: 0)
         self.itemColor.insert(item.color, at: 0)
         self.itemType.insert(item.type, at: 0)
-        
-        
-        /*
-        let userDefaults = UserDefaults.standard
-        for i in 0..<self.itemData.count {
-            let field = self.tableView.cellForRow(at: [0,i])?.contentView.viewWithTag(1) as? UITextField
-            self.itemName[i] = field?.text ?? "Item"
-            let btcolor = self.tableView.cellForRow(at: [0,i])?.contentView.viewWithTag(2) as? UIButton
-            self.itemColor[i] = btcolor?.backgroundColor ?? UIColor.red
-            let type = self.tableView.cellForRow(at: [0, i])?.contentView.viewWithTag(3) as? UISegmentedControl
-            self.itemType[i] = type?.selectedSegmentIndex ?? 0
-        }
-        userDefaults.set(self.itemName, forKey: "itemName")
-        userDefaults.set(self.itemColor, forKey: "itemColor")
-        userDefaults.set(self.itemType, forKey: "itemType")
-        */
     }
     
     @IBAction func buttonButtonTapped(_ sender: Any) {
@@ -139,21 +66,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
     
     func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
         self.tableView.cellForRow(at: indexPath as IndexPath)?.contentView.viewWithTag(2)?.backgroundColor = color
-        
-        /*
-        let userDefaults = UserDefaults.standard
-        for i in 0..<self.itemData.count {
-            let field = self.tableView.cellForRow(at: [0,i])?.contentView.viewWithTag(1) as? UITextField
-            self.itemName[i] = field?.text ?? ""
-            let btcolor = self.tableView.cellForRow(at: [0,i])?.contentView.viewWithTag(2) as? UIButton
-            self.itemColor[i] = btcolor?.backgroundColor ?? UIColor.red
-            let type = self.tableView.cellForRow(at: [0, i])?.contentView.viewWithTag(3) as? UISegmentedControl
-            self.itemType[i] = type?.selectedSegmentIndex ?? 0
-        }
-        userDefaults.set(self.itemName, forKey: "itemName")
-        userDefaults.set(self.itemColor, forKey: "itemColor")
-        userDefaults.set(self.itemType, forKey: "itemType")
- */
     }
     
     
@@ -169,23 +81,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
             self.itemName.remove(at: indexPath.row)
             self.itemColor.remove(at: indexPath.row)
             self.itemType.remove(at: indexPath.row)
-           
-            
-            /*
-            //save
-            let userDefaults = UserDefaults.standard
-            for i in 0..<self.itemData.count {
-                let field = self.tableView.cellForRow(at: [0,i])?.contentView.viewWithTag(1) as? UITextField
-                self.itemName[i] = field?.text ?? ""
-                let btcolor = self.tableView.cellForRow(at: [0,i])?.contentView.viewWithTag(2) as? UIButton
-                self.itemColor[i] = btcolor?.backgroundColor ?? UIColor.red
-                let type = self.tableView.cellForRow(at: [0, i])?.contentView.viewWithTag(3) as? UISegmentedControl
-                self.itemType[i] = type?.selectedSegmentIndex ?? 0
-            }
-            userDefaults.set(self.itemName, forKey: "itemName")
-            userDefaults.set(self.itemColor, forKey: "itemColor")
-            userDefaults.set(self.itemType, forKey: "itemType")
-            */
         }
     }
 

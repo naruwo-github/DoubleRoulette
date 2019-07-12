@@ -57,23 +57,6 @@ class TableViewCell: UITableViewCell, NSSecureCoding, UITextFieldDelegate{
     }
     
     @IBAction func colorButtonTapped(_ sender: Any) {
-        /*
-        itemColor.backgroundColor = UIColor.init(red: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), green: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), blue: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), alpha: CGFloat(1))
-        */
         itemName.resignFirstResponder()
     }
-    
-    
-    /*
-    func setItemName(name: String) {
-        self.name = name
-        self.itemName.text = name
-    }
-    
-    func setItemColor(color: UIColor) {
-        self.itemColor.backgroundColor = color
-    }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        itemName.resignFirstResponder()
-    }*/
 }

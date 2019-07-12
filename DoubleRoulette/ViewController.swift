@@ -41,17 +41,6 @@ class ViewController: UIViewController {
         itemsLabel.text = "Items: " + String(itemData.count)
         //矢印描画
         drawArrow()
-        
-        //view .bringSubviewToFront(view)
-        //debug
-        /*
-        for i in 0..<itemData.count {
-            print(itemName[i])
-            print(itemColor[i])
-            print(itemType[i])
-            print("")
-        }
- */
     }
 
     //roulette start
@@ -231,11 +220,6 @@ class ViewController: UIViewController {
         
         outterChartView.layer.cornerRadius = outterChartView.frame.width / 2.0
         innerChartView.layer.cornerRadius = innerChartView.frame.width / 2.0
-        //self.view .bringSubviewToFront(outterChartView)
-        //self.view .bringSubviewToFront(innerChartView)
-        //self.view.isOpaque = false
-        //self.view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
-        //self.view .bringSubviewToFront(self.view)
         
         
         //roulette element label setting
@@ -313,8 +297,6 @@ class ViewController: UIViewController {
             //add!!
             innerChartView.addSubview(labelView)
         }
-        //カラーピッカー
-        //6角形
     }
 }
 
@@ -324,14 +306,11 @@ extension ViewController: AVAudioPlayerDelegate {
             print("no music file")
             return
         }
-        
         do {
             // AVAudioPlayerのインスタンス化
             audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
-            
             // AVAudioPlayerのデリゲートをセット
             audioPlayer.delegate = self
-            
             // 音声の再生
             audioPlayer.play()
         } catch {
