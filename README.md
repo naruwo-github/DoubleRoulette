@@ -8,4 +8,4 @@ AppStoreにアップ予定です。
 
 使い方
 
-<img src="Pictures/DoubleRoulette紹介画像1.png" />
+<img src="Pictures/DoubleRoulette紹介画像1.jpg" />
