@@ -5,3 +5,7 @@
 シンプルですが新規性があると思い作成しております。
 
 AppStoreにアップ予定です。
+
+使い方
+
+<img src="Pictures/DoubleRoulette紹介画像1.png" />
