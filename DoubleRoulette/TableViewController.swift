@@ -17,6 +17,9 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
     var itemType: [Int] = []
     
     var indexPath: NSIndexPath!
+    
+    //storage
+    let userDefaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +30,28 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        //セルの高さ
+        /*
+        //load data
+        if let storedItemData = userDefaults.object(forKey: "itemData") as? Data {
+            do {
+                if let unarchiveItemData = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self, TableViewCell.self], from: storedItemData) as? [TableViewCell] {
+                    itemData.append(contentsOf: unarchiveItemData)
+                }
+            }catch {
+                //no error message
+            }
+        }
+ */
+        let cellNum = userDefaults.integer(forKey: "itemDataNum")
+        for _ in 0..<cellNum {
+            let item = TableViewCell()
+            self.itemData.insert(item, at: 0)
+            self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.right)
+            self.itemName.insert(item.name, at: 0)
+            self.itemColor.insert(item.color, at: 0)
+            self.itemType.insert(item.type, at: 0)
+        }
+        //cell height
         configureTableView()
     }
     
@@ -47,6 +71,14 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
         self.itemName.insert(item.name, at: 0)
         self.itemColor.insert(item.color, at: 0)
         self.itemType.insert(item.type, at: 0)
+        
+        //save cells
+        userDefaults.set(itemData.count, forKey: "itemDataNum")
+    }
+    
+    @IBAction func playButtonTapped(_ sender: Any) {
+        //save cells
+        userDefaults.set(itemData.count, forKey: "itemDataNum")
     }
     
     @IBAction func buttonButtonTapped(_ sender: Any) {
@@ -82,6 +114,9 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
             self.itemColor.remove(at: indexPath.row)
             self.itemType.remove(at: indexPath.row)
         }
+        
+        //save cells
+        userDefaults.set(itemData.count, forKey: "itemDataNum")
     }
 
     // MARK: - Table view data source
@@ -96,7 +131,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return itemData.count
-        //return itemName.count
     }
 
     //return cell

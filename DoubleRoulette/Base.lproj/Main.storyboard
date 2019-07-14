@@ -88,6 +88,7 @@
                         <rightBarButtonItems>
                             <barButtonItem style="done" systemItem="play" id="7qy-oi-phI">
                                 <connections>
+                                    <action selector="playButtonTapped:" destination="MY0-81-ssA" id="qQ9-tn-SNG"/>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="toViewController" id="HBe-Ce-Atd"/>
                                 </connections>
                             </barButtonItem>
