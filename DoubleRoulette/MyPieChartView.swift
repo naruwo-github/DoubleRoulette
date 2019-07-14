@@ -46,6 +46,7 @@ class MyPieChartView: UIView {
         
         // MARK: Viewの中心点を取得
         let viewCenter = CGPoint(x: bounds.size.width/2, y: bounds.size.height/2)
+        //let viewCenter = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
         
         // MARK: セグメントごとの比率に応じてグラフを変形するための定数
         let valueCount = segments.reduce(0) {$0 + $1.value}
