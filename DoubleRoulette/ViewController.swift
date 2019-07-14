@@ -77,19 +77,19 @@ class ViewController: UIViewController {
         let arrowView = UIView()
         arrowView.isOpaque = false
         arrowView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-        arrowView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - 200)
+        arrowView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - 100)
         
         //triangleOuter
         let clockHandOuter = CAShapeLayer()
         clockHandOuter.strokeColor = UIColor.white.cgColor
-        clockHandOuter.fillColor = UIColor.black.cgColor
-        clockHandOuter.lineWidth = 1.0
+        clockHandOuter.fillColor = UIColor.orange.cgColor
+        clockHandOuter.lineWidth = 2.0
         
         let triangleOuter = UIBezierPath()
-        triangleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: 300))
-        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: 100))
-        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: 100))
-        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: 300))
+        triangleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outterChartView.frame.width / 2 + 50))
+        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 - outterChartView.frame.width / 2 - 50))
+        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 - outterChartView.frame.width / 2 - 50))
+        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outterChartView.frame.width / 2 + 50))
         
         triangleOuter.fill()
         clockHandOuter.path = triangleOuter.cgPath
@@ -100,40 +100,39 @@ class ViewController: UIViewController {
         //triangleInner
         let clockHandInner = CAShapeLayer()
         clockHandInner.strokeColor = UIColor.white.cgColor
-        clockHandInner.fillColor = UIColor.black.cgColor
-        clockHandInner.lineWidth = 1.0
+        clockHandInner.fillColor = UIColor.orange.cgColor
+        clockHandInner.lineWidth = 2.0
         
         let triangleInner = UIBezierPath()
-        triangleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: 300 + 150))
-        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: 300 + 150 + 100))
-        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: 300 + 150 + 100))
-        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: 300 + 150))
+        triangleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outterChartView.frame.width / 2 - outterChartView.frame.width / 3))
+        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 + outterChartView.frame.width / 2 + 50))
+        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 + outterChartView.frame.width / 2 + 50))
+        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outterChartView.frame.width / 2 - outterChartView.frame.width / 3))
 
         triangleInner.fill()
         clockHandInner.path = triangleInner.cgPath
-        //self.view.layer.addSublayer(clockHandInner)
         arrowView.layer.addSublayer(clockHandInner)
         
         
         //circle
         let circleOuterLayer = CAShapeLayer()
-        circleOuterLayer.strokeColor = UIColor.black.cgColor
-        circleOuterLayer.fillColor = UIColor.black.cgColor
+        circleOuterLayer.strokeColor = UIColor.orange.cgColor
+        circleOuterLayer.fillColor = UIColor.orange.cgColor
         circleOuterLayer.lineWidth = 2.0
         let circleOuter = UIBezierPath()
-        circleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: 100))
-        circleOuter.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: 100), radius: 10, startAngle: 0, endAngle: 360, clockwise: true)
+        circleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outterChartView.frame.width / 2  - 50))
+        circleOuter.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outterChartView.frame.width / 2  - 50), radius: 10, startAngle: 0, endAngle: 360, clockwise: true)
         circleOuter.fill()
         circleOuterLayer.path = circleOuter.cgPath
         arrowView.layer.addSublayer(circleOuterLayer)
         
         let circleInnerLayer = CAShapeLayer()
-        circleInnerLayer.strokeColor = UIColor.black.cgColor
-        circleInnerLayer.fillColor = UIColor.black.cgColor
+        circleInnerLayer.strokeColor = UIColor.orange.cgColor
+        circleInnerLayer.fillColor = UIColor.orange.cgColor
         circleInnerLayer.lineWidth = 2.0
         let circleInner = UIBezierPath()
-        circleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: 300 + 150 + 100))
-        circleInner.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: 300 + 150 + 100), radius: 10, startAngle: 0, endAngle: 360, clockwise: true)
+        circleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outterChartView.frame.width / 2 + 50))
+        circleInner.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outterChartView.frame.width / 2 + 50), radius: 14, startAngle: 0, endAngle: 360, clockwise: true)
         
         circleInner.fill()
         circleInnerLayer.path = circleInner.cgPath
@@ -178,7 +177,7 @@ class ViewController: UIViewController {
         innerCircleLayer.fillColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
         innerCircleLayer.lineWidth = 2.0
         
-        let outerCircle = UIBezierPath() 
+        let outerCircle = UIBezierPath()
         outerCircle.move(to: CGPoint.init(x: outterChartView.frame.width / 2, y: outterChartView.frame.height / 2))
         outerCircle.addArc(withCenter: CGPoint.init(x: outterChartView.frame.width / 2, y: outterChartView.frame.height / 2), radius: outterChartView.frame.width / 2 + 2, startAngle: 0, endAngle: 360, clockwise: true)
         

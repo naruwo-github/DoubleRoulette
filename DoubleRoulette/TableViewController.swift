@@ -81,12 +81,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
         var b: CGFloat = 0
         var a: CGFloat = 0
         item.color.getRed(&r, green: &g , blue: &b, alpha: &a)
-        /*
-        self.R.insert(Double(CIColor(cgColor: item.color.cgColor).red), at: 0)
-        self.G.insert(Double(CIColor(cgColor: item.color.cgColor).green), at: 0)
-        self.B.insert(Double(CIColor(cgColor: item.color.cgColor).blue), at: 0)
-        self.A.insert(Double(CIColor(cgColor: item.color.cgColor).alpha), at: 0)
- */
+        
         self.R.insert(Double(r), at: 0)
         self.G.insert(Double(g), at: 0)
         self.B.insert(Double(b), at: 0)
