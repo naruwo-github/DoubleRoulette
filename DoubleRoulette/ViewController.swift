@@ -82,7 +82,7 @@ class ViewController: UIViewController {
         //triangleOuter
         let clockHandOuter = CAShapeLayer()
         clockHandOuter.strokeColor = UIColor.white.cgColor
-        clockHandOuter.fillColor = UIColor.orange.cgColor
+        clockHandOuter.fillColor = UIColor.black.cgColor
         clockHandOuter.lineWidth = 2.0
         
         let triangleOuter = UIBezierPath()
@@ -100,7 +100,7 @@ class ViewController: UIViewController {
         //triangleInner
         let clockHandInner = CAShapeLayer()
         clockHandInner.strokeColor = UIColor.white.cgColor
-        clockHandInner.fillColor = UIColor.orange.cgColor
+        clockHandInner.fillColor = UIColor.black.cgColor
         clockHandInner.lineWidth = 2.0
         
         let triangleInner = UIBezierPath()
@@ -116,8 +116,8 @@ class ViewController: UIViewController {
         
         //circle
         let circleOuterLayer = CAShapeLayer()
-        circleOuterLayer.strokeColor = UIColor.orange.cgColor
-        circleOuterLayer.fillColor = UIColor.orange.cgColor
+        circleOuterLayer.strokeColor = UIColor.black.cgColor
+        circleOuterLayer.fillColor = UIColor.black.cgColor
         circleOuterLayer.lineWidth = 2.0
         let circleOuter = UIBezierPath()
         circleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outterChartView.frame.width / 2  - 50))
@@ -127,8 +127,8 @@ class ViewController: UIViewController {
         arrowView.layer.addSublayer(circleOuterLayer)
         
         let circleInnerLayer = CAShapeLayer()
-        circleInnerLayer.strokeColor = UIColor.orange.cgColor
-        circleInnerLayer.fillColor = UIColor.orange.cgColor
+        circleInnerLayer.strokeColor = UIColor.black.cgColor
+        circleInnerLayer.fillColor = UIColor.black.cgColor
         circleInnerLayer.lineWidth = 2.0
         let circleInner = UIBezierPath()
         circleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outterChartView.frame.width / 2 + 50))
