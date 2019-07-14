@@ -43,14 +43,19 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
         }
  */
         let cellNum = userDefaults.integer(forKey: "itemDataNum")
+        itemName = userDefaults.object(forKey: "itemName") as? [String] ?? []
+        itemType = userDefaults.object(forKey: "itemType") as? [Int] ?? []
+        print(itemName)
+        print(itemType)
         for _ in 0..<cellNum {
             let item = TableViewCell()
             self.itemData.insert(item, at: 0)
             self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.right)
-            self.itemName.insert(item.name, at: 0)
+            //self.itemName.insert(item.name, at: 0)
             self.itemColor.insert(item.color, at: 0)
-            self.itemType.insert(item.type, at: 0)
+            //self.itemType.insert(item.type, at: 0)
         }
+        print(cellNum)
         //cell height
         configureTableView()
     }
@@ -65,20 +70,25 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
         let item = TableViewCell()
         //insert new cell
         self.itemData.insert(item, at: 0)
-        //alert to tableView
-        self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.right)
-        
         self.itemName.insert(item.name, at: 0)
         self.itemColor.insert(item.color, at: 0)
         self.itemType.insert(item.type, at: 0)
+        //alert to tableView
+        self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.right)
         
         //save cells
+        saveData()
         userDefaults.set(itemData.count, forKey: "itemDataNum")
+        userDefaults.set(itemName, forKey: "itemName")
+        userDefaults.set(itemType, forKey: "itemType")
     }
     
     @IBAction func playButtonTapped(_ sender: Any) {
         //save cells
+        saveData()
         userDefaults.set(itemData.count, forKey: "itemDataNum")
+        userDefaults.set(itemName, forKey: "itemName")
+        userDefaults.set(itemType, forKey: "itemType")
     }
     
     @IBAction func buttonButtonTapped(_ sender: Any) {
@@ -107,16 +117,19 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             //ToDoリストから削除
             self.itemData.remove(at: indexPath.row)
-            //セルを削除
-            self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
             //セル情報の削除
             self.itemName.remove(at: indexPath.row)
             self.itemColor.remove(at: indexPath.row)
             self.itemType.remove(at: indexPath.row)
+            //セルを削除
+            self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
         }
         
         //save cells
+        saveData()
         userDefaults.set(itemData.count, forKey: "itemDataNum")
+        userDefaults.set(itemName, forKey: "itemName")
+        userDefaults.set(itemType, forKey: "itemType")
     }
 
     // MARK: - Table view data source
@@ -136,6 +149,13 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
     //return cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
+        
+        //reflect setting
+        if itemData.count > 0 {
+            cell.itemType.selectedSegmentIndex = self.itemType[indexPath.row]
+            cell.itemName.text = self.itemName[indexPath.row]
+        }
+        
         return cell
     }
  
@@ -156,6 +176,17 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
             controller.itemColor = self.itemColor
             controller.itemType = self.itemType
         }else if(segue.identifier == "toColorPicker") {
+        }
+    }
+    
+    func saveData() {
+        for i in 0..<itemData.count {
+            let field = self.tableView.cellForRow(at: [0,i])?.contentView.viewWithTag(1) as? UITextField
+            self.itemName[i] = field?.text ?? ""
+            let btcolor = self.tableView.cellForRow(at: [0,i])?.contentView.viewWithTag(2) as? UIButton
+            self.itemColor[i] = btcolor?.backgroundColor ?? UIColor.red
+            let type = self.tableView.cellForRow(at: [0, i])?.contentView.viewWithTag(3) as? UISegmentedControl
+            self.itemType[i] = type?.selectedSegmentIndex ?? 0
         }
     }
 }
