@@ -16,6 +16,12 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
     var itemColor: [UIColor] = []
     var itemType: [Int] = []
     
+    //itemColorの代わりに4つの配列を使用する
+    var R: [Double] = []
+    var G: [Double] = []
+    var B: [Double] = []
+    var A: [Double] = []
+    
     var indexPath: NSIndexPath!
     
     //storage
@@ -30,23 +36,19 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        /*
-        //load data
-        if let storedItemData = userDefaults.object(forKey: "itemData") as? Data {
-            do {
-                if let unarchiveItemData = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self, TableViewCell.self], from: storedItemData) as? [TableViewCell] {
-                    itemData.append(contentsOf: unarchiveItemData)
-                }
-            }catch {
-                //no error message
-            }
-        }
- */
         let cellNum = userDefaults.integer(forKey: "itemDataNum")
         itemName = userDefaults.object(forKey: "itemName") as? [String] ?? []
         itemType = userDefaults.object(forKey: "itemType") as? [Int] ?? []
-        print(itemName)
-        print(itemType)
+        
+        R = userDefaults.object(forKey: "R") as? [Double] ?? []
+        G = userDefaults.object(forKey: "G") as? [Double] ?? []
+        B = userDefaults.object(forKey: "B") as? [Double] ?? []
+        A = userDefaults.object(forKey: "A") as? [Double] ?? []
+        print(R)
+        print(G)
+        print(B)
+        print(A)
+        
         for _ in 0..<cellNum {
             let item = TableViewCell()
             self.itemData.insert(item, at: 0)
@@ -73,14 +75,34 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
         self.itemName.insert(item.name, at: 0)
         self.itemColor.insert(item.color, at: 0)
         self.itemType.insert(item.type, at: 0)
+        
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        item.color.getRed(&r, green: &g , blue: &b, alpha: &a)
+        /*
+        self.R.insert(Double(CIColor(cgColor: item.color.cgColor).red), at: 0)
+        self.G.insert(Double(CIColor(cgColor: item.color.cgColor).green), at: 0)
+        self.B.insert(Double(CIColor(cgColor: item.color.cgColor).blue), at: 0)
+        self.A.insert(Double(CIColor(cgColor: item.color.cgColor).alpha), at: 0)
+ */
+        self.R.insert(Double(r), at: 0)
+        self.G.insert(Double(g), at: 0)
+        self.B.insert(Double(b), at: 0)
+        self.A.insert(Double(a), at: 0)
         //alert to tableView
         self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.right)
-        
         //save cells
         saveData()
         userDefaults.set(itemData.count, forKey: "itemDataNum")
         userDefaults.set(itemName, forKey: "itemName")
         userDefaults.set(itemType, forKey: "itemType")
+        
+        userDefaults.set(R, forKey: "R")
+        userDefaults.set(G, forKey: "G")
+        userDefaults.set(B, forKey: "B")
+        userDefaults.set(A, forKey: "A")
     }
     
     @IBAction func playButtonTapped(_ sender: Any) {
@@ -89,6 +111,11 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
         userDefaults.set(itemData.count, forKey: "itemDataNum")
         userDefaults.set(itemName, forKey: "itemName")
         userDefaults.set(itemType, forKey: "itemType")
+        
+        userDefaults.set(R, forKey: "R")
+        userDefaults.set(G, forKey: "G")
+        userDefaults.set(B, forKey: "B")
+        userDefaults.set(A, forKey: "A")
     }
     
     @IBAction func buttonButtonTapped(_ sender: Any) {
@@ -108,6 +135,17 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
     
     func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
         self.tableView.cellForRow(at: indexPath as IndexPath)?.contentView.viewWithTag(2)?.backgroundColor = color
+        
+        //save cells
+        saveData()
+        userDefaults.set(itemData.count, forKey: "itemDataNum")
+        userDefaults.set(itemName, forKey: "itemName")
+        userDefaults.set(itemType, forKey: "itemType")
+        
+        userDefaults.set(R, forKey: "R")
+        userDefaults.set(G, forKey: "G")
+        userDefaults.set(B, forKey: "B")
+        userDefaults.set(A, forKey: "A")
     }
     
     
@@ -121,6 +159,12 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
             self.itemName.remove(at: indexPath.row)
             self.itemColor.remove(at: indexPath.row)
             self.itemType.remove(at: indexPath.row)
+            
+            self.R.remove(at: indexPath.row)
+            self.G.remove(at: indexPath.row)
+            self.B.remove(at: indexPath.row)
+            self.A.remove(at: indexPath.row)
+            
             //セルを削除
             self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
         }
@@ -130,6 +174,11 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
         userDefaults.set(itemData.count, forKey: "itemDataNum")
         userDefaults.set(itemName, forKey: "itemName")
         userDefaults.set(itemType, forKey: "itemType")
+        
+        userDefaults.set(R, forKey: "R")
+        userDefaults.set(G, forKey: "G")
+        userDefaults.set(B, forKey: "B")
+        userDefaults.set(A, forKey: "A")
     }
 
     // MARK: - Table view data source
@@ -154,6 +203,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
         if itemData.count > 0 {
             cell.itemType.selectedSegmentIndex = self.itemType[indexPath.row]
             cell.itemName.text = self.itemName[indexPath.row]
+            cell.itemColor.backgroundColor = UIColor.init(red: CGFloat(self.R[indexPath.row]), green: CGFloat(self.G[indexPath.row]), blue: CGFloat(self.B[indexPath.row]), alpha: CGFloat(self.A[indexPath.row]))
         }
         
         return cell
@@ -177,6 +227,17 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
             controller.itemType = self.itemType
         }else if(segue.identifier == "toColorPicker") {
         }
+        
+        //save cells
+        saveData()
+        userDefaults.set(itemData.count, forKey: "itemDataNum")
+        userDefaults.set(itemName, forKey: "itemName")
+        userDefaults.set(itemType, forKey: "itemType")
+        
+        userDefaults.set(R, forKey: "R")
+        userDefaults.set(G, forKey: "G")
+        userDefaults.set(B, forKey: "B")
+        userDefaults.set(A, forKey: "A")
     }
     
     func saveData() {
@@ -187,6 +248,16 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
             self.itemColor[i] = btcolor?.backgroundColor ?? UIColor.red
             let type = self.tableView.cellForRow(at: [0, i])?.contentView.viewWithTag(3) as? UISegmentedControl
             self.itemType[i] = type?.selectedSegmentIndex ?? 0
+            
+            var r: CGFloat = 0
+            var g: CGFloat = 0
+            var b: CGFloat = 0
+            var a: CGFloat = 0
+            self.itemColor[i].getRed(&r, green: &g , blue: &b, alpha: &a)
+            self.R[i] = Double(r)
+            self.G[i] = Double(g)
+            self.B[i] = Double(b)
+            self.A[i] = Double(a)
         }
     }
 }
