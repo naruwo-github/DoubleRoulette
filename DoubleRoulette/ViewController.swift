@@ -178,7 +178,7 @@ class ViewController: UIViewController {
         innerCircleLayer.fillColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
         innerCircleLayer.lineWidth = 2.0
         
-        let outerCircle = UIBezierPath()
+        let outerCircle = UIBezierPath() 
         outerCircle.move(to: CGPoint.init(x: outterChartView.frame.width / 2, y: outterChartView.frame.height / 2))
         outerCircle.addArc(withCenter: CGPoint.init(x: outterChartView.frame.width / 2, y: outterChartView.frame.height / 2), radius: outterChartView.frame.width / 2 + 2, startAngle: 0, endAngle: 360, clockwise: true)
         
