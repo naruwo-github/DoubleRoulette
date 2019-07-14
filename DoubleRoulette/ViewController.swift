@@ -37,6 +37,27 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.view.willRemoveSubview(outterChartView)
+        outterChartView.frame = CGRect.init(x: outterChartView.frame.origin.x, y: outterChartView.frame.origin.y, width: self.view.frame.width - outterChartView.frame.origin.x * 2.0, height: self.view.frame.height - outterChartView.frame.origin.y * 2.0)
+        //self.view.addSubview(outterChartView)
+        
+        //self.view.willRemoveSubview(innerChartView)
+        innerChartView.frame = CGRect.init(x: innerChartView.frame.origin.x, y: innerChartView.frame.origin.y, width: self.view.frame.width - innerChartView.frame.origin.x * 2.0, height: self.view.frame.height - innerChartView.frame.origin.y * 2.0)
+        //self.view.addSubview(innerChartView)
+        
+        print(self.view.frame.width)
+        print(self.view.frame.height)
+        print("")
+        print(outterChartView.frame.origin.x)
+        print(outterChartView.frame.origin.y)
+        print(outterChartView.frame.width)
+        print(outterChartView.frame.height)
+        print("")
+        print(innerChartView.frame.origin.x)
+        print(innerChartView.frame.origin.y)
+        print(innerChartView.frame.width)
+        print(innerChartView.frame.height)
+        
         //self.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         // Do any additional setup after loading the view.
         itemsLabel.text = "Items: " + String(itemData.count)
@@ -194,7 +215,6 @@ class ViewController: UIViewController {
         innerCircle.stroke()
         innerCircleLayer.path = innerCircle.cgPath
         innerChartView.layer.addSublayer(innerCircleLayer)
-        
         
         //outer view
         let pieChartViewOuter = MyPieChartView()
