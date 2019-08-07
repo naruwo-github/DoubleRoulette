@@ -138,7 +138,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6D-nP-cWa">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6D-nP-cWa" userLabel="Outer Chart View">
                                 <rect key="frame" x="16" y="162" width="343" height="343"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -172,7 +172,7 @@
                     <connections>
                         <outlet property="innerChartView" destination="l40-z0-66b" id="hAX-wX-Atf"/>
                         <outlet property="itemsLabel" destination="ChU-WX-ZSz" id="aOe-MS-no7"/>
-                        <outlet property="outterChartView" destination="S6D-nP-cWa" id="Vkm-3k-EqR"/>
+                        <outlet property="outerChartView" destination="S6D-nP-cWa" id="diy-vB-7BK"/>
                         <outlet property="startButton" destination="XKR-hp-RI6" id="C0x-zo-gcg"/>
                     </connections>
                 </viewController>

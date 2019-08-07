@@ -18,8 +18,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     //item num
     @IBOutlet weak var itemsLabel: UILabel!
-    //chartview outter
-    @IBOutlet weak var outterChartView: UIView!
+    //chartview outer
+    @IBOutlet weak var outerChartView: UIView!
     //chartview inner
     @IBOutlet weak var innerChartView: UIView!
     
@@ -41,9 +41,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         /*
-        //self.view.willRemoveSubview(outterChartView)
-        outterChartView.frame = CGRect.init(x: outterChartView.frame.origin.x, y: outterChartView.frame.origin.y, width: self.view.frame.width - outterChartView.frame.origin.x * 2.0, height: self.view.frame.height - outterChartView.frame.origin.y * 2.0)
-        //self.view.addSubview(outterChartView)
+        //self.view.willRemoveSubview(outerChartView)
+        outerChartView.frame = CGRect.init(x: outerChartView.frame.origin.x, y: outerChartView.frame.origin.y, width: self.view.frame.width - outerChartView.frame.origin.x * 2.0, height: self.view.frame.height - outerChartView.frame.origin.y * 2.0)
+        //self.view.addSubview(outerChartView)
         
         //self.view.willRemoveSubview(innerChartView)
         innerChartView.frame = CGRect.init(x: innerChartView.frame.origin.x, y: innerChartView.frame.origin.y, width: self.view.frame.width - innerChartView.frame.origin.x * 2.0, height: self.view.frame.height - innerChartView.frame.origin.y * 2.0)
@@ -52,10 +52,10 @@ class ViewController: UIViewController {
         print(self.view.frame.width)
         print(self.view.frame.height)
         print("")
-        print(outterChartView.frame.origin.x)
-        print(outterChartView.frame.origin.y)
-        print(outterChartView.frame.width)
-        print(outterChartView.frame.height)
+        print(outerChartView.frame.origin.x)
+        print(outerChartView.frame.origin.y)
+        print(outerChartView.frame.width)
+        print(outerChartView.frame.height)
         print("")
         print(innerChartView.frame.origin.x)
         print(innerChartView.frame.origin.y)
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
         animationInner.toValue = toValInner
         animationInner.duration = 5.0
         
-        outterChartView.layer.add(animationOuter, forKey: "animationOuter")
+        outerChartView.layer.add(animationOuter, forKey: "animationOuter")
         innerChartView.layer.add(animationInner, forKey: "animationInner")
     }
      
@@ -112,10 +112,10 @@ class ViewController: UIViewController {
         clockHandOuter.lineWidth = 2.0
         
         let triangleOuter = UIBezierPath()
-        triangleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outterChartView.frame.width / 2 + 50))
-        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 - outterChartView.frame.width / 2 - 50))
-        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 - outterChartView.frame.width / 2 - 50))
-        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outterChartView.frame.width / 2 + 50))
+        triangleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 + 50))
+        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 - 50))
+        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 - 50))
+        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 + 50))
         
         triangleOuter.fill()
         clockHandOuter.path = triangleOuter.cgPath
@@ -130,10 +130,10 @@ class ViewController: UIViewController {
         clockHandInner.lineWidth = 2.0
         
         let triangleInner = UIBezierPath()
-        triangleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outterChartView.frame.width / 2 - outterChartView.frame.width / 3))
-        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 + outterChartView.frame.width / 2 + 50))
-        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 + outterChartView.frame.width / 2 + 50))
-        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outterChartView.frame.width / 2 - outterChartView.frame.width / 3))
+        triangleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 - outerChartView.frame.width / 3))
+        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 + 50))
+        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 + 50))
+        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 - outerChartView.frame.width / 3))
 
         triangleInner.fill()
         clockHandInner.path = triangleInner.cgPath
@@ -146,8 +146,8 @@ class ViewController: UIViewController {
         circleOuterLayer.fillColor = UIColor.black.cgColor
         circleOuterLayer.lineWidth = 2.0
         let circleOuter = UIBezierPath()
-        circleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outterChartView.frame.width / 2  - 50))
-        circleOuter.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outterChartView.frame.width / 2  - 50), radius: 10, startAngle: 0, endAngle: 360, clockwise: true)
+        circleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outerChartView.frame.width / 2  - 50))
+        circleOuter.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outerChartView.frame.width / 2  - 50), radius: 10, startAngle: 0, endAngle: 360, clockwise: true)
         circleOuter.fill()
         circleOuterLayer.path = circleOuter.cgPath
         arrowView.layer.addSublayer(circleOuterLayer)
@@ -157,8 +157,8 @@ class ViewController: UIViewController {
         circleInnerLayer.fillColor = UIColor.black.cgColor
         circleInnerLayer.lineWidth = 2.0
         let circleInner = UIBezierPath()
-        circleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outterChartView.frame.width / 2 + 50))
-        circleInner.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outterChartView.frame.width / 2 + 50), radius: 14, startAngle: 0, endAngle: 360, clockwise: true)
+        circleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 + 50))
+        circleInner.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 + 50), radius: 14, startAngle: 0, endAngle: 360, clockwise: true)
         
         circleInner.fill()
         circleInnerLayer.path = circleInner.cgPath
@@ -205,8 +205,8 @@ class ViewController: UIViewController {
         innerCircleLayer.lineWidth = 2.0
         
         let outerCircle = UIBezierPath()
-        outerCircle.move(to: CGPoint.init(x: outterChartView.frame.width / 2, y: outterChartView.frame.height / 2))
-        outerCircle.addArc(withCenter: CGPoint.init(x: outterChartView.frame.width / 2, y: outterChartView.frame.height / 2), radius: outterChartView.frame.width / 2 + 2, startAngle: 0, endAngle: 360, clockwise: true)
+        outerCircle.move(to: CGPoint.init(x: outerChartView.frame.width / 2, y: outerChartView.frame.height / 2))
+        outerCircle.addArc(withCenter: CGPoint.init(x: outerChartView.frame.width / 2, y: outerChartView.frame.height / 2), radius: outerChartView.frame.width / 2 + 2, startAngle: 0, endAngle: 360, clockwise: true)
         
         let innerCircle = UIBezierPath()
         innerCircle.move(to: CGPoint.init(x: innerChartView.frame.width / 2, y: innerChartView.frame.height / 2))
@@ -214,7 +214,7 @@ class ViewController: UIViewController {
         
         outerCircle.stroke()
         outerCircleLayer.path = outerCircle.cgPath
-        outterChartView.layer.addSublayer(outerCircleLayer)
+        outerChartView.layer.addSublayer(outerCircleLayer)
         
         innerCircle.stroke()
         innerCircleLayer.path = innerCircle.cgPath
@@ -224,7 +224,7 @@ class ViewController: UIViewController {
         let pieChartViewOuter = MyPieChartView()
         pieChartViewOuter.isOpaque = false
         pieChartViewOuter.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-        pieChartViewOuter.frame = CGRect(x: 0, y: 0, width: outterChartView.frame.size.width, height: outterChartView.frame.size.height)
+        pieChartViewOuter.frame = CGRect(x: 0, y: 0, width: outerChartView.frame.size.width, height: outerChartView.frame.size.height)
         
         //inner view
         let pieChartViewInner = MyPieChartView()
@@ -240,20 +240,20 @@ class ViewController: UIViewController {
             pieChartViewInner.segments.insert(Segment(color: innerColor[i], value: CGFloat(Double.pi * 2.0 / Double(innerName.count)), label: innerName[i]), at: 0)
         }
         
-        outterChartView.addSubview(pieChartViewOuter)
+        outerChartView.addSubview(pieChartViewOuter)
         innerChartView.addSubview(pieChartViewInner)
         
-        outterChartView.layer.cornerRadius = outterChartView.frame.width / 2.0
+        outerChartView.layer.cornerRadius = outerChartView.frame.width / 2.0
         innerChartView.layer.cornerRadius = innerChartView.frame.width / 2.0
         
         
         //roulette element label setting
         //outer move
         let angleOuter = Double.pi * 2.0 / Double(outerName.count)
-        let centerOuterX = outterChartView.frame.width / 2 - 18
-        let centerOuterY = outterChartView.frame.height / 2 - 25
+        let centerOuterX = outerChartView.frame.width / 2 - 18
+        let centerOuterY = outerChartView.frame.height / 2 - 25
         let originOuterX = centerOuterX
-        let originOuterY = centerOuterY - outterChartView.frame.height / 3
+        let originOuterY = centerOuterY - outerChartView.frame.height / 3
         //inner move
         let angleInner = Double.pi * 2.0 / Double(innerName.count)
         let centerInnerX = innerChartView.frame.width / 2 - 18
@@ -289,7 +289,7 @@ class ViewController: UIViewController {
             labelView.frame.origin = CGPoint(x: positionX, y: positionY)
             
             //add!!
-            outterChartView.addSubview(labelView)
+            outerChartView.addSubview(labelView)
         }
         
         for i in 0..<innerName.count {
