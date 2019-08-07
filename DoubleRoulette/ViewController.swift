@@ -271,7 +271,7 @@ class ViewController: UIViewController {
         let centerOuterX = outerChartView.frame.width / 2 - 18
         let centerOuterY = outerChartView.frame.height / 2 - 25
         let originOuterX = centerOuterX
-        let originOuterY = centerOuterY - outerChartView.frame.height / 5.5
+        let originOuterY = centerOuterY - outerChartView.frame.height / 4.5
         //inner move
         let angleInner = Double.pi * 2.0 / Double(innerName.count)
         let centerInnerX = innerChartView.frame.width / 2 - 18
