@@ -62,6 +62,8 @@ class ViewController: UIViewController {
         print(innerChartView.frame.width)
         print(innerChartView.frame.height)
         */
+        //innerChartView.frame = CGRect.init(x: 100, y: 100, width: self.view.frame.width / 2, height: self.view.frame.height / 2)
+        
         //self.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         // Do any additional setup after loading the view.
         itemsLabel.text = "Items: " + String(itemData.count)
@@ -210,7 +212,7 @@ class ViewController: UIViewController {
         
         let innerCircle = UIBezierPath()
         innerCircle.move(to: CGPoint.init(x: innerChartView.frame.width / 2, y: innerChartView.frame.height / 2))
-        innerCircle.addArc(withCenter: CGPoint.init(x: innerChartView.frame.width / 2, y: innerChartView.frame.height / 2), radius: innerChartView.frame.width / 2 + 2, startAngle: 0, endAngle: 360, clockwise: true)
+        innerCircle.addArc(withCenter: CGPoint.init(x: innerChartView.frame.width / 2, y: innerChartView.frame.height / 2), radius: innerChartView.frame.width / 4 + 2, startAngle: 0, endAngle: 360, clockwise: true)
         
         outerCircle.stroke()
         outerCircleLayer.path = outerCircle.cgPath
@@ -222,12 +224,14 @@ class ViewController: UIViewController {
         
         //outer view
         let pieChartViewOuter = MyPieChartView()
+        pieChartViewOuter.radius = min(outerChartView.frame.size.width, outerChartView.frame.size.height)/2
         pieChartViewOuter.isOpaque = false
         pieChartViewOuter.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
         pieChartViewOuter.frame = CGRect(x: 0, y: 0, width: outerChartView.frame.size.width, height: outerChartView.frame.size.height)
         
         //inner view
         let pieChartViewInner = MyPieChartView()
+        pieChartViewInner.radius = min(innerChartView.frame.size.width, innerChartView.frame.size.height)/4
         pieChartViewInner.isOpaque = false
         pieChartViewInner.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
         pieChartViewInner.frame = CGRect(x: 0, y: 0, width: innerChartView.frame.size.width, height: innerChartView.frame.size.height)
@@ -248,6 +252,7 @@ class ViewController: UIViewController {
         
         
         //roulette element label setting
+        /*
         //outer move
         let angleOuter = Double.pi * 2.0 / Double(outerName.count)
         let centerOuterX = outerChartView.frame.width / 2 - 18
@@ -260,6 +265,19 @@ class ViewController: UIViewController {
         let centerInnerY = innerChartView.frame.height / 2 - 25
         let originInnerX = centerInnerX
         let originInnerY = centerInnerY - innerChartView.frame.height / 3
+ */
+        //outer move
+        let angleOuter = Double.pi * 2.0 / Double(outerName.count)
+        let centerOuterX = outerChartView.frame.width / 2 - 18
+        let centerOuterY = outerChartView.frame.height / 2 - 25
+        let originOuterX = centerOuterX
+        let originOuterY = centerOuterY - outerChartView.frame.height / 5.5
+        //inner move
+        let angleInner = Double.pi * 2.0 / Double(innerName.count)
+        let centerInnerX = innerChartView.frame.width / 2 - 18
+        let centerInnerY = innerChartView.frame.height / 2 - 25
+        let originInnerX = centerInnerX
+        let originInnerY = centerInnerY - innerChartView.frame.height / 12
         
         for i in 0..<outerName.count {
             let labelView = UILabel()

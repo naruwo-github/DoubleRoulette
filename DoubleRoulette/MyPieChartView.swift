@@ -21,6 +21,8 @@ struct Segment {
 
 class MyPieChartView: UIView {
     
+    var radius = CGFloat(1)
+    
     var segments = [Segment]() {
         didSet {
             setNeedsDisplay()
@@ -42,7 +44,7 @@ class MyPieChartView: UIView {
         let ctx = UIGraphicsGetCurrentContext()
         
         // MARK: 円型にするためにradiusを設定
-        let radius = min(frame.size.width, frame.size.height)/2
+        //let radius = min(frame.size.width, frame.size.height)/2
         
         // MARK: Viewの中心点を取得
         let viewCenter = CGPoint(x: bounds.size.width/2, y: bounds.size.height/2)
