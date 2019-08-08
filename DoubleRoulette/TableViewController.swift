@@ -48,7 +48,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
         admobView.frame.origin = CGPoint(x:0, y:self.view.frame.size.height - admobView.frame.height - 60)
         admobView.frame.size = CGSize(width:self.view.frame.width, height:admobView.frame.height)
         
-        if AdMobTest {
+        if AdMobTest{
             admobView.adUnitID = TEST_ID
         }
         else{
