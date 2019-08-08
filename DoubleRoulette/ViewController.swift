@@ -11,8 +11,16 @@
 
 import UIKit
 import AVFoundation
+import GoogleMobileAds
 
 class ViewController: UIViewController {
+    // 広告ユニットID
+    let AdMobID = "ca-app-pub-6492692627915720~1982254255"
+    // テスト用広告ユニットID
+    let TEST_ID = "ca-app-pub-3940256099942544/2934735716"
+    
+    // true:テスト
+    let AdMobTest:Bool = true
 
     //rotation button
     @IBOutlet weak var startButton: UIButton!
@@ -40,6 +48,27 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("Google Mobile Ads SDK version: \(GADRequest.sdkVersion())")
+        
+        var admobView = GADBannerView()
+        
+        admobView = GADBannerView(adSize:kGADAdSizeBanner)
+        // iPhone X のポートレート決め打ちです
+        admobView.frame.origin = CGPoint(x:0, y:self.view.frame.size.height - admobView.frame.height)
+        admobView.frame.size = CGSize(width:self.view.frame.width, height:admobView.frame.height)
+        
+        if AdMobTest {
+            admobView.adUnitID = TEST_ID
+        }
+        else{
+            admobView.adUnitID = AdMobID
+        }
+        
+        admobView.rootViewController = self
+        admobView.load(GADRequest())
+        
+        self.view.addSubview(admobView)
         /*
         //self.view.willRemoveSubview(outerChartView)
         outerChartView.frame = CGRect.init(x: outerChartView.frame.origin.x, y: outerChartView.frame.origin.y, width: self.view.frame.width - outerChartView.frame.origin.x * 2.0, height: self.view.frame.height - outerChartView.frame.origin.y * 2.0)

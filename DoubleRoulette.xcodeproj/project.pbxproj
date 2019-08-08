@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529A99822CC991400F5ECB6 /* MyPieChartView.swift */; };
+		058D5B8E22FC51AB0064A91D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */; };
 		0590A0C822D7F38D004BB8CA /* roulette-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */; };
 		05AF43E422C974D2007A236D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AF43E322C974D2007A236D /* AppDelegate.swift */; };
 		05AF43E622C974D2007A236D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AF43E522C974D2007A236D /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		0529A99822CC991400F5ECB6 /* MyPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPieChartView.swift; sourceTree = "<group>"; };
+		058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "roulette-sound.mp3"; sourceTree = "<group>"; };
 		05AF43E022C974D2007A236D /* DoubleRoulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoubleRoulette.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AF43E322C974D2007A236D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				05AF43EA22C974D4007A236D /* Assets.xcassets */,
 				05AF43EC22C974D4007A236D /* LaunchScreen.storyboard */,
 				05AF43EF22C974D4007A236D /* Info.plist */,
+				058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */,
 			);
 			path = DoubleRoulette;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			files = (
 				05AF43EE22C974D4007A236D /* LaunchScreen.storyboard in Resources */,
 				0590A0C822D7F38D004BB8CA /* roulette-sound.mp3 in Resources */,
+				058D5B8E22FC51AB0064A91D /* GoogleService-Info.plist in Resources */,
 				05AF43EB22C974D4007A236D /* Assets.xcassets in Resources */,
 				05AF43E922C974D2007A236D /* Main.storyboard in Resources */,
 			);
