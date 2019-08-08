@@ -7,8 +7,6 @@ target 'DoubleRoulette' do
 
   # Pods for SampleLocation 
   pod 'AMColorPicker'
-  pod 'Charts'
-  pod 'ChartsRealm'
 
   # Pods for DoubleRoulette
 
