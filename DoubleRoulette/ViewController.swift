@@ -69,31 +69,7 @@ class ViewController: UIViewController {
         admobView.load(GADRequest())
         
         self.view.addSubview(admobView)
-        /*
-        //self.view.willRemoveSubview(outerChartView)
-        outerChartView.frame = CGRect.init(x: outerChartView.frame.origin.x, y: outerChartView.frame.origin.y, width: self.view.frame.width - outerChartView.frame.origin.x * 2.0, height: self.view.frame.height - outerChartView.frame.origin.y * 2.0)
-        //self.view.addSubview(outerChartView)
         
-        //self.view.willRemoveSubview(innerChartView)
-        innerChartView.frame = CGRect.init(x: innerChartView.frame.origin.x, y: innerChartView.frame.origin.y, width: self.view.frame.width - innerChartView.frame.origin.x * 2.0, height: self.view.frame.height - innerChartView.frame.origin.y * 2.0)
-        //self.view.addSubview(innerChartView)
-        
-        print(self.view.frame.width)
-        print(self.view.frame.height)
-        print("")
-        print(outerChartView.frame.origin.x)
-        print(outerChartView.frame.origin.y)
-        print(outerChartView.frame.width)
-        print(outerChartView.frame.height)
-        print("")
-        print(innerChartView.frame.origin.x)
-        print(innerChartView.frame.origin.y)
-        print(innerChartView.frame.width)
-        print(innerChartView.frame.height)
-        */
-        //innerChartView.frame = CGRect.init(x: 100, y: 100, width: self.view.frame.width / 2, height: self.view.frame.height / 2)
-        
-        //self.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         // Do any additional setup after loading the view.
         itemsLabel.text = "Items: " + String(itemData.count)
         //矢印描画
