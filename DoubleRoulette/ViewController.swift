@@ -120,8 +120,8 @@ class ViewController: UIViewController {
         
         let triangleOuter = UIBezierPath()
         triangleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 + 50))
-        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 - 50))
-        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 - 50))
+        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 * 1.15))
+        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 * 1.15))
         triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 + 50))
         
         triangleOuter.fill()
@@ -138,8 +138,8 @@ class ViewController: UIViewController {
         
         let triangleInner = UIBezierPath()
         triangleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 - outerChartView.frame.width / 3))
-        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 + 50))
-        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 + 50))
+        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 * 1.15))
+        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 * 1.15))
         triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 - outerChartView.frame.width / 3))
 
         triangleInner.fill()
@@ -153,8 +153,8 @@ class ViewController: UIViewController {
         circleOuterLayer.fillColor = UIColor.black.cgColor
         circleOuterLayer.lineWidth = 2.0
         let circleOuter = UIBezierPath()
-        circleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outerChartView.frame.width / 2  - 50))
-        circleOuter.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outerChartView.frame.width / 2  - 50), radius: 10, startAngle: 0, endAngle: 360, clockwise: true)
+        circleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 * 1.15))
+        circleOuter.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 * 1.15), radius: 10, startAngle: 0, endAngle: 360, clockwise: true)
         circleOuter.fill()
         circleOuterLayer.path = circleOuter.cgPath
         arrowView.layer.addSublayer(circleOuterLayer)
@@ -164,8 +164,8 @@ class ViewController: UIViewController {
         circleInnerLayer.fillColor = UIColor.black.cgColor
         circleInnerLayer.lineWidth = 2.0
         let circleInner = UIBezierPath()
-        circleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 + 50))
-        circleInner.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 + 50), radius: 14, startAngle: 0, endAngle: 360, clockwise: true)
+        circleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 * 1.15))
+        circleInner.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 * 1.15), radius: 10, startAngle: 0, endAngle: 360, clockwise: true)
         
         circleInner.fill()
         circleInnerLayer.path = circleInner.cgPath
