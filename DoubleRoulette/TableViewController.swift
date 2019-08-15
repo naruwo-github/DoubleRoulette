@@ -10,15 +10,16 @@ import UIKit
 import AMColorPicker
 import GoogleMobileAds
 
-class TableViewController: UITableViewController, AMColorPickerDelegate {
+class TableViewController: UITableViewController, AMColorPickerDelegate, GADBannerViewDelegate {
     
+    var bannerView: GADBannerView!
     // 広告ユニットID
-    let AdMobID = "ca-app-pub-6492692627915720~1982254255"
+    //let AdMobID = "ca-app-pub-6492692627915720~1982254255"
     // テスト用広告ユニットID
-    let TEST_ID = "ca-app-pub-3940256099942544/2934735716"
+    //let TEST_ID = "ca-app-pub-3940256099942544/2934735716"
     
     // true:テスト
-    let AdMobTest:Bool = true
+    //let AdMobTest:Bool = true
     
     var itemData = [TableViewCell]()
     var itemName: [String] = []
@@ -39,6 +40,17 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // In this case, we instantiate the banner with desired ad size.
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+
+        addBannerViewToView(bannerView)
+        
+        //.adUnitID = "ca-app-pub-6492692627915720~1982254255"
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
+        /*
         print("Google Mobile Ads SDK version: \(GADRequest.sdkVersion())")
         
         var admobView = GADBannerView()
@@ -47,18 +59,27 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
         // iPhone X のポートレート決め打ちです
         admobView.frame.origin = CGPoint(x:0, y:self.view.frame.size.height - admobView.frame.height - 60)
         admobView.frame.size = CGSize(width:self.view.frame.width, height:admobView.frame.height)
-        
+        */
+        /*
         if AdMobTest {
             admobView.adUnitID = TEST_ID
         }
         else{
             admobView.adUnitID = AdMobID
         }
+ */
+        /*
+        admobView.adUnitID = AdMobID
         
         admobView.rootViewController = self
         admobView.load(GADRequest())
-        
+ */
+        //let request = GADRequest()
+        //request.testDevices = ["01fa9aa834a520d7ce4f9ccc98ab3993"]
+        //admobView.load(request)
+        /*
         self.view.addSubview(admobView)
+ */
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -94,6 +115,27 @@ class TableViewController: UITableViewController, AMColorPickerDelegate {
     
     func configureTableView() {
         tableView.rowHeight = 60
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+     bannerView.translatesAutoresizingMaskIntoConstraints = false
+     view.addSubview(bannerView)
+     view.addConstraints(
+       [NSLayoutConstraint(item: bannerView,
+                           attribute: .bottom,
+                           relatedBy: .equal,
+                           toItem: bottomLayoutGuide,
+                           attribute: .top,
+                           multiplier: 1,
+                           constant: 0),
+        NSLayoutConstraint(item: bannerView,
+                           attribute: .centerX,
+                           relatedBy: .equal,
+                           toItem: view,
+                           attribute: .centerX,
+                           multiplier: 1,
+                           constant: 0)
+       ])
     }
     
     //Add Button
