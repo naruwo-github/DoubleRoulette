@@ -53,8 +53,10 @@ class ViewController: UIViewController, GADBannerViewDelegate {
 
         addBannerViewToView(bannerView)
         
-        //bannerView.adUnitID = "ca-app-pub-6492692627915720~1982254255"
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        //本物
+        bannerView.adUnitID = "ca-app-pub-6492692627915720~1982254255"
+        //テスト
+        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
