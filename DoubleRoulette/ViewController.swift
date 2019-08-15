@@ -13,13 +13,6 @@ import GoogleMobileAds
 
 class ViewController: UIViewController, GADBannerViewDelegate {
     var bannerView: GADBannerView!
-    // 広告ユニットID
-    //let AdMobID = "ca-app-pub-6492692627915720~1982254255"
-    // テスト用広告ユニットID
-    //let TEST_ID = "ca-app-pub-3940256099942544/2934735716"
-    
-    // true:テスト
-    //let AdMobTest:Bool = true
 
     //rotation button
     @IBOutlet weak var startButton: UIButton!
@@ -54,43 +47,12 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         addBannerViewToView(bannerView)
         
         //本物
-        bannerView.adUnitID = "ca-app-pub-6492692627915720~1982254255"
+        //bannerView.adUnitID = "ca-app-pub-6492692627915720/6248802323"
         //テスト
-        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
-        /*
-        print("Google Mobile Ads SDK version: \(GADRequest.sdkVersion())")
-        
-        var admobView = GADBannerView()
-        
-        admobView = GADBannerView(adSize:kGADAdSizeBanner)
-        // iPhone X のポートレート決め打ちです
-        admobView.frame.origin = CGPoint(x:0, y:self.view.frame.size.height - admobView.frame.height)
-        admobView.frame.size = CGSize(width:self.view.frame.width, height:admobView.frame.height)
-        */
-        /*
-        if AdMobTest {
-            admobView.adUnitID = TEST_ID
-        }
-        else{
-            admobView.adUnitID = AdMobID
-        }
- */
-        /*
-        admobView.adUnitID = AdMobID
-        
-        admobView.rootViewController = self
-        
-        admobView.load(GADRequest())
- */
-        //let request = GADRequest()
-        //request.testDevices = ["01fa9aa834a520d7ce4f9ccc98ab3993"]
-        //admobView.load(request)
-        /*
-        self.view.addSubview(admobView)
- */
         
         // Do any additional setup after loading the view.
         itemsLabel.text = "Items: " + String(itemData.count)
