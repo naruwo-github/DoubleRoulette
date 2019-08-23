@@ -42,7 +42,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         super.viewDidLoad()
         
         //広告
-        /*
         // In this case, we instantiate the banner with desired ad size.
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
 
@@ -55,8 +54,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
- */
-        
+ 
         // Do any additional setup after loading the view.
         itemsLabel.text = "Items: " + String(itemData.count)
         //矢印描画
@@ -359,7 +357,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
 extension ViewController: AVAudioPlayerDelegate {
     func playSound(name: String) {
         guard let path = Bundle.main.path(forResource: name, ofType: "mp3") else {
-            print("no music file")
+            //print("no music file")
             return
         }
         do {

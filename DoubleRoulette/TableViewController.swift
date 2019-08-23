@@ -34,12 +34,12 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         super.viewDidLoad()
         
         //広告
-        /*
         // In this case, we instantiate the banner with desired ad size.
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
 
         addBannerViewToView(bannerView)
         
+        //デバイスID : "01fa9aa834a520d7ce4f9ccc98ab3993"
         //本物
         bannerView.adUnitID = "ca-app-pub-6492692627915720/6248802323"
         //テスト
@@ -47,7 +47,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
- */
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -63,10 +62,10 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         G = userDefaults.object(forKey: "G") as? [Double] ?? []
         B = userDefaults.object(forKey: "B") as? [Double] ?? []
         A = userDefaults.object(forKey: "A") as? [Double] ?? []
-        print(R)
-        print(G)
-        print(B)
-        print(A)
+        //print(R)
+        //print(G)
+        //print(B)
+        //print(A)
         
         for _ in 0..<cellNum {
             let item = TableViewCell()
@@ -76,7 +75,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
             self.itemColor.insert(item.color, at: 0)
             //self.itemType.insert(item.type, at: 0)
         }
-        print(cellNum)
+        //print(cellNum)
         //cell height
         configureTableView()
     }
