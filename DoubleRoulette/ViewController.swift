@@ -40,6 +40,10 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        itemsLabel.text = "Items: " + String(itemData.count)
+        //矢印描画
+        drawArrow()
         
         //広告
         // In this case, we instantiate the banner with desired ad size.
@@ -48,17 +52,20 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         addBannerViewToView(bannerView)
         
         //本物
-        bannerView.adUnitID = "ca-app-pub-6492692627915720/6248802323"
+        //bannerView.adUnitID = "ca-app-pub-6492692627915720/6248802323"
+        bannerView.adUnitID = "ca-app-pub-6492692627915720/8427945350"
         //テスト
         //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
  
+        /*
         // Do any additional setup after loading the view.
         itemsLabel.text = "Items: " + String(itemData.count)
         //矢印描画
         drawArrow()
+ */
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {
