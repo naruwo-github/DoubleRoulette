@@ -33,6 +33,8 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //広告
+        /*
         // In this case, we instantiate the banner with desired ad size.
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
 
@@ -45,6 +47,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
+ */
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

@@ -41,6 +41,8 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //広告
+        /*
         // In this case, we instantiate the banner with desired ad size.
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
 
@@ -53,6 +55,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
+ */
         
         // Do any additional setup after loading the view.
         itemsLabel.text = "Items: " + String(itemData.count)
