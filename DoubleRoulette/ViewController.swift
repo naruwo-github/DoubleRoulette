@@ -62,6 +62,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             }
         }
         
+        /*
         //円を描く
         let outerCircleLayer = CAShapeLayer()
         let innerCircleLayer = CAShapeLayer()
@@ -87,7 +88,22 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         innerCircle.stroke()
         innerCircleLayer.path = innerCircle.cgPath
         innerChartView.layer.addSublayer(innerCircleLayer)
+ */
+        //outer view
+        let pieChartViewOuter = MyPieChartView()
+        pieChartViewOuter.radius = min(outerChartView.frame.size.width, outerChartView.frame.size.height)/2
+        pieChartViewOuter.isOpaque = false
+        pieChartViewOuter.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
+        pieChartViewOuter.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
+        //inner view
+        let pieChartViewInner = MyPieChartView()
+        pieChartViewInner.radius = min(innerChartView.frame.size.width, innerChartView.frame.size.height)/4
+        pieChartViewInner.isOpaque = false
+        pieChartViewInner.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
+        pieChartViewInner.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+
+        /*
         //outer view
         let pieChartViewOuter = MyPieChartView()
         pieChartViewOuter.radius = min(outerChartView.frame.size.width, outerChartView.frame.size.height)/2
@@ -101,6 +117,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         pieChartViewInner.isOpaque = false
         pieChartViewInner.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
         pieChartViewInner.frame = CGRect(x: 0, y: 0, width: innerChartView.frame.size.width, height: innerChartView.frame.size.height)
+ */
         
         //add to each view
         for i in 0..<outerName.count {
@@ -120,14 +137,18 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         //roulette element label setting
         //outer move
         let angleOuter = Double.pi * 2.0 / Double(outerName.count)
-        let centerOuterX = outerChartView.frame.width / 2 - 18
-        let centerOuterY = outerChartView.frame.height / 2 - 25
+        //let centerOuterX = outerChartView.frame.width / 2 - 18
+        //let centerOuterY = outerChartView.frame.height / 2 - 25
+        let centerOuterX = self.view.frame.width / 2 - 18
+        let centerOuterY = self.view.frame.height / 2 - 25
         let originOuterX = centerOuterX
         let originOuterY = centerOuterY - outerChartView.frame.height / 5
         //inner move
         let angleInner = Double.pi * 2.0 / Double(innerName.count)
-        let centerInnerX = innerChartView.frame.width / 2 - 18
-        let centerInnerY = innerChartView.frame.height / 2 - 25
+        //let centerInnerX = innerChartView.frame.width / 2 - 18
+        //let centerInnerY = innerChartView.frame.height / 2 - 25
+        let centerInnerX = self.view.frame.width / 2 - 18
+        let centerInnerY = self.view.frame.height / 2 - 25
         let originInnerX = centerInnerX
         let originInnerY = centerInnerY - innerChartView.frame.height / 12
         
