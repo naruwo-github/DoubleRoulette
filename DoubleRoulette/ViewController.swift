@@ -91,33 +91,17 @@ class ViewController: UIViewController, GADBannerViewDelegate {
  */
         //outer view
         let pieChartViewOuter = MyPieChartView()
-        pieChartViewOuter.radius = min(outerChartView.frame.size.width, outerChartView.frame.size.height)/2
+        pieChartViewOuter.radius = min(self.view.frame.size.width, self.view.frame.size.height)/2
         pieChartViewOuter.isOpaque = false
         pieChartViewOuter.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
         pieChartViewOuter.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
         //inner view
         let pieChartViewInner = MyPieChartView()
-        pieChartViewInner.radius = min(innerChartView.frame.size.width, innerChartView.frame.size.height)/4
+        pieChartViewInner.radius = min(self.view.frame.size.width, self.view.frame.size.height)/4
         pieChartViewInner.isOpaque = false
         pieChartViewInner.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
         pieChartViewInner.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-
-        /*
-        //outer view
-        let pieChartViewOuter = MyPieChartView()
-        pieChartViewOuter.radius = min(outerChartView.frame.size.width, outerChartView.frame.size.height)/2
-        pieChartViewOuter.isOpaque = false
-        pieChartViewOuter.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-        pieChartViewOuter.frame = CGRect(x: 0, y: 0, width: outerChartView.frame.size.width, height: outerChartView.frame.size.height)
-        
-        //inner view
-        let pieChartViewInner = MyPieChartView()
-        pieChartViewInner.radius = min(innerChartView.frame.size.width, innerChartView.frame.size.height)/4
-        pieChartViewInner.isOpaque = false
-        pieChartViewInner.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-        pieChartViewInner.frame = CGRect(x: 0, y: 0, width: innerChartView.frame.size.width, height: innerChartView.frame.size.height)
- */
         
         //add to each view
         for i in 0..<outerName.count {
@@ -130,27 +114,20 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         outerChartView.addSubview(pieChartViewOuter)
         innerChartView.addSubview(pieChartViewInner)
         
-        //outerChartView.layer.cornerRadius = outerChartView.frame.width / 2.0
-        //innerChartView.layer.cornerRadius = innerChartView.frame.width / 2.0
-        
-        
         //roulette element label setting
         //outer move
         let angleOuter = Double.pi * 2.0 / Double(outerName.count)
-        //let centerOuterX = outerChartView.frame.width / 2 - 18
-        //let centerOuterY = outerChartView.frame.height / 2 - 25
         let centerOuterX = self.view.frame.width / 2 - 18
         let centerOuterY = self.view.frame.height / 2 - 25
         let originOuterX = centerOuterX
-        let originOuterY = centerOuterY - outerChartView.frame.height / 5
+        let originOuterY = centerOuterY - self.view.frame.height / 5
+        
         //inner move
         let angleInner = Double.pi * 2.0 / Double(innerName.count)
-        //let centerInnerX = innerChartView.frame.width / 2 - 18
-        //let centerInnerY = innerChartView.frame.height / 2 - 25
         let centerInnerX = self.view.frame.width / 2 - 18
         let centerInnerY = self.view.frame.height / 2 - 25
         let originInnerX = centerInnerX
-        let originInnerY = centerInnerY - innerChartView.frame.height / 12
+        let originInnerY = centerInnerY - self.view.frame.height / 12
         
         for i in 0..<outerName.count {
             let labelView = UILabel()
@@ -232,13 +209,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
- 
-        /*
-        // Do any additional setup after loading the view.
-        itemsLabel.text = "Items: " + String(itemData.count)
-        //矢印描画
-        drawArrow()
- */
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {
@@ -362,164 +332,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         self.view.addSubview(arrowView)
         
     }
-    
-    /*
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        //self.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-        
-        //outer
-        var outerName: [String] = []
-        var outerColor: [UIColor] = []
-        //inner
-        var innerName: [String] = []
-        var innerColor: [UIColor] = []
-        
-        //devide into 2 categories
-        for i in 0..<itemData.count {
-            if itemType[i] == 0 {
-                //outer
-                outerName.insert(itemName[i], at: 0)
-                outerColor.insert(itemColor[i], at: 0)
-            }else {
-                //inner
-                innerName.insert(itemName[i], at: 0)
-                innerColor.insert(itemColor[i], at: 0)
-            }
-        }
-        
-        //円を描く
-        let outerCircleLayer = CAShapeLayer()
-        let innerCircleLayer = CAShapeLayer()
-        outerCircleLayer.strokeColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
-        outerCircleLayer.fillColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
-        outerCircleLayer.lineWidth = 2.0
-        innerCircleLayer.strokeColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
-        innerCircleLayer.fillColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
-        innerCircleLayer.lineWidth = 2.0
-        
-        let outerCircle = UIBezierPath()
-        outerCircle.move(to: CGPoint.init(x: outerChartView.frame.width / 2, y: outerChartView.frame.height / 2))
-        outerCircle.addArc(withCenter: CGPoint.init(x: outerChartView.frame.width / 2, y: outerChartView.frame.height / 2), radius: outerChartView.frame.width / 2 + 2, startAngle: 0, endAngle: 360, clockwise: true)
-        
-        let innerCircle = UIBezierPath()
-        innerCircle.move(to: CGPoint.init(x: innerChartView.frame.width / 2, y: innerChartView.frame.height / 2))
-        innerCircle.addArc(withCenter: CGPoint.init(x: innerChartView.frame.width / 2, y: innerChartView.frame.height / 2), radius: innerChartView.frame.width / 4 + 2, startAngle: 0, endAngle: 360, clockwise: true)
-        
-        outerCircle.stroke()
-        outerCircleLayer.path = outerCircle.cgPath
-        outerChartView.layer.addSublayer(outerCircleLayer)
-        
-        innerCircle.stroke()
-        innerCircleLayer.path = innerCircle.cgPath
-        innerChartView.layer.addSublayer(innerCircleLayer)
-        
-        //outer view
-        let pieChartViewOuter = MyPieChartView()
-        pieChartViewOuter.radius = min(outerChartView.frame.size.width, outerChartView.frame.size.height)/2
-        pieChartViewOuter.isOpaque = false
-        pieChartViewOuter.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-        pieChartViewOuter.frame = CGRect(x: 0, y: 0, width: outerChartView.frame.size.width, height: outerChartView.frame.size.height)
-        
-        //inner view
-        let pieChartViewInner = MyPieChartView()
-        pieChartViewInner.radius = min(innerChartView.frame.size.width, innerChartView.frame.size.height)/4
-        pieChartViewInner.isOpaque = false
-        pieChartViewInner.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-        pieChartViewInner.frame = CGRect(x: 0, y: 0, width: innerChartView.frame.size.width, height: innerChartView.frame.size.height)
-        
-        //add to each view
-        for i in 0..<outerName.count {
-            pieChartViewOuter.segments.insert(Segment(color: outerColor[i], value: CGFloat(Double.pi * 2.0 / Double(outerName.count)), label: outerName[i]), at: 0)
-        }
-        for i in 0..<innerName.count {
-            pieChartViewInner.segments.insert(Segment(color: innerColor[i], value: CGFloat(Double.pi * 2.0 / Double(innerName.count)), label: innerName[i]), at: 0)
-        }
-        
-        outerChartView.addSubview(pieChartViewOuter)
-        innerChartView.addSubview(pieChartViewInner)
-        
-        //outerChartView.layer.cornerRadius = outerChartView.frame.width / 2.0
-        //innerChartView.layer.cornerRadius = innerChartView.frame.width / 2.0
-        
-        
-        //roulette element label setting
-        //outer move
-        let angleOuter = Double.pi * 2.0 / Double(outerName.count)
-        let centerOuterX = outerChartView.frame.width / 2 - 18
-        let centerOuterY = outerChartView.frame.height / 2 - 25
-        let originOuterX = centerOuterX
-        let originOuterY = centerOuterY - outerChartView.frame.height / 5
-        //inner move
-        let angleInner = Double.pi * 2.0 / Double(innerName.count)
-        let centerInnerX = innerChartView.frame.width / 2 - 18
-        let centerInnerY = innerChartView.frame.height / 2 - 25
-        let originInnerX = centerInnerX
-        let originInnerY = centerInnerY - innerChartView.frame.height / 12
-        
-        for i in 0..<outerName.count {
-            let labelView = UILabel()
-            labelView.isOpaque = false
-            labelView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-            labelView.frame.size = CGSize(width: 100, height: 50)
-            labelView.text = outerName[i]
-            
-            let coox = originOuterX - centerOuterX
-            let cooy = originOuterY - centerOuterY
-            let moveAngle1 = angleOuter / 2.0
-            let sinAngle1 = CGFloat(sin(-moveAngle1))
-            let cosAngle1 = CGFloat(cos(-moveAngle1))
-            var coox1 = cosAngle1 * coox - sinAngle1 * cooy
-            var cooy1 = sinAngle1 * coox + cosAngle1 * cooy
-            coox1 += centerOuterX
-            cooy1 += centerOuterY
-            
-            let moveAngle2 = Double(i) * angleOuter
-            let sinAngle2 = CGFloat(sin(-moveAngle2))
-            let cosAngle2 = CGFloat(cos(-moveAngle2))
-            var positionX = cosAngle2 * (coox1 - centerOuterX) - sinAngle2 * (cooy1 - centerOuterY)
-            var positionY = sinAngle2 * (coox1 - centerOuterX) + cosAngle2 * (cooy1 - centerOuterY)
-            positionX += centerOuterX
-            positionY += centerOuterY
-            
-            labelView.frame.origin = CGPoint(x: positionX, y: positionY)
-            
-            //add!!
-            outerChartView.addSubview(labelView)
-        }
-        
-        for i in 0..<innerName.count {
-            let labelView = UILabel()
-            labelView.isOpaque = false
-            labelView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-            labelView.frame.size = CGSize(width: 100, height: 50)
-            labelView.text = innerName[i]
-            
-            let coox = originInnerX - centerInnerX
-            let cooy = originInnerY - centerInnerY
-            let moveAngle1 = angleInner / 2.0
-            let sinAngle1 = CGFloat(sin(-moveAngle1))
-            let cosAngle1 = CGFloat(cos(-moveAngle1))
-            var coox1 = cosAngle1 * coox - sinAngle1 * cooy
-            var cooy1 = sinAngle1 * coox + cosAngle1 * cooy
-            coox1 += centerInnerX
-            cooy1 += centerInnerY
-            
-            let moveAngle2 = Double(i) * angleInner
-            let sinAngle2 = CGFloat(sin(-moveAngle2))
-            let cosAngle2 = CGFloat(cos(-moveAngle2))
-            var positionX = cosAngle2 * (coox1 - centerInnerX) - sinAngle2 * (cooy1 - centerInnerY)
-            var positionY = sinAngle2 * (coox1 - centerInnerX) + cosAngle2 * (cooy1 - centerInnerY)
-            positionX += centerInnerX
-            positionY += centerInnerY
-            
-            labelView.frame.origin = CGPoint(x: positionX, y: positionY)
-            
-            //add!!
-            innerChartView.addSubview(labelView)
-        }
-    }
- */
 }
 
 extension ViewController: AVAudioPlayerDelegate {
