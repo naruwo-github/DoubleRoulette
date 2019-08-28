@@ -264,25 +264,11 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         outerChartView.addSubview(pieChartViewOuter)
         innerChartView.addSubview(pieChartViewInner)
         
-        outerChartView.layer.cornerRadius = outerChartView.frame.width / 2.0
-        innerChartView.layer.cornerRadius = innerChartView.frame.width / 2.0
+        //outerChartView.layer.cornerRadius = outerChartView.frame.width / 2.0
+        //innerChartView.layer.cornerRadius = innerChartView.frame.width / 2.0
         
         
         //roulette element label setting
-        /*
-        //outer move
-        let angleOuter = Double.pi * 2.0 / Double(outerName.count)
-        let centerOuterX = outerChartView.frame.width / 2 - 18
-        let centerOuterY = outerChartView.frame.height / 2 - 25
-        let originOuterX = centerOuterX
-        let originOuterY = centerOuterY - outerChartView.frame.height / 3
-        //inner move
-        let angleInner = Double.pi * 2.0 / Double(innerName.count)
-        let centerInnerX = innerChartView.frame.width / 2 - 18
-        let centerInnerY = innerChartView.frame.height / 2 - 25
-        let originInnerX = centerInnerX
-        let originInnerY = centerInnerY - innerChartView.frame.height / 3
- */
         //outer move
         let angleOuter = Double.pi * 2.0 / Double(outerName.count)
         let centerOuterX = outerChartView.frame.width / 2 - 18
