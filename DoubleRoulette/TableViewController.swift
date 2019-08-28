@@ -33,6 +33,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureTableView()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -60,9 +61,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
             self.itemColor.insert(item.color, at: 0)
             //self.itemType.insert(item.type, at: 0)
         }
-        //print(cellNum)
-        //cell height
-        configureTableView()
         
         //広告
         // In this case, we instantiate the banner with desired ad size.
@@ -78,39 +76,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
-        
-        /*
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        let cellNum = userDefaults.integer(forKey: "itemDataNum")
-        itemName = userDefaults.object(forKey: "itemName") as? [String] ?? []
-        itemType = userDefaults.object(forKey: "itemType") as? [Int] ?? []
-        
-        R = userDefaults.object(forKey: "R") as? [Double] ?? []
-        G = userDefaults.object(forKey: "G") as? [Double] ?? []
-        B = userDefaults.object(forKey: "B") as? [Double] ?? []
-        A = userDefaults.object(forKey: "A") as? [Double] ?? []
-        //print(R)
-        //print(G)
-        //print(B)
-        //print(A)
-        
-        for _ in 0..<cellNum {
-            let item = TableViewCell()
-            self.itemData.insert(item, at: 0)
-            self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.right)
-            //self.itemName.insert(item.name, at: 0)
-            self.itemColor.insert(item.color, at: 0)
-            //self.itemType.insert(item.type, at: 0)
-        }
-        //print(cellNum)
-        //cell height
-        configureTableView()
- */
     }
     
     func configureTableView() {
