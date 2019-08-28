@@ -114,7 +114,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     }
     
     func configureTableView() {
-        tableView.rowHeight = 60
+        tableView.rowHeight = 50
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {
