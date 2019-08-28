@@ -260,7 +260,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         outerChartView.layer.add(animationOuter, forKey: "animationOuter")
         innerChartView.layer.add(animationInner, forKey: "animationInner")
     }
-     
+    
     //矢印召喚
     func drawArrow() {
         let arrowView = UIView()
@@ -275,10 +275,10 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         clockHandOuter.lineWidth = 2.0
         
         let triangleOuter = UIBezierPath()
-        triangleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 + 50))
-        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 * 1.15))
-        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 * 1.15))
-        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 + 50))
+        triangleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - self.view.frame.width / 2 + 50))
+        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 - self.view.frame.width / 2 * 1.15))
+        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 - self.view.frame.width / 2 * 1.15))
+        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - self.view.frame.width / 2 + 50))
         
         triangleOuter.fill()
         clockHandOuter.path = triangleOuter.cgPath
@@ -293,10 +293,10 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         clockHandInner.lineWidth = 2.0
         
         let triangleInner = UIBezierPath()
-        triangleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 - outerChartView.frame.width / 3))
-        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 * 1.15))
-        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 * 1.15))
-        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 - outerChartView.frame.width / 3))
+        triangleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + self.view.frame.width / 2 - self.view.frame.width / 3))
+        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 + self.view.frame.width / 2 * 1.15))
+        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 + self.view.frame.width / 2 * 1.15))
+        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + self.view.frame.width / 2 - self.view.frame.width / 3))
 
         triangleInner.fill()
         clockHandInner.path = triangleInner.cgPath
@@ -309,8 +309,8 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         circleOuterLayer.fillColor = UIColor.black.cgColor
         circleOuterLayer.lineWidth = 2.0
         let circleOuter = UIBezierPath()
-        circleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 * 1.15))
-        circleOuter.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - outerChartView.frame.width / 2 * 1.15), radius: 10, startAngle: 0, endAngle: 360, clockwise: true)
+        circleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - self.view.frame.width / 2 * 1.15))
+        circleOuter.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - self.view.frame.width / 2 * 1.15), radius: 10, startAngle: 0, endAngle: 360, clockwise: true)
         circleOuter.fill()
         circleOuterLayer.path = circleOuter.cgPath
         arrowView.layer.addSublayer(circleOuterLayer)
@@ -320,8 +320,8 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         circleInnerLayer.fillColor = UIColor.black.cgColor
         circleInnerLayer.lineWidth = 2.0
         let circleInner = UIBezierPath()
-        circleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 * 1.15))
-        circleInner.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + outerChartView.frame.width / 2 * 1.15), radius: 10, startAngle: 0, endAngle: 360, clockwise: true)
+        circleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + self.view.frame.width / 2 * 1.15))
+        circleInner.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + self.view.frame.width / 2 * 1.15), radius: 10, startAngle: 0, endAngle: 360, clockwise: true)
         
         circleInner.fill()
         circleInnerLayer.path = circleInner.cgPath
