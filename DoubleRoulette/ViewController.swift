@@ -41,6 +41,13 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //outerChartView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.width))
+        //innerChartView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.width))
+        //outerChartView.center = self.view.center
+        //innerChartView.center = self.view.center
+        //print(outerChartView.frame.width + " , " + outerChartView.frame.height)
+        //print(innerChartView.frame.width + " , " + innerChartView.frame.height)
+        //print(self.view.frame.width + " , " + self.view.frame.height)
         
         //outer
         var outerName: [String] = []
