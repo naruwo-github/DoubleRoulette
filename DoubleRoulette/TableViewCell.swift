@@ -28,6 +28,8 @@ class TableViewCell: UITableViewCell, NSSecureCoding, UITextFieldDelegate{
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        itemName.delegate = self
+        
         itemName.text = "Item"
         
         itemColor.backgroundColor = UIColor.init(red: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), green: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), blue: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), alpha: CGFloat(1))
