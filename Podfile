@@ -10,6 +10,7 @@ target 'DoubleRoulette' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'
+  pod 'CellAnimator'
 
   # Pods for DoubleRoulette
 

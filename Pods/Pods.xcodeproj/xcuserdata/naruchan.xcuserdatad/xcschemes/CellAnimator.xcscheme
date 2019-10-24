@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3634800531D28C88FC37CD2E5B8C7435"
-               BuildableName = "Pods-DoubleRoulette.framework"
-               BlueprintName = "Pods-DoubleRoulette"
+               BlueprintIdentifier = "448CC69EAA272FA13E95CDDB04A6694D"
+               BuildableName = "CellAnimator.framework"
+               BlueprintName = "CellAnimator"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
