@@ -9,6 +9,7 @@
 import UIKit
 import AMColorPicker
 import GoogleMobileAds
+import CellAnimator
 
 class TableViewController: UITableViewController, AMColorPickerDelegate, GADBannerViewDelegate {
     
@@ -245,6 +246,11 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    //cell animator
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        CellAnimator.animateCell(cell: cell, withTransform: CellAnimator.TransformTilt, andDuration: 1)
     }
  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
