@@ -212,9 +212,9 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         //本物
         //bannerView.adUnitID = "ca-app-pub-6492692627915720/8427945350"
         //DRRouletteView
-        bannerView.adUnitID = "ca-app-pub-6492692627915720/3283423713"
+        //bannerView.adUnitID = "ca-app-pub-6492692627915720/3283423713"
         //テスト
-        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
