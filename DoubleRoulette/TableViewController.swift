@@ -239,6 +239,12 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
             cell.itemType.selectedSegmentIndex = self.itemType[indexPath.row]
             cell.itemName.text = self.itemName[indexPath.row]
             cell.itemColor.backgroundColor = UIColor.init(red: CGFloat(self.R[indexPath.row]), green: CGFloat(self.G[indexPath.row]), blue: CGFloat(self.B[indexPath.row]), alpha: CGFloat(self.A[indexPath.row]))
+            /*
+            //use view with tag
+            (cell.contentView.viewWithTag(1) as! UITextField).text = self.itemName[indexPath.row]
+            cell.contentView.viewWithTag(2)?.backgroundColor = UIColor.init(red: CGFloat(self.R[indexPath.row]), green: CGFloat(self.G[indexPath.row]), blue: CGFloat(self.B[indexPath.row]), alpha: CGFloat(self.A[indexPath.row]))
+            (cell.contentView.viewWithTag(3) as! UISegmentedControl).selectedSegmentIndex = self.itemType[indexPath.row]
+ */
         }
         
         return cell
