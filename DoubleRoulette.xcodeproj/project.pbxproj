@@ -71,15 +71,15 @@
 		05AF43E222C974D2007A236D /* DoubleRoulette */ = {
 			isa = PBXGroup;
 			children = (
-				0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */,
 				05AF43E322C974D2007A236D /* AppDelegate.swift */,
 				05AF43E522C974D2007A236D /* ViewController.swift */,
-				05AF43E722C974D2007A236D /* Main.storyboard */,
 				0529A99822CC991400F5ECB6 /* MyPieChartView.swift */,
 				05D3D9D322C9D431007D24FF /* TableViewController.swift */,
 				05D3D9D522C9D475007D24FF /* TableViewCell.swift */,
-				05AF43EA22C974D4007A236D /* Assets.xcassets */,
+				05AF43E722C974D2007A236D /* Main.storyboard */,
 				05AF43EC22C974D4007A236D /* LaunchScreen.storyboard */,
+				05AF43EA22C974D4007A236D /* Assets.xcassets */,
+				0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */,
 				05AF43EF22C974D4007A236D /* Info.plist */,
 				058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */,
 			);
