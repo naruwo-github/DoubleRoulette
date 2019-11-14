@@ -18,7 +18,7 @@ class TableViewCell: UITableViewCell, NSSecureCoding, UITextFieldDelegate{
     @IBOutlet weak var itemType: UISegmentedControl!
     
     var name: String = "Item"
-    var color: UIColor = UIColor.init(red: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), green: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), blue: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), alpha: CGFloat(1))
+    var color: UIColor = UIColor.init(red: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), green: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), blue: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), alpha: CGFloat(1))
     var type: Int = 0
     
     static var supportsSecureCoding: Bool {
@@ -32,7 +32,7 @@ class TableViewCell: UITableViewCell, NSSecureCoding, UITextFieldDelegate{
         
         itemName.text = "Item"
         
-        itemColor.backgroundColor = UIColor.init(red: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), green: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), blue: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), alpha: CGFloat(1))
+        itemColor.backgroundColor = UIColor.init(red: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), green: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), blue: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), alpha: CGFloat(1))
         
         itemType.selectedSegmentIndex = 0
     }
@@ -45,14 +45,14 @@ class TableViewCell: UITableViewCell, NSSecureCoding, UITextFieldDelegate{
     
     func textFieldDidBeginEditing(itemName: UITextField){
         self.name = itemName.text ?? "Item"
-        self.color = itemColor.backgroundColor ?? UIColor.init(red: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), green: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), blue: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), alpha: CGFloat(1))
+        self.color = itemColor.backgroundColor ?? UIColor.init(red: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), green: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), blue: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), alpha: CGFloat(1))
         self.type = itemType.selectedSegmentIndex
     }
     
     //UITextFieldDelegate
     internal func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
         self.name = itemName.text ?? "Item"
-        self.color = itemColor.backgroundColor ?? UIColor.init(red: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), green: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), blue: CGFloat((25.5 * Double(Int.random(in: 0 ... 10))) / 255.0), alpha: CGFloat(1))
+        self.color = itemColor.backgroundColor ?? UIColor.init(red: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), green: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), blue: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), alpha: CGFloat(1))
         self.type = itemType.selectedSegmentIndex
         itemName.resignFirstResponder()
         return true
