@@ -285,6 +285,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     }
     
     func saveData() {
+        /*
         for i in 0..<itemData.count {
             let field = self.tableView.cellForRow(at: [0,i])?.contentView.viewWithTag(1) as? UITextField
             self.itemName[i] = field?.text ?? "Item"
@@ -303,5 +304,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
             self.B[i] = Double(b)
             self.A[i] = Double(a)
         }
+ */
     }
 }
