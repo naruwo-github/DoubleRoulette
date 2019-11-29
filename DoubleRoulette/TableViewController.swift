@@ -129,7 +129,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         //alert to tableView
         self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.right)
         //save cells
-        saveData()
         userDefaults.set(itemData.count, forKey: "itemDataNum")
         userDefaults.set(itemName, forKey: "itemName")
         userDefaults.set(itemType, forKey: "itemType")
@@ -142,7 +141,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     
     @IBAction func playButtonTapped(_ sender: Any) {
         //save cells
-        saveData()
         userDefaults.set(itemData.count, forKey: "itemDataNum")
         userDefaults.set(itemName, forKey: "itemName")
         userDefaults.set(itemType, forKey: "itemType")
@@ -172,7 +170,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         self.tableView.cellForRow(at: indexPath as IndexPath)?.contentView.viewWithTag(2)?.backgroundColor = color
         
         //save cells
-        saveData()
         userDefaults.set(itemData.count, forKey: "itemDataNum")
         userDefaults.set(itemName, forKey: "itemName")
         userDefaults.set(itemType, forKey: "itemType")
@@ -205,7 +202,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         }
         
         //save cells
-        saveData()
         userDefaults.set(itemData.count, forKey: "itemDataNum")
         userDefaults.set(itemName, forKey: "itemName")
         userDefaults.set(itemType, forKey: "itemType")
@@ -233,12 +229,21 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     //return cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
-        
-        //reflect setting
-        if itemData.count > 0 {
-            cell.itemType.selectedSegmentIndex = self.itemType[indexPath.row]
-            cell.itemName.text = self.itemName[indexPath.row]
-            cell.itemColor.backgroundColor = UIColor.init(red: CGFloat(self.R[indexPath.row]), green: CGFloat(self.G[indexPath.row]), blue: CGFloat(self.B[indexPath.row]), alpha: CGFloat(self.A[indexPath.row]))
+        if cell.index == 0 {
+            cell.index = indexPath.row + 1
+            //reflect setting
+            if itemData.count > 0 {
+                cell.itemType.selectedSegmentIndex = self.itemType[indexPath.row]
+                cell.itemName.text = self.itemName[indexPath.row]
+                cell.itemColor.backgroundColor = UIColor.init(red: CGFloat(self.R[indexPath.row]), green: CGFloat(self.G[indexPath.row]), blue: CGFloat(self.B[indexPath.row]), alpha: CGFloat(self.A[indexPath.row]))
+            }
+        } else {
+            //reflect setting
+            if itemData.count > 0 {
+                cell.itemType.selectedSegmentIndex = self.itemType[cell.index-1]
+                cell.itemName.text = self.itemName[cell.index-1]
+                cell.itemColor.backgroundColor = UIColor.init(red: CGFloat(self.R[cell.index-1]), green: CGFloat(self.G[cell.index-1]), blue: CGFloat(self.B[cell.index-1]), alpha: CGFloat(self.A[cell.index-1]))
+            }
         }
         
         return cell
@@ -273,7 +278,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         }
         
         //save cells
-        saveData()
         userDefaults.set(itemData.count, forKey: "itemDataNum")
         userDefaults.set(itemName, forKey: "itemName")
         userDefaults.set(itemType, forKey: "itemType")
@@ -282,28 +286,5 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         userDefaults.set(G, forKey: "G")
         userDefaults.set(B, forKey: "B")
         userDefaults.set(A, forKey: "A")
-    }
-    
-    func saveData() {
-        /*
-        for i in 0..<itemData.count {
-            let field = self.tableView.cellForRow(at: [0,i])?.contentView.viewWithTag(1) as? UITextField
-            self.itemName[i] = field?.text ?? "Item"
-            let btcolor = self.tableView.cellForRow(at: [0,i])?.contentView.viewWithTag(2) as? UIButton
-            self.itemColor[i] = btcolor?.backgroundColor ?? UIColor.init(red: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), green: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), blue: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), alpha: CGFloat(1))
-            let type = self.tableView.cellForRow(at: [0, i])?.contentView.viewWithTag(3) as? UISegmentedControl
-            self.itemType[i] = type?.selectedSegmentIndex ?? 0
-            
-            var r: CGFloat = 0
-            var g: CGFloat = 0
-            var b: CGFloat = 0
-            var a: CGFloat = 0
-            self.itemColor[i].getRed(&r, green: &g , blue: &b, alpha: &a)
-            self.R[i] = Double(r)
-            self.G[i] = Double(g)
-            self.B[i] = Double(b)
-            self.A[i] = Double(a)
-        }
- */
     }
 }
