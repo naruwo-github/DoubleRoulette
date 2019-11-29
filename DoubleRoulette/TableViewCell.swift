@@ -20,6 +20,7 @@ class TableViewCell: UITableViewCell, NSSecureCoding, UITextFieldDelegate{
     var name: String = "Item"
     var color: UIColor = UIColor.init(red: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), green: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), blue: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), alpha: CGFloat(1))
     var type: Int = 0
+    //var index: Int = 0
     
     static var supportsSecureCoding: Bool {
         return true
