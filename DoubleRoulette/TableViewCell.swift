@@ -32,11 +32,13 @@ class TableViewCell: UITableViewCell, NSSecureCoding, UITextFieldDelegate{
         // Initialization code
         itemName.delegate = self
         
+        /*
         itemName.text = "Item"
         
         itemColor.backgroundColor = UIColor.init(red: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), green: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), blue: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), alpha: CGFloat(1))
         
         itemType.selectedSegmentIndex = 0
+ */
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
