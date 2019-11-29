@@ -128,27 +128,11 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         self.A.insert(Double(a), at: 0)
         //alert to tableView
         self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.right)
-        //save cells
-        userDefaults.set(itemData.count, forKey: "itemDataNum")
-        userDefaults.set(itemName, forKey: "itemName")
-        userDefaults.set(itemType, forKey: "itemType")
-        
-        userDefaults.set(R, forKey: "R")
-        userDefaults.set(G, forKey: "G")
-        userDefaults.set(B, forKey: "B")
-        userDefaults.set(A, forKey: "A")
+        saveCellsToUserDefaults()
     }
     
     @IBAction func playButtonTapped(_ sender: Any) {
-        //save cells
-        userDefaults.set(itemData.count, forKey: "itemDataNum")
-        userDefaults.set(itemName, forKey: "itemName")
-        userDefaults.set(itemType, forKey: "itemType")
-        
-        userDefaults.set(R, forKey: "R")
-        userDefaults.set(G, forKey: "G")
-        userDefaults.set(B, forKey: "B")
-        userDefaults.set(A, forKey: "A")
+        saveCellsToUserDefaults()
     }
     
     @IBAction func buttonButtonTapped(_ sender: Any) {
@@ -168,16 +152,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     
     func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
         self.tableView.cellForRow(at: indexPath as IndexPath)?.contentView.viewWithTag(2)?.backgroundColor = color
-        
-        //save cells
-        userDefaults.set(itemData.count, forKey: "itemDataNum")
-        userDefaults.set(itemName, forKey: "itemName")
-        userDefaults.set(itemType, forKey: "itemType")
-        
-        userDefaults.set(R, forKey: "R")
-        userDefaults.set(G, forKey: "G")
-        userDefaults.set(B, forKey: "B")
-        userDefaults.set(A, forKey: "A")
+        saveCellsToUserDefaults()
     }
     
     
@@ -200,16 +175,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
             //セルを削除
             self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
         }
-        
-        //save cells
-        userDefaults.set(itemData.count, forKey: "itemDataNum")
-        userDefaults.set(itemName, forKey: "itemName")
-        userDefaults.set(itemType, forKey: "itemType")
-        
-        userDefaults.set(R, forKey: "R")
-        userDefaults.set(G, forKey: "G")
-        userDefaults.set(B, forKey: "B")
-        userDefaults.set(A, forKey: "A")
+        saveCellsToUserDefaults()
     }
 
     // MARK: - Table view data source
@@ -276,8 +242,10 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
             controller.itemType = self.itemType
         }else if(segue.identifier == "toColorPicker") {
         }
-        
-        //save cells
+        saveCellsToUserDefaults()
+    }
+    
+    func saveCellsToUserDefaults() -> Void {
         userDefaults.set(itemData.count, forKey: "itemDataNum")
         userDefaults.set(itemName, forKey: "itemName")
         userDefaults.set(itemType, forKey: "itemType")
