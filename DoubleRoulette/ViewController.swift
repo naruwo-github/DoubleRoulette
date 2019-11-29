@@ -41,13 +41,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //outerChartView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.width))
-        //innerChartView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.width))
-        //outerChartView.center = self.view.center
-        //innerChartView.center = self.view.center
-        //print(outerChartView.frame.width + " , " + outerChartView.frame.height)
-        //print(innerChartView.frame.width + " , " + innerChartView.frame.height)
-        //print(self.view.frame.width + " , " + self.view.frame.height)
         
         //outer
         var outerName: [String] = []
@@ -140,7 +133,9 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             let labelView = UILabel()
             labelView.isOpaque = false
             labelView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-            labelView.frame.size = CGSize(width: 100, height: 50)
+            //labelView.frame.size = CGSize(width: 100, height: 50)
+            labelView.frame.size = CGSize(width: self.view.frame.width/9, height: self.view.frame.height/18)
+            labelView.adjustsFontSizeToFitWidth = true
             labelView.text = outerName[i]
             
             let coox = originOuterX - centerOuterX

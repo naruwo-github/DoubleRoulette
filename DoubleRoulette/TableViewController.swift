@@ -129,7 +129,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         //alert to tableView
         self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.right)
         //save cells
-        saveData()
         userDefaults.set(itemData.count, forKey: "itemDataNum")
         userDefaults.set(itemName, forKey: "itemName")
         userDefaults.set(itemType, forKey: "itemType")
@@ -142,7 +141,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     
     @IBAction func playButtonTapped(_ sender: Any) {
         //save cells
-        saveData()
         userDefaults.set(itemData.count, forKey: "itemDataNum")
         userDefaults.set(itemName, forKey: "itemName")
         userDefaults.set(itemType, forKey: "itemType")
@@ -172,7 +170,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         self.tableView.cellForRow(at: indexPath as IndexPath)?.contentView.viewWithTag(2)?.backgroundColor = color
         
         //save cells
-        saveData()
         userDefaults.set(itemData.count, forKey: "itemDataNum")
         userDefaults.set(itemName, forKey: "itemName")
         userDefaults.set(itemType, forKey: "itemType")
@@ -205,7 +202,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         }
         
         //save cells
-        saveData()
         userDefaults.set(itemData.count, forKey: "itemDataNum")
         userDefaults.set(itemName, forKey: "itemName")
         userDefaults.set(itemType, forKey: "itemType")
@@ -273,7 +269,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         }
         
         //save cells
-        saveData()
         userDefaults.set(itemData.count, forKey: "itemDataNum")
         userDefaults.set(itemName, forKey: "itemName")
         userDefaults.set(itemType, forKey: "itemType")
@@ -282,28 +277,5 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         userDefaults.set(G, forKey: "G")
         userDefaults.set(B, forKey: "B")
         userDefaults.set(A, forKey: "A")
-    }
-    
-    func saveData() {
-        /*
-        for i in 0..<itemData.count {
-            let field = self.tableView.cellForRow(at: [0,i])?.contentView.viewWithTag(1) as? UITextField
-            self.itemName[i] = field?.text ?? "Item"
-            let btcolor = self.tableView.cellForRow(at: [0,i])?.contentView.viewWithTag(2) as? UIButton
-            self.itemColor[i] = btcolor?.backgroundColor ?? UIColor.init(red: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), green: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), blue: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), alpha: CGFloat(1))
-            let type = self.tableView.cellForRow(at: [0, i])?.contentView.viewWithTag(3) as? UISegmentedControl
-            self.itemType[i] = type?.selectedSegmentIndex ?? 0
-            
-            var r: CGFloat = 0
-            var g: CGFloat = 0
-            var b: CGFloat = 0
-            var a: CGFloat = 0
-            self.itemColor[i].getRed(&r, green: &g , blue: &b, alpha: &a)
-            self.R[i] = Double(r)
-            self.G[i] = Double(g)
-            self.B[i] = Double(b)
-            self.A[i] = Double(a)
-        }
- */
     }
 }
