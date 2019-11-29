@@ -229,8 +229,8 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     //return cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
-        if cell.tag == 0 {
-            cell.tag = indexPath.row + 1
+        if cell.index == 0 {
+            cell.index = indexPath.row + 1
             //reflect setting
             if itemData.count > 0 {
                 cell.itemType.selectedSegmentIndex = self.itemType[indexPath.row]
@@ -240,9 +240,9 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         } else {
             //reflect setting
             if itemData.count > 0 {
-                cell.itemType.selectedSegmentIndex = self.itemType[cell.tag-1]
-                cell.itemName.text = self.itemName[cell.tag-1]
-                cell.itemColor.backgroundColor = UIColor.init(red: CGFloat(self.R[cell.tag-1]), green: CGFloat(self.G[cell.tag-1]), blue: CGFloat(self.B[cell.tag-1]), alpha: CGFloat(self.A[cell.tag-1]))
+                cell.itemType.selectedSegmentIndex = self.itemType[cell.index-1]
+                cell.itemName.text = self.itemName[cell.index-1]
+                cell.itemColor.backgroundColor = UIColor.init(red: CGFloat(self.R[cell.index-1]), green: CGFloat(self.G[cell.index-1]), blue: CGFloat(self.B[cell.index-1]), alpha: CGFloat(self.A[cell.index-1]))
             }
         }
         
