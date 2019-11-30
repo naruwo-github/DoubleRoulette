@@ -152,6 +152,26 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         
     }
     
+    @IBAction func segmentedControl(_ sender: UISegmentedControl) {
+        let point = self.tableView.convert(sender.center, from: sender)
+        if let indexPath = self.tableView.indexPathForRow(at: point) {
+            itemType[indexPath.row] = sender.numberOfSegments
+        } else {
+            print("indexPath not found.")
+        }
+        saveCellsToUserDefaults()
+    }
+    
+    @IBAction func textField(_ sender: UITextField) {
+        let point = self.tableView.convert(sender.center, from: sender)
+        if let indexPath = self.tableView.indexPathForRow(at: point) {
+            itemName[indexPath.row] = sender.text ?? "Item"
+        } else {
+            print("indexPath not found.")
+        }
+        saveCellsToUserDefaults()
+    }
+    
     func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
         self.tableView.cellForRow(at: indexPath as IndexPath)?.contentView.viewWithTag(2)?.backgroundColor = color
         saveCellsToUserDefaults()
