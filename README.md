@@ -1,10 +1,7 @@
 # DoubleRoulette
 
-ルーレットアプリケーションです。
-ルーレットテーブルが2重に重なっており、外側と内側のルーレットでそれぞれ別の要素を当てることができます。
-シンプルですが新規性があると思い作成しております。
-
-AppStoreにアップ予定です。
+シンプルなルーレットアプリ！！
+ですが、ルーレットテーブルが2重に重なっており、外側と内側のルーレットでそれぞれ別の要素を当てることができます。
 
 使い方
 
@@ -21,5 +18,7 @@ Outer/Innerによってルーレット要素を外側のルーレットに追加
 シンプルですが使い道は様々だと思います。
 (私は飲み会にて、Outerを罰ゲーム名、Innerを人の名前にして遊んでいます…笑笑)
 
+【App Store】リリースしました！
+(URL: https://apps.apple.com/jp/app/%E3%83%80%E3%83%96%E3%83%AB%E3%83%AB%E3%83%BC%E3%83%AC%E3%83%83%E3%83%88/id1476267611)
 
-<img src="Pictures/iPhone11-1.png" width="400px" /> <img src="Pictures/iPhone11-2.png" width="400px" />
+<img src="Pictures/iPhone11-1.png" width="200px" /> <img src="Pictures/iPhone11-2.png" width="200px" />
