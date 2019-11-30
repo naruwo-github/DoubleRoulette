@@ -73,9 +73,9 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         //本物
         //bannerView.adUnitID = "ca-app-pub-6492692627915720/6248802323"
         //DRTableViewのユニット
-        //bannerView.adUnitID = "ca-app-pub-6492692627915720/2967728941"
+        bannerView.adUnitID = "ca-app-pub-6492692627915720/2967728941"
         //テスト
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
