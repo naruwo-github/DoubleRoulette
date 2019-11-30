@@ -22,4 +22,4 @@ Outer/Innerによってルーレット要素を外側のルーレットに追加
 (私は飲み会にて、Outerを罰ゲーム名、Innerを人の名前にして遊んでいます…笑笑)
 
 
-<img src="Pictures/iPhone11-1.jpg" width="400px" /> <img src="Pictures/iPhone11-2.jpg" width="400px" />
+<img src="Pictures/iPhone11-1.png" width="400px" /> <img src="Pictures/iPhone11-2.png" width="400px" />
