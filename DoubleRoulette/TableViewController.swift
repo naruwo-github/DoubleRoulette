@@ -131,7 +131,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         //alert to tableView
         self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.right)
         saveCellsToUserDefaults()
-        self.tableView.reloadData()
+        //self.tableView.reloadData()
     }
     
     @IBAction func playButtonTapped(_ sender: Any) {
@@ -174,6 +174,18 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     }
     
     func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        color.getRed(&r, green: &g , blue: &b, alpha: &a)
+        self.R[indexPath.row] = Double(r)
+        self.G[indexPath.row] = Double(g)
+        self.B[indexPath.row] = Double(b)
+        self.A[indexPath.row] = Double(a)
+        
+        self.itemColor[indexPath.row] = color
+        
         self.tableView.cellForRow(at: indexPath as IndexPath)?.contentView.viewWithTag(2)?.backgroundColor = color
         saveCellsToUserDefaults()
     }
