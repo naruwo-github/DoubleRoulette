@@ -110,6 +110,8 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     @IBAction func addButtonTapped(_ sender: Any) {
         //prepare  new cell
         let item = TableViewCell()
+        let colorStock = ColorStock()
+        item.color = colorStock.proposeColor(index: self.itemData.count)
         //insert new cell
         self.itemData.insert(item, at: 0)
         self.itemName.insert(item.name, at: 0)
