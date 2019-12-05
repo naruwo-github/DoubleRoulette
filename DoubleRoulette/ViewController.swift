@@ -12,44 +12,30 @@ import AVFoundation
 import GoogleMobileAds
 
 class ViewController: UIViewController, GADBannerViewDelegate {
-    var bannerView: GADBannerView!
-
-    //rotation button
-    @IBOutlet weak var startButton: UIButton!
-    //item num
-    @IBOutlet weak var itemsLabel: UILabel!
-    //chartview outer
-    @IBOutlet weak var outerChartView: UIView!
-    //chartview inner
-    @IBOutlet weak var innerChartView: UIView!
-    
-    var audioPlayer: AVAudioPlayer!
+    var bannerView: GADBannerView!              //admob view
+    @IBOutlet weak var startButton: UIButton!   //rotation button
+    @IBOutlet weak var itemsLabel: UILabel!     //items number
+    @IBOutlet weak var outerChartView: UIView!  //outer view
+    @IBOutlet weak var innerChartView: UIView!  //inner view
+    var audioPlayer: AVAudioPlayer!             //audio player
     
     var itemData = [TableViewCell]()
     var itemName: [String] = []
     var itemColor: [UIColor] = []
     var itemType: [Int] = []
     
-    //outer
-    var currentPositionOuter = 0
-    //inner
-    var currentPositionInner = 0
-    
-    //roulette element layer
-    var rouletteLayer = [CAShapeLayer()]
+    var currentPositionOuter = 0                //rotation angle of outer
+    var currentPositionInner = 0                //rotation angle of inner
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        //outer
+        //setting element of roulette cell
         var outerName: [String] = []
         var outerColor: [UIColor] = []
-        //inner
         var innerName: [String] = []
         var innerColor: [UIColor] = []
-        
-        //devide into 2 categories
         for i in 0..<itemData.count {
             if itemType[i] == 0 {
                 //outer
@@ -62,33 +48,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             }
         }
         
-        /*
-        //円を描く
-        let outerCircleLayer = CAShapeLayer()
-        let innerCircleLayer = CAShapeLayer()
-        outerCircleLayer.strokeColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
-        outerCircleLayer.fillColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
-        outerCircleLayer.lineWidth = 2.0
-        innerCircleLayer.strokeColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
-        innerCircleLayer.fillColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
-        innerCircleLayer.lineWidth = 2.0
-        
-        let outerCircle = UIBezierPath()
-        outerCircle.move(to: CGPoint.init(x: outerChartView.frame.width / 2, y: outerChartView.frame.height / 2))
-        outerCircle.addArc(withCenter: CGPoint.init(x: outerChartView.frame.width / 2, y: outerChartView.frame.height / 2), radius: outerChartView.frame.width / 2 + 2, startAngle: 0, endAngle: 360, clockwise: true)
-        
-        let innerCircle = UIBezierPath()
-        innerCircle.move(to: CGPoint.init(x: innerChartView.frame.width / 2, y: innerChartView.frame.height / 2))
-        innerCircle.addArc(withCenter: CGPoint.init(x: innerChartView.frame.width / 2, y: innerChartView.frame.height / 2), radius: innerChartView.frame.width / 4 + 2, startAngle: 0, endAngle: 360, clockwise: true)
-        
-        outerCircle.stroke()
-        outerCircleLayer.path = outerCircle.cgPath
-        outerChartView.layer.addSublayer(outerCircleLayer)
-        
-        innerCircle.stroke()
-        innerCircleLayer.path = innerCircle.cgPath
-        innerChartView.layer.addSublayer(innerCircleLayer)
- */
         //outer view
         let pieChartViewOuter = MyPieChartView()
         pieChartViewOuter.radius = min(self.view.frame.size.width, self.view.frame.size.height)/2
