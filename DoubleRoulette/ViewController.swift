@@ -12,31 +12,21 @@ import AVFoundation
 import GoogleMobileAds
 
 class ViewController: UIViewController, GADBannerViewDelegate {
-    var bannerView: GADBannerView!
-
-    //rotation button
-    @IBOutlet weak var startButton: UIButton!
-    //item num
-    @IBOutlet weak var itemsLabel: UILabel!
-    //chartview outer
-    @IBOutlet weak var outerChartView: UIView!
-    //chartview inner
-    @IBOutlet weak var innerChartView: UIView!
-    
-    var audioPlayer: AVAudioPlayer!
+    var bannerView: GADBannerView!              //admob view
+    @IBOutlet weak var startButton: UIButton!   //rotation button
+    @IBOutlet weak var itemsLabel: UILabel!     //items number
+    @IBOutlet weak var outerChartView: UIView!  //outer view
+    @IBOutlet weak var innerChartView: UIView!  //inner view
+    var audioPlayer: AVAudioPlayer!             //audio player
     
     var itemData = [TableViewCell]()
     var itemName: [String] = []
     var itemColor: [UIColor] = []
     var itemType: [Int] = []
     
-    //outer
-    var currentPositionOuter = 0
-    //inner
-    var currentPositionInner = 0
-    
-    //roulette element layer
-    var rouletteLayer = [CAShapeLayer()]
+    var currentPositionOuter = 0                //rotation angle of outer
+    var currentPositionInner = 0                //rotation angle of inner
+    var rouletteLayer = [CAShapeLayer()]        //roulette element layer
     
     override func viewDidLoad() {
         super.viewDidLoad()
