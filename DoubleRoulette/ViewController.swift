@@ -26,7 +26,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     
     var currentPositionOuter = 0                //rotation angle of outer
     var currentPositionInner = 0                //rotation angle of inner
-    var rouletteLayer = [CAShapeLayer()]        //roulette element layer
     
     override func viewDidLoad() {
         super.viewDidLoad()
