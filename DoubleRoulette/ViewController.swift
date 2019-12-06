@@ -38,15 +38,14 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         var innerColor: [UIColor] = []
         for i in 0..<itemData.count {
             if itemType[i] == 0 {
-                //outer
                 outerName.insert(itemName[i], at: 0)
                 outerColor.insert(itemColor[i], at: 0)
             }else {
-                //inner
                 innerName.insert(itemName[i], at: 0)
                 innerColor.insert(itemColor[i], at: 0)
             }
         }
+        itemsLabel.text = "Items: " + String(itemData.count)
         
         //outer view
         let pieChartViewOuter = MyPieChartView()
@@ -64,14 +63,15 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         
         //add to each view
         for i in 0..<outerName.count {
-            pieChartViewOuter.segments.insert(Segment(color: outerColor[i], value: CGFloat(Double.pi * 2.0 / Double(outerName.count)), label: outerName[i]), at: 0)
+            pieChartViewOuter.segments.insert(Segment(color: outerColor[i], value: CGFloat(Double.pi * 2.0 / Double(outerName.count))), at: 0)
         }
         for i in 0..<innerName.count {
-            pieChartViewInner.segments.insert(Segment(color: innerColor[i], value: CGFloat(Double.pi * 2.0 / Double(innerName.count)), label: innerName[i]), at: 0)
+            pieChartViewInner.segments.insert(Segment(color: innerColor[i], value: CGFloat(Double.pi * 2.0 / Double(innerName.count))), at: 0)
         }
         
         outerChartView.addSubview(pieChartViewOuter)
         innerChartView.addSubview(pieChartViewInner)
+        
         
         //roulette element label setting
         //outer move
@@ -92,7 +92,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             let labelView = UILabel()
             labelView.isOpaque = false
             labelView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-            //labelView.frame.size = CGSize(width: 100, height: 50)
             labelView.frame.size = CGSize(width: self.view.frame.width/9, height: self.view.frame.height/18)
             labelView.adjustsFontSizeToFitWidth = true
             labelView.text = outerName[i]
@@ -125,7 +124,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             let labelView = UILabel()
             labelView.isOpaque = false
             labelView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-            labelView.frame.size = CGSize(width: 100, height: 50)
+            labelView.frame.size = CGSize(width: self.view.frame.width/9, height: self.view.frame.height/18)
             labelView.text = innerName[i]
             
             let coox = originInnerX - centerInnerX
@@ -152,8 +151,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             innerChartView.addSubview(labelView)
         }
         
-        
-        itemsLabel.text = "Items: " + String(itemData.count)
         //矢印描画
         drawArrow()
         
@@ -170,35 +167,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
-    }
-
-    //roulette start
-    @IBAction func startButtonTapped(_ sender: Any) {
-        playSound(name: "roulette-sound")
-        //outer
-        let angleOuter: CGFloat = CGFloat(Double.random(in: 100.0 ... 500.0) * Double.pi / 6.0)
-        let fromValOuter: CGFloat = angleOuter * CGFloat(currentPositionOuter)
-        let toValOuter: CGFloat = angleOuter * CGFloat(currentPositionOuter+1)
-        let animationOuter: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
-        animationOuter.isRemovedOnCompletion = false
-        animationOuter.fillMode = CAMediaTimingFillMode.forwards
-        animationOuter.fromValue = fromValOuter
-        animationOuter.toValue = toValOuter
-        animationOuter.duration = 4.0
-        
-        //inner
-        let angleInner: CGFloat = CGFloat(Double.random(in: 100.0 ... 500.0) * Double.pi / 6.0)
-        let fromValInner: CGFloat = angleInner * CGFloat(currentPositionInner)
-        let toValInner: CGFloat = angleInner * CGFloat(currentPositionInner+1)
-        let animationInner: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
-        animationInner.isRemovedOnCompletion = false
-        animationInner.fillMode = CAMediaTimingFillMode.forwards
-        animationInner.fromValue = fromValInner
-        animationInner.toValue = toValInner
-        animationInner.duration = 5.0
-        
-        outerChartView.layer.add(animationOuter, forKey: "animationOuter")
-        innerChartView.layer.add(animationInner, forKey: "animationInner")
     }
     
     //矢印召喚
@@ -270,6 +238,35 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         //addView
         self.view .bringSubviewToFront(arrowView)
         self.view.addSubview(arrowView)
+    }
+
+    //roulette start
+    @IBAction func startButtonTapped(_ sender: Any) {
+        playSound(name: "roulette-sound")
+        //outer
+        let angleOuter: CGFloat = CGFloat(Double.random(in: 100.0 ... 500.0) * Double.pi / 6.0)
+        let fromValOuter: CGFloat = angleOuter * CGFloat(currentPositionOuter)
+        let toValOuter: CGFloat = angleOuter * CGFloat(currentPositionOuter+1)
+        let animationOuter: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        animationOuter.isRemovedOnCompletion = false
+        animationOuter.fillMode = CAMediaTimingFillMode.forwards
+        animationOuter.fromValue = fromValOuter
+        animationOuter.toValue = toValOuter
+        animationOuter.duration = 4.0
+        
+        //inner
+        let angleInner: CGFloat = CGFloat(Double.random(in: 100.0 ... 500.0) * Double.pi / 6.0)
+        let fromValInner: CGFloat = angleInner * CGFloat(currentPositionInner)
+        let toValInner: CGFloat = angleInner * CGFloat(currentPositionInner+1)
+        let animationInner: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        animationInner.isRemovedOnCompletion = false
+        animationInner.fillMode = CAMediaTimingFillMode.forwards
+        animationInner.fromValue = fromValInner
+        animationInner.toValue = toValInner
+        animationInner.duration = 5.0
+        
+        outerChartView.layer.add(animationOuter, forKey: "animationOuter")
+        innerChartView.layer.add(animationInner, forKey: "animationInner")
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {
