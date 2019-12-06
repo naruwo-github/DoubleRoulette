@@ -49,10 +49,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         G = userDefaults.object(forKey: "G") as? [Double] ?? []
         B = userDefaults.object(forKey: "B") as? [Double] ?? []
         A = userDefaults.object(forKey: "A") as? [Double] ?? []
-        //print(R)
-        //print(G)
-        //print(B)
-        //print(A)
         
         for _ in 0..<cellNum {
             let item = TableViewCell()
@@ -71,7 +67,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         
         //デバイスID : "01fa9aa834a520d7ce4f9ccc98ab3993"
         //本物
-        //bannerView.adUnitID = "ca-app-pub-6492692627915720/6248802323"
         //DRTableViewのユニット
         bannerView.adUnitID = "ca-app-pub-6492692627915720/2967728941"
         //テスト
@@ -79,31 +74,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
-    }
-    
-    func configureTableView() {
-        tableView.rowHeight = 50
-    }
-    
-    func addBannerViewToView(_ bannerView: GADBannerView) {
-     bannerView.translatesAutoresizingMaskIntoConstraints = false
-     view.addSubview(bannerView)
-     view.addConstraints(
-       [NSLayoutConstraint(item: bannerView,
-                           attribute: .bottom,
-                           relatedBy: .equal,
-                           toItem: bottomLayoutGuide,
-                           attribute: .top,
-                           multiplier: 1,
-                           constant: 0),
-        NSLayoutConstraint(item: bannerView,
-                           attribute: .centerX,
-                           relatedBy: .equal,
-                           toItem: view,
-                           attribute: .centerX,
-                           multiplier: 1,
-                           constant: 0)
-       ])
     }
     
     //Add Button
@@ -131,7 +101,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         //alert to tableView
         self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.right)
         saveCellsToUserDefaults()
-        //self.tableView.reloadData()
     }
     
     @IBAction func playButtonTapped(_ sender: Any) {
@@ -156,7 +125,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     @IBAction func segmentedControl(_ sender: UISegmentedControl) {
         let point = self.tableView.convert(sender.center, from: sender)
         if let indexPath = self.tableView.indexPathForRow(at: point) {
-            itemType[indexPath.row] = sender.numberOfSegments
+            itemType[indexPath.row] = sender.selectedSegmentIndex
         } else {
             print("indexPath not found.")
         }
@@ -230,29 +199,9 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     //return cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
-        /*
-        if cell.index == 0 {
-            cell.index = indexPath.row + 1
-            //reflect setting
-            if itemData.count > 0 {
-                cell.itemType.selectedSegmentIndex = self.itemType[indexPath.row]
-                cell.itemName.text = self.itemName[indexPath.row]
-                cell.itemColor.backgroundColor = UIColor.init(red: CGFloat(self.R[indexPath.row]), green: CGFloat(self.G[indexPath.row]), blue: CGFloat(self.B[indexPath.row]), alpha: CGFloat(self.A[indexPath.row]))
-            }
-        } else {
-            //reflect setting
-            if itemData.count > 0 {
-                cell.itemType.selectedSegmentIndex = self.itemType[cell.index-1]
-                cell.itemName.text = self.itemName[cell.index-1]
-                cell.itemColor.backgroundColor = UIColor.init(red: CGFloat(self.R[cell.index-1]), green: CGFloat(self.G[cell.index-1]), blue: CGFloat(self.B[cell.index-1]), alpha: CGFloat(self.A[cell.index-1]))
-            }
-        }
- */
-        if itemData.count > 0 {
-            cell.itemType.selectedSegmentIndex = self.itemType[indexPath.row]
-            cell.itemName.text = self.itemName[indexPath.row]
-            cell.itemColor.backgroundColor = UIColor.init(red: CGFloat(self.R[indexPath.row]), green: CGFloat(self.G[indexPath.row]), blue: CGFloat(self.B[indexPath.row]), alpha: CGFloat(self.A[indexPath.row]))
-        }
+        cell.itemType.selectedSegmentIndex = self.itemType[indexPath.row]
+        cell.itemName.text = self.itemName[indexPath.row]
+        cell.itemColor.backgroundColor = UIColor.init(red: CGFloat(self.R[indexPath.row]), green: CGFloat(self.G[indexPath.row]), blue: CGFloat(self.B[indexPath.row]), alpha: CGFloat(self.A[indexPath.row]))
         
         return cell
     }
@@ -296,5 +245,30 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         userDefaults.set(G, forKey: "G")
         userDefaults.set(B, forKey: "B")
         userDefaults.set(A, forKey: "A")
+    }
+    
+    func configureTableView() {
+        tableView.rowHeight = 50
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+     bannerView.translatesAutoresizingMaskIntoConstraints = false
+     view.addSubview(bannerView)
+     view.addConstraints(
+       [NSLayoutConstraint(item: bannerView,
+                           attribute: .bottom,
+                           relatedBy: .equal,
+                           toItem: bottomLayoutGuide,
+                           attribute: .top,
+                           multiplier: 1,
+                           constant: 0),
+        NSLayoutConstraint(item: bannerView,
+                           attribute: .centerX,
+                           relatedBy: .equal,
+                           toItem: view,
+                           attribute: .centerX,
+                           multiplier: 1,
+                           constant: 0)
+       ])
     }
 }
