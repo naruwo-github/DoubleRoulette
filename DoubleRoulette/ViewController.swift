@@ -27,11 +27,13 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     var currentPositionOuter = 0                //rotation angle of outer
     var currentPositionInner = 0                //rotation angle of inner
     
+    let pieChartViewOuter = MyPieChartView()
+    let pieChartViewInner = MyPieChartView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        //setting element of roulette cell
         var outerName: [String] = []
         var outerColor: [UIColor] = []
         var innerName: [String] = []
@@ -47,41 +49,16 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         }
         itemsLabel.text = "Items: " + String(itemData.count)
         
-        //outer view
-        let pieChartViewOuter = MyPieChartView()
-        pieChartViewOuter.radius = min(self.view.frame.size.width, self.view.frame.size.height)/2
-        pieChartViewOuter.isOpaque = false
-        pieChartViewOuter.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-        pieChartViewOuter.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-        
-        //inner view
-        let pieChartViewInner = MyPieChartView()
-        pieChartViewInner.radius = min(self.view.frame.size.width, self.view.frame.size.height)/4
-        pieChartViewInner.isOpaque = false
-        pieChartViewInner.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-        pieChartViewInner.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-        
-        //add to each view
-        for i in 0..<outerName.count {
-            pieChartViewOuter.segments.insert(Segment(color: outerColor[i], value: CGFloat(Double.pi * 2.0 / Double(outerName.count))), at: 0)
-        }
-        for i in 0..<innerName.count {
-            pieChartViewInner.segments.insert(Segment(color: innerColor[i], value: CGFloat(Double.pi * 2.0 / Double(innerName.count))), at: 0)
-        }
-        
-        outerChartView.addSubview(pieChartViewOuter)
-        innerChartView.addSubview(pieChartViewInner)
-        
+        setOuterRoulette(outerName: outerName, outerColor: outerColor)
+        setInnerRoulette(innerName: innerName, innerColor: innerColor)
         
         //roulette element label setting
-        //outer move
         let angleOuter = Double.pi * 2.0 / Double(outerName.count)
         let centerOuterX = self.view.frame.width / 2 - 18
         let centerOuterY = self.view.frame.height / 2 - 25
         let originOuterX = centerOuterX
         let originOuterY = centerOuterY - self.view.frame.height / 5
         
-        //inner move
         let angleInner = Double.pi * 2.0 / Double(innerName.count)
         let centerInnerX = self.view.frame.width / 2 - 18
         let centerInnerY = self.view.frame.height / 2 - 25
@@ -169,7 +146,29 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         bannerView.delegate = self
     }
     
-    //矢印召喚
+    func setOuterRoulette(outerName: [String], outerColor: [UIColor]) {
+        pieChartViewOuter.radius = min(self.view.frame.size.width, self.view.frame.size.height)/2
+        pieChartViewOuter.isOpaque = false
+        pieChartViewOuter.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
+        pieChartViewOuter.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        for i in 0..<outerName.count {
+            pieChartViewOuter.segments.insert(Segment(color: outerColor[i], value: CGFloat(Double.pi * 2.0 / Double(outerName.count))), at: 0)
+        }
+        outerChartView.addSubview(pieChartViewOuter)
+    }
+    
+    func setInnerRoulette(innerName: [String], innerColor: [UIColor]) {
+        pieChartViewInner.radius = min(self.view.frame.size.width, self.view.frame.size.height)/4
+        pieChartViewInner.isOpaque = false
+        pieChartViewInner.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
+        pieChartViewInner.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        
+        for i in 0..<innerName.count {
+            pieChartViewInner.segments.insert(Segment(color: innerColor[i], value: CGFloat(Double.pi * 2.0 / Double(innerName.count))), at: 0)
+        }
+        innerChartView.addSubview(pieChartViewInner)
+    }
+    
     func drawArrow() {
         let arrowView = UIView()
         arrowView.isOpaque = false
