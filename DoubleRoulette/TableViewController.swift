@@ -125,7 +125,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     @IBAction func segmentedControl(_ sender: UISegmentedControl) {
         let point = self.tableView.convert(sender.center, from: sender)
         if let indexPath = self.tableView.indexPathForRow(at: point) {
-            itemType[indexPath.row] = sender.numberOfSegments
+            itemType[indexPath.row] = sender.selectedSegmentIndex
         } else {
             print("indexPath not found.")
         }
