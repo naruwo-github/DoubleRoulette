@@ -19,8 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
-        //GADMobileAds.sharedInstance().start()
-        //GADMobileAds.configure(withApplicationID: "ca-app-pub-6492692627915720~1982254255")
         return true
     }
 
