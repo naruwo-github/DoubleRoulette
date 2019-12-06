@@ -33,18 +33,6 @@ class TableViewCell: UITableViewCell, NSSecureCoding, UITextFieldDelegate{
         itemName.delegate = self
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-    func textFieldDidBeginEditing(itemName: UITextField){
-        self.name = itemName.text ?? "Item"
-        self.color = itemColor.backgroundColor ?? UIColor.init(red: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), green: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), blue: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), alpha: CGFloat(1))
-        self.type = itemType.selectedSegmentIndex
-    }
-    
     //UITextFieldDelegate
     internal func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
         self.name = itemName.text ?? "Item"
