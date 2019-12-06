@@ -49,10 +49,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         G = userDefaults.object(forKey: "G") as? [Double] ?? []
         B = userDefaults.object(forKey: "B") as? [Double] ?? []
         A = userDefaults.object(forKey: "A") as? [Double] ?? []
-        //print(R)
-        //print(G)
-        //print(B)
-        //print(A)
         
         for _ in 0..<cellNum {
             let item = TableViewCell()
@@ -71,7 +67,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         
         //デバイスID : "01fa9aa834a520d7ce4f9ccc98ab3993"
         //本物
-        //bannerView.adUnitID = "ca-app-pub-6492692627915720/6248802323"
         //DRTableViewのユニット
         bannerView.adUnitID = "ca-app-pub-6492692627915720/2967728941"
         //テスト
@@ -79,31 +74,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
-    }
-    
-    func configureTableView() {
-        tableView.rowHeight = 50
-    }
-    
-    func addBannerViewToView(_ bannerView: GADBannerView) {
-     bannerView.translatesAutoresizingMaskIntoConstraints = false
-     view.addSubview(bannerView)
-     view.addConstraints(
-       [NSLayoutConstraint(item: bannerView,
-                           attribute: .bottom,
-                           relatedBy: .equal,
-                           toItem: bottomLayoutGuide,
-                           attribute: .top,
-                           multiplier: 1,
-                           constant: 0),
-        NSLayoutConstraint(item: bannerView,
-                           attribute: .centerX,
-                           relatedBy: .equal,
-                           toItem: view,
-                           attribute: .centerX,
-                           multiplier: 1,
-                           constant: 0)
-       ])
     }
     
     //Add Button
@@ -296,5 +266,30 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         userDefaults.set(G, forKey: "G")
         userDefaults.set(B, forKey: "B")
         userDefaults.set(A, forKey: "A")
+    }
+    
+    func configureTableView() {
+        tableView.rowHeight = 50
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+     bannerView.translatesAutoresizingMaskIntoConstraints = false
+     view.addSubview(bannerView)
+     view.addConstraints(
+       [NSLayoutConstraint(item: bannerView,
+                           attribute: .bottom,
+                           relatedBy: .equal,
+                           toItem: bottomLayoutGuide,
+                           attribute: .top,
+                           multiplier: 1,
+                           constant: 0),
+        NSLayoutConstraint(item: bannerView,
+                           attribute: .centerX,
+                           relatedBy: .equal,
+                           toItem: view,
+                           attribute: .centerX,
+                           multiplier: 1,
+                           constant: 0)
+       ])
     }
 }
