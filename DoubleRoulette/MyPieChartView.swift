@@ -15,8 +15,6 @@ struct Segment {
     var color: UIColor
     //segment ratio
     var value: CGFloat
-    //segment label
-    var label: String
 }
 
 class MyPieChartView: UIView {
