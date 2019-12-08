@@ -71,6 +71,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             labelView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
             labelView.frame.size = CGSize(width: self.view.frame.width/9, height: self.view.frame.height/18)
             labelView.adjustsFontSizeToFitWidth = true
+            labelView.textAlignment = .center
             labelView.text = outerName[i]
             
             let coox = originOuterX - centerOuterX
@@ -92,8 +93,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             positionY += centerOuterY
             
             labelView.frame.origin = CGPoint(x: positionX, y: positionY)
-            
-            //add!!
             outerChartView.addSubview(labelView)
         }
         
@@ -102,6 +101,8 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             labelView.isOpaque = false
             labelView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
             labelView.frame.size = CGSize(width: self.view.frame.width/9, height: self.view.frame.height/18)
+            labelView.adjustsFontSizeToFitWidth = true
+            labelView.textAlignment = .center
             labelView.text = innerName[i]
             
             let coox = originInnerX - centerInnerX
@@ -123,8 +124,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             positionY += centerInnerY
             
             labelView.frame.origin = CGPoint(x: positionX, y: positionY)
-            
-            //add!!
             innerChartView.addSubview(labelView)
         }
         
