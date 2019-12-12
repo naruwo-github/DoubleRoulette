@@ -52,18 +52,13 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         setOuterRoulette(outerName: outerName, outerColor: outerColor)
         setInnerRoulette(innerName: innerName, innerColor: innerColor)
         
-        //roulette element label setting
+        //Roulette label setting
+        //Outer
         let angleOuter = Double.pi * 2.0 / Double(outerName.count)
         let centerOuterX = self.view.frame.width / 2 - 18
         let centerOuterY = self.view.frame.height / 2 - 25
-        let originOuterX = centerOuterX
-        let originOuterY = centerOuterY - self.view.frame.height / 5
-        
-        let angleInner = Double.pi * 2.0 / Double(innerName.count)
-        let centerInnerX = self.view.frame.width / 2 - 18
-        let centerInnerY = self.view.frame.height / 2 - 25
-        let originInnerX = centerInnerX
-        let originInnerY = centerInnerY - self.view.frame.height / 12
+        let startOuterX = centerOuterX
+        let startOuterY = centerOuterY - self.view.frame.height / 5
         
         for i in 0..<outerName.count {
             let labelView = UILabel()
@@ -74,8 +69,8 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             labelView.textAlignment = .center
             labelView.text = outerName[i]
             
-            let coox = originOuterX - centerOuterX
-            let cooy = originOuterY - centerOuterY
+            let coox = startOuterX - centerOuterX
+            let cooy = startOuterY - centerOuterY
             let moveAngle1 = angleOuter / 2.0
             let sinAngle1 = CGFloat(sin(-moveAngle1))
             let cosAngle1 = CGFloat(cos(-moveAngle1))
@@ -96,6 +91,13 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             outerChartView.addSubview(labelView)
         }
         
+        //Inner
+        let angleInner = Double.pi * 2.0 / Double(innerName.count)
+        let centerInnerX = self.view.frame.width / 2 - 18
+        let centerInnerY = self.view.frame.height / 2 - 25
+        let startInnerX = centerInnerX
+        let startInnerY = centerInnerY - self.view.frame.height / 12
+        
         for i in 0..<innerName.count {
             let labelView = UILabel()
             labelView.isOpaque = false
@@ -105,8 +107,8 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             labelView.textAlignment = .center
             labelView.text = innerName[i]
             
-            let coox = originInnerX - centerInnerX
-            let cooy = originInnerY - centerInnerY
+            let coox = startInnerX - centerInnerX
+            let cooy = startInnerY - centerInnerY
             let moveAngle1 = angleInner / 2.0
             let sinAngle1 = CGFloat(sin(-moveAngle1))
             let cosAngle1 = CGFloat(cos(-moveAngle1))
