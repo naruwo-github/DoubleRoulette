@@ -63,11 +63,11 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             sampleLabel.text = outerName[i]
             sampleLabel.adjustsFontSizeToFitWidth = true
             sampleLabel.textAlignment = .center
-            sampleLabel.backgroundColor = UIColor.green
+            sampleLabel.backgroundColor = UIColor.clear
             let x = firstLabelPoint.x - startPoint.x
             let y = firstLabelPoint.y - startPoint.y
-            let nextx = cos(angleOfPiece*I)*x - sin(angleOfPiece*I)*y + startPoint.x
-            let nexty = sin(angleOfPiece*I)*x + cos(angleOfPiece*I)*y + startPoint.y
+            let nextx = cos(angleOfPiece*I + angleOfPiece/2)*x - sin(angleOfPiece*I + angleOfPiece/2)*y + startPoint.x
+            let nexty = sin(angleOfPiece*I + angleOfPiece/2)*x + cos(angleOfPiece*I + angleOfPiece/2)*y + startPoint.y
             sampleLabel.center = CGPoint(x: nextx, y: nexty)
             outerChartView.addSubview(sampleLabel)
         }
