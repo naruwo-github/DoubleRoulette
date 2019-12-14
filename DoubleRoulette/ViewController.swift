@@ -136,70 +136,24 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     
     func drawArrow() {
         let arrowView = UIView()
-        arrowView.isOpaque = false
-        arrowView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-        arrowView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - 100)
+        arrowView.isUserInteractionEnabled = false
+        arrowView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         
-        //triangleOuter
-        let clockHandOuter = CAShapeLayer()
-        clockHandOuter.strokeColor = UIColor.white.cgColor
-        clockHandOuter.fillColor = UIColor.black.cgColor
-        clockHandOuter.lineWidth = 2.0
+        let topImageView = UIImageView()
+        topImageView.frame = CGRect(x: 0, y: 0, width: 75, height: 50)
+        let topArrow = UIImage(named: "arrow1")
+        topImageView.image = topArrow
+        topImageView.center = CGPoint(x: self.view.center.x, y: self.view.center.y - self.view.frame.width/2)
         
-        let triangleOuter = UIBezierPath()
-        triangleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - self.view.frame.width / 2 + 50))
-        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 - self.view.frame.width / 2 * 1.15))
-        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 - self.view.frame.width / 2 * 1.15))
-        triangleOuter.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - self.view.frame.width / 2 + 50))
+        let bottomImageView = UIImageView()
+        bottomImageView.frame = CGRect(x: 0, y: 0, width: 50, height: 150)
+        let bottomArrow = UIImage(named: "arrow2")
+        bottomImageView.image = bottomArrow
+        bottomImageView.center = CGPoint(x: self.view.center.x, y: self.view.center.y + self.view.frame.width*3/8)
         
-        triangleOuter.fill()
-        clockHandOuter.path = triangleOuter.cgPath
+        arrowView.addSubview(topImageView)
+        arrowView.addSubview(bottomImageView)
         
-        arrowView.layer.addSublayer(clockHandOuter)
-        
-        
-        //triangleInner
-        let clockHandInner = CAShapeLayer()
-        clockHandInner.strokeColor = UIColor.white.cgColor
-        clockHandInner.fillColor = UIColor.black.cgColor
-        clockHandInner.lineWidth = 2.0
-        
-        let triangleInner = UIBezierPath()
-        triangleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + self.view.frame.width / 2 - self.view.frame.width / 3))
-        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 - 10, y: self.view.frame.height / 2 + self.view.frame.width / 2 * 1.15))
-        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2 + 10, y: self.view.frame.height / 2 + self.view.frame.width / 2 * 1.15))
-        triangleInner.addLine(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + self.view.frame.width / 2 - self.view.frame.width / 3))
-
-        triangleInner.fill()
-        clockHandInner.path = triangleInner.cgPath
-        arrowView.layer.addSublayer(clockHandInner)
-        
-        
-        //circle
-        let circleOuterLayer = CAShapeLayer()
-        circleOuterLayer.strokeColor = UIColor.black.cgColor
-        circleOuterLayer.fillColor = UIColor.black.cgColor
-        circleOuterLayer.lineWidth = 2.0
-        let circleOuter = UIBezierPath()
-        circleOuter.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - self.view.frame.width / 2 * 1.15))
-        circleOuter.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 - self.view.frame.width / 2 * 1.15), radius: 10, startAngle: 0, endAngle: 360, clockwise: true)
-        circleOuter.fill()
-        circleOuterLayer.path = circleOuter.cgPath
-        arrowView.layer.addSublayer(circleOuterLayer)
-        
-        let circleInnerLayer = CAShapeLayer()
-        circleInnerLayer.strokeColor = UIColor.black.cgColor
-        circleInnerLayer.fillColor = UIColor.black.cgColor
-        circleInnerLayer.lineWidth = 2.0
-        let circleInner = UIBezierPath()
-        circleInner.move(to: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + self.view.frame.width / 2 * 1.15))
-        circleInner.addArc(withCenter: CGPoint.init(x: self.view.frame.width / 2, y: self.view.frame.height / 2 + self.view.frame.width / 2 * 1.15), radius: 10, startAngle: 0, endAngle: 360, clockwise: true)
-        
-        circleInner.fill()
-        circleInnerLayer.path = circleInner.cgPath
-        arrowView.layer.addSublayer(circleInnerLayer)
-        
-        //addView
         self.view .bringSubviewToFront(arrowView)
         self.view.addSubview(arrowView)
     }
@@ -258,15 +212,11 @@ class ViewController: UIViewController, GADBannerViewDelegate {
 extension ViewController: AVAudioPlayerDelegate {
     func playSound(name: String) {
         guard let path = Bundle.main.path(forResource: name, ofType: "mp3") else {
-            //print("no music file")
             return
         }
         do {
-            // AVAudioPlayerのインスタンス化
             audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
-            // AVAudioPlayerのデリゲートをセット
             audioPlayer.delegate = self
-            // 音声の再生
             audioPlayer.play()
         } catch {
         }
