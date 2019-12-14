@@ -52,10 +52,11 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         setOuterRoulette(outerName: outerName, outerColor: outerColor)
         setInnerRoulette(innerName: innerName, innerColor: innerColor)
         
-        let angleOfPiece = CGFloat.pi * 2.0 / CGFloat(outerName.count)
-        let distFromCenter = self.view.frame.width * 3 / 8
+        //Outer Label
+        let angleOfOuterPiece = CGFloat.pi * 2.0 / CGFloat(outerName.count)
+        let distFromOuterCenter = self.view.frame.width * 3 / 8
         let startPoint = self.view.center
-        let firstLabelPoint = CGPoint(x: startPoint.x, y: startPoint.y - distFromCenter)
+        let firstOuterLabelPoint = CGPoint(x: startPoint.x, y: startPoint.y - distFromOuterCenter)
         for i in 0..<outerName.count {
             let I = CGFloat(i)
             let sampleLabel = UILabel()
@@ -63,92 +64,33 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             sampleLabel.text = outerName[i]
             sampleLabel.adjustsFontSizeToFitWidth = true
             sampleLabel.textAlignment = .center
-            sampleLabel.backgroundColor = UIColor.green
-            let x = firstLabelPoint.x - startPoint.x
-            let y = firstLabelPoint.y - startPoint.y
-            let nextx = cos(angleOfPiece*I)*x - sin(angleOfPiece*I)*y + startPoint.x
-            let nexty = sin(angleOfPiece*I)*x + cos(angleOfPiece*I)*y + startPoint.y
+            sampleLabel.backgroundColor = UIColor.clear
+            let x = firstOuterLabelPoint.x - startPoint.x
+            let y = firstOuterLabelPoint.y - startPoint.y
+            let nextx = cos(-(angleOfOuterPiece*I + angleOfOuterPiece/2))*x - sin(-(angleOfOuterPiece*I + angleOfOuterPiece/2))*y + startPoint.x
+            let nexty = sin(-(angleOfOuterPiece*I + angleOfOuterPiece/2))*x + cos(-(angleOfOuterPiece*I + angleOfOuterPiece/2))*y + startPoint.y
             sampleLabel.center = CGPoint(x: nextx, y: nexty)
             outerChartView.addSubview(sampleLabel)
         }
         
-        //Roulette label setting
-        //Outer
-        /*
-        let angleOuter = Double.pi * 2.0 / Double(outerName.count)
-        let centerOuterX = self.view.frame.width / 2 - 18
-        let centerOuterY = self.view.frame.height / 2 - 25
-        let startOuterX = centerOuterX
-        let startOuterY = centerOuterY - self.view.frame.height / 5
-        
-        for i in 0..<outerName.count {
-            let labelView = UILabel()
-            labelView.isOpaque = false
-            labelView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-            labelView.frame.size = CGSize(width: self.view.frame.width/9, height: self.view.frame.height/18)
-            labelView.adjustsFontSizeToFitWidth = true
-            labelView.textAlignment = .center
-            labelView.text = outerName[i]
-            
-            let coox = startOuterX - centerOuterX
-            let cooy = startOuterY - centerOuterY
-            let moveAngle1 = angleOuter / 2.0
-            let sinAngle1 = CGFloat(sin(-moveAngle1))
-            let cosAngle1 = CGFloat(cos(-moveAngle1))
-            var coox1 = cosAngle1 * coox - sinAngle1 * cooy
-            var cooy1 = sinAngle1 * coox + cosAngle1 * cooy
-            coox1 += centerOuterX
-            cooy1 += centerOuterY
-            
-            let moveAngle2 = Double(i) * angleOuter
-            let sinAngle2 = CGFloat(sin(-moveAngle2))
-            let cosAngle2 = CGFloat(cos(-moveAngle2))
-            var positionX = cosAngle2 * (coox1 - centerOuterX) - sinAngle2 * (cooy1 - centerOuterY)
-            var positionY = sinAngle2 * (coox1 - centerOuterX) + cosAngle2 * (cooy1 - centerOuterY)
-            positionX += centerOuterX
-            positionY += centerOuterY
-            
-            labelView.frame.origin = CGPoint(x: positionX, y: positionY)
-            outerChartView.addSubview(labelView)
-        }
- */
-        
-        //Inner
-        let angleInner = Double.pi * 2.0 / Double(innerName.count)
-        let centerInnerX = self.view.frame.width / 2 - 18
-        let centerInnerY = self.view.frame.height / 2 - 25
-        let startInnerX = centerInnerX
-        let startInnerY = centerInnerY - self.view.frame.height / 12
-        
+        //Inner Label
+        let angleOfInnerPiece = CGFloat.pi * 2.0 / CGFloat(innerName.count)
+        let distFromInnerCenter = self.view.frame.width / 8
+        let firstInnerLabelPoint = CGPoint(x: startPoint.x, y: startPoint.y - distFromInnerCenter)
         for i in 0..<innerName.count {
-            let labelView = UILabel()
-            labelView.isOpaque = false
-            labelView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-            labelView.frame.size = CGSize(width: self.view.frame.width/9, height: self.view.frame.height/18)
-            labelView.adjustsFontSizeToFitWidth = true
-            labelView.textAlignment = .center
-            labelView.text = innerName[i]
-            
-            let coox = startInnerX - centerInnerX
-            let cooy = startInnerY - centerInnerY
-            let moveAngle1 = angleInner / 2.0
-            let sinAngle1 = CGFloat(sin(-moveAngle1))
-            let cosAngle1 = CGFloat(cos(-moveAngle1))
-            var coox1 = cosAngle1 * coox - sinAngle1 * cooy
-            var cooy1 = sinAngle1 * coox + cosAngle1 * cooy
-            coox1 += centerInnerX
-            cooy1 += centerInnerY
-            
-            let moveAngle2 = Double(i) * angleInner
-            let sinAngle2 = CGFloat(sin(-moveAngle2))
-            let cosAngle2 = CGFloat(cos(-moveAngle2))
-            var positionX = cosAngle2 * (coox1 - centerInnerX) - sinAngle2 * (cooy1 - centerInnerY)
-            var positionY = sinAngle2 * (coox1 - centerInnerX) + cosAngle2 * (cooy1 - centerInnerY)
-            positionX += centerInnerX
-            positionY += centerInnerY
-            
-            labelView.frame.origin = CGPoint(x: positionX, y: positionY)
-            innerChartView.addSubview(labelView)
+            let I = CGFloat(i)
+            let sampleLabel = UILabel()
+            sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 4, height: 50)
+            sampleLabel.text = innerName[i]
+            sampleLabel.adjustsFontSizeToFitWidth = true
+            sampleLabel.textAlignment = .center
+            sampleLabel.backgroundColor = UIColor.clear
+            let x = firstInnerLabelPoint.x - startPoint.x
+            let y = firstInnerLabelPoint.y - startPoint.y
+            let nextx = cos(-(angleOfInnerPiece*I + angleOfInnerPiece/2))*x - sin(-(angleOfInnerPiece*I + angleOfInnerPiece/2))*y + startPoint.x
+            let nexty = sin(-(angleOfInnerPiece*I + angleOfInnerPiece/2))*x + cos(-(angleOfInnerPiece*I + angleOfInnerPiece/2))*y + startPoint.y
+            sampleLabel.center = CGPoint(x: nextx, y: nexty)
+            innerChartView.addSubview(sampleLabel)
         }
         
         //矢印描画
