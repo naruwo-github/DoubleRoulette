@@ -52,8 +52,29 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         setOuterRoulette(outerName: outerName, outerColor: outerColor)
         setInnerRoulette(innerName: innerName, innerColor: innerColor)
         
+        let angleOfPiece = CGFloat.pi * 2.0 / CGFloat(outerName.count)
+        let distFromCenter = self.view.frame.width * 3 / 8
+        let startPoint = self.view.center
+        let firstLabelPoint = CGPoint(x: startPoint.x, y: startPoint.y - distFromCenter)
+        for i in 0..<outerName.count {
+            let I = CGFloat(i)
+            let sampleLabel = UILabel()
+            sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 4, height: 50)
+            sampleLabel.text = outerName[i]
+            sampleLabel.adjustsFontSizeToFitWidth = true
+            sampleLabel.textAlignment = .center
+            sampleLabel.backgroundColor = UIColor.green
+            let x = firstLabelPoint.x - startPoint.x
+            let y = firstLabelPoint.y - startPoint.y
+            let nextx = cos(angleOfPiece*I)*x - sin(angleOfPiece*I)*y + startPoint.x
+            let nexty = sin(angleOfPiece*I)*x + cos(angleOfPiece*I)*y + startPoint.y
+            sampleLabel.center = CGPoint(x: nextx, y: nexty)
+            outerChartView.addSubview(sampleLabel)
+        }
+        
         //Roulette label setting
         //Outer
+        /*
         let angleOuter = Double.pi * 2.0 / Double(outerName.count)
         let centerOuterX = self.view.frame.width / 2 - 18
         let centerOuterY = self.view.frame.height / 2 - 25
@@ -90,6 +111,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             labelView.frame.origin = CGPoint(x: positionX, y: positionY)
             outerChartView.addSubview(labelView)
         }
+ */
         
         //Inner
         let angleInner = Double.pi * 2.0 / Double(innerName.count)
