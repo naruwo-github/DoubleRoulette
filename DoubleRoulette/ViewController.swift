@@ -109,8 +109,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
-        
-        print(bannerView.frame)
     }
     
     func setOuterRoulette(outerName: [String], outerColor: [UIColor]) {
