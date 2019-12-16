@@ -54,6 +54,12 @@ class MyPieChartView: UIView {
         // MARK: 円グラフの起点を設定 [the starting angle is -90 degrees (top of the circle, as the context is flipped). By default, 0 is the right hand side of the circle, with the positive angle being in an anti-clockwise direction (same as a unit circle in maths).]
         var startAngle = -CGFloat(Double.pi * 0.5)
         
+        //円を書こうかな
+        ctx?.setFillColor(UIColor.gray.cgColor)
+        ctx?.move(to: CGPoint(x: viewCenter.x, y: viewCenter.y))
+        ctx?.addArc(center: CGPoint(x:viewCenter.x, y: viewCenter.y), radius: radius, startAngle: 0, endAngle: 360, clockwise: false)
+        ctx?.fillPath()
+        
         // MARK: 初期化されたすべてのセグメントを描画するための処理
         for segment in segments { // loop through the values array
             ctx?.setFillColor(segment.color.cgColor)
