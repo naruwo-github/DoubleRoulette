@@ -227,7 +227,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
             }
             
             let controller = segue.destination as! ViewController
-            controller.itemData = self.itemData
+            //controller.itemData = self.itemData
             controller.itemName = self.itemName
             controller.itemColor = self.itemColor
             controller.itemType = self.itemType

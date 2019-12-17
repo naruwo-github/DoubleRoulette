@@ -103,7 +103,8 @@ class RouletteCellViewController: UIViewController, UITableViewDataSource, UITab
         self.B.insert(Double(b), at: 0)
         self.A.insert(Double(a), at: 0)
         //alert to tableView
-        self.rouletteCellTableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.right)
+        self.rouletteCellTableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.left)
+        //self.rouletteCellTableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: UITableView.RowAnimation.right)
         saveCellsToUserDefaults()
     }
     
@@ -177,10 +178,10 @@ class RouletteCellViewController: UIViewController, UITableViewDataSource, UITab
 
        //return cell
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-           let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
-           cell.itemType.selectedSegmentIndex = self.itemType[indexPath.row]
-           cell.itemName.text = self.itemName[indexPath.row]
-           cell.itemColor.backgroundColor = UIColor.init(red: CGFloat(self.R[indexPath.row]), green: CGFloat(self.G[indexPath.row]), blue: CGFloat(self.B[indexPath.row]), alpha: CGFloat(self.A[indexPath.row]))
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RouletteCell", for: indexPath) as! RouletteCellTableViewCell
+        cell.segmentedControl.selectedSegmentIndex = self.itemType[indexPath.row]
+        cell.textField.text = self.itemName[indexPath.row]
+        cell.colorButton.backgroundColor = UIColor.init(red: CGFloat(self.R[indexPath.row]), green: CGFloat(self.G[indexPath.row]), blue: CGFloat(self.B[indexPath.row]), alpha: CGFloat(self.A[indexPath.row]))
            
            return cell
        }

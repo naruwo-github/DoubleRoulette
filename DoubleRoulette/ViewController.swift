@@ -19,7 +19,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var innerChartView: UIView!  //inner view
     var audioPlayer: AVAudioPlayer!             //audio player
     
-    var itemData = [TableViewCell]()
+    var itemData = [RouletteCellTableViewCell]()
     var itemName: [String] = []
     var itemColor: [UIColor] = []
     var itemType: [Int] = []

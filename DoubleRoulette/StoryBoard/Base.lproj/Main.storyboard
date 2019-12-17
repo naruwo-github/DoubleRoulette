@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tE1-cL-ep2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hsS-9H-vZi">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -133,6 +133,7 @@
                             <barButtonItem systemItem="play" id="5Ra-ps-ELt">
                                 <connections>
                                     <action selector="playButtonTapped:" destination="4sV-QN-uNR" id="lIe-Kh-yft"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="XlI-9J-v2k"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="add" id="8DR-JE-BQx">
@@ -226,6 +227,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="HjP-I0-rYW"/>
                     <connections>
                         <outlet property="innerChartView" destination="l40-z0-66b" id="hAX-wX-Atf"/>
                         <outlet property="itemsLabel" destination="ChU-WX-ZSz" id="aOe-MS-no7"/>
@@ -274,5 +276,8 @@
             <point key="canvasLocation" x="306" y="26"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="XlI-9J-v2k"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
