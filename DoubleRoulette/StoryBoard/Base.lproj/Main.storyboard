@@ -99,7 +99,56 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bKd-e9-BFt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1101.5999999999999" y="26.53673163418291"/>
+            <point key="canvasLocation" x="1932" y="-666"/>
+        </scene>
+        <!--Setting-->
+        <scene sceneID="AeU-8h-47J">
+            <objects>
+                <viewController id="4sV-QN-uNR" customClass="RouletteCellViewController" customModule="DoubleRoulette" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="muz-pg-YO5" userLabel="RouletteCellView">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DCx-wz-PzO" userLabel="RouletteCellTableView">
+                                <rect key="frame" x="0.0" y="88" width="414" height="724"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="4sV-QN-uNR" id="nYf-jK-uq6"/>
+                                    <outlet property="delegate" destination="4sV-QN-uNR" id="kMy-mR-xKq"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ACP-4X-pwu" firstAttribute="bottom" secondItem="DCx-wz-PzO" secondAttribute="bottom" constant="50" id="1Di-xn-2Ga"/>
+                            <constraint firstItem="DCx-wz-PzO" firstAttribute="centerX" secondItem="muz-pg-YO5" secondAttribute="centerX" id="9oy-K1-Fsz"/>
+                            <constraint firstItem="ACP-4X-pwu" firstAttribute="trailing" secondItem="DCx-wz-PzO" secondAttribute="trailing" id="f17-g5-9z6"/>
+                            <constraint firstItem="DCx-wz-PzO" firstAttribute="leading" secondItem="ACP-4X-pwu" secondAttribute="leading" id="qKG-ra-JaO"/>
+                            <constraint firstItem="DCx-wz-PzO" firstAttribute="top" secondItem="ACP-4X-pwu" secondAttribute="top" id="y6T-Q0-Ssi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ACP-4X-pwu"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Setting" id="nIf-aj-owm">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="play" id="5Ra-ps-ELt">
+                                <connections>
+                                    <action selector="playButtonTapped:" destination="4sV-QN-uNR" id="lIe-Kh-yft"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="8DR-JE-BQx">
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="4sV-QN-uNR" id="uwc-hY-Hbp"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="rouletteCellTableView" destination="DCx-wz-PzO" id="EHd-nM-67w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wea-nc-Rjj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1103" y="26"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -186,7 +235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1932" y="26.53673163418291"/>
+            <point key="canvasLocation" x="1932" y="25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tYv-8l-WJa">
@@ -205,6 +254,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhZ-xT-9ZB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1103" y="-666"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fwy-ba-uDg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hsS-9H-vZi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Io0-IY-QK7">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4sV-QN-uNR" kind="relationship" relationship="rootViewController" id="9eE-Oj-qPQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jzz-zg-w0X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="306" y="26"/>
         </scene>
     </scenes>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

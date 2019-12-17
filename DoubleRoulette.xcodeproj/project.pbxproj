@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050513A523A8B3D0009DCD1C /* RouletteCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050513A423A8B3D0009DCD1C /* RouletteCellViewController.swift */; };
+		050513A823A8B7C2009DCD1C /* RouletteCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050513A623A8B7C2009DCD1C /* RouletteCellTableViewCell.swift */; };
+		050513A923A8B7C2009DCD1C /* RouletteCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050513A723A8B7C2009DCD1C /* RouletteCellTableViewCell.xib */; };
 		0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529A99822CC991400F5ECB6 /* MyPieChartView.swift */; };
 		053D814823914D0900ACCAEE /* ColorStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D814723914D0900ACCAEE /* ColorStock.swift */; };
 		058D5B8E22FC51AB0064A91D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */; };
@@ -22,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		050513A423A8B3D0009DCD1C /* RouletteCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteCellViewController.swift; sourceTree = "<group>"; };
+		050513A623A8B7C2009DCD1C /* RouletteCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteCellTableViewCell.swift; sourceTree = "<group>"; };
+		050513A723A8B7C2009DCD1C /* RouletteCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RouletteCellTableViewCell.xib; sourceTree = "<group>"; };
 		0529A99822CC991400F5ECB6 /* MyPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPieChartView.swift; sourceTree = "<group>"; };
 		053D814723914D0900ACCAEE /* ColorStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStock.swift; sourceTree = "<group>"; };
 		058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -97,6 +103,9 @@
 				05D3D9D522C9D475007D24FF /* TableViewCell.swift */,
 				053D814723914D0900ACCAEE /* ColorStock.swift */,
 				05A82FFC237502D100613F97 /* StoryBoard */,
+				050513A423A8B3D0009DCD1C /* RouletteCellViewController.swift */,
+				050513A623A8B7C2009DCD1C /* RouletteCellTableViewCell.swift */,
+				050513A723A8B7C2009DCD1C /* RouletteCellTableViewCell.xib */,
 				05AF43EA22C974D4007A236D /* Assets.xcassets */,
 				0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */,
 				05AF43EF22C974D4007A236D /* Info.plist */,
@@ -185,6 +194,7 @@
 				05AF43EE22C974D4007A236D /* LaunchScreen.storyboard in Resources */,
 				0590A0C822D7F38D004BB8CA /* roulette-sound.mp3 in Resources */,
 				058D5B8E22FC51AB0064A91D /* GoogleService-Info.plist in Resources */,
+				050513A923A8B7C2009DCD1C /* RouletteCellTableViewCell.xib in Resources */,
 				05AF43EB22C974D4007A236D /* Assets.xcassets in Resources */,
 				05AF43E922C974D2007A236D /* Main.storyboard in Resources */,
 			);
@@ -239,6 +249,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				050513A523A8B3D0009DCD1C /* RouletteCellViewController.swift in Sources */,
+				050513A823A8B7C2009DCD1C /* RouletteCellTableViewCell.swift in Sources */,
 				0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */,
 				05D3D9D722C9D475007D24FF /* TableViewCell.swift in Sources */,
 				05AF43E622C974D2007A236D /* ViewController.swift in Sources */,
