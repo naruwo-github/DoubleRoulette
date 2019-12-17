@@ -101,6 +101,9 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="adView" destination="HUc-Zf-GnY" id="2yV-7l-TmY"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bKd-e9-BFt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

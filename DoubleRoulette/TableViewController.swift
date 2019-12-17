@@ -12,6 +12,7 @@ import GoogleMobileAds
 import CellAnimator
 
 class TableViewController: UITableViewController, AMColorPickerDelegate, GADBannerViewDelegate {
+    @IBOutlet weak var adView: UIView!
     
     var bannerView: GADBannerView!
     
@@ -62,8 +63,11 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         //広告
         // In this case, we instantiate the banner with desired ad size.
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-
-        addBannerViewToView(bannerView)
+        //このメソッドは一旦使わない
+        //addBannerViewToView(bannerView)
+        bannerView.translatesAutoresizingMaskIntoConstraints = true
+        self.adView.addSubview(bannerView)
+        bannerView.center.x = self.view.center.x
         
         //デバイスID : "01fa9aa834a520d7ce4f9ccc98ab3993"
         //本物
