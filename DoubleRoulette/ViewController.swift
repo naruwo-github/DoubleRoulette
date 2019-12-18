@@ -146,7 +146,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         topImageView.center = CGPoint(x: self.view.center.x, y: self.view.center.y - self.view.frame.width/2)
         
         let bottomImageView = UIImageView()
-        bottomImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width/9, height: self.view.frame.height/6)
+        bottomImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width/9, height: self.view.frame.height/4.5)
         let bottomArrow = UIImage(named: "arrow2")
         bottomImageView.image = bottomArrow
         bottomImageView.center = CGPoint(x: self.view.center.x, y: self.view.center.y + self.view.frame.width*3/8)
