@@ -140,13 +140,13 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         arrowView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         
         let topImageView = UIImageView()
-        topImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width/6, height: self.view.frame.height/12)
+        topImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width/7, height: self.view.frame.height/14)
         let topArrow = UIImage(named: "arrow1")
         topImageView.image = topArrow
         topImageView.center = CGPoint(x: self.view.center.x, y: self.view.center.y - self.view.frame.width/2)
         
         let bottomImageView = UIImageView()
-        bottomImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width/8, height: self.view.frame.height/5)
+        bottomImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width/9, height: self.view.frame.height/4.5)
         let bottomArrow = UIImage(named: "arrow2")
         bottomImageView.image = bottomArrow
         bottomImageView.center = CGPoint(x: self.view.center.x, y: self.view.center.y + self.view.frame.width*3/8)
