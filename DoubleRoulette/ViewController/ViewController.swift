@@ -100,7 +100,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         // In this case, we instantiate the banner with desired ad size.
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         addBannerViewToView(bannerView)
-        
         //本物
         //DRRouletteView
         bannerView.adUnitID = "ca-app-pub-6492692627915720/3283423713"
