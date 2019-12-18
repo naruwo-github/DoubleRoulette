@@ -10,15 +10,11 @@
 import UIKit
 
 struct Segment {
-    
-    //segment background color
     var color: UIColor
-    //segment ratio
     var value: CGFloat
 }
 
 class MyPieChartView: UIView {
-    
     var radius = CGFloat(1)
     
     var segments = [Segment]() {
@@ -38,30 +34,21 @@ class MyPieChartView: UIView {
     
     override func draw(_ rect: CGRect) {
         
-        // MARK: CGContextの初期化
         let ctx = UIGraphicsGetCurrentContext()
-        
-        // MARK: 円型にするためにradiusを設定
         //let radius = min(frame.size.width, frame.size.height)/2
-        
-        // MARK: Viewの中心点を取得
         let viewCenter = CGPoint(x: bounds.size.width/2, y: bounds.size.height/2)
-        //let viewCenter = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
-        
-        // MARK: セグメントごとの比率に応じてグラフを変形するための定数
         let valueCount = segments.reduce(0) {$0 + $1.value}
         
-        // MARK: 円グラフの起点を設定 [the starting angle is -90 degrees (top of the circle, as the context is flipped). By default, 0 is the right hand side of the circle, with the positive angle being in an anti-clockwise direction (same as a unit circle in maths).]
         var startAngle = -CGFloat(Double.pi * 0.5)
         
-        //円を書こうかな
+        //draw circle
         ctx?.setFillColor(UIColor.gray.cgColor)
         ctx?.move(to: CGPoint(x: viewCenter.x, y: viewCenter.y))
         ctx?.addArc(center: CGPoint(x:viewCenter.x, y: viewCenter.y), radius: radius, startAngle: 0, endAngle: 360, clockwise: false)
         ctx?.fillPath()
         
-        // MARK: 初期化されたすべてのセグメントを描画するための処理
-        for segment in segments { // loop through the values array
+        //draw piechart
+        for segment in segments {
             ctx?.setFillColor(segment.color.cgColor)
             let endAngle = startAngle+CGFloat(Double.pi * 2) * (segment.value / valueCount)
             ctx?.move(to: CGPoint(x:viewCenter.x, y: viewCenter.y))
@@ -69,6 +56,5 @@ class MyPieChartView: UIView {
             ctx?.fillPath()
             startAngle = endAngle
         }
-        
     }
 }
