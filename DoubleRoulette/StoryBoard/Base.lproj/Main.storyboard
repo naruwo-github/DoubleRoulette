@@ -127,7 +127,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKR-hp-RI6">
-                                        <rect key="frame" x="147" y="771" width="120" height="50"/>
+                                        <rect key="frame" x="147" y="766" width="120" height="50"/>
                                         <color key="backgroundColor" red="1" green="0.96045241209999999" blue="0.81748690989999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="qac-RM-PUm"/>
@@ -157,7 +157,7 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="XKR-hp-RI6" secondAttribute="bottom" constant="75" id="Qy4-Sq-ttT"/>
+                                    <constraint firstAttribute="bottom" secondItem="XKR-hp-RI6" secondAttribute="bottom" constant="80" id="Qy4-Sq-ttT"/>
                                     <constraint firstItem="XKR-hp-RI6" firstAttribute="centerX" secondItem="aeH-X5-t4e" secondAttribute="centerX" id="TZ4-W6-iaE"/>
                                     <constraint firstItem="ChU-WX-ZSz" firstAttribute="top" secondItem="aeH-X5-t4e" secondAttribute="topMargin" id="XNC-4v-xVq"/>
                                     <constraint firstItem="ChU-WX-ZSz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aeH-X5-t4e" secondAttribute="leading" constant="20" symbolic="YES" id="iCL-OA-tIK"/>
