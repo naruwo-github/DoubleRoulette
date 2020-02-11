@@ -33,6 +33,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor.dynamicColor(light: .white, dark: .black)
         
         var outerName: [String] = []
         var outerColor: [UIColor] = []

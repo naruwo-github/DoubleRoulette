@@ -13,6 +13,8 @@ import CellAnimator
 
 class TableViewController: UITableViewController, AMColorPickerDelegate, GADBannerViewDelegate {
     @IBOutlet weak var adView: UIView!
+    @IBOutlet weak var plusButton: UIBarButtonItem!
+    @IBOutlet weak var playButton: UIBarButtonItem!
     
     var bannerView: GADBannerView!
     
@@ -34,6 +36,8 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.dynamicColor(light: .black, dark: .white)
         
         configureTableView()
         // Uncomment the following line to preserve selection between presentations
@@ -274,5 +278,21 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
                            multiplier: 1,
                            constant: 0)
        ])
+    }
+}
+
+extension UIColor {
+    // ライト/ダーク用の色を受け取ってDynamic Colorを作って返す
+    public class func dynamicColor(light: UIColor, dark: UIColor) -> UIColor {
+        if #available(iOS 13, *) {
+            return UIColor { (traitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return dark
+                } else {
+                    return light
+                }
+            }
+        }
+        return light
     }
 }
