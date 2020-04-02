@@ -61,12 +61,13 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         for i in 0..<outerName.count {
             let I = CGFloat(i)
             let sampleLabel = UILabel()
-            sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 4, height: 50)
+            sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 7, height: self.view.frame.width / 14)
             sampleLabel.text = outerName[i]
             sampleLabel.adjustsFontSizeToFitWidth = true
             sampleLabel.textAlignment = .center
             sampleLabel.backgroundColor = UIColor.clear
             sampleLabel.textColor = UIColor.black
+            sampleLabel.numberOfLines = 0
             let x = firstOuterLabelPoint.x - startPoint.x
             let y = firstOuterLabelPoint.y - startPoint.y
             let nextx = cos(-(angleOfOuterPiece*I + angleOfOuterPiece/2))*x - sin(-(angleOfOuterPiece*I + angleOfOuterPiece/2))*y + startPoint.x
@@ -82,12 +83,13 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         for i in 0..<innerName.count {
             let I = CGFloat(i)
             let sampleLabel = UILabel()
-            sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 4, height: 50)
+            sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 7, height: self.view.frame.width / 14)
             sampleLabel.text = innerName[i]
             sampleLabel.adjustsFontSizeToFitWidth = true
             sampleLabel.textAlignment = .center
             sampleLabel.backgroundColor = UIColor.clear
             sampleLabel.textColor = UIColor.black
+            sampleLabel.numberOfLines = 0
             let x = firstInnerLabelPoint.x - startPoint.x
             let y = firstInnerLabelPoint.y - startPoint.y
             let nextx = cos(-(angleOfInnerPiece*I + angleOfInnerPiece/2))*x - sin(-(angleOfInnerPiece*I + angleOfInnerPiece/2))*y + startPoint.x
