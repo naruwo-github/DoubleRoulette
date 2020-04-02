@@ -61,12 +61,13 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		056A4D5623AA6216008CC263 /* PieChart */ = {
+		056A4D5623AA6216008CC263 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				053D814723914D0900ACCAEE /* ColorStock.swift */,
 				0529A99822CC991400F5ECB6 /* MyPieChartView.swift */,
 			);
-			path = PieChart;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		05A82FFB237502BA00613F97 /* Delegate */ = {
@@ -108,11 +109,10 @@
 			isa = PBXGroup;
 			children = (
 				056A4D5523AA617F008CC263 /* ViewController */,
-				056A4D5623AA6216008CC263 /* PieChart */,
+				056A4D5623AA6216008CC263 /* Model */,
 				05D3D9D522C9D475007D24FF /* TableViewCell.swift */,
-				053D814723914D0900ACCAEE /* ColorStock.swift */,
-				05A82FFB237502BA00613F97 /* Delegate */,
 				05A82FFC237502D100613F97 /* StoryBoard */,
+				05A82FFB237502BA00613F97 /* Delegate */,
 				05AF43EA22C974D4007A236D /* Assets.xcassets */,
 				0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */,
 				05AF43EF22C974D4007A236D /* Info.plist */,
