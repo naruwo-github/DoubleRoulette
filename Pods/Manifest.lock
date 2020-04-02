@@ -71,6 +71,11 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - Realm (4.3.2):
+    - Realm/Headers (= 4.3.2)
+  - Realm/Headers (4.3.2)
+  - RealmSwift (4.3.2):
+    - Realm (= 4.3.2)
 
 DEPENDENCIES:
   - AMColorPicker
@@ -78,6 +83,7 @@ DEPENDENCIES:
   - Firebase/AdMob
   - Firebase/Analytics
   - Firebase/Core
+  - RealmSwift
 
 SPEC REPOS:
   trunk:
@@ -95,6 +101,8 @@ SPEC REPOS:
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - nanopb
+    - Realm
+    - RealmSwift
 
 SPEC CHECKSUMS:
   AMColorPicker: 94e18eaafd5be96c2aa4a24467fa9bd8b4c338b9
@@ -111,7 +119,9 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: 862418a8cdda520c4dd4af83a756d04efe4a6990
   GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
+  RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
 
-PODFILE CHECKSUM: 8fbc74652318422f28c37a35a37854063ad893b8
+PODFILE CHECKSUM: c46aa4f8d23eaf9de32817f5ef4c46eef3ab035c
 
 COCOAPODS: 1.8.4
