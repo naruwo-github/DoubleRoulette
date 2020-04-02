@@ -98,14 +98,10 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             innerChartView.addSubview(sampleLabel)
         }
         
-        //矢印描画
         drawArrow()
         
-        //広告
-        // In this case, we instantiate the banner with desired ad size.
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         addBannerViewToView(bannerView)
-        //本物
         //DRRouletteView
         bannerView.adUnitID = "ca-app-pub-6492692627915720/3283423713"
         //テスト
