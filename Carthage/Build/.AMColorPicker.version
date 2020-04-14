@@ -1,0 +1,19 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "3.0.1",
+  "iOS" : [
+    {
+      "name" : "AMColorPicker",
+      "hash" : "eceb2ee540b5e41727f6b9bac28e0c454021eea0500a7726505cdf2bbee59d95",
+      "swiftToolchainVersion" : "5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)"
+    }
+  ]
+}

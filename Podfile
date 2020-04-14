@@ -6,7 +6,6 @@ target 'DoubleRoulette' do
   use_frameworks!
 
   # Pods for SampleLocation 
-  pod 'AMColorPicker'
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'

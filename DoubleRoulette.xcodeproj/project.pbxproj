@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050016632445593B00F3B87F /* AMColorPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; };
+		050016642445593B00F3B87F /* AMColorPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529A99822CC991400F5ECB6 /* MyPieChartView.swift */; };
 		053D814823914D0900ACCAEE /* ColorStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D814723914D0900ACCAEE /* ColorStock.swift */; };
 		058D5B8E22FC51AB0064A91D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */; };
@@ -34,6 +36,7 @@
 			files = (
 				059C9F9E24453D0D00B11797 /* RealmSwift.framework in Embed Frameworks */,
 				059C9F9C24453D0D00B11797 /* Realm.framework in Embed Frameworks */,
+				050016642445593B00F3B87F /* AMColorPicker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -41,6 +44,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		050016622445593B00F3B87F /* AMColorPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMColorPicker.framework; path = Carthage/Build/iOS/AMColorPicker.framework; sourceTree = "<group>"; };
 		0529A99822CC991400F5ECB6 /* MyPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPieChartView.swift; sourceTree = "<group>"; };
 		053D814723914D0900ACCAEE /* ColorStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStock.swift; sourceTree = "<group>"; };
 		058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -68,6 +72,7 @@
 			files = (
 				059C9F9B24453D0D00B11797 /* Realm.framework in Frameworks */,
 				18D3217A7E609E7DFF081944 /* Pods_DoubleRoulette.framework in Frameworks */,
+				050016632445593B00F3B87F /* AMColorPicker.framework in Frameworks */,
 				059C9F9D24453D0D00B11797 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +161,7 @@
 		E0ECE7BCFD34E1EE363BB70A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				050016622445593B00F3B87F /* AMColorPicker.framework */,
 				059C9F9924453D0D00B11797 /* Realm.framework */,
 				059C9F9A24453D0D00B11797 /* RealmSwift.framework */,
 				900A8DDB992024885EAA9F37 /* Pods_DoubleRoulette.framework */,
@@ -246,6 +252,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AMColorPicker.framework",
 			);
 			outputFileListPaths = (
 			);

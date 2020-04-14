@@ -1,5 +1,4 @@
 PODS:
-  - AMColorPicker (2.0)
   - CellAnimator (0.1.3)
   - Firebase/AdMob (6.10.0):
     - Firebase/CoreOnly
@@ -73,7 +72,6 @@ PODS:
   - nanopb/encode (0.3.901)
 
 DEPENDENCIES:
-  - AMColorPicker
   - CellAnimator
   - Firebase/AdMob
   - Firebase/Analytics
@@ -81,7 +79,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - AMColorPicker
     - CellAnimator
     - Firebase
     - FirebaseAnalytics
@@ -97,7 +94,6 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  AMColorPicker: 94e18eaafd5be96c2aa4a24467fa9bd8b4c338b9
   CellAnimator: dfba32e8223bbc1e0d4e16524eb51f475082501b
   Firebase: 5e6b7b12bf9adb90986688edc06b156c37e109cd
   FirebaseAnalytics: 0e3ecff2c5d86070f7d4325e21f1edabfbd558dc
@@ -112,6 +108,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: 8fbc74652318422f28c37a35a37854063ad893b8
+PODFILE CHECKSUM: e726e84356bdb8d6fed65055f145c747cf45f149
 
 COCOAPODS: 1.8.4
