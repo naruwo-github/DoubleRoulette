@@ -73,6 +73,19 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         bannerView.delegate = self
     }
     
+    @IBAction func allClearButtonTapped(_ sender: Any) {
+        self.itemData = [TableViewCell]()
+        self.itemName = []
+        self.itemColor = []
+        self.itemType = []
+        self.R = []
+        self.G = []
+        self.B = []
+        self.A = []
+        self.tableView.reloadData()
+        self.saveCellsToUserDefaults()
+    }
+    
     @IBAction func addButtonTapped(_ sender: Any) {
         let item = TableViewCell()
         let colorStock = ColorStock()
