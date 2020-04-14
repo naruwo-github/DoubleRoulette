@@ -36,15 +36,8 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationController?.navigationBar.tintColor = UIColor.dynamicColor(light: .black, dark: .white)
-        
         configureTableView()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         let cellNum = userDefaults.integer(forKey: "itemDataNum")
         itemName = userDefaults.object(forKey: "itemName") as? [String] ?? []
@@ -65,16 +58,12 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         }
         
         //広告
-        // In this case, we instantiate the banner with desired ad size.
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        //このメソッドは一旦使わない
-        //addBannerViewToView(bannerView)
         bannerView.translatesAutoresizingMaskIntoConstraints = true
         self.adView.addSubview(bannerView)
         bannerView.center.x = self.view.center.x
         
         //デバイスID : "01fa9aa834a520d7ce4f9ccc98ab3993"
-        //本物
         //DRTableViewのユニット
         bannerView.adUnitID = "ca-app-pub-6492692627915720/2967728941"
         //テスト
@@ -84,13 +73,11 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         bannerView.delegate = self
     }
     
-    //Add Button
     @IBAction func addButtonTapped(_ sender: Any) {
-        //prepare  new cell
         let item = TableViewCell()
         let colorStock = ColorStock()
         item.color = colorStock.proposeColor(index: self.itemData.count)
-        //insert new cell
+        
         self.itemData.insert(item, at: 0)
         self.itemName.insert(item.name, at: 0)
         self.itemColor.insert(item.color, at: 0)
@@ -168,13 +155,10 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     }
     
     
-    //cell delete func
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        //削除処理かどうか
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            //ToDoリストから削除
             self.itemData.remove(at: indexPath.row)
-            //セル情報の削除
+
             self.itemName.remove(at: indexPath.row)
             self.itemColor.remove(at: indexPath.row)
             self.itemType.remove(at: indexPath.row)
@@ -184,27 +168,19 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
             self.B.remove(at: indexPath.row)
             self.A.remove(at: indexPath.row)
             
-            //セルを削除
             self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
         }
         saveCellsToUserDefaults()
     }
 
-    // MARK: - Table view data source
-
-    //return cell's section num
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    //return cell num
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return itemData.count
     }
 
-    //return cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
         cell.itemType.selectedSegmentIndex = self.itemType[indexPath.row]
@@ -259,26 +235,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         tableView.rowHeight = 50
     }
     
-    func addBannerViewToView(_ bannerView: GADBannerView) {
-     bannerView.translatesAutoresizingMaskIntoConstraints = false
-     view.addSubview(bannerView)
-     view.addConstraints(
-       [NSLayoutConstraint(item: bannerView,
-                           attribute: .bottom,
-                           relatedBy: .equal,
-                           toItem: bottomLayoutGuide,
-                           attribute: .top,
-                           multiplier: 1,
-                           constant: 0),
-        NSLayoutConstraint(item: bannerView,
-                           attribute: .centerX,
-                           relatedBy: .equal,
-                           toItem: view,
-                           attribute: .centerX,
-                           multiplier: 1,
-                           constant: 0)
-       ])
-    }
 }
 
 extension UIColor {
