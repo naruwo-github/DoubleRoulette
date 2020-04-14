@@ -1,1 +1,5 @@
-Carthage/
+Carthage/Build/Mac
+Carthage/Build/tvOS
+Carthage/Build/watchOS
+Carthage/Build/iOS/Realm.framework.dSYM
+Carthage/Build/iOS/RealmSwift.framework.dSYM
