@@ -10,6 +10,7 @@ import UIKit
 import AMColorPicker
 import GoogleMobileAds
 import CellAnimator
+import RealmSwift
 
 class TableViewController: UITableViewController, AMColorPickerDelegate, GADBannerViewDelegate {
     @IBOutlet weak var adView: UIView!
@@ -33,6 +34,14 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     
     //storage
     let userDefaults = UserDefaults.standard
+    
+    let realm = try! Realm()
+    var realmName: [String] = []
+    var realmType: [Int] = []
+    var realmR: [Double] = []
+    var realmG: [Double] = []
+    var realmB: [Double] = []
+    var realmA: [Double] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
