@@ -11,7 +11,6 @@ target 'DoubleRoulette' do
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'
   pod 'CellAnimator'
-  pod 'RealmSwift'
 
   # Pods for DoubleRoulette
 
