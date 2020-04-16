@@ -245,7 +245,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     }
     
     func configureTableView() {
-        tableView.rowHeight = 50
+        tableView.rowHeight = UIDevice.current.userInterfaceIdiom == .pad ? 70 : 50
     }
     
 }
