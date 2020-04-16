@@ -30,6 +30,8 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     let pieChartViewOuter = MyPieChartView()
     let pieChartViewInner = MyPieChartView()
     
+    let labelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -61,7 +63,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         for i in 0..<outerName.count {
             let I = CGFloat(i)
             let sampleLabel = UILabel()
-            sampleLabel.font = UIFont.init(name: "HiraginoSans-W3", size: 20)
+            sampleLabel.font = UIFont.init(name: "HiraginoSans-W3", size: labelFontSize)
             sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 7, height: self.view.frame.width / 14)
             sampleLabel.text = outerName[i]
             sampleLabel.adjustsFontSizeToFitWidth = true
@@ -84,7 +86,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         for i in 0..<innerName.count {
             let I = CGFloat(i)
             let sampleLabel = UILabel()
-            sampleLabel.font = UIFont.init(name: "HiraginoSans-W3", size: 20)
+            sampleLabel.font = UIFont.init(name: "HiraginoSans-W3", size: labelFontSize)
             sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 7, height: self.view.frame.width / 14)
             sampleLabel.text = innerName[i]
             sampleLabel.adjustsFontSizeToFitWidth = true
