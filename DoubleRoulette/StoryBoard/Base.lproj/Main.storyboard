@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,14 +23,14 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" id="mn9-py-mnx" customClass="TableViewCell" customModule="DoubleRoulette" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="44.5"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="48.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mn9-py-mnx" id="hZy-nG-ON0">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="48.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <segmentedControl opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g2S-0W-uWo">
-                                            <rect key="frame" x="20" y="5" width="124" height="35.5"/>
+                                            <rect key="frame" x="20" y="7" width="124" height="35.5"/>
                                             <segments>
                                                 <segment title="Outer"/>
                                                 <segment title="Inner"/>
@@ -40,7 +40,7 @@
                                             </connections>
                                         </segmentedControl>
                                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RzQ-a8-dcs">
-                                            <rect key="frame" x="352.5" y="5" width="41.5" height="34.5"/>
+                                            <rect key="frame" x="352.5" y="7" width="41.5" height="34.5"/>
                                             <state key="normal" title="Color"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -53,7 +53,7 @@
                                             </connections>
                                         </button>
                                         <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RC6-Ju-gGT">
-                                            <rect key="frame" x="152" y="5" width="192.5" height="34.5"/>
+                                            <rect key="frame" x="152" y="7" width="192.5" height="34.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
@@ -62,13 +62,13 @@
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="g2S-0W-uWo" firstAttribute="top" secondItem="hZy-nG-ON0" secondAttribute="top" constant="5" id="4LK-mM-kAz"/>
+                                        <constraint firstItem="g2S-0W-uWo" firstAttribute="top" secondItem="hZy-nG-ON0" secondAttribute="top" constant="7" id="4LK-mM-kAz"/>
                                         <constraint firstItem="g2S-0W-uWo" firstAttribute="width" secondItem="hZy-nG-ON0" secondAttribute="width" multiplier="0.3" id="Ehu-dD-nvE"/>
                                         <constraint firstItem="RzQ-a8-dcs" firstAttribute="width" secondItem="hZy-nG-ON0" secondAttribute="width" multiplier="0.1" id="KM7-wH-syG"/>
                                         <constraint firstItem="g2S-0W-uWo" firstAttribute="leading" secondItem="hZy-nG-ON0" secondAttribute="leadingMargin" id="UFS-p9-WZ6"/>
                                         <constraint firstItem="RzQ-a8-dcs" firstAttribute="top" secondItem="RC6-Ju-gGT" secondAttribute="top" id="VCx-MN-SAT"/>
                                         <constraint firstItem="g2S-0W-uWo" firstAttribute="centerY" secondItem="hZy-nG-ON0" secondAttribute="centerY" id="Ynr-iU-qWX"/>
-                                        <constraint firstItem="RzQ-a8-dcs" firstAttribute="top" secondItem="hZy-nG-ON0" secondAttribute="top" constant="5" id="Zm2-8R-6tm"/>
+                                        <constraint firstItem="RzQ-a8-dcs" firstAttribute="top" secondItem="hZy-nG-ON0" secondAttribute="top" constant="7" id="Zm2-8R-6tm"/>
                                         <constraint firstItem="g2S-0W-uWo" firstAttribute="centerY" secondItem="RC6-Ju-gGT" secondAttribute="centerY" id="aKz-UG-GBK"/>
                                         <constraint firstItem="g2S-0W-uWo" firstAttribute="centerY" secondItem="RzQ-a8-dcs" secondAttribute="centerY" id="eVH-pa-e6a"/>
                                         <constraint firstItem="RC6-Ju-gGT" firstAttribute="leading" secondItem="g2S-0W-uWo" secondAttribute="trailing" constant="8" symbolic="YES" id="gZg-BL-OfQ"/>
