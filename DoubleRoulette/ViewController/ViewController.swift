@@ -195,7 +195,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     //share button
     @IBAction func shareButton(_ sender: Any) {
         let shareText = "Double Roulette ScreenShot!"
-        let shareImage = self.view.getScreenShot(windowFrame: self.view.frame, adFrame: self.bannerView.frame)
+        let shareImage = self.view.getScreenShot(windowFrame: self.view.frame, adFrame: self.bannerView.frame, backgroundColor: self.view.backgroundColor!)
         let activityItems = [shareText, shareImage] as [Any]
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         self.present(activityVC, animated: true, completion: nil)

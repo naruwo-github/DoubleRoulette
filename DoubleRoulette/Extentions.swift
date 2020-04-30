@@ -21,11 +21,8 @@ extension UIColor {
 }
 
 extension UIView {
-    //    こんな感じでいける！
-    //    let image: UIImage = self.view.getScreenShot(windowFrame: self.view.frame, adFrame: self.bannerView.frame)
-    //    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     //広告を隠したスクリーンショットを撮る関数（WindowFrameが画面領域、adFrameが広告領域）
-    func getScreenShot(windowFrame: CGRect, adFrame: CGRect) -> UIImage {
+    func getScreenShot(windowFrame: CGRect, adFrame: CGRect, backgroundColor: UIColor) -> UIImage {
         //context処理開始
         UIGraphicsBeginImageContextWithOptions(windowFrame.size, false, 0.0);
         //UIGraphicsBeginImageContext(windowFrame.size);  <-だめなやつ
@@ -33,8 +30,8 @@ extension UIView {
         let context: CGContext = UIGraphicsGetCurrentContext()!;
         //contextにスクリーンショットを書き込む
         layer.render(in: context);
-        //広告の領域を白で塗りつぶす
-        context.setFillColor(UIColor.white.cgColor);
+        //広告の領域を背景色で塗りつぶす
+        context.setFillColor(backgroundColor.cgColor);
         context.fill(adFrame);
         //contextをUIImageに書き出す
         let capturedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()!;
