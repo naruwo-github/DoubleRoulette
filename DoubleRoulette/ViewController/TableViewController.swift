@@ -73,6 +73,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
             print("Save is Faild")
         }
         self.tableView.reloadData()
+        self.tableView.scrollToRow(at: IndexPath(row: rouletteCells.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
     }
     
     @IBAction func playButtonTapped(_ sender: Any) {
