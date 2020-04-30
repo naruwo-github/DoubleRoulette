@@ -118,7 +118,7 @@
             </objects>
             <point key="canvasLocation" x="1101.5999999999999" y="26.53673163418291"/>
         </scene>
-        <!--View Controller-->
+        <!--Roulette-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DoubleRoulette" customModuleProvider="target" sceneMemberID="viewController">
@@ -184,7 +184,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="S6D-nP-cWa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1hk-R7-e4G"/>
                             <constraint firstItem="l40-z0-66b" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4ab-tV-xcL"/>
@@ -205,6 +205,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JKy-1s-ggH"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Roulette" id="G6T-NX-6v1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Qnj-c0-6je">
+                            <connections>
+                                <action selector="shareButton:" destination="BYZ-38-t0r" id="1Ez-Yo-bN7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="elementNumLabel" destination="oPD-db-q4y" id="j8p-Hb-gnl"/>
                         <outlet property="innerChartView" destination="l40-z0-66b" id="hAX-wX-Atf"/>

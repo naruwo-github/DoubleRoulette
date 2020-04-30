@@ -10,6 +10,7 @@
 import UIKit
 import AVFoundation
 import GoogleMobileAds
+import Accounts
 
 class ViewController: UIViewController, GADBannerViewDelegate {
     var bannerView: GADBannerView!
@@ -35,8 +36,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.dynamicColor(light: .white, dark: .black)
         
         var outerName: [String] = []
         var outerColor: [UIColor] = []
@@ -193,6 +192,15 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         innerChartView.layer.add(animationInner, forKey: "animationInner")
     }
     
+    //share button
+    @IBAction func shareButton(_ sender: Any) {
+        let shareText = "Double Roulette ScreenShot!"
+        let shareImage = self.view.getScreenShot(windowFrame: self.view.frame, adFrame: self.bannerView.frame, backgroundColor: self.view.backgroundColor!)
+        let activityItems = [shareText, shareImage] as [Any]
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        self.present(activityVC, animated: true, completion: nil)
+    }
+    
     func addBannerViewToView(_ bannerView: GADBannerView) {
      bannerView.translatesAutoresizingMaskIntoConstraints = false
      view.addSubview(bannerView)
@@ -226,12 +234,5 @@ extension ViewController: AVAudioPlayerDelegate {
             audioPlayer.play()
         } catch {
         }
-    }
-}
-
-extension UIColor {
-    //ルーレットのラベルのいろ
-    class var rouletteLabel: UIColor {
-        return UIColor(named: "rouletteLabel") ?? UIColor.black
     }
 }
