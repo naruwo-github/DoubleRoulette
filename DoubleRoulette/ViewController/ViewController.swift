@@ -41,13 +41,15 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         var innerColor: [UIColor] = []
         for i in 0..<rouletteCells.count {
             let cell = rouletteCells[i]
-            let colors = ColorStock()
+            let hex = cell.color
+            let rgb = UIColor.hexToRGB(hex: hex)
+            let cellColor = UIColor(red: CGFloat(rgb[0])/255, green: CGFloat(rgb[1])/255, blue: CGFloat(rgb[2])/255, alpha: 1)
             if cell.type == 0 {
                 outerName.insert(cell.item, at: 0)
-                outerColor.insert(colors.proposeColor(index: i), at: 0)
+                outerColor.insert(cellColor, at: 0)
             }else {
                 innerName.insert(cell.item, at: 0)
-                innerColor.insert(colors.proposeColor(index: i), at: 0)
+                innerColor.insert(cellColor, at: 0)
             }
         }
         itemsLabel.text = "Items: " + String(rouletteCells.count)
