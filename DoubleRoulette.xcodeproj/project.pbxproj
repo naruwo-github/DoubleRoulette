@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		050016632445593B00F3B87F /* AMColorPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; };
 		050016642445593B00F3B87F /* AMColorPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0519C9FD245A71B7004356DF /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0519C9FC245A71B7004356DF /* Extentions.swift */; };
 		0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529A99822CC991400F5ECB6 /* MyPieChartView.swift */; };
 		053D814823914D0900ACCAEE /* ColorStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D814723914D0900ACCAEE /* ColorStock.swift */; };
 		05579308245A653A0081DA16 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05579307245A653A0081DA16 /* Colors.xcassets */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		050016622445593B00F3B87F /* AMColorPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMColorPicker.framework; path = Carthage/Build/iOS/AMColorPicker.framework; sourceTree = "<group>"; };
+		0519C9FC245A71B7004356DF /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		0529A99822CC991400F5ECB6 /* MyPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPieChartView.swift; sourceTree = "<group>"; };
 		053D814723914D0900ACCAEE /* ColorStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStock.swift; sourceTree = "<group>"; };
 		05579307245A653A0081DA16 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -82,9 +84,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0519C9FB245A7181004356DF /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				05D3D9D522C9D475007D24FF /* TableViewCell.swift */,
+				0519C9FC245A71B7004356DF /* Extentions.swift */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
 		05579309245A65620081DA16 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */,
 				05579307245A653A0081DA16 /* Colors.xcassets */,
 				05AF43EA22C974D4007A236D /* Assets.xcassets */,
 			);
@@ -149,11 +161,10 @@
 			children = (
 				056A4D5523AA617F008CC263 /* ViewController */,
 				056A4D5623AA6216008CC263 /* Model */,
-				05D3D9D522C9D475007D24FF /* TableViewCell.swift */,
+				0519C9FB245A7181004356DF /* Source */,
 				05A82FFC237502D100613F97 /* StoryBoard */,
 				05A82FFB237502BA00613F97 /* Delegate */,
 				05579309245A65620081DA16 /* Assets */,
-				0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */,
 				05AF43EF22C974D4007A236D /* Info.plist */,
 				058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */,
 			);
@@ -326,6 +337,7 @@
 				05AF43E422C974D2007A236D /* AppDelegate.swift in Sources */,
 				053D814823914D0900ACCAEE /* ColorStock.swift in Sources */,
 				05D3D9D422C9D431007D24FF /* TableViewController.swift in Sources */,
+				0519C9FD245A71B7004356DF /* Extentions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

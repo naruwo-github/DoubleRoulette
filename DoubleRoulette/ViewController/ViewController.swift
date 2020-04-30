@@ -10,14 +10,16 @@
 import UIKit
 import AVFoundation
 import GoogleMobileAds
+import Accounts
 
 class ViewController: UIViewController, GADBannerViewDelegate {
-    var bannerView: GADBannerView!              //admob view
-    @IBOutlet weak var startButton: UIButton!   //rotation button
-    @IBOutlet weak var itemsLabel: UILabel!     //items number
-    @IBOutlet weak var outerChartView: UIView!  //outer view
-    @IBOutlet weak var innerChartView: UIView!  //inner view
-    var audioPlayer: AVAudioPlayer!             //audio player
+    var bannerView: GADBannerView!
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var itemsLabel: UILabel!
+    @IBOutlet weak var elementNumLabel: UILabel!
+    @IBOutlet weak var outerChartView: UIView!
+    @IBOutlet weak var innerChartView: UIView!
+    var audioPlayer: AVAudioPlayer!
     
     var itemData = [TableViewCell]()
     var itemName: [String] = []
@@ -34,8 +36,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.dynamicColor(light: .white, dark: .black)
         
         var outerName: [String] = []
         var outerColor: [UIColor] = []
@@ -51,6 +51,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             }
         }
         itemsLabel.text = "Items: " + String(itemData.count)
+        elementNumLabel.text = "Outer: " + String(outerName.count) + ", Inner: " + String(innerName.count)
         
         setOuterRoulette(outerName: outerName, outerColor: outerColor)
         setInnerRoulette(innerName: innerName, innerColor: innerColor)
@@ -191,6 +192,15 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         innerChartView.layer.add(animationInner, forKey: "animationInner")
     }
     
+    //share button
+    @IBAction func shareButton(_ sender: Any) {
+        let shareText = "Double Roulette ScreenShot!"
+        let shareImage = self.view.getScreenShot(windowFrame: self.view.frame, adFrame: self.bannerView.frame, backgroundColor: self.view.backgroundColor!)
+        let activityItems = [shareText, shareImage] as [Any]
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        self.present(activityVC, animated: true, completion: nil)
+    }
+    
     func addBannerViewToView(_ bannerView: GADBannerView) {
      bannerView.translatesAutoresizingMaskIntoConstraints = false
      view.addSubview(bannerView)
@@ -224,12 +234,5 @@ extension ViewController: AVAudioPlayerDelegate {
             audioPlayer.play()
         } catch {
         }
-    }
-}
-
-extension UIColor {
-    //ルーレットのラベルのいろ
-    class var rouletteLabel: UIColor {
-        return UIColor(named: "rouletteLabel") ?? UIColor.black
     }
 }
