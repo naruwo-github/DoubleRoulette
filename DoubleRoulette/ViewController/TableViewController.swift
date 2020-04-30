@@ -139,11 +139,31 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     }
     
     func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
+        guard (indexPath != nil) else {
+            return
+        }
+        
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
         var a: CGFloat = 0
         color.getRed(&r, green: &g , blue: &b, alpha: &a)
+        
+        let cell = rouletteCells[indexPath!.row]
+        do{
+            let realm = try Realm()
+            try realm.write({ () -> Void in
+                cell.color = UIColor.rgbToHex(red: Int(r*255), green: Int(g*255), blue: Int(b*255))
+                realm.add(cell, update: .modified)
+                print("Cell Saved")
+            })
+        }catch{
+            print("Save is Faild")
+        }
+        let modifiedCell = self.tableView.cellForRow(at: indexPath! as IndexPath)
+        (modifiedCell?.viewWithTag(2) as! UIButton).backgroundColor = UIColor(red: r, green: g, blue: b, alpha: a)
+        //self.tableView.reloadRows(at: [indexPath! as IndexPath], with: UITableView.RowAnimation.fade)
+        //self.tableView.reloadData()
     }
     
     
@@ -157,7 +177,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
                 tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
             }catch{
             }
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
         }
     }
 
