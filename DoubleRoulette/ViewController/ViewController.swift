@@ -11,20 +11,18 @@ import UIKit
 import AVFoundation
 import GoogleMobileAds
 import Accounts
+import RealmSwift
 
 class ViewController: UIViewController, GADBannerViewDelegate {
     var bannerView: GADBannerView!
+    @IBOutlet weak var bottomAdView: UIView!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var itemsLabel: UILabel!
     @IBOutlet weak var elementNumLabel: UILabel!
     @IBOutlet weak var outerChartView: UIView!
     @IBOutlet weak var innerChartView: UIView!
     var audioPlayer: AVAudioPlayer!
-    
-    var itemData = [TableViewCell]()
-    var itemName: [String] = []
-    var itemColor: [UIColor] = []
-    var itemType: [Int] = []
+    var rouletteCells: Results<RouletteObject>!
     
     var currentPositionOuter = 0                //rotation angle of outer
     var currentPositionInner = 0                //rotation angle of inner
@@ -41,16 +39,20 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         var outerColor: [UIColor] = []
         var innerName: [String] = []
         var innerColor: [UIColor] = []
-        for i in 0..<itemData.count {
-            if itemType[i] == 0 {
-                outerName.insert(itemName[i], at: 0)
-                outerColor.insert(itemColor[i], at: 0)
+        for i in 0..<rouletteCells.count {
+            let cell = rouletteCells[i]
+            let hex = cell.color
+            let rgb = UIColor.hexToRGB(hex: hex)
+            let cellColor = UIColor(red: CGFloat(rgb[0])/255, green: CGFloat(rgb[1])/255, blue: CGFloat(rgb[2])/255, alpha: 1)
+            if cell.type == 0 {
+                outerName.insert(cell.item, at: 0)
+                outerColor.insert(cellColor, at: 0)
             }else {
-                innerName.insert(itemName[i], at: 0)
-                innerColor.insert(itemColor[i], at: 0)
+                innerName.insert(cell.item, at: 0)
+                innerColor.insert(cellColor, at: 0)
             }
         }
-        itemsLabel.text = "Items: " + String(itemData.count)
+        itemsLabel.text = "Items: " + String(rouletteCells.count)
         elementNumLabel.text = "Outer: " + String(outerName.count) + ", Inner: " + String(innerName.count)
         
         setOuterRoulette(outerName: outerName, outerColor: outerColor)
@@ -106,11 +108,10 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         drawArrow()
         
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        addBannerViewToView(bannerView)
-        //DRRouletteView
+        bannerView.translatesAutoresizingMaskIntoConstraints = true
+        self.bottomAdView.addSubview(bannerView)
+        bannerView.center.x = self.view.center.x
         bannerView.adUnitID = "ca-app-pub-6492692627915720/3283423713"
-        //テスト
-        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
@@ -199,27 +200,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         let activityItems = [shareText, shareImage] as [Any]
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         self.present(activityVC, animated: true, completion: nil)
-    }
-    
-    func addBannerViewToView(_ bannerView: GADBannerView) {
-     bannerView.translatesAutoresizingMaskIntoConstraints = false
-     view.addSubview(bannerView)
-     view.addConstraints(
-       [NSLayoutConstraint(item: bannerView,
-                           attribute: .bottom,
-                           relatedBy: .equal,
-                           toItem: bottomLayoutGuide,
-                           attribute: .top,
-                           multiplier: 1,
-                           constant: 0),
-        NSLayoutConstraint(item: bannerView,
-                           attribute: .centerX,
-                           relatedBy: .equal,
-                           toItem: view,
-                           attribute: .centerX,
-                           multiplier: 1,
-                           constant: 0)
-       ])
     }
 }
 
