@@ -27,16 +27,8 @@ class TableViewCell: UITableViewCell, NSSecureCoding, UITextFieldDelegate{
         itemName.delegate = self
     }
     
-//    //UITextFieldDelegate
-//    internal func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
-//        self.name = itemName.text ?? "Item"
-//        self.color = itemColor.backgroundColor ?? UIColor.init(red: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), green: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), blue: CGFloat(Double(Int.random(in: 0 ... 5)) / 5.0), alpha: CGFloat(1))
-//        self.type = itemType.selectedSegmentIndex
-//        itemName.resignFirstResponder()
-//        return true
-//    }
-//
-//    @IBAction func colorButtonTapped(_ sender: Any) {
-//        itemName.resignFirstResponder()
-//    }
+    internal func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
+        itemName.resignFirstResponder()
+        return true
+    }
 }
