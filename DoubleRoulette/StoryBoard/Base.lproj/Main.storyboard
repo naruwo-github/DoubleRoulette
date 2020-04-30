@@ -135,6 +135,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeH-X5-t4e" userLabel="TopView">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKs-pi-1Ng" userLabel="AdView">
+                                        <rect key="frame" x="0.0" y="724" width="414" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="lYC-1b-yh1"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKR-hp-RI6">
                                         <rect key="frame" x="124" y="664" width="166" height="50"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -173,13 +179,16 @@
                                     </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="FKs-pi-1Ng" secondAttribute="trailing" id="1Un-gJ-k0k"/>
                                     <constraint firstItem="ChU-WX-ZSz" firstAttribute="leading" secondItem="aeH-X5-t4e" secondAttribute="leading" constant="10" id="BUS-Jt-mh0"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oPD-db-q4y" secondAttribute="trailing" constant="20" symbolic="YES" id="DTM-lj-eGO"/>
+                                    <constraint firstAttribute="bottom" secondItem="FKs-pi-1Ng" secondAttribute="bottom" id="IAZ-MY-lXd"/>
                                     <constraint firstAttribute="bottom" secondItem="XKR-hp-RI6" secondAttribute="bottom" constant="60" id="Qy4-Sq-ttT"/>
                                     <constraint firstItem="oPD-db-q4y" firstAttribute="top" secondItem="ChU-WX-ZSz" secondAttribute="bottom" id="Rso-8k-n3A"/>
                                     <constraint firstItem="XKR-hp-RI6" firstAttribute="centerX" secondItem="aeH-X5-t4e" secondAttribute="centerX" id="TZ4-W6-iaE"/>
                                     <constraint firstItem="oPD-db-q4y" firstAttribute="leading" secondItem="aeH-X5-t4e" secondAttribute="leading" constant="10" id="WJj-UK-dDl"/>
                                     <constraint firstItem="ChU-WX-ZSz" firstAttribute="top" secondItem="aeH-X5-t4e" secondAttribute="topMargin" id="XNC-4v-xVq"/>
+                                    <constraint firstItem="FKs-pi-1Ng" firstAttribute="leading" secondItem="aeH-X5-t4e" secondAttribute="leading" id="ayI-YI-4v5"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ChU-WX-ZSz" secondAttribute="trailing" constant="20" symbolic="YES" id="qhm-WM-0nf"/>
                                 </constraints>
                             </view>
@@ -213,6 +222,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bottomAdView" destination="FKs-pi-1Ng" id="bxT-pI-veA"/>
                         <outlet property="elementNumLabel" destination="oPD-db-q4y" id="j8p-Hb-gnl"/>
                         <outlet property="innerChartView" destination="l40-z0-66b" id="hAX-wX-Atf"/>
                         <outlet property="itemsLabel" destination="ChU-WX-ZSz" id="aOe-MS-no7"/>

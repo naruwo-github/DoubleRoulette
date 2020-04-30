@@ -34,20 +34,13 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         do{
             rouletteCells = realm.objects(RouletteObject.self)
             tableView.reloadData()
-        }catch{
-            print("No Data...")
         }
         //広告
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         bannerView.translatesAutoresizingMaskIntoConstraints = true
         self.adView.addSubview(bannerView)
         bannerView.center.x = self.view.center.x
-        
-        //デバイスID : "01fa9aa834a520d7ce4f9ccc98ab3993"
-        //DRTableViewのユニット
         bannerView.adUnitID = "ca-app-pub-6492692627915720/2967728941"
-        //テスト
-        //bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
