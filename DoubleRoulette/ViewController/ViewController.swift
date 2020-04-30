@@ -30,6 +30,8 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     let pieChartViewOuter = MyPieChartView()
     let pieChartViewInner = MyPieChartView()
     
+    let labelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -61,12 +63,13 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         for i in 0..<outerName.count {
             let I = CGFloat(i)
             let sampleLabel = UILabel()
+            sampleLabel.font = UIFont.init(name: "HiraginoSans-W3", size: labelFontSize)
             sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 7, height: self.view.frame.width / 14)
             sampleLabel.text = outerName[i]
             sampleLabel.adjustsFontSizeToFitWidth = true
             sampleLabel.textAlignment = .center
             sampleLabel.backgroundColor = UIColor.clear
-            sampleLabel.textColor = UIColor.black
+            sampleLabel.textColor = UIColor.rouletteLabel
             sampleLabel.numberOfLines = 0
             let x = firstOuterLabelPoint.x - startPoint.x
             let y = firstOuterLabelPoint.y - startPoint.y
@@ -83,12 +86,13 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         for i in 0..<innerName.count {
             let I = CGFloat(i)
             let sampleLabel = UILabel()
+            sampleLabel.font = UIFont.init(name: "HiraginoSans-W3", size: labelFontSize)
             sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 7, height: self.view.frame.width / 14)
             sampleLabel.text = innerName[i]
             sampleLabel.adjustsFontSizeToFitWidth = true
             sampleLabel.textAlignment = .center
             sampleLabel.backgroundColor = UIColor.clear
-            sampleLabel.textColor = UIColor.black
+            sampleLabel.textColor = UIColor.rouletteLabel
             sampleLabel.numberOfLines = 0
             let x = firstInnerLabelPoint.x - startPoint.x
             let y = firstInnerLabelPoint.y - startPoint.y
@@ -220,5 +224,12 @@ extension ViewController: AVAudioPlayerDelegate {
             audioPlayer.play()
         } catch {
         }
+    }
+}
+
+extension UIColor {
+    //ルーレットのラベルのいろ
+    class var rouletteLabel: UIColor {
+        return UIColor(named: "rouletteLabel") ?? UIColor.black
     }
 }
