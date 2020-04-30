@@ -11,6 +11,7 @@
 		050016642445593B00F3B87F /* AMColorPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529A99822CC991400F5ECB6 /* MyPieChartView.swift */; };
 		053D814823914D0900ACCAEE /* ColorStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D814723914D0900ACCAEE /* ColorStock.swift */; };
+		05579308245A653A0081DA16 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05579307245A653A0081DA16 /* Colors.xcassets */; };
 		058D5B8E22FC51AB0064A91D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */; };
 		0590A0C822D7F38D004BB8CA /* roulette-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */; };
 		059C9F9B24453D0D00B11797 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9924453D0D00B11797 /* Realm.framework */; };
@@ -47,6 +48,7 @@
 		050016622445593B00F3B87F /* AMColorPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMColorPicker.framework; path = Carthage/Build/iOS/AMColorPicker.framework; sourceTree = "<group>"; };
 		0529A99822CC991400F5ECB6 /* MyPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPieChartView.swift; sourceTree = "<group>"; };
 		053D814723914D0900ACCAEE /* ColorStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStock.swift; sourceTree = "<group>"; };
+		05579307245A653A0081DA16 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "roulette-sound.mp3"; sourceTree = "<group>"; };
 		059C9F9924453D0D00B11797 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
@@ -80,6 +82,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05579309245A65620081DA16 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				05579307245A653A0081DA16 /* Colors.xcassets */,
+				05AF43EA22C974D4007A236D /* Assets.xcassets */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		056A4D5523AA617F008CC263 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,7 +152,7 @@
 				05D3D9D522C9D475007D24FF /* TableViewCell.swift */,
 				05A82FFC237502D100613F97 /* StoryBoard */,
 				05A82FFB237502BA00613F97 /* Delegate */,
-				05AF43EA22C974D4007A236D /* Assets.xcassets */,
+				05579309245A65620081DA16 /* Assets */,
 				0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */,
 				05AF43EF22C974D4007A236D /* Info.plist */,
 				058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */,
@@ -234,6 +245,7 @@
 				05AF43EE22C974D4007A236D /* LaunchScreen.storyboard in Resources */,
 				0590A0C822D7F38D004BB8CA /* roulette-sound.mp3 in Resources */,
 				058D5B8E22FC51AB0064A91D /* GoogleService-Info.plist in Resources */,
+				05579308245A653A0081DA16 /* Colors.xcassets in Resources */,
 				05AF43EB22C974D4007A236D /* Assets.xcassets in Resources */,
 				05AF43E922C974D2007A236D /* Main.storyboard in Resources */,
 			);
@@ -461,7 +473,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.9;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_TEAM = UMBT5JZV43;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -472,7 +484,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.kero0711tennis.DoubleRoulette;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -486,7 +498,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.9;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_TEAM = UMBT5JZV43;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -497,7 +509,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.kero0711tennis.DoubleRoulette;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
