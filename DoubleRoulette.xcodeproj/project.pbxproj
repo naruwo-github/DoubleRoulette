@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		050016632445593B00F3B87F /* AMColorPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; };
-		050016642445593B00F3B87F /* AMColorPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		050016642445593B00F3B87F /* AMColorPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0519C9FD245A71B7004356DF /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0519C9FC245A71B7004356DF /* Extentions.swift */; };
 		0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529A99822CC991400F5ECB6 /* MyPieChartView.swift */; };
 		053D814823914D0900ACCAEE /* ColorStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D814723914D0900ACCAEE /* ColorStock.swift */; };
@@ -17,9 +17,9 @@
 		058D5B8E22FC51AB0064A91D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */; };
 		0590A0C822D7F38D004BB8CA /* roulette-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */; };
 		059C9F9B24453D0D00B11797 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9924453D0D00B11797 /* Realm.framework */; };
-		059C9F9C24453D0D00B11797 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9924453D0D00B11797 /* Realm.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		059C9F9C24453D0D00B11797 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9924453D0D00B11797 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		059C9F9D24453D0D00B11797 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9A24453D0D00B11797 /* RealmSwift.framework */; };
-		059C9F9E24453D0D00B11797 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9A24453D0D00B11797 /* RealmSwift.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		059C9F9E24453D0D00B11797 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9A24453D0D00B11797 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05AF43E422C974D2007A236D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AF43E322C974D2007A236D /* AppDelegate.swift */; };
 		05AF43E622C974D2007A236D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AF43E522C974D2007A236D /* ViewController.swift */; };
 		05AF43E922C974D2007A236D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05AF43E722C974D2007A236D /* Main.storyboard */; };
@@ -225,7 +225,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Narumi Nogawa";
 				TargetAttributes = {
 					05AF43DF22C974D2007A236D = {
