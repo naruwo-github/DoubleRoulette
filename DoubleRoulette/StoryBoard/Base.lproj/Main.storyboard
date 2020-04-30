@@ -49,7 +49,6 @@
                                             </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="buttonButtonTapped:" destination="MY0-81-ssA" eventType="touchUpInside" id="akA-ec-mKD"/>
-                                                <action selector="colorButtonTapped:" destination="mn9-py-mnx" eventType="touchUpInside" id="mN0-uj-FaF"/>
                                             </connections>
                                         </button>
                                         <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RC6-Ju-gGT">

@@ -11,6 +11,7 @@ import UIKit
 import AVFoundation
 import GoogleMobileAds
 import Accounts
+import RealmSwift
 
 class ViewController: UIViewController, GADBannerViewDelegate {
     var bannerView: GADBannerView!
@@ -20,11 +21,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var outerChartView: UIView!
     @IBOutlet weak var innerChartView: UIView!
     var audioPlayer: AVAudioPlayer!
-    
-    var itemData = [TableViewCell]()
-    var itemName: [String] = []
-    var itemColor: [UIColor] = []
-    var itemType: [Int] = []
+    var rouletteCells: Results<RouletteObject>!
     
     var currentPositionOuter = 0                //rotation angle of outer
     var currentPositionInner = 0                //rotation angle of inner
@@ -41,16 +38,18 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         var outerColor: [UIColor] = []
         var innerName: [String] = []
         var innerColor: [UIColor] = []
-        for i in 0..<itemData.count {
-            if itemType[i] == 0 {
-                outerName.insert(itemName[i], at: 0)
-                outerColor.insert(itemColor[i], at: 0)
+        for i in 0..<rouletteCells.count {
+            let cell = rouletteCells[i]
+            let colors = ColorStock()
+            if cell.type == 0 {
+                outerName.insert(cell.item, at: 0)
+                outerColor.insert(colors.proposeColor(index: i), at: 0)
             }else {
-                innerName.insert(itemName[i], at: 0)
-                innerColor.insert(itemColor[i], at: 0)
+                innerName.insert(cell.item, at: 0)
+                innerColor.insert(colors.proposeColor(index: i), at: 0)
             }
         }
-        itemsLabel.text = "Items: " + String(itemData.count)
+        itemsLabel.text = "Items: " + String(rouletteCells.count)
         elementNumLabel.text = "Outer: " + String(outerName.count) + ", Inner: " + String(innerName.count)
         
         setOuterRoulette(outerName: outerName, outerColor: outerColor)
