@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tE1-cL-ep2">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -154,22 +154,33 @@
                                             <action selector="startButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FeG-Ny-ymv"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ChU-WX-ZSz">
-                                        <rect key="frame" x="330" y="8" width="48" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="ChU-WX-ZSz">
+                                        <rect key="frame" x="10" y="8" width="48" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="RZk-fF-Plf"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="oPD-db-q4y" userLabel="elementNum">
+                                        <rect key="frame" x="10" y="38" width="39" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="cZ7-wY-rWk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="ChU-WX-ZSz" firstAttribute="leading" secondItem="aeH-X5-t4e" secondAttribute="leading" constant="10" id="BUS-Jt-mh0"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oPD-db-q4y" secondAttribute="trailing" constant="20" symbolic="YES" id="DTM-lj-eGO"/>
                                     <constraint firstAttribute="bottom" secondItem="XKR-hp-RI6" secondAttribute="bottom" constant="60" id="Qy4-Sq-ttT"/>
+                                    <constraint firstItem="oPD-db-q4y" firstAttribute="top" secondItem="ChU-WX-ZSz" secondAttribute="bottom" id="Rso-8k-n3A"/>
                                     <constraint firstItem="XKR-hp-RI6" firstAttribute="centerX" secondItem="aeH-X5-t4e" secondAttribute="centerX" id="TZ4-W6-iaE"/>
+                                    <constraint firstItem="oPD-db-q4y" firstAttribute="leading" secondItem="aeH-X5-t4e" secondAttribute="leading" constant="10" id="WJj-UK-dDl"/>
                                     <constraint firstItem="ChU-WX-ZSz" firstAttribute="top" secondItem="aeH-X5-t4e" secondAttribute="topMargin" id="XNC-4v-xVq"/>
-                                    <constraint firstItem="ChU-WX-ZSz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aeH-X5-t4e" secondAttribute="leading" constant="20" symbolic="YES" id="iCL-OA-tIK"/>
-                                    <constraint firstAttribute="trailing" secondItem="ChU-WX-ZSz" secondAttribute="trailing" constant="36" id="vrr-va-6wp"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ChU-WX-ZSz" secondAttribute="trailing" constant="20" symbolic="YES" id="qhm-WM-0nf"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -195,6 +206,7 @@
                         <viewLayoutGuide key="safeArea" id="JKy-1s-ggH"/>
                     </view>
                     <connections>
+                        <outlet property="elementNumLabel" destination="oPD-db-q4y" id="j8p-Hb-gnl"/>
                         <outlet property="innerChartView" destination="l40-z0-66b" id="hAX-wX-Atf"/>
                         <outlet property="itemsLabel" destination="ChU-WX-ZSz" id="aOe-MS-no7"/>
                         <outlet property="outerChartView" destination="S6D-nP-cWa" id="diy-vB-7BK"/>
