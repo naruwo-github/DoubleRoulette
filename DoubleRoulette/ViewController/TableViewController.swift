@@ -36,7 +36,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.tintColor = UIColor.dynamicColor(light: .black, dark: .white)
+        self.navigationController?.navigationBar.tintColor = UIColor.navigationItem
         configureTableView()
         
         let cellNum = userDefaults.integer(forKey: "itemDataNum")
@@ -248,20 +248,4 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         tableView.rowHeight = UIDevice.current.userInterfaceIdiom == .pad ? 70 : 50
     }
     
-}
-
-extension UIColor {
-    // ライト/ダーク用の色を受け取ってDynamic Colorを作って返す
-    public class func dynamicColor(light: UIColor, dark: UIColor) -> UIColor {
-        if #available(iOS 13, *) {
-            return UIColor { (traitCollection) -> UIColor in
-                if traitCollection.userInterfaceStyle == .dark {
-                    return dark
-                } else {
-                    return light
-                }
-            }
-        }
-        return light
-    }
 }

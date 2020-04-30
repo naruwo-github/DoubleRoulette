@@ -35,8 +35,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.dynamicColor(light: .white, dark: .black)
         
         var outerName: [String] = []
         var outerColor: [UIColor] = []
@@ -226,12 +224,5 @@ extension ViewController: AVAudioPlayerDelegate {
             audioPlayer.play()
         } catch {
         }
-    }
-}
-
-extension UIColor {
-    //ルーレットのラベルのいろ
-    class var rouletteLabel: UIColor {
-        return UIColor(named: "rouletteLabel") ?? UIColor.black
     }
 }
