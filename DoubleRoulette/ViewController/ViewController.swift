@@ -10,6 +10,7 @@
 import UIKit
 import AVFoundation
 import GoogleMobileAds
+import Accounts
 
 class ViewController: UIViewController, GADBannerViewDelegate {
     var bannerView: GADBannerView!
@@ -189,6 +190,15 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         
         outerChartView.layer.add(animationOuter, forKey: "animationOuter")
         innerChartView.layer.add(animationInner, forKey: "animationInner")
+    }
+    
+    //share button
+    @IBAction func shareButton(_ sender: Any) {
+        let shareText = "Double Roulette ScreenShot!"
+        let shareImage = self.view.getScreenShot(windowFrame: self.view.frame, adFrame: self.bannerView.frame, backgroundColor: self.view.backgroundColor!)
+        let activityItems = [shareText, shareImage] as [Any]
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        self.present(activityVC, animated: true, completion: nil)
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {
