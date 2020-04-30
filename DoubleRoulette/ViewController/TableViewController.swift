@@ -114,7 +114,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
             }catch{
                 print("Save is Faild")
             }
-            
         } else {
             print("indexPath not found.")
         }
@@ -123,6 +122,17 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     @IBAction func textField(_ sender: UITextField) {
         let point = self.tableView.convert(sender.center, from: sender)
         if let indexPath = self.tableView.indexPathForRow(at: point) {
+            let cell = rouletteCells[indexPath.row]
+            do{
+                let realm = try Realm()
+                try realm.write({ () -> Void in
+                    cell.item = sender.text ?? "Item"
+                    realm.add(cell, update: .modified)
+                    print("Cell Saved")
+                })
+            }catch{
+                print("Save is Faild")
+            }
         } else {
             print("indexPath not found.")
         }
