@@ -13,23 +13,29 @@ import CellAnimator
 import RealmSwift
 
 class TableViewController: UITableViewController, AMColorPickerDelegate, GADBannerViewDelegate {
+    //IBOutletたち
     @IBOutlet weak var adView: UIView!
     @IBOutlet weak var plusButton: UIBarButtonItem!
     @IBOutlet weak var playButton: UIBarButtonItem!
-    var bannerView: GADBannerView!
     
-    let realm = try! Realm()
-    var rouletteCells: Results<RouletteObject>!
+    var bannerView: GADBannerView!                  //広告
+    let realm = try! Realm()                        //レルムのインスタンス生成
+    var rouletteCells: Results<RouletteObject>!     //データ
+    var indexPath: NSIndexPath?                     //一時的なインデックスパス
+    let colorStock = ColorStock()                   //カラーストックのインスタンス生成
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //ナビゲーションバーのアイテムの色を指定
         self.navigationController?.navigationBar.tintColor = UIColor.navigationItem
+        //TableViewCellの高さを設定
         configureTableView()
-        
+        //Realmに保存したデータを取得
         do{
             rouletteCells = realm.objects(RouletteObject.self)
             tableView.reloadData()
         }catch{
+            print("No Data...")
         }
         //広告
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
@@ -48,6 +54,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     }
     
     @IBAction func allClearButtonTapped(_ sender: Any) {
+        //全データ削除
         do{
             try realm.write {
                 realm.deleteAll()
@@ -60,7 +67,9 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     
     @IBAction func addButtonTapped(_ sender: Any) {
         let newCell = RouletteObject()
-        
+        newCell.id = rouletteCells.count
+        let colorRGB = UIColor.convertToRGB(self.colorStock.proposeColor(index: newCell.id))
+        newCell.color = UIColor.rgbToHex(red: Int(colorRGB.red*255), green: Int(colorRGB.green*255), blue: Int(colorRGB.blue*255))
         do{
             let realm = try Realm()
             try realm.write({ () -> Void in
@@ -70,7 +79,6 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         }catch{
             print("Save is Faild")
         }
-        
         self.tableView.reloadData()
     }
     
@@ -81,6 +89,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         if let button = sender as? UIButton {
             if let superview = button.superview {
                 if let cell = superview.superview as? TableViewCell {
+                    self.indexPath = tableView.indexPath(for: cell) as NSIndexPath?
                 }
             }
         }
@@ -94,6 +103,18 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     @IBAction func segmentedControl(_ sender: UISegmentedControl) {
         let point = self.tableView.convert(sender.center, from: sender)
         if let indexPath = self.tableView.indexPathForRow(at: point) {
+            let cell = rouletteCells[indexPath.row]
+            do{
+                let realm = try Realm()
+                try realm.write({ () -> Void in
+                    cell.type = sender.selectedSegmentIndex
+                    realm.add(cell, update: .modified)
+                    print("Cell Saved")
+                })
+            }catch{
+                print("Save is Faild")
+            }
+            
         } else {
             print("indexPath not found.")
         }
@@ -143,7 +164,8 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         let object = rouletteCells[indexPath.row]
         cell.itemType.selectedSegmentIndex = object.type
         cell.itemName.text = object.item
-        cell.itemColor.backgroundColor = UIColor.red
+        let rgb = UIColor.hexToRGB(hex: object.color)
+        cell.itemColor.backgroundColor = UIColor.rgbToColor(red: rgb[0], green: rgb[1], blue: rgb[2])
         return cell
     }
     

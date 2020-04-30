@@ -10,7 +10,12 @@ import Foundation
 import RealmSwift
 
 class RouletteObject: Object {
+    @objc dynamic var id = 0
     @objc dynamic var type: Int = 0
     @objc dynamic var item: String = "item"
-    @objc dynamic var color: String = "#FF0000"
+    @objc dynamic var color: String = "FF0000"
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
