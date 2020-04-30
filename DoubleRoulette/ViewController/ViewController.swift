@@ -69,7 +69,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             sampleLabel.adjustsFontSizeToFitWidth = true
             sampleLabel.textAlignment = .center
             sampleLabel.backgroundColor = UIColor.clear
-            sampleLabel.textColor = UIColor.black
+            sampleLabel.textColor = UIColor.rouletteLabel
             sampleLabel.numberOfLines = 0
             let x = firstOuterLabelPoint.x - startPoint.x
             let y = firstOuterLabelPoint.y - startPoint.y
@@ -92,7 +92,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             sampleLabel.adjustsFontSizeToFitWidth = true
             sampleLabel.textAlignment = .center
             sampleLabel.backgroundColor = UIColor.clear
-            sampleLabel.textColor = UIColor.black
+            sampleLabel.textColor = UIColor.rouletteLabel
             sampleLabel.numberOfLines = 0
             let x = firstInnerLabelPoint.x - startPoint.x
             let y = firstInnerLabelPoint.y - startPoint.y
@@ -224,5 +224,12 @@ extension ViewController: AVAudioPlayerDelegate {
             audioPlayer.play()
         } catch {
         }
+    }
+}
+
+extension UIColor {
+    //ルーレットのラベルのいろ
+    class var rouletteLabel: UIColor {
+        return UIColor(named: "rouletteLabel") ?? UIColor.black
     }
 }
