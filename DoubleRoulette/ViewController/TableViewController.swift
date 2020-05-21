@@ -197,7 +197,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
                 tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
             }catch{
             }
-            //self.tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
 
