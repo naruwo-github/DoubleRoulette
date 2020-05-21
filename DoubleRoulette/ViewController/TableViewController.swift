@@ -23,9 +23,12 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     var rouletteCells: Results<RouletteObject>!     //データ
     var indexPath: NSIndexPath?                     //一時的なインデックスパス
     let colorStock = ColorStock()                   //カラーストックのインスタンス生成
+    let userDefaults = UserDefaults.standard        //端末内データ保存
+    var newCellId: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //ナビゲーションバーのアイテムの色を指定
         self.navigationController?.navigationBar.tintColor = UIColor.navigationItem
         //TableViewCellの高さを設定
@@ -35,6 +38,24 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
             rouletteCells = realm.objects(RouletteObject.self)
             tableView.reloadData()
         }
+        
+        if self.userDefaults.bool(forKey: "fixed") {
+            newCellId = userDefaults.integer(forKey: "id")
+        } else {
+            //全データ削除
+            do{
+                try realm.write {
+                    realm.deleteAll()
+                }
+            }catch{
+                print("Error in All Clear Method...")
+            }
+            self.tableView.reloadData()
+            
+            self.userDefaults.set(true, forKey: "fixed")
+            self.userDefaults.set(0, forKey: "id")
+        }
+        
         //広告
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         bannerView.translatesAutoresizingMaskIntoConstraints = true
@@ -56,12 +77,17 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
             print("Error in All Clear Method...")
         }
         self.tableView.reloadData()
+        self.userDefaults.set(0, forKey: "id")
     }
     
     @IBAction func addButtonTapped(_ sender: Any) {
         let newCell = RouletteObject()
-        newCell.id = rouletteCells.count
-        let colorRGB = UIColor.convertToRGB(self.colorStock.proposeColor(index: newCell.id))
+        newCell.id = self.newCellId
+        
+        self.newCellId += 1
+        self.userDefaults.set(self.newCellId, forKey: "id")
+        
+        let colorRGB = UIColor.convertToRGB(self.colorStock.proposeColor(index: self.rouletteCells.count))
         newCell.color = UIColor.rgbToHex(red: Int(colorRGB.red*255), green: Int(colorRGB.green*255), blue: Int(colorRGB.blue*255))
         do{
             let realm = try Realm()
