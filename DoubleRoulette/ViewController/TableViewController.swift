@@ -66,7 +66,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         self.bannerView.delegate = self
     }
     
-    @IBAction func allClearButtonTapped(_ sender: Any) {
+    @IBAction private func allClearButtonTapped(_ sender: Any) {
         //全データ削除
         do{
             try realm.write {
@@ -79,7 +79,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         self.userDefaults.set(0, forKey: "id")
     }
     
-    @IBAction func addButtonTapped(_ sender: Any) {
+    @IBAction private func addButtonTapped(_ sender: Any) {
         let newCell = RouletteObject()
         newCell.id = self.newCellId
         
@@ -101,10 +101,10 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         self.tableView.scrollToRow(at: IndexPath(row: rouletteCells.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
     }
     
-    @IBAction func playButtonTapped(_ sender: Any) {
+    @IBAction private func playButtonTapped(_ sender: Any) {
     }
     
-    @IBAction func buttonButtonTapped(_ sender: Any) {
+    @IBAction private func buttonButtonTapped(_ sender: Any) {
         if let button = sender as? UIButton {
             if let superview = button.superview {
                 if let cell = superview.superview as? TableViewCell {
@@ -115,11 +115,11 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         let colorPickerViewController = AMColorPickerViewController()
         colorPickerViewController.selectedColor = UIColor.red
         colorPickerViewController.delegate = self
-        present(colorPickerViewController, animated: true, completion: nil)
+        self.present(colorPickerViewController, animated: true, completion: nil)
         
     }
     
-    @IBAction func segmentedControl(_ sender: UISegmentedControl) {
+    @IBAction private func segmentedControl(_ sender: UISegmentedControl) {
         let point = self.tableView.convert(sender.center, from: sender)
         if let indexPath = self.tableView.indexPathForRow(at: point) {
             let cell = rouletteCells[indexPath.row]
@@ -138,7 +138,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         }
     }
     
-    @IBAction func textField(_ sender: UITextField) {
+    @IBAction private func textField(_ sender: UITextField) {
         let point = self.tableView.convert(sender.center, from: sender)
         if let indexPath = self.tableView.indexPathForRow(at: point) {
             let cell = rouletteCells[indexPath.row]
@@ -157,8 +157,8 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         }
     }
     
-    func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
-        guard (indexPath != nil) else {
+    internal func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
+        guard (self.indexPath != nil) else {
             return
         }
         
@@ -168,7 +168,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         var a: CGFloat = 0
         color.getRed(&r, green: &g , blue: &b, alpha: &a)
         
-        let cell = rouletteCells[indexPath!.row]
+        let cell = rouletteCells[self.indexPath!.row]
         do{
             let realm = try Realm()
             try realm.write({ () -> Void in
@@ -179,10 +179,8 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         }catch{
             print("Save is Faild")
         }
-        let modifiedCell = self.tableView.cellForRow(at: indexPath! as IndexPath)
+        let modifiedCell = self.tableView.cellForRow(at: self.indexPath! as IndexPath)
         (modifiedCell?.viewWithTag(2) as! UIButton).backgroundColor = UIColor(red: r, green: g, blue: b, alpha: a)
-        //self.tableView.reloadRows(at: [indexPath! as IndexPath], with: UITableView.RowAnimation.fade)
-        //self.tableView.reloadData()
     }
     
     
@@ -205,12 +203,12 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rouletteCells.count
+        return self.rouletteCells.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
-        let object = rouletteCells[indexPath.row]
+        let object = self.rouletteCells[indexPath.row]
         cell.itemType.selectedSegmentIndex = object.type
         cell.itemName.text = object.item
         let rgb = UIColor.hexToRGB(hex: object.color)
@@ -234,8 +232,8 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         }
     }
     
-    func configureTableView() {
-        tableView.rowHeight = UIDevice.current.userInterfaceIdiom == .pad ? 70 : 55
+    private func configureTableView() {
+        self.tableView.rowHeight = UIDevice.current.userInterfaceIdiom == .pad ? 70 : 55
     }
     
 }
