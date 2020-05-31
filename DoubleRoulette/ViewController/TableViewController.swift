@@ -13,34 +13,33 @@ import CellAnimator
 import RealmSwift
 
 class TableViewController: UITableViewController, AMColorPickerDelegate, GADBannerViewDelegate {
-    //IBOutletたち
-    @IBOutlet weak var adView: UIView!
-    @IBOutlet weak var plusButton: UIBarButtonItem!
-    @IBOutlet weak var playButton: UIBarButtonItem!
+    @IBOutlet private weak var adView: UIView!
+    @IBOutlet private weak var plusButton: UIBarButtonItem!
+    @IBOutlet private weak var playButton: UIBarButtonItem!
     
-    var bannerView: GADBannerView!                  //広告
+    private var bannerView: GADBannerView!
+    private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/2967728941"
     let realm = try! Realm()                        //レルムのインスタンス生成
     var rouletteCells: Results<RouletteObject>!     //データ
-    var indexPath: NSIndexPath?                     //一時的なインデックスパス
+    private var indexPath: NSIndexPath?                     //一時的なインデックスパス
     let colorStock = ColorStock()                   //カラーストックのインスタンス生成
     let userDefaults = UserDefaults.standard        //端末内データ保存
-    var newCellId: Int = 0
+    private var newCellId: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //ナビゲーションバーのアイテムの色を指定
         self.navigationController?.navigationBar.tintColor = UIColor.navigationItem
-        //TableViewCellの高さを設定
-        configureTableView()
+        self.configureTableView()   //TableViewCellの高さを設定
         //Realmに保存したデータを取得
         do{
-            rouletteCells = realm.objects(RouletteObject.self)
+            self.rouletteCells = realm.objects(RouletteObject.self)
             tableView.reloadData()
         }
         
         if self.userDefaults.bool(forKey: "fixed") {
-            newCellId = userDefaults.integer(forKey: "id")
+            self.newCellId = userDefaults.integer(forKey: "id")
         } else {
             //全データ削除
             do{
@@ -57,14 +56,14 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         }
         
         //広告
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView.translatesAutoresizingMaskIntoConstraints = true
-        self.adView.addSubview(bannerView)
-        bannerView.center.x = self.view.center.x
-        bannerView.adUnitID = "ca-app-pub-6492692627915720/2967728941"
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-        bannerView.delegate = self
+        self.bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        self.bannerView.translatesAutoresizingMaskIntoConstraints = true
+        self.adView.addSubview(self.bannerView)
+        self.bannerView.center.x = self.view.center.x
+        self.bannerView.adUnitID = self.AD_UNIT_ID
+        self.bannerView.rootViewController = self
+        self.bannerView.load(GADRequest())
+        self.bannerView.delegate = self
     }
     
     @IBAction func allClearButtonTapped(_ sender: Any) {
