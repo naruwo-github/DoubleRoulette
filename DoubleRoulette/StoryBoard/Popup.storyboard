@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8zG-fh-701">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,42 +19,61 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SOd-T7-seK" userLabel="Result View">
-                                        <rect key="frame" x="50" y="183.5" width="275" height="300"/>
+                                        <rect key="frame" x="87.5" y="233.5" width="200" height="200"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="odg-PQ-5eO" userLabel="Top Title View">
-                                                <rect key="frame" x="0.0" y="0.0" width="275" height="100"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESULT!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="VHK-bB-fYs">
-                                                        <rect key="frame" x="22.5" y="25" width="230" height="50"/>
-                                                        <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="50"/>
+                                                        <rect key="frame" x="20" y="32.5" width="160" height="35.5"/>
+                                                        <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="35"/>
                                                         <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="VHK-bB-fYs" firstAttribute="leading" secondItem="odg-PQ-5eO" secondAttribute="leading" constant="20" id="OCm-FK-JfQ"/>
                                                     <constraint firstAttribute="height" constant="100" id="RRb-3z-Xjy"/>
                                                     <constraint firstItem="VHK-bB-fYs" firstAttribute="centerX" secondItem="odg-PQ-5eO" secondAttribute="centerX" id="Sxd-mr-8j7"/>
                                                     <constraint firstItem="VHK-bB-fYs" firstAttribute="centerY" secondItem="odg-PQ-5eO" secondAttribute="centerY" id="t5B-D1-w9b"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rcm-vJ-jmH" userLabel="Result Labels View">
+                                                <rect key="frame" x="0.0" y="100" width="200" height="100"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="Rcm-vJ-jmH" firstAttribute="leading" secondItem="SOd-T7-seK" secondAttribute="leading" id="3TR-by-axz"/>
                                             <constraint firstItem="odg-PQ-5eO" firstAttribute="leading" secondItem="SOd-T7-seK" secondAttribute="leading" id="JgA-rg-W4i"/>
                                             <constraint firstAttribute="trailing" secondItem="odg-PQ-5eO" secondAttribute="trailing" id="N1h-vx-Yq5"/>
-                                            <constraint firstAttribute="height" constant="300" id="eOr-4i-HJz"/>
+                                            <constraint firstItem="Rcm-vJ-jmH" firstAttribute="top" secondItem="odg-PQ-5eO" secondAttribute="bottom" id="U5w-fU-vjV"/>
+                                            <constraint firstAttribute="trailing" secondItem="Rcm-vJ-jmH" secondAttribute="trailing" id="a9K-fk-ezl"/>
+                                            <constraint firstAttribute="height" constant="200" id="eOr-4i-HJz"/>
+                                            <constraint firstAttribute="bottom" secondItem="Rcm-vJ-jmH" secondAttribute="bottom" id="f4q-54-QnC"/>
                                             <constraint firstItem="odg-PQ-5eO" firstAttribute="top" secondItem="SOd-T7-seK" secondAttribute="top" id="lZX-KO-fAP"/>
-                                            <constraint firstAttribute="width" constant="275" id="veD-hJ-fyd"/>
+                                            <constraint firstAttribute="width" constant="200" id="veD-hJ-fyd"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="10"/>
+                                                <integer key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.25079237099644131" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="SOd-T7-seK" firstAttribute="centerX" secondItem="buz-z5-vPl" secondAttribute="centerX" id="v2S-4P-GCQ"/>
                                     <constraint firstItem="SOd-T7-seK" firstAttribute="centerY" secondItem="buz-z5-vPl" secondAttribute="centerY" id="vV5-b6-CwY"/>
@@ -63,12 +81,11 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="dYN-pW-LUb" firstAttribute="bottom" secondItem="buz-z5-vPl" secondAttribute="bottom" id="J0c-0k-10Q"/>
-                            <constraint firstItem="dYN-pW-LUb" firstAttribute="trailing" secondItem="buz-z5-vPl" secondAttribute="trailing" id="JbS-Zs-Odt"/>
-                            <constraint firstItem="buz-z5-vPl" firstAttribute="top" secondItem="dYN-pW-LUb" secondAttribute="top" id="NRk-UR-ago"/>
-                            <constraint firstItem="buz-z5-vPl" firstAttribute="leading" secondItem="dYN-pW-LUb" secondAttribute="leading" id="hgr-iA-qTc"/>
+                            <constraint firstAttribute="bottom" secondItem="buz-z5-vPl" secondAttribute="bottom" id="J0c-0k-10Q"/>
+                            <constraint firstAttribute="trailing" secondItem="buz-z5-vPl" secondAttribute="trailing" id="JbS-Zs-Odt"/>
+                            <constraint firstItem="buz-z5-vPl" firstAttribute="top" secondItem="ozt-TV-5c5" secondAttribute="top" id="NRk-UR-ago"/>
+                            <constraint firstItem="buz-z5-vPl" firstAttribute="leading" secondItem="ozt-TV-5c5" secondAttribute="leading" id="hgr-iA-qTc"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="dYN-pW-LUb"/>
                     </view>
                     <connections>
                         <outlet property="alphaView" destination="buz-z5-vPl" id="fLC-Mb-LQI"/>

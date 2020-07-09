@@ -203,18 +203,32 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func showResultWindow() {
+        // NOTE: イベント入力を無効
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        self.popupWindow.makeKeyAndVisible()
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
-            self.popupWindow.makeKeyAndVisible()
+            UIView.animate(withDuration: 1.0) {
+                self.popupWindow.alpha = 1
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                UIView.animate(withDuration: 3.0) {
+                    self.popupWindow.alpha = 0
+                }
+            }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 8.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 11.5) {
             self.view.window?.makeKeyAndVisible()
+            // NOTE: イベント入力を有効
+            UIApplication.shared.endIgnoringInteractionEvents()
         }
     }
     
     private func setupResultWindow() {
         self.popupWindow = UIWindow.init(frame: self.view.frame)
-//        let vc = UIStoryboard(name: "DRResultViewController", bundle: nil).instantiateInitialViewController() as! DRResultViewController
-//        self.popupWindow.rootViewController = vc
+        self.popupWindow.alpha = 0
+        if let vc = UIStoryboard(name: "Popup", bundle: nil).instantiateInitialViewController() as? DRResultViewController {
+            self.popupWindow.rootViewController = vc
+        }
     }
     
     //share button
