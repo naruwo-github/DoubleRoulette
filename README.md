@@ -10,11 +10,11 @@
 
 Outer/Innerによってルーレット要素を外側のルーレットに追加するか、または内側のルーレットに追加するか選択可能です。
 シンプルですが使い道は様々だと思います。
-(私は飲み会にて、Outerを罰ゲーム名、Innerを人の名前にして遊んでいます…笑笑)
+(私は飲み会にて、Outerを罰ゲーム名、Innerを人の名前にして遊んでいます…笑)
 
 <img src="Pictures/iPhone11-1.png" width="200px" /> <img src="Pictures/iPhone11-2.png" width="200px" />
 
-【App Store】リリースしました！
+【App Store】
 (URL: https://apps.apple.com/jp/app/%E3%83%80%E3%83%96%E3%83%AB%E3%83%AB%E3%83%BC%E3%83%AC%E3%83%83%E3%83%88/id1476267611)
 
 #### Privacy policy

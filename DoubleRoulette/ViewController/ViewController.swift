@@ -14,23 +14,24 @@ import Accounts
 import RealmSwift
 
 class ViewController: UIViewController, GADBannerViewDelegate {
-    var bannerView: GADBannerView!
-    @IBOutlet weak var bottomAdView: UIView!
-    @IBOutlet weak var startButton: UIButton!
-    @IBOutlet weak var itemsLabel: UILabel!
-    @IBOutlet weak var elementNumLabel: UILabel!
-    @IBOutlet weak var outerChartView: UIView!
-    @IBOutlet weak var innerChartView: UIView!
-    var audioPlayer: AVAudioPlayer!
-    var rouletteCells: Results<RouletteObject>!
+    private var bannerView: GADBannerView!
+    @IBOutlet private weak var bottomAdView: UIView!
+    @IBOutlet private weak var startButton: UIButton!
+    @IBOutlet private weak var itemsLabel: UILabel!
+    @IBOutlet private weak var elementNumLabel: UILabel!
+    @IBOutlet private weak var outerChartView: UIView!
+    @IBOutlet private weak var innerChartView: UIView!
+    fileprivate var audioPlayer: AVAudioPlayer!
     
-    var currentPositionOuter = 0                //rotation angle of outer
-    var currentPositionInner = 0                //rotation angle of inner
+    var rouletteCells: Results<RouletteObject>! //値の受け渡しで扱うため、publicな変数
     
-    let pieChartViewOuter = MyPieChartView()
-    let pieChartViewInner = MyPieChartView()
+    private var currentPositionOuter = 0    //rotation angle of outer
+    private var currentPositionInner = 0    //rotation angle of inner
     
-    let labelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
+    private let pieChartViewOuter = MyPieChartView()
+    private let pieChartViewInner = MyPieChartView()
+    private let labelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
+    private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/3283423713"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +56,8 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         itemsLabel.text = "Items: " + String(rouletteCells.count)
         elementNumLabel.text = "Outer: " + String(outerName.count) + ", Inner: " + String(innerName.count)
         
-        setOuterRoulette(outerName: outerName, outerColor: outerColor)
-        setInnerRoulette(innerName: innerName, innerColor: innerColor)
+        self.setOuterRoulette(outerName: outerName, outerColor: outerColor)
+        self.setInnerRoulette(innerName: innerName, innerColor: innerColor)
         
         //Outer Label
         let angleOfOuterPiece = CGFloat.pi * 2.0 / CGFloat(outerName.count)
@@ -105,19 +106,19 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             innerChartView.addSubview(sampleLabel)
         }
         
-        drawArrow()
+        self.drawArrow()
         
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView.translatesAutoresizingMaskIntoConstraints = true
-        self.bottomAdView.addSubview(bannerView)
-        bannerView.center.x = self.view.center.x
-        bannerView.adUnitID = "ca-app-pub-6492692627915720/3283423713"
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-        bannerView.delegate = self
+        self.bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        self.bannerView.translatesAutoresizingMaskIntoConstraints = true
+        self.bottomAdView.addSubview(self.bannerView)
+        self.bannerView.center.x = self.view.center.x
+        self.bannerView.adUnitID = self.AD_UNIT_ID
+        self.bannerView.rootViewController = self
+        self.bannerView.load(GADRequest())
+        self.bannerView.delegate = self
     }
     
-    func setOuterRoulette(outerName: [String], outerColor: [UIColor]) {
+    private func setOuterRoulette(outerName: [String], outerColor: [UIColor]) {
         pieChartViewOuter.radius = min(self.view.frame.size.width, self.view.frame.size.height)/2
         pieChartViewOuter.isOpaque = false
         pieChartViewOuter.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
@@ -128,7 +129,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         outerChartView.addSubview(pieChartViewOuter)
     }
     
-    func setInnerRoulette(innerName: [String], innerColor: [UIColor]) {
+    private func setInnerRoulette(innerName: [String], innerColor: [UIColor]) {
         pieChartViewInner.radius = min(self.view.frame.size.width, self.view.frame.size.height)/4
         pieChartViewInner.isOpaque = false
         pieChartViewInner.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
@@ -140,7 +141,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         innerChartView.addSubview(pieChartViewInner)
     }
     
-    func drawArrow() {
+    private func drawArrow() {
         let arrowView = UIView()
         arrowView.isUserInteractionEnabled = false
         arrowView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
@@ -165,7 +166,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     }
 
     //roulette start
-    @IBAction func startButtonTapped(_ sender: Any) {
+    @IBAction private func startButtonTapped(_ sender: Any) {
         playSound(name: "roulette-sound")
         //outer
         let angleOuter: CGFloat = CGFloat(Double.random(in: 100.0 ... 500.0) * Double.pi / 6.0)
@@ -194,7 +195,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     }
     
     //share button
-    @IBAction func shareButton(_ sender: Any) {
+    @IBAction private func shareButton(_ sender: Any) {
         let shareText = "Double Roulette ScreenShot!"
         let shareImage = self.view.getScreenShot(windowFrame: self.view.frame, adFrame: self.bannerView.frame, backgroundColor: self.view.backgroundColor!)
         let activityItems = [shareText, shareImage] as [Any]
@@ -204,14 +205,14 @@ class ViewController: UIViewController, GADBannerViewDelegate {
 }
 
 extension ViewController: AVAudioPlayerDelegate {
-    func playSound(name: String) {
+    fileprivate func playSound(name: String) {
         guard let path = Bundle.main.path(forResource: name, ofType: "mp3") else {
             return
         }
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
-            audioPlayer.delegate = self
-            audioPlayer.play()
+            self.audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            self.audioPlayer.delegate = self
+            self.audioPlayer.play()
         } catch {
         }
     }
