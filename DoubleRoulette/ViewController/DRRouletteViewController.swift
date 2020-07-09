@@ -13,8 +13,10 @@ import GoogleMobileAds
 import Accounts
 import RealmSwift
 
-class ViewController: UIViewController, GADBannerViewDelegate {
+class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     private var bannerView: GADBannerView!
+    private var popupWindow: UIWindow!
+    
     @IBOutlet private weak var bottomAdView: UIView!
     @IBOutlet private weak var startButton: UIButton!
     @IBOutlet private weak var itemsLabel: UILabel!
@@ -23,10 +25,10 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet private weak var innerChartView: UIView!
     fileprivate var audioPlayer: AVAudioPlayer!
     
-    var rouletteCells: Results<RouletteObject>! //値の受け渡しで扱うため、publicな変数
+    var rouletteCells: Results<RouletteObject>!
     
-    private var currentPositionOuter = 0    //rotation angle of outer
-    private var currentPositionInner = 0    //rotation angle of inner
+    private var currentPositionOuter = 0
+    private var currentPositionInner = 0
     
     private let pieChartViewOuter = MyPieChartView()
     private let pieChartViewInner = MyPieChartView()
@@ -107,15 +109,8 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         }
         
         self.drawArrow()
-        
-        self.bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        self.bannerView.translatesAutoresizingMaskIntoConstraints = true
-        self.bottomAdView.addSubview(self.bannerView)
-        self.bannerView.center.x = self.view.center.x
-        self.bannerView.adUnitID = self.AD_UNIT_ID
-        self.bannerView.rootViewController = self
-        self.bannerView.load(GADRequest())
-        self.bannerView.delegate = self
+        self.configureAdvertisementView()
+        self.setupResultWindow()
     }
     
     private func setOuterRoulette(outerName: [String], outerColor: [UIColor]) {
@@ -164,6 +159,17 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         self.view .bringSubviewToFront(arrowView)
         self.view.addSubview(arrowView)
     }
+    
+    private func configureAdvertisementView() {
+        self.bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        self.bannerView.translatesAutoresizingMaskIntoConstraints = true
+        self.bottomAdView.addSubview(self.bannerView)
+        self.bannerView.center.x = self.view.center.x
+        self.bannerView.adUnitID = self.AD_UNIT_ID
+        self.bannerView.rootViewController = self
+        self.bannerView.load(GADRequest())
+        self.bannerView.delegate = self
+    }
 
     //roulette start
     @IBAction private func startButtonTapped(_ sender: Any) {
@@ -192,6 +198,23 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         
         outerChartView.layer.add(animationOuter, forKey: "animationOuter")
         innerChartView.layer.add(animationInner, forKey: "animationInner")
+        
+        self.showResultWindow()
+    }
+    
+    private func showResultWindow() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
+            self.popupWindow.makeKeyAndVisible()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 8.5) {
+            self.view.window?.makeKeyAndVisible()
+        }
+    }
+    
+    private func setupResultWindow() {
+        self.popupWindow = UIWindow.init(frame: self.view.frame)
+//        let vc = UIStoryboard(name: "DRResultViewController", bundle: nil).instantiateInitialViewController() as! DRResultViewController
+//        self.popupWindow.rootViewController = vc
     }
     
     //share button
@@ -204,7 +227,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     }
 }
 
-extension ViewController: AVAudioPlayerDelegate {
+extension DRRouletteViewController: AVAudioPlayerDelegate {
     fileprivate func playSound(name: String) {
         guard let path = Bundle.main.path(forResource: name, ofType: "mp3") else {
             return
