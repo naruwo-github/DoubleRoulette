@@ -12,7 +12,7 @@ import GoogleMobileAds
 import CellAnimator
 import RealmSwift
 
-class TableViewController: UITableViewController, AMColorPickerDelegate, GADBannerViewDelegate {
+class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDelegate, GADBannerViewDelegate {
     @IBOutlet private weak var adView: UIView!
     @IBOutlet private weak var plusButton: UIBarButtonItem!
     @IBOutlet private weak var playButton: UIBarButtonItem!
@@ -54,16 +54,11 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
             self.userDefaults.set(true, forKey: "fixed")
             self.userDefaults.set(0, forKey: "id")
         }
-        
-        //広告
-        self.bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        self.bannerView.translatesAutoresizingMaskIntoConstraints = true
-        self.adView.addSubview(self.bannerView)
-        self.bannerView.center.x = self.view.center.x
-        self.bannerView.adUnitID = self.AD_UNIT_ID
-        self.bannerView.rootViewController = self
-        self.bannerView.load(GADRequest())
-        self.bannerView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.configureAdvertisementView()
     }
     
     @IBAction private func allClearButtonTapped(_ sender: Any) {
@@ -183,7 +178,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         (modifiedCell?.viewWithTag(2) as! UIButton).backgroundColor = UIColor(red: r, green: g, blue: b, alpha: a)
     }
     
-    
+    // NOTE: cellを削除する箇所
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             do{
@@ -198,14 +193,7 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         }
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.rouletteCells.count
-    }
-
+    // NOTE: cellの生成箇所
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
         let object = self.rouletteCells[indexPath.row]
@@ -215,25 +203,46 @@ class TableViewController: UITableViewController, AMColorPickerDelegate, GADBann
         cell.itemColor.backgroundColor = UIColor.rgbToColor(red: rgb[0], green: rgb[1], blue: rgb[2])
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        CellAnimator.animateCell(cell: cell, withTransform: CellAnimator.TransformTilt, andDuration: 1)
-    }
  
+    // NOTE: segueで遷移するときに、ルーレットセルの情報を遷移先VCに渡す
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "toViewController") {
-            let controller = segue.destination as! ViewController
+            let controller = segue.destination as! DRRouletteViewController
             controller.rouletteCells = rouletteCells
         }else if(segue.identifier == "toColorPicker") {
         }
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        CellAnimator.animateCell(cell: cell, withTransform: CellAnimator.TransformTilt, andDuration: 1)
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.rouletteCells.count
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
     private func configureTableView() {
         self.tableView.rowHeight = UIDevice.current.userInterfaceIdiom == .pad ? 70 : 55
+    }
+    
+    // NOTE: 広告の初期化
+    private func configureAdvertisementView() {
+        self.bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        self.bannerView.translatesAutoresizingMaskIntoConstraints = true
+        self.adView.addSubview(self.bannerView)
+        self.bannerView.center.x = self.view.center.x
+        self.bannerView.adUnitID = self.AD_UNIT_ID
+        self.bannerView.rootViewController = self
+        self.bannerView.load(GADRequest())
+        self.bannerView.delegate = self
     }
     
 }

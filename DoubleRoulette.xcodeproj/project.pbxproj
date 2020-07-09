@@ -10,6 +10,7 @@
 		050016632445593B00F3B87F /* AMColorPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; };
 		050016642445593B00F3B87F /* AMColorPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0519C9FD245A71B7004356DF /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0519C9FC245A71B7004356DF /* Extentions.swift */; };
+		0520973C24B7652C00E32BEE /* DRResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520973B24B7652C00E32BEE /* DRResultViewController.swift */; };
 		0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529A99822CC991400F5ECB6 /* MyPieChartView.swift */; };
 		053D814823914D0900ACCAEE /* ColorStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D814723914D0900ACCAEE /* ColorStock.swift */; };
 		05579308245A653A0081DA16 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05579307245A653A0081DA16 /* Colors.xcassets */; };
@@ -21,12 +22,13 @@
 		059C9F9D24453D0D00B11797 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9A24453D0D00B11797 /* RealmSwift.framework */; };
 		059C9F9E24453D0D00B11797 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9A24453D0D00B11797 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05AF43E422C974D2007A236D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AF43E322C974D2007A236D /* AppDelegate.swift */; };
-		05AF43E622C974D2007A236D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AF43E522C974D2007A236D /* ViewController.swift */; };
+		05AF43E622C974D2007A236D /* DRRouletteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AF43E522C974D2007A236D /* DRRouletteViewController.swift */; };
 		05AF43E922C974D2007A236D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05AF43E722C974D2007A236D /* Main.storyboard */; };
 		05AF43EB22C974D4007A236D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05AF43EA22C974D4007A236D /* Assets.xcassets */; };
 		05AF43EE22C974D4007A236D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05AF43EC22C974D4007A236D /* LaunchScreen.storyboard */; };
-		05D3D9D422C9D431007D24FF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3D9D322C9D431007D24FF /* TableViewController.swift */; };
+		05D3D9D422C9D431007D24FF /* DRRouletteCellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */; };
 		05D3D9D722C9D475007D24FF /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3D9D522C9D475007D24FF /* TableViewCell.swift */; };
+		05DC270324B75BDC00657D2E /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05DC270224B75BDC00657D2E /* Popup.storyboard */; };
 		18D3217A7E609E7DFF081944 /* Pods_DoubleRoulette.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 900A8DDB992024885EAA9F37 /* Pods_DoubleRoulette.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +51,7 @@
 /* Begin PBXFileReference section */
 		050016622445593B00F3B87F /* AMColorPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMColorPicker.framework; path = Carthage/Build/iOS/AMColorPicker.framework; sourceTree = "<group>"; };
 		0519C9FC245A71B7004356DF /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		0520973B24B7652C00E32BEE /* DRResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRResultViewController.swift; sourceTree = "<group>"; };
 		0529A99822CC991400F5ECB6 /* MyPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPieChartView.swift; sourceTree = "<group>"; };
 		053D814723914D0900ACCAEE /* ColorStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStock.swift; sourceTree = "<group>"; };
 		05579307245A653A0081DA16 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -59,13 +62,14 @@
 		059C9F9A24453D0D00B11797 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		05AF43E022C974D2007A236D /* DoubleRoulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoubleRoulette.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AF43E322C974D2007A236D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		05AF43E522C974D2007A236D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		05AF43E522C974D2007A236D /* DRRouletteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRRouletteViewController.swift; sourceTree = "<group>"; };
 		05AF43E822C974D2007A236D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05AF43EA22C974D4007A236D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05AF43ED22C974D4007A236D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05AF43EF22C974D4007A236D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05D3D9D322C9D431007D24FF /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRRouletteCellTableViewController.swift; sourceTree = "<group>"; };
 		05D3D9D522C9D475007D24FF /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		05DC270224B75BDC00657D2E /* Popup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Popup.storyboard; sourceTree = "<group>"; };
 		2D1E8F670281D253E3F70D58 /* Pods-DoubleRoulette.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRoulette.debug.xcconfig"; path = "Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette.debug.xcconfig"; sourceTree = "<group>"; };
 		900A8DDB992024885EAA9F37 /* Pods_DoubleRoulette.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubleRoulette.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93214C384C1F68552E28F145 /* Pods-DoubleRoulette.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRoulette.release.xcconfig"; path = "Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette.release.xcconfig"; sourceTree = "<group>"; };
@@ -108,8 +112,9 @@
 		056A4D5523AA617F008CC263 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				05AF43E522C974D2007A236D /* ViewController.swift */,
-				05D3D9D322C9D431007D24FF /* TableViewController.swift */,
+				05AF43E522C974D2007A236D /* DRRouletteViewController.swift */,
+				05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */,
+				0520973B24B7652C00E32BEE /* DRResultViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -136,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				05AF43E722C974D2007A236D /* Main.storyboard */,
+				05DC270224B75BDC00657D2E /* Popup.storyboard */,
 				05AF43EC22C974D4007A236D /* LaunchScreen.storyboard */,
 			);
 			path = StoryBoard;
@@ -256,6 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05DC270324B75BDC00657D2E /* Popup.storyboard in Resources */,
 				05AF43EE22C974D4007A236D /* LaunchScreen.storyboard in Resources */,
 				0590A0C822D7F38D004BB8CA /* roulette-sound.mp3 in Resources */,
 				058D5B8E22FC51AB0064A91D /* GoogleService-Info.plist in Resources */,
@@ -337,11 +344,12 @@
 				0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */,
 				05D3D9D722C9D475007D24FF /* TableViewCell.swift in Sources */,
 				05775ABF245A9506009BAD29 /* RouletteObject.swift in Sources */,
-				05AF43E622C974D2007A236D /* ViewController.swift in Sources */,
+				05AF43E622C974D2007A236D /* DRRouletteViewController.swift in Sources */,
 				05AF43E422C974D2007A236D /* AppDelegate.swift in Sources */,
 				053D814823914D0900ACCAEE /* ColorStock.swift in Sources */,
-				05D3D9D422C9D431007D24FF /* TableViewController.swift in Sources */,
+				05D3D9D422C9D431007D24FF /* DRRouletteCellTableViewController.swift in Sources */,
 				0519C9FD245A71B7004356DF /* Extentions.swift in Sources */,
+				0520973C24B7652C00E32BEE /* DRResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
