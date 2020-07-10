@@ -1,4 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/CellAnimator/CellAnimator.framework
 ${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework
+${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework
+${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework
 ${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework
