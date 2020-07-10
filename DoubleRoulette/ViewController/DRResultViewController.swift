@@ -13,26 +13,25 @@ class DRResultViewController: UIViewController {
     @IBOutlet private weak var resultView: UIView!
     @IBOutlet weak var resultLabel: UILabel!
     
+    var outer: String?
+    var inner: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setupLabel(outer: self.outer, inner: self.inner)
     }
     
-    func setupLabel(outer: String?, inner: String?) {
+    func setupLabel(outer: String? = nil, inner: String? = nil) {
         if let _outer = outer {
             if let _inner = inner {
-                let result = _outer + " & " + _inner
+                let result = _outer + "\n & \n" + _inner
                 self.resultLabel.text = result
             } else {
                 self.resultLabel.text = _outer
             }
-        }
-        
-        if let _inner = inner {
-            if let _outer = outer {
-                self.resultLabel.text = _outer + " & " + _inner
-            } else {
-                self.resultLabel.text = _inner
-            }
+        } else if let _inner = inner {
+            self.resultLabel.text = _inner
         }
     }
     

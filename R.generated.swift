@@ -296,9 +296,7 @@ struct _R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    struct popup: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = DRResultViewController
-
+    struct popup: Rswift.StoryboardResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let drResultViewController = StoryboardViewControllerResource<DRResultViewController>(identifier: "DRResultViewController")
       let name = "Popup"
