@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,14 +20,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SOd-T7-seK" userLabel="Result View">
-                                        <rect key="frame" x="87.5" y="233.5" width="200" height="200"/>
+                                        <rect key="frame" x="87.5" y="233.5" width="200" height="140"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="odg-PQ-5eO" userLabel="Top Title View">
-                                                <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="56"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESULT!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="VHK-bB-fYs">
-                                                        <rect key="frame" x="20" y="32.5" width="160" height="35.5"/>
-                                                        <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="35"/>
+                                                        <rect key="frame" x="20" y="3" width="160" height="50"/>
+                                                        <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="50"/>
                                                         <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -34,7 +35,6 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="VHK-bB-fYs" firstAttribute="leading" secondItem="odg-PQ-5eO" secondAttribute="leading" constant="20" id="OCm-FK-JfQ"/>
-                                                    <constraint firstAttribute="height" constant="100" id="RRb-3z-Xjy"/>
                                                     <constraint firstItem="VHK-bB-fYs" firstAttribute="centerX" secondItem="odg-PQ-5eO" secondAttribute="centerX" id="Sxd-mr-8j7"/>
                                                     <constraint firstItem="VHK-bB-fYs" firstAttribute="centerY" secondItem="odg-PQ-5eO" secondAttribute="centerY" id="t5B-D1-w9b"/>
                                                 </constraints>
@@ -44,9 +44,22 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rcm-vJ-jmH" userLabel="Result Labels View">
-                                                <rect key="frame" x="0.0" y="100" width="200" height="100"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rcm-vJ-jmH" userLabel="Result Label View">
+                                                <rect key="frame" x="0.0" y="56" width="200" height="84"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="ZQC-0m-AwM" userLabel="Result Label">
+                                                        <rect key="frame" x="27.5" y="17" width="145" height="50"/>
+                                                        <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="50"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="ZQC-0m-AwM" firstAttribute="centerX" secondItem="Rcm-vJ-jmH" secondAttribute="centerX" id="5WK-fV-FIR"/>
+                                                    <constraint firstItem="ZQC-0m-AwM" firstAttribute="centerY" secondItem="Rcm-vJ-jmH" secondAttribute="centerY" id="6S0-Xo-RQ6"/>
+                                                    <constraint firstItem="ZQC-0m-AwM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rcm-vJ-jmH" secondAttribute="leading" constant="10" id="Bx1-zg-xKz"/>
+                                                </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <integer key="value" value="20"/>
@@ -61,10 +74,9 @@
                                             <constraint firstAttribute="trailing" secondItem="odg-PQ-5eO" secondAttribute="trailing" id="N1h-vx-Yq5"/>
                                             <constraint firstItem="Rcm-vJ-jmH" firstAttribute="top" secondItem="odg-PQ-5eO" secondAttribute="bottom" id="U5w-fU-vjV"/>
                                             <constraint firstAttribute="trailing" secondItem="Rcm-vJ-jmH" secondAttribute="trailing" id="a9K-fk-ezl"/>
-                                            <constraint firstAttribute="height" constant="200" id="eOr-4i-HJz"/>
                                             <constraint firstAttribute="bottom" secondItem="Rcm-vJ-jmH" secondAttribute="bottom" id="f4q-54-QnC"/>
+                                            <constraint firstItem="odg-PQ-5eO" firstAttribute="height" secondItem="SOd-T7-seK" secondAttribute="height" multiplier="0.4" id="g3a-Ta-wB7"/>
                                             <constraint firstItem="odg-PQ-5eO" firstAttribute="top" secondItem="SOd-T7-seK" secondAttribute="top" id="lZX-KO-fAP"/>
-                                            <constraint firstAttribute="width" constant="200" id="veD-hJ-fyd"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -75,8 +87,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="0.25079237099644131" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="SOd-T7-seK" firstAttribute="height" secondItem="buz-z5-vPl" secondAttribute="height" multiplier="0.209895" id="DPw-s3-DJ9"/>
+                                    <constraint firstItem="SOd-T7-seK" firstAttribute="width" secondItem="buz-z5-vPl" secondAttribute="width" multiplier="0.533333" id="GHT-0I-n4i"/>
                                     <constraint firstItem="SOd-T7-seK" firstAttribute="centerX" secondItem="buz-z5-vPl" secondAttribute="centerX" id="v2S-4P-GCQ"/>
-                                    <constraint firstItem="SOd-T7-seK" firstAttribute="centerY" secondItem="buz-z5-vPl" secondAttribute="centerY" id="vV5-b6-CwY"/>
+                                    <constraint firstItem="SOd-T7-seK" firstAttribute="centerY" secondItem="buz-z5-vPl" secondAttribute="centerY" constant="-30" id="vV5-b6-CwY"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -86,9 +100,11 @@
                             <constraint firstItem="buz-z5-vPl" firstAttribute="top" secondItem="ozt-TV-5c5" secondAttribute="top" id="NRk-UR-ago"/>
                             <constraint firstItem="buz-z5-vPl" firstAttribute="leading" secondItem="ozt-TV-5c5" secondAttribute="leading" id="hgr-iA-qTc"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="JGP-zH-jeZ"/>
                     </view>
                     <connections>
                         <outlet property="alphaView" destination="buz-z5-vPl" id="fLC-Mb-LQI"/>
+                        <outlet property="resultLabel" destination="ZQC-0m-AwM" id="FHn-Uh-w6O"/>
                         <outlet property="resultView" destination="SOd-T7-seK" id="InR-5d-Jw1"/>
                     </connections>
                 </viewController>

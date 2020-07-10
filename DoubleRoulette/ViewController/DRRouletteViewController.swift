@@ -14,6 +14,7 @@ import Accounts
 import RealmSwift
 
 class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
+    private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/3283423713"
     private var bannerView: GADBannerView!
     private var popupWindow: UIWindow!
     
@@ -23,97 +24,51 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet private weak var elementNumLabel: UILabel!
     @IBOutlet private weak var outerChartView: UIView!
     @IBOutlet private weak var innerChartView: UIView!
-    fileprivate var audioPlayer: AVAudioPlayer!
     
+    private let labelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
+    private let pieChartViewOuter = MyPieChartView()
+    private let pieChartViewInner = MyPieChartView()
+    
+    fileprivate var audioPlayer: AVAudioPlayer!
     var rouletteCells: Results<RouletteObject>!
     
     private var currentPositionOuter = 0
     private var currentPositionInner = 0
-    
-    private let pieChartViewOuter = MyPieChartView()
-    private let pieChartViewInner = MyPieChartView()
-    private let labelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
-    private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/3283423713"
+    private var outerName: [String] = []
+    private var outerColor: [UIColor] = []
+    private var innerName: [String] = []
+    private var innerColor: [UIColor] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var outerName: [String] = []
-        var outerColor: [UIColor] = []
-        var innerName: [String] = []
-        var innerColor: [UIColor] = []
-        for i in 0..<rouletteCells.count {
-            let cell = rouletteCells[i]
+        self.initData()
+        self.setupElementLabels()
+        self.setupOuterRoulette(outerName: self.outerName, outerColor: self.outerColor)
+        self.setupInnerRoulette(innerName: self.innerName, innerColor: self.innerColor)
+        self.setupRouletteCellsLabel()
+        self.drawArrow()
+        self.setupAdvertisementView()
+        self.setupResultWindow()
+    }
+    
+    private func initData() {
+        for i in 0..<self.rouletteCells.count {
+            let cell = self.rouletteCells[i]
             let hex = cell.color
             let rgb = UIColor.hexToRGB(hex: hex)
             let cellColor = UIColor(red: CGFloat(rgb[0])/255, green: CGFloat(rgb[1])/255, blue: CGFloat(rgb[2])/255, alpha: 1)
             if cell.type == 0 {
-                outerName.insert(cell.item, at: 0)
-                outerColor.insert(cellColor, at: 0)
+                self.outerName.insert(cell.item, at: 0)
+                self.outerColor.insert(cellColor, at: 0)
             }else {
-                innerName.insert(cell.item, at: 0)
-                innerColor.insert(cellColor, at: 0)
+                self.innerName.insert(cell.item, at: 0)
+                self.innerColor.insert(cellColor, at: 0)
             }
         }
-        itemsLabel.text = "Items: " + String(rouletteCells.count)
-        elementNumLabel.text = "Outer: " + String(outerName.count) + ", Inner: " + String(innerName.count)
-        
-        self.setOuterRoulette(outerName: outerName, outerColor: outerColor)
-        self.setInnerRoulette(innerName: innerName, innerColor: innerColor)
-        
-        //Outer Label
-        let angleOfOuterPiece = CGFloat.pi * 2.0 / CGFloat(outerName.count)
-        let distFromOuterCenter = self.view.frame.width * 3 / 8
-        let startPoint = self.view.center
-        let firstOuterLabelPoint = CGPoint(x: startPoint.x, y: startPoint.y - distFromOuterCenter)
-        for i in 0..<outerName.count {
-            let I = CGFloat(i)
-            let sampleLabel = UILabel()
-            sampleLabel.font = UIFont.init(name: "HiraginoSans-W3", size: labelFontSize)
-            sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 7, height: self.view.frame.width / 14)
-            sampleLabel.text = outerName[i]
-            sampleLabel.adjustsFontSizeToFitWidth = true
-            sampleLabel.textAlignment = .center
-            sampleLabel.backgroundColor = UIColor.clear
-            sampleLabel.textColor = UIColor.rouletteLabel
-            sampleLabel.numberOfLines = 0
-            let x = firstOuterLabelPoint.x - startPoint.x
-            let y = firstOuterLabelPoint.y - startPoint.y
-            let nextx = cos(-(angleOfOuterPiece*I + angleOfOuterPiece/2))*x - sin(-(angleOfOuterPiece*I + angleOfOuterPiece/2))*y + startPoint.x
-            let nexty = sin(-(angleOfOuterPiece*I + angleOfOuterPiece/2))*x + cos(-(angleOfOuterPiece*I + angleOfOuterPiece/2))*y + startPoint.y
-            sampleLabel.center = CGPoint(x: nextx, y: nexty)
-            outerChartView.addSubview(sampleLabel)
-        }
-        
-        //Inner Label
-        let angleOfInnerPiece = CGFloat.pi * 2.0 / CGFloat(innerName.count)
-        let distFromInnerCenter = self.view.frame.width / 8
-        let firstInnerLabelPoint = CGPoint(x: startPoint.x, y: startPoint.y - distFromInnerCenter)
-        for i in 0..<innerName.count {
-            let I = CGFloat(i)
-            let sampleLabel = UILabel()
-            sampleLabel.font = UIFont.init(name: "HiraginoSans-W3", size: labelFontSize)
-            sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 7, height: self.view.frame.width / 14)
-            sampleLabel.text = innerName[i]
-            sampleLabel.adjustsFontSizeToFitWidth = true
-            sampleLabel.textAlignment = .center
-            sampleLabel.backgroundColor = UIColor.clear
-            sampleLabel.textColor = UIColor.rouletteLabel
-            sampleLabel.numberOfLines = 0
-            let x = firstInnerLabelPoint.x - startPoint.x
-            let y = firstInnerLabelPoint.y - startPoint.y
-            let nextx = cos(-(angleOfInnerPiece*I + angleOfInnerPiece/2))*x - sin(-(angleOfInnerPiece*I + angleOfInnerPiece/2))*y + startPoint.x
-            let nexty = sin(-(angleOfInnerPiece*I + angleOfInnerPiece/2))*x + cos(-(angleOfInnerPiece*I + angleOfInnerPiece/2))*y + startPoint.y
-            sampleLabel.center = CGPoint(x: nextx, y: nexty)
-            innerChartView.addSubview(sampleLabel)
-        }
-        
-        self.drawArrow()
-        self.configureAdvertisementView()
-        self.setupResultWindow()
     }
     
-    private func setOuterRoulette(outerName: [String], outerColor: [UIColor]) {
+    private func setupOuterRoulette(outerName: [String], outerColor: [UIColor]) {
         pieChartViewOuter.radius = min(self.view.frame.size.width, self.view.frame.size.height)/2
         pieChartViewOuter.isOpaque = false
         pieChartViewOuter.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
@@ -124,7 +79,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         outerChartView.addSubview(pieChartViewOuter)
     }
     
-    private func setInnerRoulette(innerName: [String], innerColor: [UIColor]) {
+    private func setupInnerRoulette(innerName: [String], innerColor: [UIColor]) {
         pieChartViewInner.radius = min(self.view.frame.size.width, self.view.frame.size.height)/4
         pieChartViewInner.isOpaque = false
         pieChartViewInner.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
@@ -134,6 +89,53 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             pieChartViewInner.segments.insert(Segment(color: innerColor[i], value: CGFloat(Double.pi * 2.0 / Double(innerName.count))), at: 0)
         }
         innerChartView.addSubview(pieChartViewInner)
+    }
+    
+    private func setupRouletteCellsLabel() {
+        let angleOfOuterPiece = CGFloat.pi * 2.0 / CGFloat(self.outerName.count)
+        let distFromOuterCenter = self.view.frame.width * 3 / 8
+        let startPoint = self.view.center
+        let firstOuterLabelPoint = CGPoint(x: startPoint.x, y: startPoint.y - distFromOuterCenter)
+        for i in 0..<self.outerName.count {
+            let I = CGFloat(i)
+            let sampleLabel = UILabel()
+            sampleLabel.font = UIFont.init(name: "HiraginoSans-W3", size: self.labelFontSize)
+            sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 7, height: self.view.frame.width / 14)
+            sampleLabel.text = self.outerName[i]
+            sampleLabel.adjustsFontSizeToFitWidth = true
+            sampleLabel.textAlignment = .center
+            sampleLabel.backgroundColor = UIColor.clear
+            sampleLabel.textColor = UIColor.rouletteLabel
+            sampleLabel.numberOfLines = 0
+            let x = firstOuterLabelPoint.x - startPoint.x
+            let y = firstOuterLabelPoint.y - startPoint.y
+            let nextx = cos(-(angleOfOuterPiece*I + angleOfOuterPiece/2))*x - sin(-(angleOfOuterPiece*I + angleOfOuterPiece/2))*y + startPoint.x
+            let nexty = sin(-(angleOfOuterPiece*I + angleOfOuterPiece/2))*x + cos(-(angleOfOuterPiece*I + angleOfOuterPiece/2))*y + startPoint.y
+            sampleLabel.center = CGPoint(x: nextx, y: nexty)
+            self.outerChartView.addSubview(sampleLabel)
+        }
+        
+        let angleOfInnerPiece = CGFloat.pi * 2.0 / CGFloat(self.innerName.count)
+        let distFromInnerCenter = self.view.frame.width / 8
+        let firstInnerLabelPoint = CGPoint(x: startPoint.x, y: startPoint.y - distFromInnerCenter)
+        for i in 0..<self.innerName.count {
+            let I = CGFloat(i)
+            let sampleLabel = UILabel()
+            sampleLabel.font = UIFont.init(name: "HiraginoSans-W3", size: self.labelFontSize)
+            sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 7, height: self.view.frame.width / 14)
+            sampleLabel.text = self.innerName[i]
+            sampleLabel.adjustsFontSizeToFitWidth = true
+            sampleLabel.textAlignment = .center
+            sampleLabel.backgroundColor = UIColor.clear
+            sampleLabel.textColor = UIColor.rouletteLabel
+            sampleLabel.numberOfLines = 0
+            let x = firstInnerLabelPoint.x - startPoint.x
+            let y = firstInnerLabelPoint.y - startPoint.y
+            let nextx = cos(-(angleOfInnerPiece*I + angleOfInnerPiece/2))*x - sin(-(angleOfInnerPiece*I + angleOfInnerPiece/2))*y + startPoint.x
+            let nexty = sin(-(angleOfInnerPiece*I + angleOfInnerPiece/2))*x + cos(-(angleOfInnerPiece*I + angleOfInnerPiece/2))*y + startPoint.y
+            sampleLabel.center = CGPoint(x: nextx, y: nexty)
+            self.innerChartView.addSubview(sampleLabel)
+        }
     }
     
     private func drawArrow() {
@@ -160,7 +162,12 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         self.view.addSubview(arrowView)
     }
     
-    private func configureAdvertisementView() {
+    private func setupElementLabels() {
+        self.itemsLabel.text = "Items: " + self.rouletteCells.count.description
+        self.elementNumLabel.text = "Outer: " + self.outerName.count.description + ", Inner: " + self.innerName.count.description
+    }
+    
+    private func setupAdvertisementView() {
         self.bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         self.bannerView.translatesAutoresizingMaskIntoConstraints = true
         self.bottomAdView.addSubview(self.bannerView)
@@ -169,6 +176,37 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         self.bannerView.rootViewController = self
         self.bannerView.load(GADRequest())
         self.bannerView.delegate = self
+    }
+    
+    private func showResultWindow() {
+        // NOTE: イベント入力を無効
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        // NOTE: ポップアップウィンドゥをキーウィンドゥに設定
+        self.popupWindow.makeKeyAndVisible()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
+            UIView.animate(withDuration: 1.0) {
+                self.popupWindow.alpha = 1
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                UIView.animate(withDuration: 1.0) {
+                    self.popupWindow.alpha = 0
+                }
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 9.5) {
+            // NOTE: 元のウィンドゥをキーウィンドゥに設定
+            self.view.window?.makeKeyAndVisible()
+            // NOTE: イベント入力を有効
+            UIApplication.shared.endIgnoringInteractionEvents()
+        }
+    }
+    
+    private func setupResultWindow() {
+        self.popupWindow = UIWindow.init(frame: self.view.frame)
+        self.popupWindow.alpha = 0
+        if let vc = UIStoryboard(name: "Popup", bundle: nil).instantiateInitialViewController() as? DRResultViewController {
+            self.popupWindow.rootViewController = vc
+        }
     }
 
     //roulette start
@@ -199,36 +237,9 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         outerChartView.layer.add(animationOuter, forKey: "animationOuter")
         innerChartView.layer.add(animationInner, forKey: "animationInner")
         
+        // TODO: ここに当たったラベルを求めて、引数に渡す
+        
         self.showResultWindow()
-    }
-    
-    private func showResultWindow() {
-        // NOTE: イベント入力を無効
-        UIApplication.shared.beginIgnoringInteractionEvents()
-        self.popupWindow.makeKeyAndVisible()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
-            UIView.animate(withDuration: 1.0) {
-                self.popupWindow.alpha = 1
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                UIView.animate(withDuration: 3.0) {
-                    self.popupWindow.alpha = 0
-                }
-            }
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 11.5) {
-            self.view.window?.makeKeyAndVisible()
-            // NOTE: イベント入力を有効
-            UIApplication.shared.endIgnoringInteractionEvents()
-        }
-    }
-    
-    private func setupResultWindow() {
-        self.popupWindow = UIWindow.init(frame: self.view.frame)
-        self.popupWindow.alpha = 0
-        if let vc = UIStoryboard(name: "Popup", bundle: nil).instantiateInitialViewController() as? DRResultViewController {
-            self.popupWindow.rootViewController = vc
-        }
     }
     
     //share button
