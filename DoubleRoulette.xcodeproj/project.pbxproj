@@ -10,6 +10,7 @@
 		050016632445593B00F3B87F /* AMColorPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; };
 		050016642445593B00F3B87F /* AMColorPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0519C9FD245A71B7004356DF /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0519C9FC245A71B7004356DF /* Extentions.swift */; };
+		051A32FC24B7F5B1004A134A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051A32FB24B7F5B1004A134A /* R.generated.swift */; };
 		0520973C24B7652C00E32BEE /* DRResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520973B24B7652C00E32BEE /* DRResultViewController.swift */; };
 		0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529A99822CC991400F5ECB6 /* MyPieChartView.swift */; };
 		053D814823914D0900ACCAEE /* ColorStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D814723914D0900ACCAEE /* ColorStock.swift */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		050016622445593B00F3B87F /* AMColorPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMColorPicker.framework; path = Carthage/Build/iOS/AMColorPicker.framework; sourceTree = "<group>"; };
 		0519C9FC245A71B7004356DF /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		051A32FB24B7F5B1004A134A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0520973B24B7652C00E32BEE /* DRResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRResultViewController.swift; sourceTree = "<group>"; };
 		0529A99822CC991400F5ECB6 /* MyPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPieChartView.swift; sourceTree = "<group>"; };
 		053D814723914D0900ACCAEE /* ColorStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStock.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 		05AF43D722C974D2007A236D = {
 			isa = PBXGroup;
 			children = (
+				051A32FB24B7F5B1004A134A /* R.generated.swift */,
 				05AF43E222C974D2007A236D /* DoubleRoulette */,
 				05AF43E122C974D2007A236D /* Products */,
 				AC0B03B588244F2B8D54DF3F /* Pods */,
@@ -208,6 +211,7 @@
 			buildConfigurationList = 05AF43F222C974D4007A236D /* Build configuration list for PBXNativeTarget "DoubleRoulette" */;
 			buildPhases = (
 				CC3180F0EFD224095355A8EE /* [CP] Check Pods Manifest.lock */,
+				051A32FA24B7F368004A134A /* ShellScript */,
 				05AF43DC22C974D2007A236D /* Sources */,
 				05AF43DD22C974D2007A236D /* Frameworks */,
 				05AF43DE22C974D2007A236D /* Resources */,
@@ -275,6 +279,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		051A32FA24B7F368004A134A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 		059C9FA024453D1600B11797 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -348,6 +371,7 @@
 				05AF43E422C974D2007A236D /* AppDelegate.swift in Sources */,
 				053D814823914D0900ACCAEE /* ColorStock.swift in Sources */,
 				05D3D9D422C9D431007D24FF /* DRRouletteCellTableViewController.swift in Sources */,
+				051A32FC24B7F5B1004A134A /* R.generated.swift in Sources */,
 				0519C9FD245A71B7004356DF /* Extentions.swift in Sources */,
 				0520973C24B7652C00E32BEE /* DRResultViewController.swift in Sources */,
 			);
