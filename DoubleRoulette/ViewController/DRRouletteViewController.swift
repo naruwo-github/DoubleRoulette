@@ -32,8 +32,8 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     fileprivate var audioPlayer: AVAudioPlayer!
     var rouletteCells: Results<RouletteObject>!
     
-    private var currentChangedOuterAngle = 0
-    private var currentChangedInnerAngle = 0
+    private var currentChangedOuterAngle: CGFloat = 0.0
+    private var currentChangedInnerAngle: CGFloat = 0.0
     private var outerCellName: [String] = []
     private var outerCellColor: [UIColor] = []
     private var innerCellName: [String] = []
@@ -216,23 +216,31 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
 
     //roulette start
     @IBAction private func startButtonTapped(_ sender: Any) {
-        playSound(name: "roulette-sound")
-        //outer
-        let angleOuter: CGFloat = CGFloat(Double.random(in: 100.0 ... 500.0) * Double.pi / 6.0)
-        let fromValOuter: CGFloat = angleOuter * CGFloat(currentChangedOuterAngle)
-        let toValOuter: CGFloat = angleOuter * CGFloat(currentChangedOuterAngle+1)
+        self.playSound(name: "roulette-sound")
+        
+        let cgPi = CGFloat.pi
+        let rotationMinimum = cgPi * 2
+        
+        // NOTE: Outerの回転角度の算出と、アニメーション追加
+        let outerRotationAngle = CGFloat.random(in: rotationMinimum ... cgPi * 15)
+        let fromValOuter: CGFloat = self.currentChangedOuterAngle
+        let toValOuter: CGFloat = self.currentChangedOuterAngle + outerRotationAngle
         let animationOuter: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        self.currentChangedOuterAngle += outerRotationAngle
+        
         animationOuter.isRemovedOnCompletion = false
         animationOuter.fillMode = CAMediaTimingFillMode.forwards
         animationOuter.fromValue = fromValOuter
         animationOuter.toValue = toValOuter
         animationOuter.duration = 4.0
         
-        //inner
-        let angleInner: CGFloat = CGFloat(Double.random(in: 100.0 ... 500.0) * Double.pi / 6.0)
-        let fromValInner: CGFloat = angleInner * CGFloat(currentChangedInnerAngle)
-        let toValInner: CGFloat = angleInner * CGFloat(currentChangedInnerAngle+1)
+        // NOTE: Innerの回転角度の算出と、アニメーション追加
+        let innerRotationAngle = CGFloat.random(in: rotationMinimum ... cgPi * 15)
+        let fromValInner: CGFloat = self.currentChangedInnerAngle
+        let toValInner: CGFloat = self.currentChangedInnerAngle + innerRotationAngle
         let animationInner: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        self.currentChangedInnerAngle += innerRotationAngle
+        
         animationInner.isRemovedOnCompletion = false
         animationInner.fillMode = CAMediaTimingFillMode.forwards
         animationInner.fromValue = fromValInner
@@ -270,6 +278,7 @@ extension DRRouletteViewController: AVAudioPlayerDelegate {
             self.audioPlayer.delegate = self
             self.audioPlayer.play()
         } catch {
+            print("Error...")
         }
     }
 }

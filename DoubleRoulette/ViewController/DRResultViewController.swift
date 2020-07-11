@@ -32,6 +32,8 @@ class DRResultViewController: UIViewController {
             }
         } else if let _inner = inner {
             self.resultLabel.text = _inner
+        } else {
+            self.resultLabel.text = "???"
         }
     }
     
