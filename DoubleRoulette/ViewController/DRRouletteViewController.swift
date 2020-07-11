@@ -32,24 +32,23 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     fileprivate var audioPlayer: AVAudioPlayer!
     var rouletteCells: Results<RouletteObject>!
     
-    private var currentPositionOuter = 0
-    private var currentPositionInner = 0
-    private var outerName: [String] = []
-    private var outerColor: [UIColor] = []
-    private var innerName: [String] = []
-    private var innerColor: [UIColor] = []
+    private var currentChangedOuterAngle: CGFloat = 0.0
+    private var currentChangedInnerAngle: CGFloat = 0.0
+    private var outerCellName: [String] = []
+    private var outerCellColor: [UIColor] = []
+    private var innerCellName: [String] = []
+    private var innerCellColor: [UIColor] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.initData()
+        self.setupResultWindow()
         self.setupElementLabels()
-        self.setupOuterRoulette(outerName: self.outerName, outerColor: self.outerColor)
-        self.setupInnerRoulette(innerName: self.innerName, innerColor: self.innerColor)
+        self.setupOuterRoulette(outerName: self.outerCellName, outerColor: self.outerCellColor)
+        self.setupInnerRoulette(innerName: self.innerCellName, innerColor: self.innerCellColor)
         self.setupRouletteCellsLabel()
         self.drawArrow()
         self.setupAdvertisementView()
-        self.setupResultWindow()
     }
     
     private func initData() {
@@ -59,13 +58,24 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             let rgb = UIColor.hexToRGB(hex: hex)
             let cellColor = UIColor(red: CGFloat(rgb[0])/255, green: CGFloat(rgb[1])/255, blue: CGFloat(rgb[2])/255, alpha: 1)
             if cell.type == 0 {
-                self.outerName.insert(cell.item, at: 0)
-                self.outerColor.insert(cellColor, at: 0)
+                self.outerCellName.insert(cell.item, at: 0)
+                self.outerCellColor.insert(cellColor, at: 0)
             }else {
-                self.innerName.insert(cell.item, at: 0)
-                self.innerColor.insert(cellColor, at: 0)
+                self.innerCellName.insert(cell.item, at: 0)
+                self.innerCellColor.insert(cellColor, at: 0)
             }
         }
+    }
+    
+    private func setupResultWindow() {
+        self.popupWindow = UIWindow.init(frame: self.view.frame)
+        self.popupWindow.windowLevel = UIWindow.Level.normal + 10
+        self.popupWindow.alpha = 0
+    }
+    
+    private func setupElementLabels() {
+        self.itemsLabel.text = "Items: " + self.rouletteCells.count.description
+        self.elementNumLabel.text = "Outer: " + self.outerCellName.count.description + ", Inner: " + self.innerCellName.count.description
     }
     
     private func setupOuterRoulette(outerName: [String], outerColor: [UIColor]) {
@@ -92,16 +102,16 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func setupRouletteCellsLabel() {
-        let angleOfOuterPiece = CGFloat.pi * 2.0 / CGFloat(self.outerName.count)
+        let angleOfOuterPiece = CGFloat.pi * 2.0 / CGFloat(self.outerCellName.count)
         let distFromOuterCenter = self.view.frame.width * 3 / 8
         let startPoint = self.view.center
         let firstOuterLabelPoint = CGPoint(x: startPoint.x, y: startPoint.y - distFromOuterCenter)
-        for i in 0..<self.outerName.count {
+        for i in 0..<self.outerCellName.count {
             let I = CGFloat(i)
             let sampleLabel = UILabel()
             sampleLabel.font = UIFont.init(name: "HiraginoSans-W3", size: self.labelFontSize)
             sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 7, height: self.view.frame.width / 14)
-            sampleLabel.text = self.outerName[i]
+            sampleLabel.text = self.outerCellName[i]
             sampleLabel.adjustsFontSizeToFitWidth = true
             sampleLabel.textAlignment = .center
             sampleLabel.backgroundColor = UIColor.clear
@@ -115,15 +125,15 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             self.outerChartView.addSubview(sampleLabel)
         }
         
-        let angleOfInnerPiece = CGFloat.pi * 2.0 / CGFloat(self.innerName.count)
+        let angleOfInnerPiece = CGFloat.pi * 2.0 / CGFloat(self.innerCellName.count)
         let distFromInnerCenter = self.view.frame.width / 8
         let firstInnerLabelPoint = CGPoint(x: startPoint.x, y: startPoint.y - distFromInnerCenter)
-        for i in 0..<self.innerName.count {
+        for i in 0..<self.innerCellName.count {
             let I = CGFloat(i)
             let sampleLabel = UILabel()
             sampleLabel.font = UIFont.init(name: "HiraginoSans-W3", size: self.labelFontSize)
             sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 7, height: self.view.frame.width / 14)
-            sampleLabel.text = self.innerName[i]
+            sampleLabel.text = self.innerCellName[i]
             sampleLabel.adjustsFontSizeToFitWidth = true
             sampleLabel.textAlignment = .center
             sampleLabel.backgroundColor = UIColor.clear
@@ -162,11 +172,6 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         self.view.addSubview(arrowView)
     }
     
-    private func setupElementLabels() {
-        self.itemsLabel.text = "Items: " + self.rouletteCells.count.description
-        self.elementNumLabel.text = "Outer: " + self.outerName.count.description + ", Inner: " + self.innerName.count.description
-    }
-    
     private func setupAdvertisementView() {
         self.bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         self.bannerView.translatesAutoresizingMaskIntoConstraints = true
@@ -201,33 +206,41 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         }
     }
     
-    private func setupResultWindow() {
-        self.popupWindow = UIWindow.init(frame: self.view.frame)
-        self.popupWindow.alpha = 0
-        if let vc = UIStoryboard(name: "Popup", bundle: nil).instantiateInitialViewController() as? DRResultViewController {
+    private func setupResultLabel(outerResult: String?, innerResult: String?) {
+        if let vc = R.storyboard.popup.drResultViewController() {
+            vc.outer = outerResult
+            vc.inner = innerResult
             self.popupWindow.rootViewController = vc
         }
     }
 
     //roulette start
     @IBAction private func startButtonTapped(_ sender: Any) {
-        playSound(name: "roulette-sound")
-        //outer
-        let angleOuter: CGFloat = CGFloat(Double.random(in: 100.0 ... 500.0) * Double.pi / 6.0)
-        let fromValOuter: CGFloat = angleOuter * CGFloat(currentPositionOuter)
-        let toValOuter: CGFloat = angleOuter * CGFloat(currentPositionOuter+1)
+        self.playSound(name: "roulette-sound")
+        
+        let cgPi = CGFloat.pi
+        let rotationMinimum = cgPi * 2
+        
+        // NOTE: Outerの回転角度の算出と、アニメーション追加
+        let outerRotationAngle = CGFloat.random(in: rotationMinimum ... cgPi * 2 * 10)
+        let fromValOuter: CGFloat = self.currentChangedOuterAngle
+        let toValOuter: CGFloat = self.currentChangedOuterAngle + outerRotationAngle
         let animationOuter: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        self.currentChangedOuterAngle += outerRotationAngle
+        
         animationOuter.isRemovedOnCompletion = false
         animationOuter.fillMode = CAMediaTimingFillMode.forwards
         animationOuter.fromValue = fromValOuter
         animationOuter.toValue = toValOuter
         animationOuter.duration = 4.0
         
-        //inner
-        let angleInner: CGFloat = CGFloat(Double.random(in: 100.0 ... 500.0) * Double.pi / 6.0)
-        let fromValInner: CGFloat = angleInner * CGFloat(currentPositionInner)
-        let toValInner: CGFloat = angleInner * CGFloat(currentPositionInner+1)
+        // NOTE: Innerの回転角度の算出と、アニメーション追加
+        let innerRotationAngle = CGFloat.random(in: rotationMinimum ... cgPi * 2 * 10)
+        let fromValInner: CGFloat = self.currentChangedInnerAngle
+        let toValInner: CGFloat = self.currentChangedInnerAngle + innerRotationAngle
         let animationInner: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        self.currentChangedInnerAngle += innerRotationAngle
+        
         animationInner.isRemovedOnCompletion = false
         animationInner.fillMode = CAMediaTimingFillMode.forwards
         animationInner.fromValue = fromValInner
@@ -237,8 +250,34 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         outerChartView.layer.add(animationOuter, forKey: "animationOuter")
         innerChartView.layer.add(animationInner, forKey: "animationInner")
         
-        // TODO: ここに当たったラベルを求めて、引数に渡す
+        var outerResult: String? = nil
+        var innerResult: String? = nil
         
+        let outerDisplacement = self.currentChangedOuterAngle.truncatingRemainder(dividingBy: cgPi * 2)
+        // NOTE: innerは針の位置が180度ずれているため、cgPiを加算する
+        let innerDisplacement = (self.currentChangedInnerAngle + cgPi).truncatingRemainder(dividingBy: cgPi * 2)
+        
+        let outerItemsCount = self.outerCellName.count
+        let outerUnitDisplacement = cgPi * 2 / CGFloat(outerItemsCount)
+        if outerItemsCount > 0 {
+            for i in 0 ..< outerItemsCount {
+                if CGFloat(i) * outerUnitDisplacement ..< CGFloat(i+1)*outerUnitDisplacement ~= outerDisplacement {
+                    outerResult = self.outerCellName[i]
+                }
+            }
+        }
+        
+        let innerItemsCount = self.innerCellName.count
+        let innerUnitDisplacement = cgPi * 2 / CGFloat(innerItemsCount)
+        if innerItemsCount > 0 {
+            for i in 0 ..< innerItemsCount {
+                if CGFloat(i) * innerUnitDisplacement ..< CGFloat(i+1)*innerUnitDisplacement ~= innerDisplacement {
+                    innerResult = self.innerCellName[i]
+                }
+            }
+        }
+        
+        self.setupResultLabel(outerResult: outerResult, innerResult: innerResult)
         self.showResultWindow()
     }
     
@@ -262,6 +301,7 @@ extension DRRouletteViewController: AVAudioPlayerDelegate {
             self.audioPlayer.delegate = self
             self.audioPlayer.play()
         } catch {
+            print("Error...")
         }
     }
 }
