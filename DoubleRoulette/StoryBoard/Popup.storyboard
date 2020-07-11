@@ -88,7 +88,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.25079237099644131" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="SOd-T7-seK" firstAttribute="height" secondItem="buz-z5-vPl" secondAttribute="height" multiplier="0.209895" id="DPw-s3-DJ9"/>
                                     <constraint firstItem="SOd-T7-seK" firstAttribute="width" secondItem="buz-z5-vPl" secondAttribute="width" multiplier="0.533333" id="GHT-0I-n4i"/>
