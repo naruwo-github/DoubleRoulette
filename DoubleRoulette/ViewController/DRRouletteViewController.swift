@@ -222,7 +222,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         let rotationMinimum = cgPi * 2
         
         // NOTE: Outerの回転角度の算出と、アニメーション追加
-        let outerRotationAngle = CGFloat.random(in: rotationMinimum ... cgPi * 15)
+        let outerRotationAngle = CGFloat.random(in: rotationMinimum ... cgPi * 2 * 10)
         let fromValOuter: CGFloat = self.currentChangedOuterAngle
         let toValOuter: CGFloat = self.currentChangedOuterAngle + outerRotationAngle
         let animationOuter: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
@@ -235,7 +235,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         animationOuter.duration = 4.0
         
         // NOTE: Innerの回転角度の算出と、アニメーション追加
-        let innerRotationAngle = CGFloat.random(in: rotationMinimum ... cgPi * 15)
+        let innerRotationAngle = CGFloat.random(in: rotationMinimum ... cgPi * 2 * 10)
         let fromValInner: CGFloat = self.currentChangedInnerAngle
         let toValInner: CGFloat = self.currentChangedInnerAngle + innerRotationAngle
         let animationInner: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
@@ -250,9 +250,32 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         outerChartView.layer.add(animationOuter, forKey: "animationOuter")
         innerChartView.layer.add(animationInner, forKey: "animationInner")
         
-        let outerResult: String? = nil
-        let innerResult: String? = nil
-        // TODO: ここに当たったラベルを求める
+        var outerResult: String? = nil
+        var innerResult: String? = nil
+        
+        let outerDisplacement = self.currentChangedOuterAngle.truncatingRemainder(dividingBy: cgPi * 2)
+        // NOTE: innerは針の位置が180度ずれているため、cgPiを加算する
+        let innerDisplacement = (self.currentChangedInnerAngle + cgPi).truncatingRemainder(dividingBy: cgPi * 2)
+        
+        let outerItemsCount = self.outerCellName.count
+        let outerUnitDisplacement = cgPi * 2 / CGFloat(outerItemsCount)
+        if outerItemsCount > 0 {
+            for i in 0 ..< outerItemsCount {
+                if CGFloat(i) * outerUnitDisplacement ..< CGFloat(i+1)*outerUnitDisplacement ~= outerDisplacement {
+                    outerResult = self.outerCellName[i]
+                }
+            }
+        }
+        
+        let innerItemsCount = self.innerCellName.count
+        let innerUnitDisplacement = cgPi * 2 / CGFloat(innerItemsCount)
+        if innerItemsCount > 0 {
+            for i in 0 ..< innerItemsCount {
+                if CGFloat(i) * innerUnitDisplacement ..< CGFloat(i+1)*innerUnitDisplacement ~= innerDisplacement {
+                    innerResult = self.innerCellName[i]
+                }
+            }
+        }
         
         self.setupResultLabel(outerResult: outerResult, innerResult: innerResult)
         self.showResultWindow()
