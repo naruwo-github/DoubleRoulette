@@ -12,6 +12,8 @@
 		0519C9FD245A71B7004356DF /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0519C9FC245A71B7004356DF /* Extentions.swift */; };
 		051A32FC24B7F5B1004A134A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051A32FB24B7F5B1004A134A /* R.generated.swift */; };
 		0520973C24B7652C00E32BEE /* DRResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520973B24B7652C00E32BEE /* DRResultViewController.swift */; };
+		0522625C24BDAB6F005AA88C /* Sub.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0522625B24BDAB6F005AA88C /* Sub.storyboard */; };
+		0522625E24BDABEF005AA88C /* DRRouletteSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0522625D24BDABEF005AA88C /* DRRouletteSettingViewController.swift */; };
 		0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529A99822CC991400F5ECB6 /* MyPieChartView.swift */; };
 		053D814823914D0900ACCAEE /* ColorStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D814723914D0900ACCAEE /* ColorStock.swift */; };
 		05579308245A653A0081DA16 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05579307245A653A0081DA16 /* Colors.xcassets */; };
@@ -54,6 +56,8 @@
 		0519C9FC245A71B7004356DF /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		051A32FB24B7F5B1004A134A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0520973B24B7652C00E32BEE /* DRResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRResultViewController.swift; sourceTree = "<group>"; };
+		0522625B24BDAB6F005AA88C /* Sub.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sub.storyboard; sourceTree = "<group>"; };
+		0522625D24BDABEF005AA88C /* DRRouletteSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRRouletteSettingViewController.swift; sourceTree = "<group>"; };
 		0529A99822CC991400F5ECB6 /* MyPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPieChartView.swift; sourceTree = "<group>"; };
 		053D814723914D0900ACCAEE /* ColorStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStock.swift; sourceTree = "<group>"; };
 		05579307245A653A0081DA16 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 				05AF43E522C974D2007A236D /* DRRouletteViewController.swift */,
 				05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */,
 				0520973B24B7652C00E32BEE /* DRResultViewController.swift */,
+				0522625D24BDABEF005AA88C /* DRRouletteSettingViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				05AF43E722C974D2007A236D /* Main.storyboard */,
+				0522625B24BDAB6F005AA88C /* Sub.storyboard */,
 				05DC270224B75BDC00657D2E /* Popup.storyboard */,
 				05AF43EC22C974D4007A236D /* LaunchScreen.storyboard */,
 			);
@@ -273,6 +279,7 @@
 				05579308245A653A0081DA16 /* Colors.xcassets in Resources */,
 				05AF43EB22C974D4007A236D /* Assets.xcassets in Resources */,
 				05AF43E922C974D2007A236D /* Main.storyboard in Resources */,
+				0522625C24BDAB6F005AA88C /* Sub.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +375,7 @@
 				05D3D9D722C9D475007D24FF /* TableViewCell.swift in Sources */,
 				05775ABF245A9506009BAD29 /* RouletteObject.swift in Sources */,
 				05AF43E622C974D2007A236D /* DRRouletteViewController.swift in Sources */,
+				0522625E24BDABEF005AA88C /* DRRouletteSettingViewController.swift in Sources */,
 				05AF43E422C974D2007A236D /* AppDelegate.swift in Sources */,
 				053D814823914D0900ACCAEE /* ColorStock.swift in Sources */,
 				05D3D9D422C9D431007D24FF /* DRRouletteCellTableViewController.swift in Sources */,

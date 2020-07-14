@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Roulette Setting View Controller-->
+        <scene sceneID="KWI-gb-T4r">
+            <objects>
+                <viewController storyboardIdentifier="DRRouletteSettingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vUv-kU-b5d" customClass="DRRouletteSettingViewController" customModule="DoubleRoulette" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HYd-UL-p6a">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kuu-oE-io9" userLabel="Contents View">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vC5-7j-XA7" userLabel="Top View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animation Setting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="uwf-UJ-u61">
+                                                <rect key="frame" x="110.5" y="15" width="193" height="20"/>
+                                                <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="7Y3-2U-fMn"/>
+                                            <constraint firstItem="uwf-UJ-u61" firstAttribute="centerY" secondItem="vC5-7j-XA7" secondAttribute="centerY" id="Caq-nn-eog"/>
+                                            <constraint firstItem="uwf-UJ-u61" firstAttribute="centerX" secondItem="vC5-7j-XA7" secondAttribute="centerX" id="ILp-g5-cB7"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAv-le-mpX">
+                                        <rect key="frame" x="359" y="5" width="45" height="27"/>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="15"/>
+                                        <state key="normal" title="Close">
+                                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="closeButtonTapped:" destination="vUv-kU-b5d" eventType="touchUpInside" id="g95-FL-tIB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="vC5-7j-XA7" secondAttribute="trailing" id="JAf-Qh-0LA"/>
+                                    <constraint firstItem="YAv-le-mpX" firstAttribute="top" secondItem="Kuu-oE-io9" secondAttribute="top" constant="5" id="dZ2-X8-6hi"/>
+                                    <constraint firstAttribute="trailing" secondItem="YAv-le-mpX" secondAttribute="trailing" constant="10" id="hgI-Vb-dKT"/>
+                                    <constraint firstItem="vC5-7j-XA7" firstAttribute="leading" secondItem="Kuu-oE-io9" secondAttribute="leading" id="l4c-Kg-emA"/>
+                                    <constraint firstItem="vC5-7j-XA7" firstAttribute="top" secondItem="Kuu-oE-io9" secondAttribute="top" id="rC8-ct-uhm"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Abc-pc-TVD" firstAttribute="bottom" secondItem="Kuu-oE-io9" secondAttribute="bottom" id="0rO-El-OZf"/>
+                            <constraint firstItem="Kuu-oE-io9" firstAttribute="leading" secondItem="Abc-pc-TVD" secondAttribute="leading" id="bfi-wN-a1O"/>
+                            <constraint firstItem="Abc-pc-TVD" firstAttribute="trailing" secondItem="Kuu-oE-io9" secondAttribute="trailing" id="eiE-ff-ggo"/>
+                            <constraint firstItem="Kuu-oE-io9" firstAttribute="top" secondItem="Abc-pc-TVD" secondAttribute="top" id="oQU-yC-S8X"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Abc-pc-TVD"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pKK-Bg-8Me" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-88" y="163"/>
+        </scene>
+    </scenes>
+</document>

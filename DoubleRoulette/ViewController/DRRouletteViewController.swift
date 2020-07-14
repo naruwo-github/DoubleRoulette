@@ -289,6 +289,13 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         self.present(activityVC, animated: true, completion: nil)
     }
+    
+    @IBAction func editAnimationSettingButton(_ sender: Any) {
+        if let vc = R.storyboard.sub.drRouletteSettingViewController() {
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
 }
 
 extension DRRouletteViewController: AVAudioPlayerDelegate {

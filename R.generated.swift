@@ -113,7 +113,7 @@ struct R: Rswift.Validatable {
   #endif
 
   #if os(iOS) || os(tvOS)
-  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
   struct storyboard {
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
@@ -121,6 +121,8 @@ struct R: Rswift.Validatable {
     static let main = _R.storyboard.main()
     /// Storyboard `Popup`.
     static let popup = _R.storyboard.popup()
+    /// Storyboard `Sub`.
+    static let sub = _R.storyboard.sub()
 
     #if os(iOS) || os(tvOS)
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
@@ -140,6 +142,13 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Popup", bundle: ...)`
     static func popup(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.popup)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "Sub", bundle: ...)`
+    static func sub(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.sub)
     }
     #endif
 
@@ -261,6 +270,9 @@ struct _R: Rswift.Validatable {
       #if os(iOS) || os(tvOS)
       try popup.validate()
       #endif
+      #if os(iOS) || os(tvOS)
+      try sub.validate()
+      #endif
     }
 
     #if os(iOS) || os(tvOS)
@@ -309,6 +321,27 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
         if _R.storyboard.popup().drResultViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drResultViewController' could not be loaded from storyboard 'Popup' as 'DRResultViewController'.") }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    struct sub: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let drRouletteSettingViewController = StoryboardViewControllerResource<DRRouletteSettingViewController>(identifier: "DRRouletteSettingViewController")
+      let name = "Sub"
+
+      func drRouletteSettingViewController(_: Void = ()) -> DRRouletteSettingViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drRouletteSettingViewController)
+      }
+
+      static func validate() throws {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+          if UIKit.UIColor(named: "rouletteLabel", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'rouletteLabel' is used in storyboard 'Sub', but couldn't be loaded.") }
+        }
+        if _R.storyboard.sub().drRouletteSettingViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drRouletteSettingViewController' could not be loaded from storyboard 'Sub' as 'DRRouletteSettingViewController'.") }
       }
 
       fileprivate init() {}
