@@ -6,7 +6,6 @@
 //  Copyright © 2019 Narumi Nogawa. All rights reserved.
 //
 
-
 import UIKit
 import AVFoundation
 import GoogleMobileAds
@@ -213,10 +212,11 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             self.popupWindow.rootViewController = vc
         }
     }
-
-    //roulette start
+    
     @IBAction private func startButtonTapped(_ sender: Any) {
-        self.playSound(name: "roulette-sound")
+        if DRUserHelper.isAuthorizedPlaySound {
+            self.playSound(name: "roulette-sound")
+        }
         
         let cgPi = CGFloat.pi
         let rotationMinimum = cgPi * 2
@@ -277,11 +277,13 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             }
         }
         
-        self.setupResultLabel(outerResult: outerResult, innerResult: innerResult)
-        self.showResultWindow()
+        if DRUserHelper.isAuthorizedResultView {
+            self.setupResultLabel(outerResult: outerResult, innerResult: innerResult)
+            self.showResultWindow()
+        }
+        
     }
     
-    //share button
     @IBAction private func shareButton(_ sender: Any) {
         let shareText = "Double Roulette ScreenShot!"
         let shareImage = self.view.getScreenShot(windowFrame: self.view.frame, adFrame: self.bannerView.frame, backgroundColor: self.view.backgroundColor!)
@@ -289,6 +291,13 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         self.present(activityVC, animated: true, completion: nil)
     }
+    
+    @IBAction func editAnimationSettingButton(_ sender: Any) {
+        if let vc = R.storyboard.sub.drRouletteSettingViewController() {
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
 }
 
 extension DRRouletteViewController: AVAudioPlayerDelegate {

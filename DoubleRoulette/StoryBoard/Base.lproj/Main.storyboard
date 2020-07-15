@@ -89,7 +89,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Setting" id="yO3-7a-iuY">
-                        <barButtonItem key="leftBarButtonItem" title="AllClear" id="sEO-p6-iIs">
+                        <barButtonItem key="leftBarButtonItem" title="ClearAll" id="sEO-p6-iIs">
                             <connections>
                                 <action selector="allClearButtonTapped:" destination="MY0-81-ssA" id="kDh-48-Bst"/>
                             </connections>
@@ -215,11 +215,18 @@
                         <viewLayoutGuide key="safeArea" id="JKy-1s-ggH"/>
                     </view>
                     <navigationItem key="navigationItem" title="Roulette" id="G6T-NX-6v1">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Qnj-c0-6je">
-                            <connections>
-                                <action selector="shareButton:" destination="BYZ-38-t0r" id="1Ez-Yo-bN7"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="action" id="Qnj-c0-6je">
+                                <connections>
+                                    <action selector="shareButton:" destination="BYZ-38-t0r" id="1Ez-Yo-bN7"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="compose" id="vaC-ph-i3I">
+                                <connections>
+                                    <action selector="editAnimationSettingButton:" destination="BYZ-38-t0r" id="x2G-I5-buf"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="bottomAdView" destination="FKs-pi-1Ng" id="bxT-pI-veA"/>
