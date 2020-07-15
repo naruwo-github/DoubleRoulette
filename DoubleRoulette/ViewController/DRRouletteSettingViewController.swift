@@ -9,16 +9,28 @@
 import UIKit
 
 class DRRouletteSettingViewController: UIViewController {
-    @IBOutlet weak var soundOnOffLabel: UILabel!
-    @IBOutlet weak var resultOnOffLabel: UILabel!
+    @IBOutlet private weak var soundOnOffLabel: UILabel!
+    @IBOutlet private weak var soundSwitch: UISwitch!
+    @IBOutlet private weak var resultOnOffLabel: UILabel!
+    @IBOutlet private weak var resultSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupSwitch()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.view.layer.cornerRadius = 20.0
+    }
+    
+    private func setupSwitch() {
+        let soundFlag = DRUserHelper.isAuthorizedPlaySound
+        let resultFlag = DRUserHelper.isAuthorizedResultView
+        self.soundOnOffLabel.text = soundFlag ? "ON":"OFF"
+        self.soundSwitch.setOn(soundFlag, animated: true)
+        self.resultOnOffLabel.text = resultFlag ? "ON":"OFF"
+        self.resultSwitch.setOn(resultFlag, animated: true)
     }
     
     @IBAction func closeButtonTapped(_ sender: Any) {

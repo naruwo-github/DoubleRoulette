@@ -165,7 +165,9 @@
                     </view>
                     <connections>
                         <outlet property="resultOnOffLabel" destination="HDj-OS-dLn" id="LzG-lC-Pk4"/>
+                        <outlet property="resultSwitch" destination="FI2-0H-27J" id="DLt-Zm-Jj7"/>
                         <outlet property="soundOnOffLabel" destination="owP-oc-6kx" id="uyT-9b-jok"/>
+                        <outlet property="soundSwitch" destination="lHW-Wc-JyM" id="hry-Xm-yfq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pKK-Bg-8Me" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
