@@ -9,7 +9,9 @@
 import UIKit
 
 class DRRouletteSettingViewController: UIViewController {
-
+    @IBOutlet weak var soundOnOffLabel: UILabel!
+    @IBOutlet weak var resultOnOffLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -26,6 +28,18 @@ class DRRouletteSettingViewController: UIViewController {
         UIView.animate(withDuration: 1.0) {
             self.view.layer.position.y += self.view.frame.height / 2.0
         }
+    }
+    
+    @IBAction func soundOnOffSwitch(_ sender: Any) {
+        let flag = (sender as! UISwitch).isOn
+        self.soundOnOffLabel.text = flag ? "ON":"OFF"
+        DRUserHelper.isAuthorizedPlaySound = flag
+    }
+    
+    @IBAction func resultOnOffSwitch(_ sender: Any) {
+        let flag = (sender as! UISwitch).isOn
+        self.resultOnOffLabel.text = flag ? "ON":"OFF"
+        DRUserHelper.isAuthorizedResultView = flag
     }
     
 }

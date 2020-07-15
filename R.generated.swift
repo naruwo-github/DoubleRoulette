@@ -339,7 +339,6 @@ struct _R: Rswift.Validatable {
 
       static func validate() throws {
         if #available(iOS 11.0, tvOS 11.0, *) {
-          if UIKit.UIColor(named: "rouletteLabel", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'rouletteLabel' is used in storyboard 'Sub', but couldn't be loaded.") }
         }
         if _R.storyboard.sub().drRouletteSettingViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drRouletteSettingViewController' could not be loaded from storyboard 'Sub' as 'DRRouletteSettingViewController'.") }
       }
