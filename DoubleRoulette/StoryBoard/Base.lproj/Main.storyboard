@@ -89,7 +89,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Setting" id="yO3-7a-iuY">
-                        <barButtonItem key="leftBarButtonItem" title="AllClear" id="sEO-p6-iIs">
+                        <barButtonItem key="leftBarButtonItem" title="ClearAll" id="sEO-p6-iIs">
                             <connections>
                                 <action selector="allClearButtonTapped:" destination="MY0-81-ssA" id="kDh-48-Bst"/>
                             </connections>
