@@ -79,7 +79,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="OCt-55-qxh">
                                                         <rect key="frame" x="10" y="10" width="236.5" height="51.5"/>
                                                         <string key="text">Play sound 
-after tapped START button.</string>
+after START button tapped.</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -140,9 +140,9 @@ after tapped START button.</string>
                                                         </connections>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ihr-hp-Ut8">
-                                                        <rect key="frame" x="10" y="10" width="231" height="52"/>
+                                                        <rect key="frame" x="10" y="10" width="220" height="52"/>
                                                         <string key="text">Display result screen
-after the roulette rotationg.</string>
+after the roulette rotating.</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>

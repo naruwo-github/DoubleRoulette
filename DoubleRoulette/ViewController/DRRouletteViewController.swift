@@ -286,7 +286,9 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     
     @IBAction private func shareButton(_ sender: Any) {
         let shareText = "Double Roulette ScreenShot!"
-        let shareImage = self.view.getScreenShot(windowFrame: self.view.frame, adFrame: self.bannerView.frame, backgroundColor: self.view.backgroundColor!)
+        self.bottomAdView.isHidden = true
+        let shareImage = self.view.getScreenShot(windowFrame: self.view.frame, adFrame: nil, backgroundColor: self.view.backgroundColor!)
+        self.bottomAdView.isHidden = false
         let activityItems = [shareText, shareImage] as [Any]
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         self.present(activityVC, animated: true, completion: nil)
