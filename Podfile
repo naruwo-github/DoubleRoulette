@@ -13,5 +13,8 @@ target 'DoubleRoulette' do
   pod 'R.swift'
 
   # Pods for DoubleRoulette
-
+  target 'DoubleRouletteUITests' do
+    inherit! :search_paths
+    pod 'Firebase'
+  end
 end

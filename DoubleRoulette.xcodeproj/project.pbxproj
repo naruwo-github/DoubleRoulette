@@ -36,6 +36,7 @@
 		05D3D9D722C9D475007D24FF /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3D9D522C9D475007D24FF /* TableViewCell.swift */; };
 		05DC270324B75BDC00657D2E /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05DC270224B75BDC00657D2E /* Popup.storyboard */; };
 		18D3217A7E609E7DFF081944 /* Pods_DoubleRoulette.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 900A8DDB992024885EAA9F37 /* Pods_DoubleRoulette.framework */; };
+		8B5A228DB3F9F4DD46BE8BC0 /* Pods_DoubleRouletteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2359A6B6A922EDF3737179 /* Pods_DoubleRouletteUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,8 +105,11 @@
 		05D3D9D522C9D475007D24FF /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		05DC270224B75BDC00657D2E /* Popup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Popup.storyboard; sourceTree = "<group>"; };
 		2D1E8F670281D253E3F70D58 /* Pods-DoubleRoulette.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRoulette.debug.xcconfig"; path = "Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette.debug.xcconfig"; sourceTree = "<group>"; };
+		36EE6086EEE02E7A46E91FD9 /* Pods-DoubleRouletteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRouletteUITests.release.xcconfig"; path = "Target Support Files/Pods-DoubleRouletteUITests/Pods-DoubleRouletteUITests.release.xcconfig"; sourceTree = "<group>"; };
 		900A8DDB992024885EAA9F37 /* Pods_DoubleRoulette.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubleRoulette.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93214C384C1F68552E28F145 /* Pods-DoubleRoulette.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRoulette.release.xcconfig"; path = "Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette.release.xcconfig"; sourceTree = "<group>"; };
+		CD2359A6B6A922EDF3737179 /* Pods_DoubleRouletteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubleRouletteUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D80EE1ADBEBB07EA622753BC /* Pods-DoubleRouletteUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRouletteUITests.debug.xcconfig"; path = "Target Support Files/Pods-DoubleRouletteUITests/Pods-DoubleRouletteUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B5A228DB3F9F4DD46BE8BC0 /* Pods_DoubleRouletteUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +272,8 @@
 			children = (
 				2D1E8F670281D253E3F70D58 /* Pods-DoubleRoulette.debug.xcconfig */,
 				93214C384C1F68552E28F145 /* Pods-DoubleRoulette.release.xcconfig */,
+				D80EE1ADBEBB07EA622753BC /* Pods-DoubleRouletteUITests.debug.xcconfig */,
+				36EE6086EEE02E7A46E91FD9 /* Pods-DoubleRouletteUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -278,6 +285,7 @@
 				059C9F9924453D0D00B11797 /* Realm.framework */,
 				059C9F9A24453D0D00B11797 /* RealmSwift.framework */,
 				900A8DDB992024885EAA9F37 /* Pods_DoubleRoulette.framework */,
+				CD2359A6B6A922EDF3737179 /* Pods_DoubleRouletteUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -307,9 +315,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0576835B24DAA09100BF1F1C /* Build configuration list for PBXNativeTarget "DoubleRouletteUITests" */;
 			buildPhases = (
+				A4F67C4ECA53C848A9F5A889 /* [CP] Check Pods Manifest.lock */,
 				0576835024DAA09100BF1F1C /* Sources */,
 				0576835124DAA09100BF1F1C /* Frameworks */,
 				0576835224DAA09100BF1F1C /* Resources */,
+				5F1EF9ED0A6CBA0C6CCAE2E3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -432,7 +442,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -473,6 +483,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F1EF9ED0A6CBA0C6CCAE2E3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoubleRouletteUITests/Pods-DoubleRouletteUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoubleRouletteUITests/Pods-DoubleRouletteUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubleRouletteUITests/Pods-DoubleRouletteUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4F67C4ECA53C848A9F5A889 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DoubleRouletteUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CC3180F0EFD224095355A8EE /* [CP] Check Pods Manifest.lock */ = {
@@ -614,6 +663,7 @@
 		};
 		0576835C24DAA09100BF1F1C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D80EE1ADBEBB07EA622753BC /* Pods-DoubleRouletteUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UMBT5JZV43;
@@ -634,6 +684,7 @@
 		};
 		0576835D24DAA09100BF1F1C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36EE6086EEE02E7A46E91FD9 /* Pods-DoubleRouletteUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UMBT5JZV43;

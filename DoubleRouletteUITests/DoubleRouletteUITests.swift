@@ -8,7 +8,7 @@
 
 import UIKit
 import XCTest
-@testable import Pods_DoubleRoulette
+@testable import DoubleRoulette
 
 class DoubleRouletteUITests: XCTestCase {
 
@@ -46,6 +46,11 @@ class DoubleRouletteUITests: XCTestCase {
     func testAddButtonTapped() {
         let app = XCUIApplication()
         app.launch()
-        app.navigationBars["Setting"].buttons["Add"].tap()
+//        if let vc = R.storyboard.main.instantiateInitialViewController() {
+//            let preNum = (vc.topViewController as! DRRouletteCellTableViewController).rouletteCells.count
+//            app.navigationBars["Setting"].buttons["Add"].tap()
+//            let postNum = (vc.topViewController as! DRRouletteCellTableViewController).rouletteCells.count
+//            XCTAssert(postNum > preNum)
+//        }
     }
 }
