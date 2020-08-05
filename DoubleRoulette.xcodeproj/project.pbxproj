@@ -18,6 +18,7 @@
 		0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529A99822CC991400F5ECB6 /* MyPieChartView.swift */; };
 		053D814823914D0900ACCAEE /* ColorStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D814723914D0900ACCAEE /* ColorStock.swift */; };
 		05579308245A653A0081DA16 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05579307245A653A0081DA16 /* Colors.xcassets */; };
+		0576834924DA9EB700BF1F1C /* DoubleRouletteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0576834824DA9EB700BF1F1C /* DoubleRouletteTests.swift */; };
 		05775ABF245A9506009BAD29 /* RouletteObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05775ABE245A9506009BAD29 /* RouletteObject.swift */; };
 		058D5B8E22FC51AB0064A91D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */; };
 		0590A0C822D7F38D004BB8CA /* roulette-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */; };
@@ -35,6 +36,16 @@
 		05DC270324B75BDC00657D2E /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05DC270224B75BDC00657D2E /* Popup.storyboard */; };
 		18D3217A7E609E7DFF081944 /* Pods_DoubleRoulette.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 900A8DDB992024885EAA9F37 /* Pods_DoubleRoulette.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0576834B24DA9EB700BF1F1C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05AF43D822C974D2007A236D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05AF43DF22C974D2007A236D;
+			remoteInfo = DoubleRoulette;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		059C9F9F24453D0D00B11797 /* Embed Frameworks */ = {
@@ -63,6 +74,9 @@
 		0529A99822CC991400F5ECB6 /* MyPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPieChartView.swift; sourceTree = "<group>"; };
 		053D814723914D0900ACCAEE /* ColorStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStock.swift; sourceTree = "<group>"; };
 		05579307245A653A0081DA16 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		0576834624DA9EB700BF1F1C /* DoubleRouletteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoubleRouletteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0576834824DA9EB700BF1F1C /* DoubleRouletteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleRouletteTests.swift; sourceTree = "<group>"; };
+		0576834A24DA9EB700BF1F1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05775ABE245A9506009BAD29 /* RouletteObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteObject.swift; sourceTree = "<group>"; };
 		058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "roulette-sound.mp3"; sourceTree = "<group>"; };
@@ -84,6 +98,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0576834324DA9EB700BF1F1C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05AF43DD22C974D2007A236D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -147,6 +168,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		0576834724DA9EB700BF1F1C /* DoubleRouletteTests */ = {
+			isa = PBXGroup;
+			children = (
+				0576834824DA9EB700BF1F1C /* DoubleRouletteTests.swift */,
+				0576834A24DA9EB700BF1F1C /* Info.plist */,
+			);
+			path = DoubleRouletteTests;
+			sourceTree = "<group>";
+		};
 		05A82FFB237502BA00613F97 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +201,7 @@
 			children = (
 				051A32FB24B7F5B1004A134A /* R.generated.swift */,
 				05AF43E222C974D2007A236D /* DoubleRoulette */,
+				0576834724DA9EB700BF1F1C /* DoubleRouletteTests */,
 				05AF43E122C974D2007A236D /* Products */,
 				AC0B03B588244F2B8D54DF3F /* Pods */,
 				E0ECE7BCFD34E1EE363BB70A /* Frameworks */,
@@ -181,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				05AF43E022C974D2007A236D /* DoubleRoulette.app */,
+				0576834624DA9EB700BF1F1C /* DoubleRouletteTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,6 +256,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0576834524DA9EB700BF1F1C /* DoubleRouletteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0576834F24DA9EB700BF1F1C /* Build configuration list for PBXNativeTarget "DoubleRouletteTests" */;
+			buildPhases = (
+				0576834224DA9EB700BF1F1C /* Sources */,
+				0576834324DA9EB700BF1F1C /* Frameworks */,
+				0576834424DA9EB700BF1F1C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0576834C24DA9EB700BF1F1C /* PBXTargetDependency */,
+			);
+			name = DoubleRouletteTests;
+			productName = DoubleRouletteTests;
+			productReference = 0576834624DA9EB700BF1F1C /* DoubleRouletteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		05AF43DF22C974D2007A236D /* DoubleRoulette */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05AF43F222C974D4007A236D /* Build configuration list for PBXNativeTarget "DoubleRoulette" */;
@@ -252,10 +302,14 @@
 		05AF43D822C974D2007A236D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Narumi Nogawa";
 				TargetAttributes = {
+					0576834524DA9EB700BF1F1C = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 05AF43DF22C974D2007A236D;
+					};
 					05AF43DF22C974D2007A236D = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
@@ -275,11 +329,19 @@
 			projectRoot = "";
 			targets = (
 				05AF43DF22C974D2007A236D /* DoubleRoulette */,
+				0576834524DA9EB700BF1F1C /* DoubleRouletteTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0576834424DA9EB700BF1F1C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05AF43DE22C974D2007A236D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -379,6 +441,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0576834224DA9EB700BF1F1C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0576834924DA9EB700BF1F1C /* DoubleRouletteTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05AF43DC22C974D2007A236D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -400,6 +470,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0576834C24DA9EB700BF1F1C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05AF43DF22C974D2007A236D /* DoubleRoulette */;
+			targetProxy = 0576834B24DA9EB700BF1F1C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		05AF43E722C974D2007A236D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -420,6 +498,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0576834D24DA9EB700BF1F1C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMBT5JZV43;
+				INFOPLIST_FILE = DoubleRouletteTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.kero0711tennis.DoubleRouletteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DoubleRoulette.app/DoubleRoulette";
+			};
+			name = Debug;
+		};
+		0576834E24DA9EB700BF1F1C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UMBT5JZV43;
+				INFOPLIST_FILE = DoubleRouletteTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.kero0711tennis.DoubleRouletteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DoubleRoulette.app/DoubleRoulette";
+			};
+			name = Release;
+		};
 		05AF43F022C974D4007A236D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -589,6 +709,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0576834F24DA9EB700BF1F1C /* Build configuration list for PBXNativeTarget "DoubleRouletteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0576834D24DA9EB700BF1F1C /* Debug */,
+				0576834E24DA9EB700BF1F1C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		05AF43DB22C974D2007A236D /* Build configuration list for PBXProject "DoubleRoulette" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
