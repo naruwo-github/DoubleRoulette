@@ -19,20 +19,19 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
     
     private var bannerView: GADBannerView!
     private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/2967728941"
-    let realm = try! Realm()                        //レルムのインスタンス生成
-    var rouletteCells: Results<RouletteObject>!     //データ
-    private var indexPath: NSIndexPath?                     //一時的なインデックスパス
-    let colorStock = ColorStock()                   //カラーストックのインスタンス生成
-    let userDefaults = UserDefaults.standard        //端末内データ保存
+    let realm = try! Realm()
+    var rouletteCells: Results<RouletteObject>!
+    private var indexPath: NSIndexPath?
+    let colorStock = ColorStock()
+    let userDefaults = UserDefaults.standard
     private var newCellId: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //ナビゲーションバーのアイテムの色を指定
         self.navigationController?.navigationBar.tintColor = UIColor.navigationItem
-        self.configureTableView()   //TableViewCellの高さを設定
-        //Realmに保存したデータを取得
+        self.configureTableView()
+        
         do{
             self.rouletteCells = realm.objects(RouletteObject.self)
             tableView.reloadData()
@@ -41,7 +40,6 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         if self.userDefaults.bool(forKey: "fixed") {
             self.newCellId = userDefaults.integer(forKey: "id")
         } else {
-            //全データ削除
             do{
                 try realm.write {
                     realm.deleteAll()
@@ -62,7 +60,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
     }
     
     @IBAction private func allClearButtonTapped(_ sender: Any) {
-        //全データ削除
+        // NOTE: 全データ削除
         do{
             try realm.write {
                 realm.deleteAll()

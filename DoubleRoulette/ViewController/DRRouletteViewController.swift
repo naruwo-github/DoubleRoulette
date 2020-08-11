@@ -183,9 +183,9 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func showResultWindow() {
-        // NOTE: イベント入力を無効
+        // NOTE: 画面をタップできなくさせるためにイベント入力を無効
         UIApplication.shared.beginIgnoringInteractionEvents()
-        // NOTE: ポップアップウィンドゥをキーウィンドゥに設定
+        // NOTE: ポップアップウィンドゥをキーウィンドゥに設定して最前面に表示させる
         self.popupWindow.makeKeyAndVisible()
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
             UIView.animate(withDuration: 1.0) {
@@ -198,9 +198,9 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 9.5) {
-            // NOTE: 元のウィンドゥをキーウィンドゥに設定
+            // NOTE: 元のウィンドゥをキーウィンドゥに設定しポップアップを非表示に
             self.view.window?.makeKeyAndVisible()
-            // NOTE: イベント入力を有効
+            // NOTE: イベント入力を有効にしタップできるようにする
             UIApplication.shared.endIgnoringInteractionEvents()
         }
     }
