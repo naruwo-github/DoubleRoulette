@@ -97,7 +97,9 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
     }
     
     @IBAction private func moveToRouletteButtonTapped(_ sender: Any) {
-        // TODO: ここでnavigation遷移する
+        if let rouletteVC = R.storyboard.main.drRouletteViewController() {
+            self.navigationController?.pushViewController(rouletteVC, animated: true)
+        }
     }
     
     @IBAction private func cellColorButtonTapped(_ sender: Any) {
@@ -173,9 +175,6 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         let rgb = UIColor.hexToRGB(hex: object.color)
         cell.setupCell(name: object.item, color: UIColor.rgbToColor(red: rgb[0], green: rgb[1], blue: rgb[2]), type: object.type)
         return cell
-    }
- 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

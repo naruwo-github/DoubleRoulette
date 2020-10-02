@@ -296,11 +296,23 @@ struct _R: Rswift.Validatable {
       typealias InitialController = UIKit.UINavigationController
 
       let bundle = R.hostingBundle
+      let drRouletteCellTableViewController = StoryboardViewControllerResource<DRRouletteCellTableViewController>(identifier: "DRRouletteCellTableViewController")
+      let drRouletteViewController = StoryboardViewControllerResource<DRRouletteViewController>(identifier: "DRRouletteViewController")
       let name = "Main"
+
+      func drRouletteCellTableViewController(_: Void = ()) -> DRRouletteCellTableViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drRouletteCellTableViewController)
+      }
+
+      func drRouletteViewController(_: Void = ()) -> DRRouletteViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drRouletteViewController)
+      }
 
       static func validate() throws {
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
+        if _R.storyboard.main().drRouletteCellTableViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drRouletteCellTableViewController' could not be loaded from storyboard 'Main' as 'DRRouletteCellTableViewController'.") }
+        if _R.storyboard.main().drRouletteViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drRouletteViewController' could not be loaded from storyboard 'Main' as 'DRRouletteViewController'.") }
       }
 
       fileprivate init() {}
