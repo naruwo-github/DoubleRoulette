@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tE1-cL-ep2">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tE1-cL-ep2">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,34 +12,34 @@
             <objects>
                 <tableViewController id="MY0-81-ssA" customClass="DRRouletteCellTableViewController" customModule="DoubleRoulette" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="d7U-Ek-pkL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="HUc-Zf-GnY">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" id="mn9-py-mnx" customClass="TableViewCell" customModule="DoubleRoulette" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="48.5"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="48.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mn9-py-mnx" id="hZy-nG-ON0">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="48.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="48.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <segmentedControl opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g2S-0W-uWo">
-                                            <rect key="frame" x="20" y="7" width="124" height="35.5"/>
+                                            <rect key="frame" x="20" y="7" width="180" height="35.5"/>
                                             <segments>
                                                 <segment title="Outer"/>
                                                 <segment title="Inner"/>
                                             </segments>
                                             <connections>
-                                                <action selector="segmentedControl:" destination="MY0-81-ssA" eventType="valueChanged" id="Tvw-ay-rrM"/>
+                                                <action selector="segmentedControlTapped:" destination="MY0-81-ssA" eventType="valueChanged" id="Tvw-ay-rrM"/>
                                             </connections>
                                         </segmentedControl>
-                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RzQ-a8-dcs">
-                                            <rect key="frame" x="352.5" y="7" width="41.5" height="34.5"/>
+                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RzQ-a8-dcs">
+                                            <rect key="frame" x="520" y="7" width="60" height="34.5"/>
                                             <state key="normal" title="Color"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -48,12 +47,12 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <action selector="buttonButtonTapped:" destination="MY0-81-ssA" eventType="touchUpInside" id="akA-ec-mKD"/>
+                                                <action selector="cellColorButtonTapped:" destination="MY0-81-ssA" eventType="touchUpInside" id="akA-ec-mKD"/>
                                             </connections>
                                         </button>
                                         <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RC6-Ju-gGT">
-                                            <rect key="frame" x="152" y="7" width="192.5" height="34.5"/>
-                                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <rect key="frame" x="208" y="7" width="304" height="34.5"/>
+                                            <color key="tintColor" systemColor="labelColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
@@ -97,21 +96,21 @@
                         <rightBarButtonItems>
                             <barButtonItem style="done" systemItem="play" id="7qy-oi-phI">
                                 <connections>
-                                    <action selector="playButtonTapped:" destination="MY0-81-ssA" id="qQ9-tn-SNG"/>
+                                    <action selector="moveToRouletteButtonTapped:" destination="MY0-81-ssA" id="qQ9-tn-SNG"/>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="toViewController" id="HBe-Ce-Atd"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem style="done" systemItem="add" id="3Tw-0u-AfB">
                                 <connections>
-                                    <action selector="addButtonTapped:" destination="MY0-81-ssA" id="liP-jD-wKf"/>
+                                    <action selector="addCellButtonTapped:" destination="MY0-81-ssA" id="liP-jD-wKf"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="adView" destination="HUc-Zf-GnY" id="2yV-7l-TmY"/>
-                        <outlet property="playButton" destination="7qy-oi-phI" id="OMR-8I-bxb"/>
-                        <outlet property="plusButton" destination="3Tw-0u-AfB" id="2hw-Zo-FEY"/>
+                        <outlet property="addCellButton" destination="3Tw-0u-AfB" id="2hw-Zo-FEY"/>
+                        <outlet property="moveToRouletteButton" destination="7qy-oi-phI" id="OMR-8I-bxb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bKd-e9-BFt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -123,26 +122,26 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="DRRouletteViewController" customModule="DoubleRoulette" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6D-nP-cWa" userLabel="Outer Chart View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l40-z0-66b">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeH-X5-t4e" userLabel="TopView">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKs-pi-1Ng" userLabel="AdView">
-                                        <rect key="frame" x="0.0" y="724" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="506" width="600" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="lYC-1b-yh1"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKR-hp-RI6">
-                                        <rect key="frame" x="124" y="664" width="166" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKR-hp-RI6">
+                                        <rect key="frame" x="180" y="446" width="240" height="50"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="sRH-01-OYz"/>
@@ -193,7 +192,8 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="JKy-1s-ggH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="S6D-nP-cWa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1hk-R7-e4G"/>
                             <constraint firstItem="l40-z0-66b" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4ab-tV-xcL"/>
@@ -212,7 +212,6 @@
                             <constraint firstItem="l40-z0-66b" firstAttribute="trailing" secondItem="JKy-1s-ggH" secondAttribute="trailing" id="wdr-vC-nep"/>
                             <constraint firstItem="l40-z0-66b" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="zai-Bx-zzi"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="JKy-1s-ggH"/>
                     </view>
                     <navigationItem key="navigationItem" title="Roulette" id="G6T-NX-6v1">
                         <rightBarButtonItems>
@@ -261,4 +260,12 @@
         </scene>
     </scenes>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

@@ -14,16 +14,17 @@ import RealmSwift
 
 class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDelegate, GADBannerViewDelegate {
     @IBOutlet private weak var adView: UIView!
-    @IBOutlet private weak var plusButton: UIBarButtonItem!
-    @IBOutlet private weak var playButton: UIBarButtonItem!
+    @IBOutlet private weak var addCellButton: UIBarButtonItem!
+    @IBOutlet private weak var moveToRouletteButton: UIBarButtonItem!
     
     private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
     private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/2967728941"
     private let realm = try! Realm()
     private var indexPath: NSIndexPath?
     private var newCellId: Int = 0
-    let colorStock = ColorStock()
-    let userDefaults = UserDefaults.standard
+    private let colorStock = ColorStock()
+    private let userDefaults = UserDefaults.standard
+    
     var rouletteCells: Results<RouletteObject>!
 
     override func viewDidLoad() {
@@ -72,7 +73,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         self.userDefaults.set(0, forKey: "id")
     }
     
-    @IBAction private func addButtonTapped(_ sender: Any) {
+    @IBAction private func addCellButtonTapped(_ sender: Any) {
         let newCell = RouletteObject()
         newCell.id = self.newCellId
         
@@ -94,10 +95,10 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         self.tableView.scrollToRow(at: IndexPath(row: rouletteCells.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
     }
     
-    @IBAction private func playButtonTapped(_ sender: Any) {
+    @IBAction private func moveToRouletteButtonTapped(_ sender: Any) {
     }
     
-    @IBAction private func buttonButtonTapped(_ sender: Any) {
+    @IBAction private func cellColorButtonTapped(_ sender: Any) {
         if let button = sender as? UIButton {
             if let superview = button.superview {
                 if let cell = superview.superview as? TableViewCell {
@@ -112,7 +113,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         
     }
     
-    @IBAction private func segmentedControl(_ sender: UISegmentedControl) {
+    @IBAction private func segmentedControlTapped(_ sender: UISegmentedControl) {
         let point = self.tableView.convert(sender.center, from: sender)
         if let indexPath = self.tableView.indexPathForRow(at: point) {
             let cell = rouletteCells[indexPath.row]
@@ -150,32 +151,6 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         }
     }
     
-    internal func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
-        guard (self.indexPath != nil) else {
-            return
-        }
-        
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-        color.getRed(&r, green: &g , blue: &b, alpha: &a)
-        
-        let cell = rouletteCells[self.indexPath!.row]
-        do{
-            let realm = try Realm()
-            try realm.write({ () -> Void in
-                cell.color = UIColor.rgbToHex(red: Int(r*255), green: Int(g*255), blue: Int(b*255))
-                realm.add(cell, update: .modified)
-                print("Cell Saved")
-            })
-        }catch{
-            print("Save is Faild")
-        }
-        let modifiedCell = self.tableView.cellForRow(at: self.indexPath! as IndexPath)
-        (modifiedCell?.viewWithTag(2) as! UIButton).backgroundColor = UIColor(red: r, green: g, blue: b, alpha: a)
-    }
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             do{
@@ -195,18 +170,13 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         let object = self.rouletteCells[indexPath.row]
         let rgb = UIColor.hexToRGB(hex: object.color)
         cell.setupCell(name: object.item, color: UIColor.rgbToColor(red: rgb[0], green: rgb[1], blue: rgb[2]), type: object.type)
-//        cell.itemType.selectedSegmentIndex = object.type
-//        cell.itemName.text = object.item
-//        cell.itemColor.backgroundColor = UIColor.rgbToColor(red: rgb[0], green: rgb[1], blue: rgb[2])
         return cell
     }
  
-    // NOTE: segueで遷移するときに、ルーレットセルの情報を遷移先VCに渡す
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "toViewController") {
-            let controller = segue.destination as! DRRouletteViewController
-            controller.rouletteCells = rouletteCells
-        }else if(segue.identifier == "toColorPicker") {
+            let rouletteVC = segue.destination as! DRRouletteViewController
+            rouletteVC.rouletteCells = self.rouletteCells
         }
     }
     
@@ -238,6 +208,32 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         self.bannerView.rootViewController = self
         self.bannerView.load(GADRequest())
         self.bannerView.delegate = self
+    }
+    
+    internal func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
+        guard (self.indexPath != nil) else {
+            return
+        }
+        
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        color.getRed(&r, green: &g , blue: &b, alpha: &a)
+        
+        let cell = rouletteCells[self.indexPath!.row]
+        do{
+            let realm = try Realm()
+            try realm.write({ () -> Void in
+                cell.color = UIColor.rgbToHex(red: Int(r*255), green: Int(g*255), blue: Int(b*255))
+                realm.add(cell, update: .modified)
+                print("Cell Saved")
+            })
+        }catch{
+            print("Save is Faild")
+        }
+        let modifiedCell = self.tableView.cellForRow(at: self.indexPath! as IndexPath)
+        (modifiedCell?.viewWithTag(2) as! UIButton).backgroundColor = UIColor(red: r, green: g, blue: b, alpha: a)
     }
     
 }
