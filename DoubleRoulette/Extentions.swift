@@ -6,11 +6,10 @@
 //  Copyright © 2020 Narumi Nogawa. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 extension UIColor {
-    // NOTE: イニシャライザを追加
+    // イニシャライザを追加
     convenience init(hex: String, alpha: CGFloat = 1.0) {
         let v = Int("000000" + hex, radix: 16) ?? 0
         let r = CGFloat(v / Int(powf(256, 2)) % 256) / 255
@@ -19,18 +18,18 @@ extension UIColor {
         self.init(red: r, green: g, blue: b, alpha: min(max(alpha, 0), 1))
     }
     
-    // NOTE: ルーレットのラベル(文字)の色
+    // ルーレットのラベル(文字)の色
     class var rouletteLabel: UIColor {
         return UIColor(named: "rouletteLabel") ?? UIColor.black
     }
     
-    // NOTE: ナビゲーションアイテムの色
+    // ナビゲーションアイテムの色
     class var navigationItem: UIColor {
         return UIColor(named: "navigationItemColor") ?? UIColor.gray
     }
     
     //＊＊＊＊色変換＊＊＊＊
-    // NOTE: HexをRGBに
+    // HexをRGBに
     class func hexToRGB(hex color: String) -> [Int]{
         var rgb:[Int] = []
         let scanner = Scanner(string: color as String)
@@ -46,7 +45,7 @@ extension UIColor {
         return rgb
     }
     
-    // NOTE: HexをUIColorに
+    // HexをUIColorに
     class func hexToRgb(color: String, alpha : CGFloat = 1) -> UIColor {
         let code = color
         let scanner = Scanner(string: code as String)
@@ -62,17 +61,17 @@ extension UIColor {
         }
     }
     
-    // NOTE: RGBをHexに
+    // RGBをHexに
     class func rgbToHex(red r: Int, green g: Int, blue b: Int) -> String {
         return String(NSString(format: "%02X%02X%02X", r, g, b))
     }
     
-    // NOTE: rgbをUIColorに
+    // rgbをUIColorに
     class func rgbToColor(red r: Int, green g: Int, blue b: Int, alpha: CGFloat = 1) -> UIColor {
         return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: alpha)
     }
     
-    // NOTE: UIColorをRGBに変換する
+    // UIColorをRGBに変換する
     class func convertToRGB(_ color: UIColor) -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         let components = color.cgColor.components! // UIColorをCGColorに変換し、RGBとAlphaがそれぞれCGFloatで配列として取得できる
         return (red: components[0], green: components[1], blue: components[2], alpha: components[3])
@@ -80,7 +79,7 @@ extension UIColor {
 }
 
 extension UIView {
-    // NOTE: 広告を隠したスクリーンショットを撮る関数（WindowFrameが画面領域、adFrameが広告領域）
+    // 広告を隠したスクリーンショットを撮る関数（WindowFrameが画面領域、adFrameが広告領域）
     // TODO: 回転後をUIImageとして書き出せない問題が残っている
     func getScreenShot(windowFrame: CGRect, adFrame: CGRect?, backgroundColor: UIColor) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(windowFrame.size, false, 0.0);

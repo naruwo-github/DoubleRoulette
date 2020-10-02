@@ -185,9 +185,9 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func showResultWindow() {
-        // NOTE: 画面をタップできなくさせるためにイベント入力を無効
+        // 画面をタップできなくさせるためにイベント入力を無効
         UIApplication.shared.beginIgnoringInteractionEvents()
-        // NOTE: ポップアップウィンドゥをキーウィンドゥに設定して最前面に表示させる
+        // ポップアップウィンドゥをキーウィンドゥに設定して最前面に表示させる
         self.popupWindow.makeKeyAndVisible()
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
             UIView.animate(withDuration: self.popupDuration) {
@@ -200,9 +200,9 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 9.5) {
-            // NOTE: 元のウィンドゥをキーウィンドゥに設定しポップアップを非表示に
+            // 元のウィンドゥをキーウィンドゥに設定しポップアップを非表示に
             self.view.window?.makeKeyAndVisible()
-            // NOTE: イベント入力を有効にしタップできるようにする
+            // イベント入力を有効にしタップできるようにする
             UIApplication.shared.endIgnoringInteractionEvents()
         }
     }
@@ -223,7 +223,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         let cgPi = CGFloat.pi
         let rotationMinimum = cgPi * 2
         
-        // NOTE: Outerの回転角度の算出と、アニメーション追加
+        // Outerの回転角度の算出と、アニメーション追加
         let outerRotationAngle = CGFloat.random(in: rotationMinimum ... cgPi * 2 * 10)
         let fromValOuter: CGFloat = self.currentChangedOuterAngle
         let toValOuter: CGFloat = self.currentChangedOuterAngle + outerRotationAngle
@@ -236,7 +236,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         animationOuter.toValue = toValOuter
         animationOuter.duration = 4.0
         
-        // NOTE: Innerの回転角度の算出と、アニメーション追加
+        // Innerの回転角度の算出と、アニメーション追加
         let innerRotationAngle = CGFloat.random(in: rotationMinimum ... cgPi * 2 * 10)
         let fromValInner: CGFloat = self.currentChangedInnerAngle
         let toValInner: CGFloat = self.currentChangedInnerAngle + innerRotationAngle
@@ -256,7 +256,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         var innerResult: String? = nil
         
         let outerDisplacement = self.currentChangedOuterAngle.truncatingRemainder(dividingBy: cgPi * 2)
-        // NOTE: innerは針の位置が180度ずれているため、cgPiを加算する
+        // innerは針の位置が180度ずれているため、cgPiを加算する
         let innerDisplacement = (self.currentChangedInnerAngle + cgPi).truncatingRemainder(dividingBy: cgPi * 2)
         
         let outerItemsCount = self.outerCellName.count

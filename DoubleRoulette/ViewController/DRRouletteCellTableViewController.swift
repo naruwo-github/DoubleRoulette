@@ -62,7 +62,6 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
     }
     
     @IBAction private func allClearButtonTapped(_ sender: Any) {
-        // NOTE: 全データ削除
         do{
             try realm.write {
                 realm.deleteAll()
