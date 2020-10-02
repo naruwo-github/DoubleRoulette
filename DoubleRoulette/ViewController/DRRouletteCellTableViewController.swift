@@ -17,14 +17,14 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
     @IBOutlet private weak var plusButton: UIBarButtonItem!
     @IBOutlet private weak var playButton: UIBarButtonItem!
     
-    private var bannerView: GADBannerView!
+    private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
     private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/2967728941"
-    let realm = try! Realm()
-    var rouletteCells: Results<RouletteObject>!
+    private let realm = try! Realm()
     private var indexPath: NSIndexPath?
+    private var newCellId: Int = 0
     let colorStock = ColorStock()
     let userDefaults = UserDefaults.standard
-    private var newCellId: Int = 0
+    var rouletteCells: Results<RouletteObject>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -176,7 +176,6 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         (modifiedCell?.viewWithTag(2) as! UIButton).backgroundColor = UIColor(red: r, green: g, blue: b, alpha: a)
     }
     
-    // NOTE: cellを削除する箇所
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             do{
@@ -191,14 +190,14 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         }
     }
 
-    // NOTE: cellの生成箇所
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
         let object = self.rouletteCells[indexPath.row]
-        cell.itemType.selectedSegmentIndex = object.type
-        cell.itemName.text = object.item
         let rgb = UIColor.hexToRGB(hex: object.color)
-        cell.itemColor.backgroundColor = UIColor.rgbToColor(red: rgb[0], green: rgb[1], blue: rgb[2])
+        cell.setupCell(name: object.item, color: UIColor.rgbToColor(red: rgb[0], green: rgb[1], blue: rgb[2]), type: object.type)
+//        cell.itemType.selectedSegmentIndex = object.type
+//        cell.itemName.text = object.item
+//        cell.itemColor.backgroundColor = UIColor.rgbToColor(red: rgb[0], green: rgb[1], blue: rgb[2])
         return cell
     }
  
@@ -231,9 +230,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         self.tableView.rowHeight = UIDevice.current.userInterfaceIdiom == .pad ? 70 : 55
     }
     
-    // NOTE: 広告の初期化
     private func configureAdvertisementView() {
-        self.bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         self.bannerView.translatesAutoresizingMaskIntoConstraints = true
         self.adView.addSubview(self.bannerView)
         self.bannerView.center.x = self.view.center.x
