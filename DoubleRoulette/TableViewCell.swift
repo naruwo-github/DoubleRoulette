@@ -8,27 +8,18 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell, NSSecureCoding, UITextFieldDelegate{
-    
-    //tag = 1
-    @IBOutlet weak var itemName: UITextField!
-    //tag = 2
-    @IBOutlet weak var itemColor: UIButton!
-    //tag = 3
-    @IBOutlet weak var itemType: UISegmentedControl!
-
-    static var supportsSecureCoding: Bool {
-        return true
-    }
+class TableViewCell: UITableViewCell, UITextFieldDelegate{
+    @IBOutlet weak var itemName: UITextField! // tag = 1
+    @IBOutlet weak var itemColor: UIButton! // tag = 2
+    @IBOutlet weak var itemType: UISegmentedControl! // tag = 3
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        itemName.delegate = self
+        self.itemName.delegate = self
     }
     
     internal func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
-        itemName.resignFirstResponder()
+        self.itemName.resignFirstResponder()
         return true
     }
 }

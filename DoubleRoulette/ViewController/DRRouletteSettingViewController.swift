@@ -33,7 +33,7 @@ class DRRouletteSettingViewController: UIViewController {
         self.resultSwitch.setOn(resultFlag, animated: true)
     }
     
-    @IBAction func closeButtonTapped(_ sender: Any) {
+    @IBAction private func closeButtonTapped(_ sender: Any) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.dismiss(animated: true, completion: nil)
         }
@@ -42,13 +42,13 @@ class DRRouletteSettingViewController: UIViewController {
         }
     }
     
-    @IBAction func soundOnOffSwitch(_ sender: Any) {
+    @IBAction private func soundOnOffSwitch(_ sender: Any) {
         let flag = (sender as! UISwitch).isOn
         self.soundOnOffLabel.text = flag ? "ON":"OFF"
         DRUserHelper.isAuthorizedPlaySound = flag
     }
     
-    @IBAction func resultOnOffSwitch(_ sender: Any) {
+    @IBAction private func resultOnOffSwitch(_ sender: Any) {
         let flag = (sender as! UISwitch).isOn
         self.resultOnOffLabel.text = flag ? "ON":"OFF"
         DRUserHelper.isAuthorizedResultView = flag

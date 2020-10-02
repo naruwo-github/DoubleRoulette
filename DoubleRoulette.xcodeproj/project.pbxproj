@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		050016632445593B00F3B87F /* AMColorPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; };
-		050016642445593B00F3B87F /* AMColorPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0519C9FD245A71B7004356DF /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0519C9FC245A71B7004356DF /* Extentions.swift */; };
 		051A32FC24B7F5B1004A134A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051A32FB24B7F5B1004A134A /* R.generated.swift */; };
 		0520973C24B7652C00E32BEE /* DRResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520973B24B7652C00E32BEE /* DRResultViewController.swift */; };
@@ -35,6 +33,8 @@
 		05D3D9D422C9D431007D24FF /* DRRouletteCellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */; };
 		05D3D9D722C9D475007D24FF /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3D9D522C9D475007D24FF /* TableViewCell.swift */; };
 		05DC270324B75BDC00657D2E /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05DC270224B75BDC00657D2E /* Popup.storyboard */; };
+		05F24F2A25273F4A0005577F /* AMColorPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; };
+		05F24F2B25273F4A0005577F /* AMColorPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		18D3217A7E609E7DFF081944 /* Pods_DoubleRoulette.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 900A8DDB992024885EAA9F37 /* Pods_DoubleRoulette.framework */; };
 		8B5A228DB3F9F4DD46BE8BC0 /* Pods_DoubleRouletteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2359A6B6A922EDF3737179 /* Pods_DoubleRouletteUITests.framework */; };
 /* End PBXBuildFile section */
@@ -65,7 +65,7 @@
 			files = (
 				059C9F9E24453D0D00B11797 /* RealmSwift.framework in Embed Frameworks */,
 				059C9F9C24453D0D00B11797 /* Realm.framework in Embed Frameworks */,
-				050016642445593B00F3B87F /* AMColorPicker.framework in Embed Frameworks */,
+				05F24F2B25273F4A0005577F /* AMColorPicker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,7 +134,7 @@
 			files = (
 				059C9F9B24453D0D00B11797 /* Realm.framework in Frameworks */,
 				18D3217A7E609E7DFF081944 /* Pods_DoubleRoulette.framework in Frameworks */,
-				050016632445593B00F3B87F /* AMColorPicker.framework in Frameworks */,
+				05F24F2A25273F4A0005577F /* AMColorPicker.framework in Frameworks */,
 				059C9F9D24453D0D00B11797 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,7 +442,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -832,6 +832,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = DoubleRoulette/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -857,6 +858,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = DoubleRoulette/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
