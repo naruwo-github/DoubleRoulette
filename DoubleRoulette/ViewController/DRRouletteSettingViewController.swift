@@ -13,6 +13,7 @@ class DRRouletteSettingViewController: UIViewController {
     @IBOutlet private weak var soundSwitch: UISwitch!
     @IBOutlet private weak var resultOnOffLabel: UILabel!
     @IBOutlet private weak var resultSwitch: UISwitch!
+    private let showCloseDuration: Double = 1.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +35,10 @@ class DRRouletteSettingViewController: UIViewController {
     }
     
     @IBAction private func closeButtonTapped(_ sender: Any) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + self.showCloseDuration) {
             self.dismiss(animated: true, completion: nil)
         }
-        UIView.animate(withDuration: 1.0) {
+        UIView.animate(withDuration: self.showCloseDuration) {
             self.view.layer.position.y += self.view.frame.height / 2.0
         }
     }

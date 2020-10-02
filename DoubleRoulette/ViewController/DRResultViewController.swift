@@ -11,7 +11,7 @@ import UIKit
 class DRResultViewController: UIViewController {
     @IBOutlet private weak var alphaView: UIView!
     @IBOutlet private weak var resultView: UIView!
-    @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet private weak var resultLabel: UILabel!
     
     var outer: String?
     var inner: String?

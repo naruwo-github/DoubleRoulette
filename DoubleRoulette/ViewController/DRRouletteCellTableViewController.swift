@@ -13,19 +13,20 @@ import CellAnimator
 import RealmSwift
 
 class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDelegate, GADBannerViewDelegate {
+    
     @IBOutlet private weak var adView: UIView!
     @IBOutlet private weak var addCellButton: UIBarButtonItem!
     @IBOutlet private weak var moveToRouletteButton: UIBarButtonItem!
     
-    private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
     private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/2967728941"
+    private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
     private let realm = try! Realm()
-    private var indexPath: NSIndexPath?
-    private var newCellId: Int = 0
     private let colorStock = ColorStock()
     private let userDefaults = UserDefaults.standard
     
-    var rouletteCells: Results<RouletteObject>!
+    private var indexPath: NSIndexPath?
+    private var newCellId: Int = 0
+    private var rouletteCells: Results<RouletteObject>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +97,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
     }
     
     @IBAction private func moveToRouletteButtonTapped(_ sender: Any) {
+        // TODO: ここでnavigation遷移する
     }
     
     @IBAction private func cellColorButtonTapped(_ sender: Any) {
@@ -174,10 +176,6 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
     }
  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "toViewController") {
-            let rouletteVC = segue.destination as! DRRouletteViewController
-            rouletteVC.rouletteCells = self.rouletteCells
-        }
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

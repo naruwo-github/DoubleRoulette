@@ -13,9 +13,6 @@ import Accounts
 import RealmSwift
 
 class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
-    private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/3283423713"
-    private var bannerView: GADBannerView!
-    private var popupWindow: UIWindow!
     
     @IBOutlet private weak var bottomAdView: UIView!
     @IBOutlet private weak var startButton: UIButton!
@@ -24,19 +21,24 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet private weak var outerChartView: UIView!
     @IBOutlet private weak var innerChartView: UIView!
     
+    private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/3283423713"
+    private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
+    private let popupWindow: UIWindow = UIWindow.init(frame: UIScreen.main.bounds)
+    private let realm = try! Realm()
     private let labelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
     private let pieChartViewOuter = MyPieChartView()
     private let pieChartViewInner = MyPieChartView()
+    private let popupDuration: Double = 1.0
     
-    fileprivate var audioPlayer: AVAudioPlayer!
-    var rouletteCells: Results<RouletteObject>!
-    
+    private var rouletteCells: Results<RouletteObject>!
     private var currentChangedOuterAngle: CGFloat = 0.0
     private var currentChangedInnerAngle: CGFloat = 0.0
     private var outerCellName: [String] = []
     private var outerCellColor: [UIColor] = []
     private var innerCellName: [String] = []
     private var innerCellColor: [UIColor] = []
+    
+    fileprivate var audioPlayer: AVAudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +53,8 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func initData() {
+        self.rouletteCells = realm.objects(RouletteObject.self)
+        
         for i in 0..<self.rouletteCells.count {
             let cell = self.rouletteCells[i]
             let hex = cell.color
@@ -67,7 +71,6 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func setupResultWindow() {
-        self.popupWindow = UIWindow.init(frame: self.view.frame)
         self.popupWindow.windowLevel = UIWindow.Level.normal + 10
         self.popupWindow.alpha = 0
     }
@@ -172,7 +175,6 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func setupAdvertisementView() {
-        self.bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         self.bannerView.translatesAutoresizingMaskIntoConstraints = true
         self.bottomAdView.addSubview(self.bannerView)
         self.bannerView.center.x = self.view.center.x
@@ -188,11 +190,11 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         // NOTE: ポップアップウィンドゥをキーウィンドゥに設定して最前面に表示させる
         self.popupWindow.makeKeyAndVisible()
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
-            UIView.animate(withDuration: 1.0) {
+            UIView.animate(withDuration: self.popupDuration) {
                 self.popupWindow.alpha = 1
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                UIView.animate(withDuration: 1.0) {
+                UIView.animate(withDuration: self.popupDuration) {
                     self.popupWindow.alpha = 0
                 }
             }
@@ -294,7 +296,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         self.present(activityVC, animated: true, completion: nil)
     }
     
-    @IBAction func editAnimationSettingButton(_ sender: Any) {
+    @IBAction private func editAnimationSettingButton(_ sender: Any) {
         if let vc = R.storyboard.sub.drRouletteSettingViewController() {
             self.present(vc, animated: true, completion: nil)
         }
