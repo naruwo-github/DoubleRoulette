@@ -20,7 +20,6 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
     
     private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/2967728941"
     private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
-    private let realm = try! Realm()
     private let colorStock = ColorStock()
     private let userDefaults = UserDefaults.standard
     
@@ -34,7 +33,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         self.navigationController?.navigationBar.tintColor = UIColor.navigationItem
         self.configureTableView()
         
-        self.rouletteCells = realm.objects(RouletteObject.self)
+        self.rouletteCells = DRRealmHelper.init().getRouletteData()
         self.newCellId = userDefaults.integer(forKey: "id")
         tableView.reloadData()
     }
@@ -45,13 +44,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
     }
     
     @IBAction private func allClearButtonTapped(_ sender: Any) {
-        do{
-            try realm.write {
-                realm.deleteAll()
-            }
-        }catch{
-            print("Error in All Clear Method...")
-        }
+        DRRealmHelper.init().deleteAll()
         self.tableView.reloadData()
         self.userDefaults.set(0, forKey: "id")
     }
@@ -65,15 +58,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         
         let colorRGB = UIColor.convertToRGB(self.colorStock.proposeColor(index: self.rouletteCells.count))
         newCell.color = UIColor.rgbToHex(red: Int(colorRGB.red*255), green: Int(colorRGB.green*255), blue: Int(colorRGB.blue*255))
-        do{
-            let realm = try Realm()
-            try realm.write({ () -> Void in
-                realm.add(newCell)
-                print("Cell Saved")
-            })
-        }catch{
-            print("Save is Faild")
-        }
+        DRRealmHelper.init().add(object: newCell)
         self.tableView.reloadData()
         self.tableView.scrollToRow(at: IndexPath(row: rouletteCells.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
     }
@@ -103,16 +88,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         let point = self.tableView.convert(sender.center, from: sender)
         if let indexPath = self.tableView.indexPathForRow(at: point) {
             let cell = rouletteCells[indexPath.row]
-            do{
-                let realm = try Realm()
-                try realm.write({ () -> Void in
-                    cell.type = sender.selectedSegmentIndex
-                    realm.add(cell, update: .modified)
-                    print("Cell Saved")
-                })
-            }catch{
-                print("Save is Faild")
-            }
+            DRRealmHelper.init().segmentControlUpdate(cell: cell, segment: sender)
         } else {
             print("indexPath not found.")
         }
@@ -122,16 +98,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         let point = self.tableView.convert(sender.center, from: sender)
         if let indexPath = self.tableView.indexPathForRow(at: point) {
             let cell = rouletteCells[indexPath.row]
-            do{
-                let realm = try Realm()
-                try realm.write({ () -> Void in
-                    cell.item = sender.text ?? "Item"
-                    realm.add(cell, update: .modified)
-                    print("Cell Saved")
-                })
-            }catch{
-                print("Save is Faild")
-            }
+            DRRealmHelper.init().textFieldUpdate(cell: cell, textField: sender)
         } else {
             print("indexPath not found.")
         }
@@ -139,14 +106,8 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            do{
-                let realm = try Realm()
-                try realm.write {
-                    realm.delete(self.rouletteCells[indexPath.row])
-                }
-                tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
-            }catch{
-            }
+            DRRealmHelper.init().delete(object: self.rouletteCells[indexPath.row])
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
             self.tableView.reloadData()
         }
     }
@@ -201,16 +162,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         color.getRed(&r, green: &g , blue: &b, alpha: &a)
         
         let cell = rouletteCells[self.indexPath!.row]
-        do{
-            let realm = try Realm()
-            try realm.write({ () -> Void in
-                cell.color = UIColor.rgbToHex(red: Int(r*255), green: Int(g*255), blue: Int(b*255))
-                realm.add(cell, update: .modified)
-                print("Cell Saved")
-            })
-        }catch{
-            print("Save is Faild")
-        }
+        DRRealmHelper.init().colorButtonUpdate(cell: cell, hexColor: UIColor.rgbToHex(red: Int(r*255), green: Int(g*255), blue: Int(b*255)))
         let modifiedCell = self.tableView.cellForRow(at: self.indexPath! as IndexPath)
         (modifiedCell?.viewWithTag(2) as! UIButton).backgroundColor = UIColor(red: r, green: g, blue: b, alpha: a)
     }

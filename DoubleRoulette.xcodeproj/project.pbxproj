@@ -16,6 +16,7 @@
 		0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529A99822CC991400F5ECB6 /* MyPieChartView.swift */; };
 		053D814823914D0900ACCAEE /* ColorStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D814723914D0900ACCAEE /* ColorStock.swift */; };
 		05579308245A653A0081DA16 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05579307245A653A0081DA16 /* Colors.xcassets */; };
+		0568E032252DF33100C5EC48 /* DRRealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0568E031252DF33100C5EC48 /* DRRealmHelper.swift */; };
 		0576834924DA9EB700BF1F1C /* DoubleRouletteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0576834824DA9EB700BF1F1C /* DoubleRouletteTests.swift */; };
 		0576835724DAA09100BF1F1C /* DoubleRouletteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0576835624DAA09100BF1F1C /* DoubleRouletteUITests.swift */; };
 		05775ABF245A9506009BAD29 /* RouletteObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05775ABE245A9506009BAD29 /* RouletteObject.swift */; };
@@ -83,6 +84,7 @@
 		0529A99822CC991400F5ECB6 /* MyPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPieChartView.swift; sourceTree = "<group>"; };
 		053D814723914D0900ACCAEE /* ColorStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStock.swift; sourceTree = "<group>"; };
 		05579307245A653A0081DA16 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		0568E031252DF33100C5EC48 /* DRRealmHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRRealmHelper.swift; sourceTree = "<group>"; };
 		0576834624DA9EB700BF1F1C /* DoubleRouletteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoubleRouletteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0576834824DA9EB700BF1F1C /* DoubleRouletteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleRouletteTests.swift; sourceTree = "<group>"; };
 		0576834A24DA9EB700BF1F1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				0522626024BE8F6E005AA88C /* DRUserHelper.swift */,
+				0568E031252DF33100C5EC48 /* DRRealmHelper.swift */,
 			);
 			name = Storage;
 			path = ViewController;
@@ -575,6 +578,7 @@
 				05775ABF245A9506009BAD29 /* RouletteObject.swift in Sources */,
 				05AF43E622C974D2007A236D /* DRRouletteViewController.swift in Sources */,
 				0522625E24BDABEF005AA88C /* DRRouletteSettingViewController.swift in Sources */,
+				0568E032252DF33100C5EC48 /* DRRealmHelper.swift in Sources */,
 				05AF43E422C974D2007A236D /* AppDelegate.swift in Sources */,
 				053D814823914D0900ACCAEE /* ColorStock.swift in Sources */,
 				05D3D9D422C9D431007D24FF /* DRRouletteCellTableViewController.swift in Sources */,
