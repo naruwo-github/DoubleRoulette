@@ -34,26 +34,9 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         self.navigationController?.navigationBar.tintColor = UIColor.navigationItem
         self.configureTableView()
         
-        do{
-            self.rouletteCells = realm.objects(RouletteObject.self)
-            tableView.reloadData()
-        }
-        
-        if self.userDefaults.bool(forKey: "fixed") {
-            self.newCellId = userDefaults.integer(forKey: "id")
-        } else {
-            do{
-                try realm.write {
-                    realm.deleteAll()
-                }
-            }catch{
-                print("Error in All Clear Method...")
-            }
-            self.tableView.reloadData()
-            
-            self.userDefaults.set(true, forKey: "fixed")
-            self.userDefaults.set(0, forKey: "id")
-        }
+        self.rouletteCells = realm.objects(RouletteObject.self)
+        self.newCellId = userDefaults.integer(forKey: "id")
+        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
