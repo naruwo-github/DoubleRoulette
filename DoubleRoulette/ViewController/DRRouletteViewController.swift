@@ -24,7 +24,6 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/3283423713"
     private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
     private let popupWindow: UIWindow = UIWindow.init(frame: UIScreen.main.bounds)
-    private let realm = try! Realm()
     private let labelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
     private let pieChartViewOuter = MyPieChartView()
     private let pieChartViewInner = MyPieChartView()
@@ -53,7 +52,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func initData() {
-        self.rouletteCells = realm.objects(RouletteObject.self)
+        self.rouletteCells = DRRealmHelper.init().getRouletteData()
         
         for i in 0..<self.rouletteCells.count {
             let cell = self.rouletteCells[i]
