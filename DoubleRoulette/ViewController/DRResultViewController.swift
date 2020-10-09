@@ -25,8 +25,7 @@ class DRResultViewController: UIViewController {
     func setupLabel(outer: String? = nil, inner: String? = nil) {
         if let _outer = outer {
             if let _inner = inner {
-                let result = _outer + "\n&\n" + _inner
-                self.resultLabel.text = result
+                self.resultLabel.text = _outer + "\n&\n" + _inner
             } else {
                 self.resultLabel.text = _outer
             }
