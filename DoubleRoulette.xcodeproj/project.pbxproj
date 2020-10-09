@@ -842,7 +842,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.3.3;
-				NEW_SETTING = "";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-Xfrontend -warn-long-function-bodies=100";
+				Other_Swift_Flags = "-Xfrontend -warn-long-function-bodies=100";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.kero0711tennis.DoubleRoulette;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -869,7 +870,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.3.3;
-				NEW_SETTING = "";
+				Other_Swift_Flags = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.kero0711tennis.DoubleRoulette;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
