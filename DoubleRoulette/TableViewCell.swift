@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell, UITextFieldDelegate{
+class TableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet private weak var itemName: UITextField! // tag = 1
     @IBOutlet private weak var itemColor: UIButton! // tag = 2
     @IBOutlet private weak var itemType: UISegmentedControl! // tag = 3

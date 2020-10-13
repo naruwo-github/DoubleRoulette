@@ -346,6 +346,7 @@
 				2CB2E6CE60E36187D41B0B5E /* [CP] Embed Pods Frameworks */,
 				059C9F9F24453D0D00B11797 /* Embed Frameworks */,
 				059C9FA024453D1600B11797 /* ShellScript */,
+				05C3C4A8253520B400AC0D5A /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -470,6 +471,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		05C3C4A8253520B400AC0D5A /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n${PODS_ROOT}/SwiftLint/swiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		2CB2E6CE60E36187D41B0B5E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

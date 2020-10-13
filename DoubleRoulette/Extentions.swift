@@ -30,11 +30,11 @@ extension UIColor {
     
     //＊＊＊＊色変換＊＊＊＊
     // HexをRGBに
-    class func hexToRGB(hex color: String) -> [Int]{
-        var rgb:[Int] = []
+    class func hexToRGB(hex color: String) -> [Int] {
+        var rgb: [Int] = []
         let scanner = Scanner(string: color as String)
-        var color:UInt32 = 0
-        if(scanner.scanHexInt32(&color)) {
+        var color: UInt32 = 0
+        if scanner.scanHexInt32(&color) {
             let r = (color & 0xFF0000) >> 16
             let g = (color & 0x00FF00) >> 8
             let b = (color & 0x0000FF)
@@ -46,18 +46,18 @@ extension UIColor {
     }
     
     // HexをUIColorに
-    class func hexToRgb(color: String, alpha : CGFloat = 1) -> UIColor {
+    class func hexToRgb(color: String, alpha: CGFloat = 1) -> UIColor {
         let code = color
         let scanner = Scanner(string: code as String)
-        var color:UInt32 = 0
+        var color: UInt32 = 0
         if scanner.scanHexInt32(&color) {
             let r = (color & 0xFF0000) >> 16
             let g = (color & 0x00FF00) >> 8
             let b = (color & 0x0000FF)
-            return UIColor(red: CGFloat(r), green: CGFloat(g), blue: CGFloat(b), alpha:alpha)
+            return UIColor(red: CGFloat(r), green: CGFloat(g), blue: CGFloat(b), alpha: alpha)
         } else {
             print("invalid hex string")
-            return UIColor.clear;
+            return UIColor.clear
         }
     }
     
@@ -82,34 +82,34 @@ extension UIView {
     // 広告を隠したスクリーンショットを撮る関数（WindowFrameが画面領域、adFrameが広告領域）
     // TODO: 回転後をUIImageとして書き出せない問題が残っている
     func getScreenShot(windowFrame: CGRect, adFrame: CGRect?, backgroundColor: UIColor) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(windowFrame.size, false, 0.0);
-        let context: CGContext = UIGraphicsGetCurrentContext()!;
-        layer.render(in: context);
+        UIGraphicsBeginImageContextWithOptions(windowFrame.size, false, 0.0)
+        let context: CGContext = UIGraphicsGetCurrentContext()!
+        layer.render(in: context)
         if let frame = adFrame {
-            context.setFillColor(backgroundColor.cgColor);
-            context.fill(frame);
+            context.setFillColor(backgroundColor.cgColor)
+            context.fill(frame)
         }
-        let capturedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()!;
-        UIGraphicsEndImageContext();
-        return capturedImage;
+        let capturedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return capturedImage
     }
 }
 
 extension String {
     func attributedString(
-        _ color : UIColor = UIColor.black,
-        font : UIFont = UIFont.systemFont(ofSize: 13.0),
-        lineSpace : CGFloat = 8,
+        _ color: UIColor = UIColor.black,
+        font: UIFont = UIFont.systemFont(ofSize: 13.0),
+        lineSpace: CGFloat = 8,
         align: NSTextAlignment = .left,
         kern: CGFloat = 0) -> NSAttributedString {
             let paragraph = NSMutableParagraphStyle()
             paragraph.lineSpacing = lineSpace
             paragraph.alignment = align
             return NSAttributedString(string: self, attributes: [
-                NSAttributedString.Key.paragraphStyle : paragraph,
-                NSAttributedString.Key.font : font,
-                NSAttributedString.Key.foregroundColor : color,
-                NSAttributedString.Key.kern : kern
+                NSAttributedString.Key.paragraphStyle: paragraph,
+                NSAttributedString.Key.font: font,
+                NSAttributedString.Key.foregroundColor: color,
+                NSAttributedString.Key.kern: kern
                 ])
     }
 }

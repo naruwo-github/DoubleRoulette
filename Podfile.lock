@@ -75,6 +75,7 @@ PODS:
   - R.swift (5.2.2):
     - R.swift.Library (~> 5.2.0)
   - R.swift.Library (5.2.0)
+  - SwiftLint (0.40.2)
 
 DEPENDENCIES:
   - CellAnimator
@@ -83,6 +84,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Core
   - R.swift
+  - SwiftLint
 
 SPEC REPOS:
   trunk:
@@ -101,6 +103,7 @@ SPEC REPOS:
     - PromisesObjC
     - R.swift
     - R.swift.Library
+    - SwiftLint
 
 SPEC CHECKSUMS:
   CellAnimator: dfba32e8223bbc1e0d4e16524eb51f475082501b
@@ -118,7 +121,8 @@ SPEC CHECKSUMS:
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
   R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
+  SwiftLint: 1216c910d27c2633ade33b4f071bb6b930982e62
 
-PODFILE CHECKSUM: 44033004d30f8967c96de1abd5b0c75cdb413d9e
+PODFILE CHECKSUM: a8faff2a72fb7f0d0b93db41b3b7ec815dceacef
 
 COCOAPODS: 1.8.4

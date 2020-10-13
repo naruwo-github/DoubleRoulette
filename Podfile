@@ -11,6 +11,7 @@ target 'DoubleRoulette' do
   pod 'Firebase/AdMob'
   pod 'CellAnimator'
   pod 'R.swift'
+  pod 'SwiftLint'
 
   # Pods for DoubleRoulette
   target 'DoubleRouletteUITests' do

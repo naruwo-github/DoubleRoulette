@@ -21,64 +21,64 @@ final class DRRealmHelper {
     }
     
     func deleteAll() {
-        do{
+        do {
             try self.realm.write {
                 self.realm.deleteAll()
             }
-        }catch{
+        } catch {
             print("Error in deleteAll...")
         }
     }
     
     func add(object: Object) {
-        do{
+        do {
             try self.realm.write({ () -> Void in
                 self.realm.add(object)
             })
-        }catch{
+        } catch {
             print("Error in add...")
         }
     }
     
     func delete(object: Object) {
-        do{
+        do {
             try self.realm.write {
                 self.realm.delete(object)
             }
-        }catch{
+        } catch {
             print("Error in delete...")
         }
     }
     
     func segmentControlUpdate(cell: RouletteObject, segment: UISegmentedControl) {
-        do{
+        do {
             try self.realm.write({ () -> Void in
                 cell.type = segment.selectedSegmentIndex
                 self.realm.add(cell, update: .modified)
             })
-        }catch{
+        } catch {
             print("Error in segmentControlUpdate...")
         }
     }
     
     func textFieldUpdate(cell: RouletteObject, textField: UITextField) {
-        do{
+        do {
             try self.realm.write({ () -> Void in
                 cell.item = textField.text ?? "Item"
                 self.realm.add(cell, update: .modified)
             })
-        }catch{
+        } catch {
             print("Error in textFieldUpdate...")
         }
     }
     
     func colorButtonUpdate(cell: RouletteObject, hexColor: String) {
-        do{
+        do {
             try self.realm.write({ () -> Void in
                 cell.color = hexColor
                 self.realm.add(cell, update: .modified)
             })
-        }catch{
+        } catch {
             print("Error in colorButtonUpdate...")
         }
     }

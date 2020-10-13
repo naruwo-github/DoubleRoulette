@@ -151,7 +151,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
     }
     
     internal func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
-        guard (self.indexPath != nil) else {
+        guard self.indexPath != nil else {
             return
         }
         
@@ -159,7 +159,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         var g: CGFloat = 0
         var b: CGFloat = 0
         var a: CGFloat = 0
-        color.getRed(&r, green: &g , blue: &b, alpha: &a)
+        color.getRed(&r, green: &g, blue: &b, alpha: &a)
         
         let cell = rouletteCells[self.indexPath!.row]
         DRRealmHelper.init().colorButtonUpdate(cell: cell, hexColor: UIColor.rgbToHex(red: Int(r*255), green: Int(g*255), blue: Int(b*255)))

@@ -34,7 +34,7 @@ class ColorStock {
          UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1), // 灰色
             UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1), // 薄灰色
          UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1), // 薄薄灰色
-         UIColor(red: 1, green: 1, blue: 1, alpha: 1), // 白
+         UIColor(red: 1, green: 1, blue: 1, alpha: 1) // 白
     ]
     
     func proposeColor(index: Int) -> UIColor {

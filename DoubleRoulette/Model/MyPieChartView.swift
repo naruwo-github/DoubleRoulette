@@ -41,14 +41,14 @@ class MyPieChartView: UIView {
         
         ctx?.setFillColor(UIColor.gray.cgColor)
         ctx?.move(to: CGPoint(x: viewCenter.x, y: viewCenter.y))
-        ctx?.addArc(center: CGPoint(x:viewCenter.x, y: viewCenter.y), radius: radius, startAngle: 0, endAngle: 360, clockwise: false)
+        ctx?.addArc(center: CGPoint(x: viewCenter.x, y: viewCenter.y), radius: radius, startAngle: 0, endAngle: 360, clockwise: false)
         ctx?.fillPath()
         
         for segment in segments {
             ctx?.setFillColor(segment.color.cgColor)
             let endAngle = startAngle+CGFloat(Double.pi * 2) * (segment.value / valueCount)
-            ctx?.move(to: CGPoint(x:viewCenter.x, y: viewCenter.y))
-            ctx?.addArc(center: CGPoint(x:viewCenter.x, y: viewCenter.y), radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
+            ctx?.move(to: CGPoint(x: viewCenter.x, y: viewCenter.y))
+            ctx?.addArc(center: CGPoint(x: viewCenter.x, y: viewCenter.y), radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
             ctx?.fillPath()
             startAngle = endAngle
         }
