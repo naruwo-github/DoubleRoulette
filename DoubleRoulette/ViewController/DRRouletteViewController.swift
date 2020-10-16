@@ -18,15 +18,13 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet private weak var startButton: UIButton!
     @IBOutlet private weak var itemsLabel: UILabel!
     @IBOutlet private weak var elementNumLabel: UILabel!
-    @IBOutlet private weak var outerChartView: UIView!
-    @IBOutlet private weak var innerChartView: UIView!
+    @IBOutlet private weak var outerChartView: MyPieChartView!
+    @IBOutlet private weak var innerChartView: MyPieChartView!
     
     private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/3283423713"
     private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
     private let popupWindow: UIWindow = UIWindow.init(frame: UIScreen.main.bounds)
     private let labelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
-    private let pieChartViewOuter = MyPieChartView()
-    private let pieChartViewInner = MyPieChartView()
     private let popupDuration: Double = 1.0
     
     private var rouletteCells: Results<RouletteObject>!
@@ -79,26 +77,17 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func setupOuterRoulette(outerName: [String], outerColor: [UIColor]) {
-        pieChartViewOuter.radius = min(self.view.frame.size.width, self.view.frame.size.height)/2
-        pieChartViewOuter.isOpaque = false
-        pieChartViewOuter.backgroundColor = UIColor.clear
-        pieChartViewOuter.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        self.outerChartView.radius = min(self.view.frame.size.width, self.view.frame.size.height)/2
         for i in 0..<outerName.count {
-            pieChartViewOuter.segments.insert(Segment(color: outerColor[i], value: CGFloat(Double.pi * 2.0 / Double(outerName.count))), at: 0)
+            self.outerChartView.segments.insert(Segment(color: outerColor[i], value: CGFloat(Double.pi * 2.0 / Double(outerName.count))), at: 0)
         }
-        outerChartView.addSubview(pieChartViewOuter)
     }
     
     private func setupInnerRoulette(innerName: [String], innerColor: [UIColor]) {
-        pieChartViewInner.radius = min(self.view.frame.size.width, self.view.frame.size.height)/4
-        pieChartViewInner.isOpaque = false
-        pieChartViewInner.backgroundColor = UIColor.clear
-        pieChartViewInner.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-        
+        self.innerChartView.radius = min(self.view.frame.size.width, self.view.frame.size.height)/4
         for i in 0..<innerName.count {
-            pieChartViewInner.segments.insert(Segment(color: innerColor[i], value: CGFloat(Double.pi * 2.0 / Double(innerName.count))), at: 0)
+            self.innerChartView.segments.insert(Segment(color: innerColor[i], value: CGFloat(Double.pi * 2.0 / Double(innerName.count))), at: 0)
         }
-        innerChartView.addSubview(pieChartViewInner)
     }
     
     private func setupRouletteCellsLabel() {
