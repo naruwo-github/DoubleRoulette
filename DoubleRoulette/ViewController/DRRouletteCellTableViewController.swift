@@ -30,7 +30,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.tintColor = UIColor.navigationItem
+        self.navigationController?.navigationBar.tintColor = R.color.navigationItemColor()
         self.configureTableView()
         
         self.rouletteCells = DRRealmHelper.init().getRouletteData()
@@ -116,7 +116,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TableViewCell
         let object = self.rouletteCells[indexPath.row]
         let rgb = UIColor.hexToRGB(hex: object.color)
-        cell.setupCell(name: object.item, color: UIColor.rgbToColor(red: rgb[0], green: rgb[1], blue: rgb[2]), type: object.type)
+        cell.setupCell(name: object.item, color: UIColor.rgbToUIColor(red: rgb[0], green: rgb[1], blue: rgb[2]), type: object.type)
         return cell
     }
     

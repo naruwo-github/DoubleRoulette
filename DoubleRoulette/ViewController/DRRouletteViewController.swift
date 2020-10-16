@@ -41,7 +41,9 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initData()
+        self.rouletteCells = DRRealmHelper.init().getRouletteData()
+        
+        self.setupInnerOuterData()
         self.setupResultWindow()
         self.setupElementLabels()
         self.setupOuterRoulette(outerName: self.outerCellName, outerColor: self.outerCellColor)
@@ -51,11 +53,8 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         self.setupAdvertisementView()
     }
     
-    private func initData() {
-        self.rouletteCells = DRRealmHelper.init().getRouletteData()
-        
-        for i in 0..<self.rouletteCells.count {
-            let cell = self.rouletteCells[i]
+    private func setupInnerOuterData() {
+        for cell in self.rouletteCells {
             let hex = cell.color
             let rgb = UIColor.hexToRGB(hex: hex)
             let cellColor = UIColor(red: CGFloat(rgb[0])/255, green: CGFloat(rgb[1])/255, blue: CGFloat(rgb[2])/255, alpha: 1)
@@ -82,7 +81,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     private func setupOuterRoulette(outerName: [String], outerColor: [UIColor]) {
         pieChartViewOuter.radius = min(self.view.frame.size.width, self.view.frame.size.height)/2
         pieChartViewOuter.isOpaque = false
-        pieChartViewOuter.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
+        pieChartViewOuter.backgroundColor = UIColor.clear
         pieChartViewOuter.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         for i in 0..<outerName.count {
             pieChartViewOuter.segments.insert(Segment(color: outerColor[i], value: CGFloat(Double.pi * 2.0 / Double(outerName.count))), at: 0)
@@ -93,7 +92,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     private func setupInnerRoulette(innerName: [String], innerColor: [UIColor]) {
         pieChartViewInner.radius = min(self.view.frame.size.width, self.view.frame.size.height)/4
         pieChartViewInner.isOpaque = false
-        pieChartViewInner.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0)
+        pieChartViewInner.backgroundColor = UIColor.clear
         pieChartViewInner.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
         for i in 0..<innerName.count {
@@ -116,7 +115,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             sampleLabel.adjustsFontSizeToFitWidth = true
             sampleLabel.textAlignment = .center
             sampleLabel.backgroundColor = UIColor.clear
-            sampleLabel.textColor = UIColor.rouletteLabel
+            sampleLabel.textColor = R.color.rouletteLabel()
             sampleLabel.numberOfLines = 0
             let x = firstOuterLabelPoint.x - startPoint.x
             let y = firstOuterLabelPoint.y - startPoint.y
@@ -138,7 +137,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             sampleLabel.adjustsFontSizeToFitWidth = true
             sampleLabel.textAlignment = .center
             sampleLabel.backgroundColor = UIColor.clear
-            sampleLabel.textColor = UIColor.rouletteLabel
+            sampleLabel.textColor = R.color.rouletteLabel()
             sampleLabel.numberOfLines = 0
             let x = firstInnerLabelPoint.x - startPoint.x
             let y = firstInnerLabelPoint.y - startPoint.y
@@ -169,7 +168,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         arrowView.addSubview(topImageView)
         arrowView.addSubview(bottomImageView)
         
-        self.view .bringSubviewToFront(arrowView)
+        self.view.bringSubviewToFront(arrowView)
         self.view.addSubview(arrowView)
     }
     
@@ -184,9 +183,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func showResultWindow() {
-        // 画面をタップできなくさせるためにイベント入力を無効
         UIApplication.shared.beginIgnoringInteractionEvents()
-        // ポップアップウィンドゥをキーウィンドゥに設定して最前面に表示させる
         self.popupWindow.makeKeyAndVisible()
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
             UIView.animate(withDuration: self.popupDuration) {
@@ -199,9 +196,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 9.5) {
-            // 元のウィンドゥをキーウィンドゥに設定しポップアップを非表示に
             self.view.window?.makeKeyAndVisible()
-            // イベント入力を有効にしタップできるようにする
             UIApplication.shared.endIgnoringInteractionEvents()
         }
     }
@@ -222,7 +217,6 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         let cgPi = CGFloat.pi
         let rotationMinimum = cgPi * 2
         
-        // Outerの回転角度の算出と、アニメーション追加
         let outerRotationAngle = CGFloat.random(in: rotationMinimum ... cgPi * 2 * 10)
         let fromValOuter: CGFloat = self.currentChangedOuterAngle
         let toValOuter: CGFloat = self.currentChangedOuterAngle + outerRotationAngle
@@ -235,7 +229,6 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         animationOuter.toValue = toValOuter
         animationOuter.duration = 4.0
         
-        // Innerの回転角度の算出と、アニメーション追加
         let innerRotationAngle = CGFloat.random(in: rotationMinimum ... cgPi * 2 * 10)
         let fromValInner: CGFloat = self.currentChangedInnerAngle
         let toValInner: CGFloat = self.currentChangedInnerAngle + innerRotationAngle
@@ -251,8 +244,8 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         outerChartView.layer.add(animationOuter, forKey: "animationOuter")
         innerChartView.layer.add(animationInner, forKey: "animationInner")
         
-        var outerResult: String? = nil
-        var innerResult: String? = nil
+        var outerResult: String?
+        var innerResult: String?
         
         let outerDisplacement = self.currentChangedOuterAngle.truncatingRemainder(dividingBy: cgPi * 2)
         // innerは針の位置が180度ずれているため、cgPiを加算する
