@@ -42,12 +42,15 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         self.rouletteCells = DRRealmHelper.init().getRouletteData()
         
         self.setupInnerOuterData()
+        
         self.setupResultWindow()
         self.setupElementLabels()
+        
         self.setupOuterRoulette(outerName: self.outerCellName, outerColor: self.outerCellColor)
         self.setupInnerRoulette(innerName: self.innerCellName, innerColor: self.innerCellColor)
-        self.setupRouletteCellsLabel()
+        
         self.drawArrow()
+        
         self.setupAdvertisementView()
     }
     
@@ -81,6 +84,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         for i in 0..<outerName.count {
             self.outerChartView.segments.insert(Segment(color: outerColor[i], value: CGFloat(Double.pi * 2.0 / Double(outerName.count))), at: 0)
         }
+        self.setupOuterRouletteLabel()
     }
     
     private func setupInnerRoulette(innerName: [String], innerColor: [UIColor]) {
@@ -88,9 +92,10 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         for i in 0..<innerName.count {
             self.innerChartView.segments.insert(Segment(color: innerColor[i], value: CGFloat(Double.pi * 2.0 / Double(innerName.count))), at: 0)
         }
+        self.setupInnerRouletteLabel()
     }
     
-    private func setupRouletteCellsLabel() {
+    private func setupOuterRouletteLabel() {
         let angleOfOuterPiece = CGFloat.pi * 2.0 / CGFloat(self.outerCellName.count)
         let distFromOuterCenter = self.view.frame.width * 3 / 8
         let startPoint = self.view.center
@@ -113,7 +118,10 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             sampleLabel.center = CGPoint(x: nextx, y: nexty)
             self.outerChartView.addSubview(sampleLabel)
         }
-        
+    }
+    
+    private func setupInnerRouletteLabel() {
+        let startPoint = self.view.center
         let angleOfInnerPiece = CGFloat.pi * 2.0 / CGFloat(self.innerCellName.count)
         let distFromInnerCenter = self.view.frame.width / 8
         let firstInnerLabelPoint = CGPoint(x: startPoint.x, y: startPoint.y - distFromInnerCenter)
