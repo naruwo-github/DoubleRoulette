@@ -182,42 +182,15 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         self.bannerView.delegate = self
     }
     
-    private func showResultWindow() {
-        UIApplication.shared.beginIgnoringInteractionEvents()
-        self.popupWindow.makeKeyAndVisible()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
-            UIView.animate(withDuration: self.popupDuration) {
-                self.popupWindow.alpha = 1
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                UIView.animate(withDuration: self.popupDuration) {
-                    self.popupWindow.alpha = 0
-                }
-            }
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 9.5) {
-            self.view.window?.makeKeyAndVisible()
-            UIApplication.shared.endIgnoringInteractionEvents()
-        }
-    }
-    
-    private func setupResultLabel(outerResult: String?, innerResult: String?) {
-        if let vc = R.storyboard.popup.drResultViewController() {
-            vc.outer = outerResult
-            vc.inner = innerResult
-            self.popupWindow.rootViewController = vc
-        }
-    }
-    
-    @IBAction private func startButtonTapped(_ sender: Any) {
+    private func soundOnIfNeed() {
         if DRUserHelper.isAuthorizedPlaySound {
             self.playSound(name: "roulette-sound")
         }
-        
-        let cgPi = CGFloat.pi
-        let rotationMinimum = cgPi * 2
-        
-        let outerRotationAngle = CGFloat.random(in: rotationMinimum ... cgPi * 2 * 10)
+    }
+    
+    private func setupOuterChartView() {
+        let rotationMinimum = CGFloat.pi * 2
+        let outerRotationAngle = CGFloat.random(in: rotationMinimum ... CGFloat.pi * 2 * 10)
         let fromValOuter: CGFloat = self.currentChangedOuterAngle
         let toValOuter: CGFloat = self.currentChangedOuterAngle + outerRotationAngle
         let animationOuter: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
@@ -228,8 +201,12 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         animationOuter.fromValue = fromValOuter
         animationOuter.toValue = toValOuter
         animationOuter.duration = 4.0
-        
-        let innerRotationAngle = CGFloat.random(in: rotationMinimum ... cgPi * 2 * 10)
+        self.outerChartView.layer.add(animationOuter, forKey: "animationOuter")
+    }
+    
+    private func setupInnerChartView() {
+        let rotationMinimum = CGFloat.pi * 2
+        let innerRotationAngle = CGFloat.random(in: rotationMinimum ... CGFloat.pi * 2 * 10)
         let fromValInner: CGFloat = self.currentChangedInnerAngle
         let toValInner: CGFloat = self.currentChangedInnerAngle + innerRotationAngle
         let animationInner: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
@@ -240,19 +217,51 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         animationInner.fromValue = fromValInner
         animationInner.toValue = toValInner
         animationInner.duration = 5.0
+        self.innerChartView.layer.add(animationInner, forKey: "animationInner")
+    }
+    
+    private func showResultLabelIfNeed(outerResult: String?, innerResult: String?) {
+        if DRUserHelper.isAuthorizedResultView {
+            if let vc = R.storyboard.popup.drResultViewController() {
+                vc.outer = outerResult
+                vc.inner = innerResult
+                self.popupWindow.rootViewController = vc
+                
+                UIApplication.shared.beginIgnoringInteractionEvents()
+                self.popupWindow.makeKeyAndVisible()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
+                    UIView.animate(withDuration: self.popupDuration) {
+                        self.popupWindow.alpha = 1
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                        UIView.animate(withDuration: self.popupDuration) {
+                            self.popupWindow.alpha = 0
+                        }
+                    }
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 9.5) {
+                    self.view.window?.makeKeyAndVisible()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                }
+            }
+        }
+    }
+    
+    @IBAction private func startButtonTapped(_ sender: Any) {
+        self.soundOnIfNeed()
         
-        outerChartView.layer.add(animationOuter, forKey: "animationOuter")
-        innerChartView.layer.add(animationInner, forKey: "animationInner")
+        self.setupOuterChartView()
+        self.setupInnerChartView()
         
         var outerResult: String?
         var innerResult: String?
         
-        let outerDisplacement = self.currentChangedOuterAngle.truncatingRemainder(dividingBy: cgPi * 2)
-        // innerは針の位置が180度ずれているため、cgPiを加算する
-        let innerDisplacement = (self.currentChangedInnerAngle + cgPi).truncatingRemainder(dividingBy: cgPi * 2)
+        let outerDisplacement = self.currentChangedOuterAngle.truncatingRemainder(dividingBy: CGFloat.pi * 2)
+        // innerは針の位置が180度ずれているため、CGFloat.piを加算する
+        let innerDisplacement = (self.currentChangedInnerAngle + CGFloat.pi).truncatingRemainder(dividingBy: CGFloat.pi * 2)
         
         let outerItemsCount = self.outerCellName.count
-        let outerUnitDisplacement = cgPi * 2 / CGFloat(outerItemsCount)
+        let outerUnitDisplacement = CGFloat.pi * 2 / CGFloat(outerItemsCount)
         if outerItemsCount > 0 {
             for i in 0 ..< outerItemsCount {
                 if CGFloat(i) * outerUnitDisplacement ..< CGFloat(i+1)*outerUnitDisplacement ~= outerDisplacement {
@@ -262,7 +271,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         }
         
         let innerItemsCount = self.innerCellName.count
-        let innerUnitDisplacement = cgPi * 2 / CGFloat(innerItemsCount)
+        let innerUnitDisplacement = CGFloat.pi * 2 / CGFloat(innerItemsCount)
         if innerItemsCount > 0 {
             for i in 0 ..< innerItemsCount {
                 if CGFloat(i) * innerUnitDisplacement ..< CGFloat(i+1)*innerUnitDisplacement ~= innerDisplacement {
@@ -271,11 +280,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             }
         }
         
-        if DRUserHelper.isAuthorizedResultView {
-            self.setupResultLabel(outerResult: outerResult, innerResult: innerResult)
-            self.showResultWindow()
-        }
-        
+        self.showResultLabelIfNeed(outerResult: outerResult, innerResult: innerResult)
     }
     
     @IBAction private func shareButton(_ sender: Any) {
