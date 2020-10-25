@@ -104,7 +104,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             let coefficientI = CGFloat(i)
             let sampleLabel = UILabel()
             sampleLabel.font = UIFont.init(name: "HiraginoSans-W3", size: self.labelFontSize)
-            sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 7, height: self.view.frame.width / 14)
+            sampleLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width / 5, height: self.view.frame.width / 13)
             sampleLabel.text = self.outerCellName[i]
             sampleLabel.adjustsFontSizeToFitWidth = true
             sampleLabel.textAlignment = .center
@@ -113,8 +113,8 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             sampleLabel.numberOfLines = 0
             let x = firstOuterLabelPoint.x - startPoint.x
             let y = firstOuterLabelPoint.y - startPoint.y
-            let nextx = cos(-(angleOfOuterPiece*coefficientI + angleOfOuterPiece/2))*x - sin(-(angleOfOuterPiece*coefficientI + angleOfOuterPiece/2))*y + startPoint.x
-            let nexty = sin(-(angleOfOuterPiece*coefficientI + angleOfOuterPiece/2))*x + cos(-(angleOfOuterPiece*coefficientI + angleOfOuterPiece/2))*y + startPoint.y
+            let nextx = cos(-(angleOfOuterPiece * coefficientI + angleOfOuterPiece / 2)) * x - sin(-(angleOfOuterPiece * coefficientI + angleOfOuterPiece / 2)) * y + startPoint.x
+            let nexty = sin(-(angleOfOuterPiece * coefficientI + angleOfOuterPiece / 2)) * x + cos(-(angleOfOuterPiece * coefficientI + angleOfOuterPiece / 2)) * y + startPoint.y
             sampleLabel.center = CGPoint(x: nextx, y: nexty)
             self.outerChartView.addSubview(sampleLabel)
         }
@@ -123,7 +123,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     private func setupInnerRouletteLabel() {
         let startPoint = self.view.center
         let angleOfInnerPiece = CGFloat.pi * 2.0 / CGFloat(self.innerCellName.count)
-        let distFromInnerCenter = self.view.frame.width / 8
+        let distFromInnerCenter = self.view.frame.width / 6.5
         let firstInnerLabelPoint = CGPoint(x: startPoint.x, y: startPoint.y - distFromInnerCenter)
         for i in 0..<self.innerCellName.count {
             let coefficientI = CGFloat(i)
@@ -138,8 +138,8 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             sampleLabel.numberOfLines = 0
             let x = firstInnerLabelPoint.x - startPoint.x
             let y = firstInnerLabelPoint.y - startPoint.y
-            let nextx = cos(-(angleOfInnerPiece*coefficientI + angleOfInnerPiece/2))*x - sin(-(angleOfInnerPiece*coefficientI + angleOfInnerPiece/2))*y + startPoint.x
-            let nexty = sin(-(angleOfInnerPiece*coefficientI + angleOfInnerPiece/2))*x + cos(-(angleOfInnerPiece*coefficientI + angleOfInnerPiece/2))*y + startPoint.y
+            let nextx = cos(-(angleOfInnerPiece * coefficientI + angleOfInnerPiece / 2)) * x - sin(-(angleOfInnerPiece * coefficientI + angleOfInnerPiece / 2)) * y + startPoint.x
+            let nexty = sin(-(angleOfInnerPiece * coefficientI + angleOfInnerPiece / 2)) * x + cos(-(angleOfInnerPiece * coefficientI + angleOfInnerPiece / 2)) * y + startPoint.y
             sampleLabel.center = CGPoint(x: nextx, y: nexty)
             self.innerChartView.addSubview(sampleLabel)
         }
