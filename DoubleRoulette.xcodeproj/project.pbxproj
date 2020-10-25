@@ -176,10 +176,9 @@
 		056A4D5523AA617F008CC263 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0593171C2544F44700C066B1 /* Modal */,
 				05AF43E522C974D2007A236D /* DRRouletteViewController.swift */,
 				05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */,
-				0520973B24B7652C00E32BEE /* DRResultViewController.swift */,
-				0522625D24BDABEF005AA88C /* DRRouletteSettingViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -210,6 +209,15 @@
 				0576835824DAA09100BF1F1C /* Info.plist */,
 			);
 			path = DoubleRouletteUITests;
+			sourceTree = "<group>";
+		};
+		0593171C2544F44700C066B1 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				0522625D24BDABEF005AA88C /* DRRouletteSettingViewController.swift */,
+				0520973B24B7652C00E32BEE /* DRResultViewController.swift */,
+			);
+			name = Modal;
 			sourceTree = "<group>";
 		};
 		05A82FFB237502BA00613F97 /* Delegate */ = {
