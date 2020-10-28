@@ -20,6 +20,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet private weak var elementNumLabel: UILabel!
     @IBOutlet private weak var outerChartView: MyPieChartView!
     @IBOutlet private weak var innerChartView: MyPieChartView!
+    @IBOutlet private weak var balloonView: DRPopupWithBalloonView!
     
     private let INTERSTITIAL_AD_UNIT_ID: String = "ca-app-pub-3940256099942544/4411468910" // テスト広告
 //    private let INTERSTITIAL_AD_UNIT_ID: String = "ca-app-pub-6492692627915720/3278021023" // 本番
@@ -43,6 +44,8 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAdvertisementView()
+        
+        self.balloonView.show(fillColor: .orange, title: "Animation Setting")
         
         self.rouletteCells = DRRealmHelper.init().getRouletteData()
         

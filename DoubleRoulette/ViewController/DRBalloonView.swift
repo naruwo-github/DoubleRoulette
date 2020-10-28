@@ -110,6 +110,7 @@ class DRBalloonView: UIView {
         }
     }
     
+    // TODO これがうまく走っていない
     private func contextTopDirectionBalloonPath(context: CGContext, rect: CGRect) {
         let triangleTopCorner = (x: triangleSideLength / 2, y: triangleHeight)
         let triangleRightBottomCorner = (x: triangleSideLength, y: CGFloat.init())
