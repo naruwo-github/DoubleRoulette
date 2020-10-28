@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,17 +14,17 @@
             <objects>
                 <viewController storyboardIdentifier="DRRouletteSettingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vUv-kU-b5d" customClass="DRRouletteSettingViewController" customModule="DoubleRoulette" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HYd-UL-p6a">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kuu-oE-io9" userLabel="Contents View">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vC5-7j-XA7" userLabel="Top View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animation Setting" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="uwf-UJ-u61">
-                                                <rect key="frame" x="83" y="20" width="248" height="40"/>
+                                                <rect key="frame" x="75" y="16.5" width="225" height="32.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -35,49 +36,49 @@
                                             <constraint firstItem="uwf-UJ-u61" firstAttribute="height" secondItem="vC5-7j-XA7" secondAttribute="height" multiplier="0.5" id="NQo-Mn-zrh"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAv-le-mpX">
-                                        <rect key="frame" x="357" y="5" width="47" height="33"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAv-le-mpX">
+                                        <rect key="frame" x="319" y="5" width="46" height="33"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <state key="normal" title="Close">
-                                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <connections>
                                             <action selector="closeButtonTapped:" destination="vUv-kU-b5d" eventType="touchUpInside" id="g95-FL-tIB"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WlC-fX-lne" userLabel="Line Between Top And Sound Setting">
-                                        <rect key="frame" x="0.0" y="80" width="414" height="2"/>
+                                        <rect key="frame" x="0.0" y="65" width="375" height="2"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="opt-4n-3wG"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DKz-Ko-PX6" userLabel="Sound Setting View">
-                                        <rect key="frame" x="0.0" y="82" width="414" height="98"/>
+                                        <rect key="frame" x="0.0" y="67" width="375" height="100.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Sound Setting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEX-Xy-Qdc">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="26.5"/>
-                                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QnY-fD-uGs" userLabel="Description View">
-                                                <rect key="frame" x="0.0" y="26.5" width="414" height="71.5"/>
+                                                <rect key="frame" x="0.0" y="30" width="375" height="70.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owP-oc-6kx" userLabel="Sound ON/OFF Label">
-                                                        <rect key="frame" x="368" y="25.5" width="26" height="20.5"/>
+                                                        <rect key="frame" x="329" y="25" width="26" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lHW-Wc-JyM" userLabel="Sound Switch">
-                                                        <rect key="frame" x="299" y="20.5" width="51" height="31"/>
+                                                        <rect key="frame" x="260" y="20" width="51" height="31"/>
                                                         <connections>
                                                             <action selector="soundOnOffSwitch:" destination="vUv-kU-b5d" eventType="valueChanged" id="P0P-Jh-x4u"/>
                                                         </connections>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="OCt-55-qxh">
-                                                        <rect key="frame" x="10" y="10" width="236.5" height="51.5"/>
+                                                        <rect key="frame" x="10" y="10" width="239.5" height="50.5"/>
                                                         <string key="text">Play sound 
 after START button tapped.</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -85,7 +86,7 @@ after START button tapped.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="lHW-Wc-JyM" firstAttribute="centerY" secondItem="QnY-fD-uGs" secondAttribute="centerY" id="1ef-3a-tAU"/>
                                                     <constraint firstAttribute="trailing" secondItem="owP-oc-6kx" secondAttribute="trailing" constant="20" id="9QT-4h-iEk"/>
@@ -105,50 +106,50 @@ after START button tapped.</string>
                                             <constraint firstItem="QnY-fD-uGs" firstAttribute="top" secondItem="xEX-Xy-Qdc" secondAttribute="bottom" id="dKX-jk-Ls2"/>
                                             <constraint firstItem="xEX-Xy-Qdc" firstAttribute="leading" secondItem="DKz-Ko-PX6" secondAttribute="leading" id="e3D-5o-1Ae"/>
                                             <constraint firstAttribute="trailing" secondItem="QnY-fD-uGs" secondAttribute="trailing" id="lrL-Xq-stT"/>
-                                            <constraint firstItem="xEX-Xy-Qdc" firstAttribute="height" secondItem="DKz-Ko-PX6" secondAttribute="height" multiplier="0.27" id="u3n-fr-Gnl"/>
+                                            <constraint firstItem="xEX-Xy-Qdc" firstAttribute="height" secondItem="DKz-Ko-PX6" secondAttribute="height" multiplier="0.3" id="u3n-fr-Gnl"/>
                                             <constraint firstAttribute="trailing" secondItem="xEX-Xy-Qdc" secondAttribute="trailing" id="wUH-nb-fQT"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gzF-50-txe" userLabel="Line Between Sound And Result Setting">
-                                        <rect key="frame" x="0.0" y="180" width="414" height="2"/>
+                                        <rect key="frame" x="0.0" y="167.5" width="375" height="2"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="BJa-Wc-vbN"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iHh-Dc-z5z" userLabel="Result View Setting View">
-                                        <rect key="frame" x="0.0" y="182" width="414" height="98.5"/>
+                                        <rect key="frame" x="0.0" y="169.5" width="375" height="100"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Result View Setting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hq6-cS-WNs">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="26.5"/>
-                                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z61-GV-oob" userLabel="Description View">
-                                                <rect key="frame" x="0.0" y="26.5" width="414" height="72"/>
+                                                <rect key="frame" x="0.0" y="30" width="375" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDj-OS-dLn" userLabel="Result ON/OFF Label">
-                                                        <rect key="frame" x="368" y="25.5" width="26" height="20.5"/>
+                                                        <rect key="frame" x="329" y="24.5" width="26" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FI2-0H-27J" userLabel="Result Switch">
-                                                        <rect key="frame" x="299" y="20.5" width="51" height="31"/>
+                                                        <rect key="frame" x="260" y="19.5" width="51" height="31"/>
                                                         <connections>
                                                             <action selector="resultOnOffSwitch:" destination="vUv-kU-b5d" eventType="valueChanged" id="JbV-My-hv2"/>
                                                         </connections>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ihr-hp-Ut8">
-                                                        <rect key="frame" x="10" y="10" width="220" height="52"/>
+                                                        <rect key="frame" x="10" y="10" width="223" height="50"/>
                                                         <string key="text">Display result screen
-after the roulette rotating.</string>
+after the roulette rotation.</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="HDj-OS-dLn" firstAttribute="leading" secondItem="FI2-0H-27J" secondAttribute="trailing" constant="20" id="9KB-1L-B2U"/>
                                                     <constraint firstItem="Ihr-hp-Ut8" firstAttribute="centerY" secondItem="Z61-GV-oob" secondAttribute="centerY" id="PtT-1c-he5"/>
@@ -168,12 +169,12 @@ after the roulette rotating.</string>
                                             <constraint firstItem="hq6-cS-WNs" firstAttribute="top" secondItem="iHh-Dc-z5z" secondAttribute="top" id="fog-bc-zHF"/>
                                             <constraint firstItem="Z61-GV-oob" firstAttribute="leading" secondItem="iHh-Dc-z5z" secondAttribute="leading" id="fpY-cJ-5dq"/>
                                             <constraint firstItem="hq6-cS-WNs" firstAttribute="leading" secondItem="iHh-Dc-z5z" secondAttribute="leading" id="jQ1-qq-oth"/>
-                                            <constraint firstItem="hq6-cS-WNs" firstAttribute="height" secondItem="iHh-Dc-z5z" secondAttribute="height" multiplier="0.27" id="rbJ-BQ-fZI"/>
+                                            <constraint firstItem="hq6-cS-WNs" firstAttribute="height" secondItem="iHh-Dc-z5z" secondAttribute="height" multiplier="0.3" id="rbJ-BQ-fZI"/>
                                             <constraint firstAttribute="bottom" secondItem="Z61-GV-oob" secondAttribute="bottom" id="xRK-rK-v76"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5w-YT-kv8" userLabel="Line Between Result And Bottom">
-                                        <rect key="frame" x="0.0" y="280.5" width="414" height="2"/>
+                                        <rect key="frame" x="0.0" y="269.5" width="375" height="2"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="3UE-yq-nbf"/>
@@ -190,7 +191,7 @@ after the roulette rotating.</string>
                                     <constraint firstAttribute="trailing" secondItem="vC5-7j-XA7" secondAttribute="trailing" id="JAf-Qh-0LA"/>
                                     <constraint firstItem="DKz-Ko-PX6" firstAttribute="top" secondItem="WlC-fX-lne" secondAttribute="bottom" id="Mdv-kv-kva"/>
                                     <constraint firstItem="WlC-fX-lne" firstAttribute="leading" secondItem="Kuu-oE-io9" secondAttribute="leading" id="Oa4-GP-V4u"/>
-                                    <constraint firstItem="DKz-Ko-PX6" firstAttribute="height" secondItem="Kuu-oE-io9" secondAttribute="height" multiplier="0.12" id="R8q-K2-wKX"/>
+                                    <constraint firstItem="DKz-Ko-PX6" firstAttribute="height" secondItem="Kuu-oE-io9" secondAttribute="height" multiplier="0.15" id="R8q-K2-wKX"/>
                                     <constraint firstAttribute="trailing" secondItem="DKz-Ko-PX6" secondAttribute="trailing" id="Un1-J4-Ft5"/>
                                     <constraint firstItem="iHh-Dc-z5z" firstAttribute="top" secondItem="gzF-50-txe" secondAttribute="bottom" id="XOn-SF-GtI"/>
                                     <constraint firstItem="gzF-50-txe" firstAttribute="leading" secondItem="Kuu-oE-io9" secondAttribute="leading" id="ZUh-41-NDM"/>
@@ -202,20 +203,20 @@ after the roulette rotating.</string>
                                     <constraint firstItem="vC5-7j-XA7" firstAttribute="leading" secondItem="Kuu-oE-io9" secondAttribute="leading" id="l4c-Kg-emA"/>
                                     <constraint firstItem="vC5-7j-XA7" firstAttribute="height" secondItem="Kuu-oE-io9" secondAttribute="height" multiplier="0.0977995" id="lDa-ol-XNa"/>
                                     <constraint firstAttribute="trailing" secondItem="gzF-50-txe" secondAttribute="trailing" id="msb-pd-HtD"/>
-                                    <constraint firstItem="iHh-Dc-z5z" firstAttribute="height" secondItem="Kuu-oE-io9" secondAttribute="height" multiplier="0.12" id="o86-dA-chd"/>
+                                    <constraint firstItem="iHh-Dc-z5z" firstAttribute="height" secondItem="Kuu-oE-io9" secondAttribute="height" multiplier="0.15" id="o86-dA-chd"/>
                                     <constraint firstItem="vC5-7j-XA7" firstAttribute="top" secondItem="Kuu-oE-io9" secondAttribute="top" id="rC8-ct-uhm"/>
                                     <constraint firstItem="iHh-Dc-z5z" firstAttribute="leading" secondItem="Kuu-oE-io9" secondAttribute="leading" id="vop-0F-n5a"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Abc-pc-TVD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Abc-pc-TVD" firstAttribute="bottom" secondItem="Kuu-oE-io9" secondAttribute="bottom" id="0rO-El-OZf"/>
                             <constraint firstItem="Kuu-oE-io9" firstAttribute="leading" secondItem="Abc-pc-TVD" secondAttribute="leading" id="bfi-wN-a1O"/>
                             <constraint firstItem="Abc-pc-TVD" firstAttribute="trailing" secondItem="Kuu-oE-io9" secondAttribute="trailing" id="eiE-ff-ggo"/>
                             <constraint firstItem="Kuu-oE-io9" firstAttribute="top" secondItem="Abc-pc-TVD" secondAttribute="top" id="oQU-yC-S8X"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Abc-pc-TVD"/>
                     </view>
                     <connections>
                         <outlet property="resultOnOffLabel" destination="HDj-OS-dLn" id="LzG-lC-Pk4"/>
@@ -229,4 +230,15 @@ after the roulette rotating.</string>
             <point key="canvasLocation" x="-88" y="163"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
