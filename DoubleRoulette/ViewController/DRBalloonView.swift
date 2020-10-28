@@ -6,7 +6,6 @@
 //  Copyright © 2020 Narumi Nogawa. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 enum TriangleDirection {
