@@ -206,12 +206,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 2 images.
+  /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
     /// Image `arrow1`.
     static let arrow1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow1")
     /// Image `arrow2`.
     static let arrow2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow2")
+    /// Image `setting`.
+    static let setting = Rswift.ImageResource(bundle: R.hostingBundle, name: "setting")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "arrow1", bundle: ..., traitCollection: ...)`
@@ -224,6 +226,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "arrow2", bundle: ..., traitCollection: ...)`
     static func arrow2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.arrow2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "setting", bundle: ..., traitCollection: ...)`
+    static func setting(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.setting, compatibleWith: traitCollection)
     }
     #endif
 
@@ -309,6 +318,7 @@ struct _R: Rswift.Validatable {
       }
 
       static func validate() throws {
+        if UIKit.UIImage(named: "setting", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'setting' is used in storyboard 'Main', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
         if _R.storyboard.main().drRouletteCellTableViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drRouletteCellTableViewController' could not be loaded from storyboard 'Main' as 'DRRouletteCellTableViewController'.") }

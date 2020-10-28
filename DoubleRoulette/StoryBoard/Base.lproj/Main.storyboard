@@ -216,7 +216,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Roulette" id="G6T-NX-6v1">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="vaC-ph-i3I">
+                        <barButtonItem key="rightBarButtonItem" image="setting" id="vaC-ph-i3I">
                             <connections>
                                 <action selector="editAnimationSettingButton:" destination="BYZ-38-t0r" id="x2G-I5-buf"/>
                             </connections>
@@ -256,6 +256,7 @@
     </scenes>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
+        <image name="setting" width="32" height="32"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
