@@ -233,29 +233,27 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func showResultLabelIfNeed(outerResult: String?, innerResult: String?) {
-        if DRUserHelper.isAuthorizedResultView {
-            if let vc = R.storyboard.popup.drResultViewController() {
-                vc.outer = outerResult
-                vc.inner = innerResult
-                self.popupWindow.rootViewController = vc
-                
-                UIApplication.shared.beginIgnoringInteractionEvents()
-                self.popupWindow.makeKeyAndVisible()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
-                    UIView.animate(withDuration: self.popupDuration) {
-                        self.popupWindow.alpha = 1
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                        UIView.animate(withDuration: self.popupDuration) {
-                            self.popupWindow.alpha = 0
-                        }
-                    }
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 9.5) {
-                    self.view.window?.makeKeyAndVisible()
-                    UIApplication.shared.endIgnoringInteractionEvents()
+        guard DRUserHelper.isAuthorizedResultView,
+              let vc = R.storyboard.popup.drResultViewController() else { return }
+        vc.outer = outerResult
+        vc.inner = innerResult
+        self.popupWindow.rootViewController = vc
+        
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        self.popupWindow.makeKeyAndVisible()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
+            UIView.animate(withDuration: self.popupDuration) {
+                self.popupWindow.alpha = 1
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                UIView.animate(withDuration: self.popupDuration) {
+                    self.popupWindow.alpha = 0
                 }
             }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 9.5) {
+            self.view.window?.makeKeyAndVisible()
+            UIApplication.shared.endIgnoringInteractionEvents()
         }
     }
     
@@ -296,9 +294,8 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     @IBAction private func editAnimationSettingButton(_ sender: Any) {
-        if let vc = R.storyboard.sub.drRouletteSettingViewController() {
-            self.present(vc, animated: true, completion: nil)
-        }
+        guard let vc = R.storyboard.sub.drRouletteSettingViewController() else { return }
+        self.present(vc, animated: true, completion: nil)
     }
     
 }
