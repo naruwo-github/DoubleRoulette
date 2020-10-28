@@ -64,22 +64,6 @@ extension UIColor {
     }
 }
 
-extension UIView {
-    // TODO: 回転後をUIImageとして書き出せない問題が残っている
-    func getScreenShot(windowFrame: CGRect, adFrame: CGRect?, backgroundColor: UIColor) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(windowFrame.size, false, 0.0)
-        let context: CGContext = UIGraphicsGetCurrentContext()!
-        layer.render(in: context)
-        if let frame = adFrame {
-            context.setFillColor(backgroundColor.cgColor)
-            context.fill(frame)
-        }
-        let capturedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return capturedImage
-    }
-}
-
 extension String {
     func attributedString(
         _ color: UIColor = UIColor.black,

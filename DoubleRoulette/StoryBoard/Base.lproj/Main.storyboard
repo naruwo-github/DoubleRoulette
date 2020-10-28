@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -216,18 +216,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Roulette" id="G6T-NX-6v1">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="action" id="Qnj-c0-6je">
-                                <connections>
-                                    <action selector="shareButton:" destination="BYZ-38-t0r" id="1Ez-Yo-bN7"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="compose" id="vaC-ph-i3I">
-                                <connections>
-                                    <action selector="editAnimationSettingButton:" destination="BYZ-38-t0r" id="x2G-I5-buf"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="vaC-ph-i3I">
+                            <connections>
+                                <action selector="editAnimationSettingButton:" destination="BYZ-38-t0r" id="x2G-I5-buf"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bottomAdView" destination="FKs-pi-1Ng" id="bxT-pI-veA"/>

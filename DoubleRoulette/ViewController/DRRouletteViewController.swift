@@ -280,16 +280,6 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         self.showResultLabelIfNeed(outerResult: outerResult, innerResult: innerResult)
     }
     
-    @IBAction private func shareButton(_ sender: Any) {
-        let shareText = "Double Roulette ScreenShot!"
-        self.bottomAdView.isHidden = true
-        let shareImage = self.view.getScreenShot(windowFrame: self.view.frame, adFrame: nil, backgroundColor: self.view.backgroundColor!)
-        self.bottomAdView.isHidden = false
-        let activityItems = [shareText, shareImage] as [Any]
-        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        self.present(activityVC, animated: true, completion: nil)
-    }
-    
     @IBAction private func editAnimationSettingButton(_ sender: Any) {
         if let vc = R.storyboard.sub.drRouletteSettingViewController() {
             self.present(vc, animated: true, completion: nil)
