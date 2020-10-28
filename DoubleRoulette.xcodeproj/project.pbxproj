@@ -176,9 +176,9 @@
 		056A4D5523AA617F008CC263 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0593171C2544F44700C066B1 /* Modal */,
-				05AF43E522C974D2007A236D /* DRRouletteViewController.swift */,
-				05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */,
+				0594A0422549C23800EE9247 /* Main */,
+				0593171C2544F44700C066B1 /* Sub */,
+				0594A0452549C34A00EE9247 /* Popup */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -211,13 +211,32 @@
 			path = DoubleRouletteUITests;
 			sourceTree = "<group>";
 		};
-		0593171C2544F44700C066B1 /* Modal */ = {
+		0593171C2544F44700C066B1 /* Sub */ = {
 			isa = PBXGroup;
 			children = (
+				0522625B24BDAB6F005AA88C /* Sub.storyboard */,
 				0522625D24BDABEF005AA88C /* DRRouletteSettingViewController.swift */,
+			);
+			name = Sub;
+			sourceTree = "<group>";
+		};
+		0594A0422549C23800EE9247 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				05AF43E722C974D2007A236D /* Main.storyboard */,
+				05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */,
+				05AF43E522C974D2007A236D /* DRRouletteViewController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		0594A0452549C34A00EE9247 /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				05DC270224B75BDC00657D2E /* Popup.storyboard */,
 				0520973B24B7652C00E32BEE /* DRResultViewController.swift */,
 			);
-			name = Modal;
+			name = Popup;
 			sourceTree = "<group>";
 		};
 		05A82FFB237502BA00613F97 /* Delegate */ = {
@@ -231,9 +250,6 @@
 		05A82FFC237502D100613F97 /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				05AF43E722C974D2007A236D /* Main.storyboard */,
-				0522625B24BDAB6F005AA88C /* Sub.storyboard */,
-				05DC270224B75BDC00657D2E /* Popup.storyboard */,
 				05AF43EC22C974D4007A236D /* LaunchScreen.storyboard */,
 			);
 			path = StoryBoard;
