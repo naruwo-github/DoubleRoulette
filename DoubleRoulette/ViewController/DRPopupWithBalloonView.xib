@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pDP-jk-VBr" customClass="DRBalloonView" customModule="DoubleRoulette" customModuleProvider="target">
-                    <rect key="frame" x="65" y="0.0" width="30" height="15"/>
+                    <rect key="frame" x="125" y="0.0" width="30" height="15"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="Ax2-t8-wSX"/>
@@ -49,34 +49,24 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pku-Ku-uIe" userLabel="Comment View">
                     <rect key="frame" x="0.0" y="15" width="160" height="40"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="hjg-lS-UWJ">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animation Setting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="hjg-lS-UWJ">
                             <rect key="frame" x="0.0" y="0.0" width="160" height="40"/>
-                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="pFH-Gs-A1j"/>
                                 <constraint firstAttribute="width" constant="160" id="rd8-TF-0AP"/>
                             </constraints>
-                            <attributedString key="attributedText">
-                                <fragment content="Animation Setting">
-                                    <attributes>
-                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                        <font key="NSFont" size="13" name="HiraginoSans-W6"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                            <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="13"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                     <real key="value" value="5"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                    <real key="value" value="0.0"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
                     <constraints>
                         <constraint firstItem="hjg-lS-UWJ" firstAttribute="top" secondItem="pku-Ku-uIe" secondAttribute="top" id="6nY-P6-Cbe"/>
                         <constraint firstAttribute="bottom" secondItem="hjg-lS-UWJ" secondAttribute="bottom" id="JVy-g6-ehO"/>
@@ -96,8 +86,8 @@
             <viewLayoutGuide key="safeArea" id="SXQ-sD-B7N"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="pDP-jk-VBr" secondAttribute="trailing" constant="5" id="Ey8-gV-pZW"/>
                 <constraint firstItem="pku-Ku-uIe" firstAttribute="leading" secondItem="Wqp-wV-lKd" secondAttribute="leading" id="PO2-pf-pGM"/>
-                <constraint firstItem="pDP-jk-VBr" firstAttribute="centerX" secondItem="Wqp-wV-lKd" secondAttribute="centerX" id="U9g-YN-OUF"/>
                 <constraint firstAttribute="trailing" secondItem="pku-Ku-uIe" secondAttribute="trailing" id="XeS-Pe-EKr"/>
                 <constraint firstAttribute="bottom" secondItem="pku-Ku-uIe" secondAttribute="bottom" id="cgR-JM-uvw"/>
                 <constraint firstItem="pku-Ku-uIe" firstAttribute="top" secondItem="pDP-jk-VBr" secondAttribute="bottom" id="fGD-kb-Uxq"/>

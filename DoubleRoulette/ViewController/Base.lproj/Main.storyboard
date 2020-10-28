@@ -128,14 +128,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZs-t6-Sbs" userLabel="Balloon View" customClass="DRPopupWithBalloonView" customModule="DoubleRoulette" customModuleProvider="target">
-                                <rect key="frame" x="264" y="93" width="140" height="50"/>
+                                <rect key="frame" x="269" y="93" width="140" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="bGO-Hr-57p"/>
                                     <constraint firstAttribute="width" constant="140" id="tWL-yp-7RY"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
@@ -220,7 +220,7 @@
                             <constraint firstItem="XKR-hp-RI6" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.4" id="avF-Uz-c8N"/>
                             <constraint firstItem="aeH-X5-t4e" firstAttribute="trailing" secondItem="JKy-1s-ggH" secondAttribute="trailing" id="ch7-7t-muk"/>
                             <constraint firstItem="S6D-nP-cWa" firstAttribute="leading" secondItem="JKy-1s-ggH" secondAttribute="leading" id="eZv-Mk-kP8"/>
-                            <constraint firstItem="JKy-1s-ggH" firstAttribute="trailing" secondItem="rZs-t6-Sbs" secondAttribute="trailing" constant="10" id="jjt-2g-zmg"/>
+                            <constraint firstItem="JKy-1s-ggH" firstAttribute="trailing" secondItem="rZs-t6-Sbs" secondAttribute="trailing" constant="5" id="jjt-2g-zmg"/>
                             <constraint firstItem="l40-z0-66b" firstAttribute="centerX" secondItem="JKy-1s-ggH" secondAttribute="centerX" id="k2a-2u-80n"/>
                             <constraint firstItem="S6D-nP-cWa" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="mDu-Sq-mMd"/>
                             <constraint firstItem="aeH-X5-t4e" firstAttribute="bottom" secondItem="JKy-1s-ggH" secondAttribute="bottom" id="mZ3-rQ-GN5"/>
