@@ -40,8 +40,8 @@ class DRPopupWithBalloonView: UIView {
         self.alpha = 0.0
         UIView.animate(withDuration: 0.4, delay: 0.2, options: .curveEaseIn, animations: {
             self.alpha = 1.0
-        }, completion: { (finished) in
-            UIView.animate(withDuration: 0.3, delay: 5.0, animations: {
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.3, delay: 3.0, animations: {
                 self.alpha = 0.0
             }, completion: { _ in
                 self.isHidden = true

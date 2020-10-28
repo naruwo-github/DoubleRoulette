@@ -45,8 +45,6 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         super.viewDidLoad()
         setupAdvertisementView()
         
-        self.balloonView.show(fillColor: .orange, title: "Animation Setting")
-        
         self.rouletteCells = DRRealmHelper.init().getRouletteData()
         
         self.setupInnerOuterData()
@@ -69,6 +67,18 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             return
         }
         // 進む場合
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard !DRUserHelper.isShownAnimationSettingView else { return }
+        
+        if !DRUserHelper.isShownPopupOfAnimationSetting {
+            DRUserHelper.isShownPopupOfAnimationSetting = true
+            self.balloonView.show(fillColor: .orange, title: "Animation Setting")
+        } else if Int.random(in: 0...4) == Int.random(in: 0...4) {
+            self.balloonView.show(fillColor: .orange, title: "Animation Setting")
+        }
     }
     
     private func setupInnerOuterData() {

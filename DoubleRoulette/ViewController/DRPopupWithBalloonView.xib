@@ -54,7 +54,7 @@
                                 <constraint firstAttribute="height" constant="40" id="pFH-Gs-A1j"/>
                                 <constraint firstAttribute="width" constant="160" id="rd8-TF-0AP"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="13"/>
+                            <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="14"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -64,6 +64,7 @@
                         <constraint firstItem="hjg-lS-UWJ" firstAttribute="top" secondItem="pku-Ku-uIe" secondAttribute="top" id="6nY-P6-Cbe"/>
                         <constraint firstAttribute="bottom" secondItem="hjg-lS-UWJ" secondAttribute="bottom" id="JVy-g6-ehO"/>
                         <constraint firstAttribute="trailing" secondItem="hjg-lS-UWJ" secondAttribute="trailing" id="Z4l-PN-WUO"/>
+                        <constraint firstItem="hjg-lS-UWJ" firstAttribute="centerX" secondItem="pku-Ku-uIe" secondAttribute="centerX" id="qFb-Qm-Qt2"/>
                         <constraint firstItem="hjg-lS-UWJ" firstAttribute="leading" secondItem="pku-Ku-uIe" secondAttribute="leading" id="xxX-Y5-CBh"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
