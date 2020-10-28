@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0519C9FD245A71B7004356DF /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0519C9FC245A71B7004356DF /* Extentions.swift */; };
+		0519C9FD245A71B7004356DF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0519C9FC245A71B7004356DF /* Extensions.swift */; };
 		051A32FC24B7F5B1004A134A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051A32FB24B7F5B1004A134A /* R.generated.swift */; };
 		0520973C24B7652C00E32BEE /* DRResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520973B24B7652C00E32BEE /* DRResultViewController.swift */; };
 		0522625C24BDAB6F005AA88C /* Modal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0522625B24BDAB6F005AA88C /* Modal.storyboard */; };
@@ -25,6 +25,7 @@
 		0594A0632549C68300EE9247 /* DRBalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594A0622549C68300EE9247 /* DRBalloonView.swift */; };
 		0594A0692549C9DA00EE9247 /* DRPopupWithBalloonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0594A0682549C9DA00EE9247 /* DRPopupWithBalloonView.xib */; };
 		0594A06D2549CA0600EE9247 /* DRPopupWithBalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594A06C2549CA0600EE9247 /* DRPopupWithBalloonView.swift */; };
+		0594A08D254A20C900EE9247 /* DRCustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594A08C254A20C900EE9247 /* DRCustomUIView.swift */; };
 		059C9F9B24453D0D00B11797 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9924453D0D00B11797 /* Realm.framework */; };
 		059C9F9C24453D0D00B11797 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9924453D0D00B11797 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		059C9F9D24453D0D00B11797 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9A24453D0D00B11797 /* RealmSwift.framework */; };
@@ -78,7 +79,7 @@
 
 /* Begin PBXFileReference section */
 		050016622445593B00F3B87F /* AMColorPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMColorPicker.framework; path = Carthage/Build/iOS/AMColorPicker.framework; sourceTree = "<group>"; };
-		0519C9FC245A71B7004356DF /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		0519C9FC245A71B7004356DF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		051A32FB24B7F5B1004A134A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0520973B24B7652C00E32BEE /* DRResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRResultViewController.swift; sourceTree = "<group>"; };
 		0522625B24BDAB6F005AA88C /* Modal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Modal.storyboard; sourceTree = "<group>"; };
@@ -100,6 +101,7 @@
 		0594A0622549C68300EE9247 /* DRBalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRBalloonView.swift; sourceTree = "<group>"; };
 		0594A0682549C9DA00EE9247 /* DRPopupWithBalloonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DRPopupWithBalloonView.xib; sourceTree = "<group>"; };
 		0594A06C2549CA0600EE9247 /* DRPopupWithBalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRPopupWithBalloonView.swift; sourceTree = "<group>"; };
+		0594A08C254A20C900EE9247 /* DRCustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRCustomUIView.swift; sourceTree = "<group>"; };
 		059C9F9924453D0D00B11797 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		059C9F9A24453D0D00B11797 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		05AF43E022C974D2007A236D /* DoubleRoulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoubleRoulette.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,8 +155,9 @@
 		0519C9FB245A7181004356DF /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				0594A08B254A20AE00EE9247 /* Custom Class View */,
+				0594A088254A206A00EE9247 /* Extension */,
 				05D3D9D522C9D475007D24FF /* TableViewCell.swift */,
-				0519C9FC245A71B7004356DF /* Extentions.swift */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -262,6 +265,22 @@
 				0594A0682549C9DA00EE9247 /* DRPopupWithBalloonView.xib */,
 			);
 			name = Balloon;
+			sourceTree = "<group>";
+		};
+		0594A088254A206A00EE9247 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0519C9FC245A71B7004356DF /* Extensions.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		0594A08B254A20AE00EE9247 /* Custom Class View */ = {
+			isa = PBXGroup;
+			children = (
+				0594A08C254A20C900EE9247 /* DRCustomUIView.swift */,
+			);
+			name = "Custom Class View";
 			sourceTree = "<group>";
 		};
 		05A82FFB237502BA00613F97 /* Delegate */ = {
@@ -671,11 +690,12 @@
 				0522625E24BDABEF005AA88C /* DRRouletteSettingViewController.swift in Sources */,
 				0568E032252DF33100C5EC48 /* DRRealmHelper.swift in Sources */,
 				05AF43E422C974D2007A236D /* AppDelegate.swift in Sources */,
+				0594A08D254A20C900EE9247 /* DRCustomUIView.swift in Sources */,
 				053D814823914D0900ACCAEE /* ColorStock.swift in Sources */,
 				05D3D9D422C9D431007D24FF /* DRRouletteCellTableViewController.swift in Sources */,
 				0594A06D2549CA0600EE9247 /* DRPopupWithBalloonView.swift in Sources */,
 				051A32FC24B7F5B1004A134A /* R.generated.swift in Sources */,
-				0519C9FD245A71B7004356DF /* Extentions.swift in Sources */,
+				0519C9FD245A71B7004356DF /* Extensions.swift in Sources */,
 				0520973C24B7652C00E32BEE /* DRResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

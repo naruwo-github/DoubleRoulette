@@ -11,6 +11,7 @@ import UIKit
 class DRPopupWithBalloonView: UIView {
     
     @IBOutlet private weak var balloonView: DRBalloonView!
+    @IBOutlet private weak var popupLabelView: DRCustomUIView!
     @IBOutlet private weak var popUpLabel: UILabel!
     
     required init?(coder aDecoder: NSCoder) {
@@ -28,9 +29,9 @@ class DRPopupWithBalloonView: UIView {
         self.balloonView.layer.setNeedsDisplay()
         self.balloonView.layer.displayIfNeeded()
         
-        self.popUpLabel.backgroundColor = fillColor
+        self.popupLabelView.backgroundColor = fillColor
         self.popUpLabel.text = title
-
+        
         self.showAnimateing()
     }
     
@@ -42,7 +43,7 @@ class DRPopupWithBalloonView: UIView {
         }, completion: { (finished) in
             UIView.animate(withDuration: 0.3, delay: 5.0, animations: {
                 self.alpha = 0.0
-            }, completion: { (finished) in
+            }, completion: { _ in
                 self.isHidden = true
             })
         })

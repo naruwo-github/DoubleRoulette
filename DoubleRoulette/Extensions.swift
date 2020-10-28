@@ -1,5 +1,5 @@
 //
-//  Extentions.swift
+//  Extensions.swift
 //  DoubleRoulette
 //
 //  Created by Narumi Nogawa on 2020/04/30.
