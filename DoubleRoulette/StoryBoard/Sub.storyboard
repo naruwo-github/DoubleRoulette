@@ -23,6 +23,18 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vC5-7j-XA7" userLabel="Top View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aY5-2o-Fha" userLabel="Line View">
+                                                <rect key="frame" x="112.5" y="8" width="150" height="4"/>
+                                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="4" id="wNB-1G-VFj"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animation Setting" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="uwf-UJ-u61">
                                                 <rect key="frame" x="75" y="16.5" width="225" height="32.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
@@ -32,8 +44,11 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="uwf-UJ-u61" firstAttribute="centerY" secondItem="vC5-7j-XA7" secondAttribute="centerY" id="Caq-nn-eog"/>
+                                            <constraint firstItem="aY5-2o-Fha" firstAttribute="width" secondItem="vC5-7j-XA7" secondAttribute="width" multiplier="0.4" id="HQ3-gX-lmF"/>
                                             <constraint firstItem="uwf-UJ-u61" firstAttribute="centerX" secondItem="vC5-7j-XA7" secondAttribute="centerX" id="ILp-g5-cB7"/>
                                             <constraint firstItem="uwf-UJ-u61" firstAttribute="height" secondItem="vC5-7j-XA7" secondAttribute="height" multiplier="0.5" id="NQo-Mn-zrh"/>
+                                            <constraint firstItem="aY5-2o-Fha" firstAttribute="centerX" secondItem="vC5-7j-XA7" secondAttribute="centerX" id="THB-TU-I50"/>
+                                            <constraint firstItem="aY5-2o-Fha" firstAttribute="top" secondItem="vC5-7j-XA7" secondAttribute="top" constant="8" id="v1h-3E-g8G"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAv-le-mpX">
