@@ -21,7 +21,9 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet private weak var outerChartView: MyPieChartView!
     @IBOutlet private weak var innerChartView: MyPieChartView!
     
-    private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/3283423713"
+    private let INTERSTITIAL_AD_UNIT_ID: String = "ca-app-pub-3940256099942544/4411468910" //"ca-app-pub-6492692627915720/3278021023"//こっちが本番id
+    private var interstitial: GADInterstitial!
+    private let BANNER_AD_UNIT_ID: String = "ca-app-pub-6492692627915720/3283423713"
     private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
     private let popupWindow: UIWindow = UIWindow.init(frame: UIScreen.main.bounds)
     private let labelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
@@ -39,7 +41,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupAdvertisementView()
+        setupAdvertisementView()
         
         self.rouletteCells = DRRealmHelper.init().getRouletteData()
         
@@ -52,8 +54,17 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         self.setupInnerRoulette(innerName: self.innerCellName, innerColor: self.innerCellColor)
         
         self.drawArrow()
-        
-        self.setupAdvertisementView()
+    }
+    
+    // NavigationController の「戻る/進む」で呼ばれる
+    override func willMove(toParent parent: UIViewController?) {
+        if parent == nil {
+            // 戻る場合
+            super.willMove(toParent: nil)
+            showInterstitialAd()
+            return
+        }
+        // 進む場合
     }
     
     private func setupInnerOuterData() {
@@ -171,24 +182,15 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         self.view.addSubview(arrowView)
     }
     
-    private func setupAdvertisementView() {
-        interstitial = GADInterstitial(adUnitID: INTERSTITIAL_AD_UNIT_ID)
-        interstitial.load(GADRequest())
-        
-        self.bannerView.translatesAutoresizingMaskIntoConstraints = true
-        self.bottomAdView.addSubview(self.bannerView)
-        self.bannerView.center.x = self.view.center.x
-        self.bannerView.adUnitID = self.BANNER_AD_UNIT_ID
-        self.bannerView.rootViewController = self
-        self.bannerView.load(GADRequest())
-        self.bannerView.delegate = self
-    }
-    
     private func showInterstitialAd() {
         guard let ad = interstitial else { return }
-        if ad.isReady {
-            ad.present(fromRootViewController: self)
+        let backCount = DRUserHelper.backToCellSettingFromRouletteCount
+        if backCount != 0 && backCount % 7 == 0 {
+            if ad.isReady {
+                ad.present(fromRootViewController: self)
+            }
         }
+        DRUserHelper.backToCellSettingFromRouletteCount = backCount + 1
     }
     
     private func soundOnIfNeed() {
@@ -300,7 +302,25 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     
 }
 
+extension DRRouletteViewController {
+    
+    fileprivate func setupAdvertisementView() {
+        self.interstitial = GADInterstitial(adUnitID: self.INTERSTITIAL_AD_UNIT_ID)
+        self.interstitial.load(GADRequest())
+        
+        self.bannerView.translatesAutoresizingMaskIntoConstraints = true
+        self.bottomAdView.addSubview(self.bannerView)
+        self.bannerView.center.x = self.view.center.x
+        self.bannerView.adUnitID = self.BANNER_AD_UNIT_ID
+        self.bannerView.rootViewController = self
+        self.bannerView.load(GADRequest())
+        self.bannerView.delegate = self
+    }
+    
+}
+
 extension DRRouletteViewController: AVAudioPlayerDelegate {
+    
     fileprivate func playSound(name: String) {
         guard let path = Bundle.main.path(forResource: name, ofType: "mp3") else {
             return
@@ -313,4 +333,5 @@ extension DRRouletteViewController: AVAudioPlayerDelegate {
             print("Error...")
         }
     }
+    
 }

@@ -17,6 +17,16 @@ class DRUserHelper {
         case displayResult = "dr.displayResult"
     }
     
+    // 表示回数など、動作の回数を管理
+    enum CounterKey: String {
+        case backToCellSettingFromRoulette = "dr.backToCellSettingFromRoulette"
+    }
+    
+    class func sync() {
+        let userDefault = UserDefaults.standard
+        userDefault.synchronize()
+    }
+    
     // データ保存のクラス関数
     class func save(_ key: String, value: Any?) {
         let userDefault = UserDefaults.standard
@@ -66,4 +76,15 @@ class DRUserHelper {
             DRUserHelper.save(DRUserHelper.AnimationSettingKey.displayResult.rawValue, value: newValue)
         }
     }
+    
+    // ルーレット画面からセル設定画面に戻るナビゲーションボタンを押した回数
+    static var backToCellSettingFromRouletteCount: Int {
+        get {
+            return DRUserHelper.load(DRUserHelper.CounterKey.backToCellSettingFromRoulette.rawValue, returnClass: Int.self) ?? 0
+        }
+        set {
+            DRUserHelper.save(DRUserHelper.CounterKey.backToCellSettingFromRoulette.rawValue, value: newValue)
+        }
+    }
+    
 }

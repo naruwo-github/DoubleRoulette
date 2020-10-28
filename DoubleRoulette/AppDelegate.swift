@@ -20,10 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         let key = "startUpCount"
-        UserDefaults.standard.set(UserDefaults.standard.integer(forKey: key) + 1, forKey: key)
-        UserDefaults.standard.synchronize()
+        DRUserHelper.save(key, value: DRUserHelper.load(key, returnClass: Int.self) ?? 0 + 1)
+        DRUserHelper.sync()
 
-        let count = UserDefaults.standard.integer(forKey: key)
+        let count = DRUserHelper.load(key, returnClass: Int.self) ?? 0
         if count == 10 || count == 30 || count == 60 {
             SKStoreReviewController.requestReview()
         }
