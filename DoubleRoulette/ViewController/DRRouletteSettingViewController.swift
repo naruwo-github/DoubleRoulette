@@ -17,7 +17,12 @@ class DRRouletteSettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.setupSwitch()
+        // 一度この画面にきたら下記フラグをtrueに設置する
+        if !DRUserHelper.isShownAnimationSettingView {
+            DRUserHelper.isShownAnimationSettingView = true
+        }
     }
     
     override func viewDidLayoutSubviews() {

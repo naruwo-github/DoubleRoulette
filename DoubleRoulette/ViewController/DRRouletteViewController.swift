@@ -20,10 +20,14 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet private weak var elementNumLabel: UILabel!
     @IBOutlet private weak var outerChartView: MyPieChartView!
     @IBOutlet private weak var innerChartView: MyPieChartView!
+    @IBOutlet private weak var balloonView: DRPopupWithBalloonView!
     
-    private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/3283423713"
+    private let INTERSTITIAL_AD_UNIT_ID: String = "ca-app-pub-3940256099942544/4411468910" // テスト広告
+//    private let INTERSTITIAL_AD_UNIT_ID: String = "ca-app-pub-6492692627915720/3278021023" // 本番
+    private var interstitial: GADInterstitial!
+    private let BANNER_AD_UNIT_ID: String = "ca-app-pub-6492692627915720/3283423713"
     private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
-    private let popupWindow: UIWindow = UIWindow.init(frame: UIScreen.main.bounds)
+    private let popupWindow: UIWindow = .init(frame: UIScreen.main.bounds)
     private let labelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
     private let popupDuration: Double = 1.0
     
@@ -39,6 +43,8 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupAdvertisementView()
+        
         self.rouletteCells = DRRealmHelper.init().getRouletteData()
         
         self.setupInnerOuterData()
@@ -50,8 +56,29 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         self.setupInnerRoulette(innerName: self.innerCellName, innerColor: self.innerCellColor)
         
         self.drawArrow()
+    }
+    
+    // NavigationController の「戻る/進む」で呼ばれる
+    override func willMove(toParent parent: UIViewController?) {
+        if parent == nil {
+            // 戻る場合
+            super.willMove(toParent: nil)
+            showInterstitialAd()
+            return
+        }
+        // 進む場合
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard !DRUserHelper.isShownAnimationSettingView else { return }
         
-        self.setupAdvertisementView()
+        if !DRUserHelper.isShownPopupOfAnimationSetting {
+            DRUserHelper.isShownPopupOfAnimationSetting = true
+            self.balloonView.show(fillColor: .orange, title: "Animation Setting")
+        } else if Int.random(in: 0...4) == Int.random(in: 0...4) {
+            self.balloonView.show(fillColor: .orange, title: "Animation Setting")
+        }
     }
     
     private func setupInnerOuterData() {
@@ -80,23 +107,23 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func setupOuterRoulette(outerName: [String], outerColor: [UIColor]) {
-        self.outerChartView.radius = min(self.view.frame.size.width, self.view.frame.size.height)/2
+        self.outerChartView.radius = min(self.view.frame.size.width, self.view.frame.size.height) / 2
         for i in 0..<outerName.count {
-            self.outerChartView.segments.insert(Segment(color: outerColor[i], value: CGFloat(Double.pi * 2.0 / Double(outerName.count))), at: 0)
+            self.outerChartView.segments.insert(Segment(color: outerColor[i], value: .pi * 2.0 / CGFloat(outerName.count)), at: 0)
         }
         self.setupOuterRouletteLabel()
     }
     
     private func setupInnerRoulette(innerName: [String], innerColor: [UIColor]) {
-        self.innerChartView.radius = min(self.view.frame.size.width, self.view.frame.size.height)/4
+        self.innerChartView.radius = min(self.view.frame.size.width, self.view.frame.size.height) / 4
         for i in 0..<innerName.count {
-            self.innerChartView.segments.insert(Segment(color: innerColor[i], value: CGFloat(Double.pi * 2.0 / Double(innerName.count))), at: 0)
+            self.innerChartView.segments.insert(Segment(color: innerColor[i], value: .pi * 2.0 / CGFloat(innerName.count)), at: 0)
         }
         self.setupInnerRouletteLabel()
     }
     
     private func setupOuterRouletteLabel() {
-        let angleOfOuterPiece = CGFloat.pi * 2.0 / CGFloat(self.outerCellName.count)
+        let angleOfOuterPiece = .pi * 2.0 / CGFloat(self.outerCellName.count)
         let distFromOuterCenter = self.view.frame.width * 3 / 8
         let startPoint = self.view.center
         let firstOuterLabelPoint = CGPoint(x: startPoint.x, y: startPoint.y - distFromOuterCenter)
@@ -122,7 +149,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     
     private func setupInnerRouletteLabel() {
         let startPoint = self.view.center
-        let angleOfInnerPiece = CGFloat.pi * 2.0 / CGFloat(self.innerCellName.count)
+        let angleOfInnerPiece = .pi * 2.0 / CGFloat(self.innerCellName.count)
         let distFromInnerCenter = self.view.frame.width / 6.5
         let firstInnerLabelPoint = CGPoint(x: startPoint.x, y: startPoint.y - distFromInnerCenter)
         for i in 0..<self.innerCellName.count {
@@ -169,14 +196,15 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         self.view.addSubview(arrowView)
     }
     
-    private func setupAdvertisementView() {
-        self.bannerView.translatesAutoresizingMaskIntoConstraints = true
-        self.bottomAdView.addSubview(self.bannerView)
-        self.bannerView.center.x = self.view.center.x
-        self.bannerView.adUnitID = self.AD_UNIT_ID
-        self.bannerView.rootViewController = self
-        self.bannerView.load(GADRequest())
-        self.bannerView.delegate = self
+    private func showInterstitialAd() {
+        guard let ad = interstitial else { return }
+        let backCount = DRUserHelper.backToCellSettingFromRouletteCount
+        if backCount != 0 && backCount % 7 == 0 {
+            if ad.isReady {
+                ad.present(fromRootViewController: self)
+            }
+        }
+        DRUserHelper.backToCellSettingFromRouletteCount = backCount + 1
     }
     
     private func soundOnIfNeed() {
@@ -186,8 +214,8 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func setupOuterChartView() {
-        let rotationMinimum = CGFloat.pi * 2
-        let outerRotationAngle = CGFloat.random(in: rotationMinimum ... CGFloat.pi * 2 * 10)
+        let rotationMinimum: CGFloat = .pi * 2
+        let outerRotationAngle: CGFloat = .random(in: rotationMinimum ... .pi * 2 * 10)
         let fromValOuter: CGFloat = self.currentChangedOuterAngle
         let toValOuter: CGFloat = self.currentChangedOuterAngle + outerRotationAngle
         let animationOuter: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
@@ -202,8 +230,8 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func setupInnerChartView() {
-        let rotationMinimum = CGFloat.pi * 2
-        let innerRotationAngle = CGFloat.random(in: rotationMinimum ... CGFloat.pi * 2 * 10)
+        let rotationMinimum: CGFloat = .pi * 2
+        let innerRotationAngle: CGFloat = .random(in: rotationMinimum ... .pi * 2 * 10)
         let fromValInner: CGFloat = self.currentChangedInnerAngle
         let toValInner: CGFloat = self.currentChangedInnerAngle + innerRotationAngle
         let animationInner: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
@@ -218,29 +246,27 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func showResultLabelIfNeed(outerResult: String?, innerResult: String?) {
-        if DRUserHelper.isAuthorizedResultView {
-            if let vc = R.storyboard.popup.drResultViewController() {
-                vc.outer = outerResult
-                vc.inner = innerResult
-                self.popupWindow.rootViewController = vc
-                
-                UIApplication.shared.beginIgnoringInteractionEvents()
-                self.popupWindow.makeKeyAndVisible()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
-                    UIView.animate(withDuration: self.popupDuration) {
-                        self.popupWindow.alpha = 1
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                        UIView.animate(withDuration: self.popupDuration) {
-                            self.popupWindow.alpha = 0
-                        }
-                    }
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 9.5) {
-                    self.view.window?.makeKeyAndVisible()
-                    UIApplication.shared.endIgnoringInteractionEvents()
+        guard DRUserHelper.isAuthorizedResultView,
+              let vc = R.storyboard.popup.drResultViewController() else { return }
+        vc.outer = outerResult
+        vc.inner = innerResult
+        self.popupWindow.rootViewController = vc
+        
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        self.popupWindow.makeKeyAndVisible()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
+            UIView.animate(withDuration: self.popupDuration) {
+                self.popupWindow.alpha = 1
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                UIView.animate(withDuration: self.popupDuration) {
+                    self.popupWindow.alpha = 0
                 }
             }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 9.5) {
+            self.view.window?.makeKeyAndVisible()
+            UIApplication.shared.endIgnoringInteractionEvents()
         }
     }
     
@@ -253,12 +279,12 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         var outerResult: String?
         var innerResult: String?
         
-        let outerDisplacement = self.currentChangedOuterAngle.truncatingRemainder(dividingBy: CGFloat.pi * 2)
+        let outerDisplacement: CGFloat = self.currentChangedOuterAngle.truncatingRemainder(dividingBy: .pi * 2)
         // innerは針の位置が180度ずれているため、CGFloat.piを加算する
-        let innerDisplacement = (self.currentChangedInnerAngle + CGFloat.pi).truncatingRemainder(dividingBy: CGFloat.pi * 2)
+        let innerDisplacement: CGFloat = (self.currentChangedInnerAngle + .pi).truncatingRemainder(dividingBy: .pi * 2)
         
         let outerItemsCount = self.outerCellName.count
-        let outerUnitDisplacement = CGFloat.pi * 2 / CGFloat(outerItemsCount)
+        let outerUnitDisplacement = .pi * 2 / CGFloat(outerItemsCount)
         if outerItemsCount > 0 {
             for i in 0 ..< outerItemsCount {
                 if CGFloat(i) * outerUnitDisplacement ..< CGFloat(i+1)*outerUnitDisplacement ~= outerDisplacement {
@@ -268,7 +294,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         }
         
         let innerItemsCount = self.innerCellName.count
-        let innerUnitDisplacement = CGFloat.pi * 2 / CGFloat(innerItemsCount)
+        let innerUnitDisplacement = .pi * 2 / CGFloat(innerItemsCount)
         if innerItemsCount > 0 {
             for i in 0 ..< innerItemsCount {
                 if CGFloat(i) * innerUnitDisplacement ..< CGFloat(i+1)*innerUnitDisplacement ~= innerDisplacement {
@@ -280,25 +306,64 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         self.showResultLabelIfNeed(outerResult: outerResult, innerResult: innerResult)
     }
     
-    @IBAction private func shareButton(_ sender: Any) {
-        let shareText = "Double Roulette ScreenShot!"
-        self.bottomAdView.isHidden = true
-        let shareImage = self.view.getScreenShot(windowFrame: self.view.frame, adFrame: nil, backgroundColor: self.view.backgroundColor!)
-        self.bottomAdView.isHidden = false
-        let activityItems = [shareText, shareImage] as [Any]
-        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        self.present(activityVC, animated: true, completion: nil)
+    @IBAction private func editAnimationSettingButton(_ sender: Any) {
+        guard let vc = R.storyboard.modal.drRouletteSettingViewController() else { return }
+        self.present(vc, animated: true, completion: nil)
     }
     
-    @IBAction private func editAnimationSettingButton(_ sender: Any) {
-        if let vc = R.storyboard.sub.drRouletteSettingViewController() {
-            self.present(vc, animated: true, completion: nil)
-        }
+}
+
+extension DRRouletteViewController: GADInterstitialDelegate {
+    
+    fileprivate func setupAdvertisementView() {
+        self.interstitial = GADInterstitial(adUnitID: self.INTERSTITIAL_AD_UNIT_ID)
+        self.interstitial.load(GADRequest())
+        self.interstitial.delegate = self
+        
+        self.bannerView.translatesAutoresizingMaskIntoConstraints = true
+        self.bottomAdView.addSubview(self.bannerView)
+        self.bannerView.center.x = self.view.center.x
+        self.bannerView.adUnitID = self.BANNER_AD_UNIT_ID
+        self.bannerView.rootViewController = self
+        self.bannerView.load(GADRequest())
+        self.bannerView.delegate = self
+    }
+    
+    // Tells the delegate an ad request succeeded.
+    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
+      print("interstitialDidReceiveAd")
+    }
+
+    // Tells the delegate an ad request failed.
+    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
+      print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+
+    // Tells the delegate that an interstitial will be presented.
+    func interstitialWillPresentScreen(_ ad: GADInterstitial) {
+      print("interstitialWillPresentScreen")
+    }
+
+    // Tells the delegate the interstitial is to be animated off the screen.
+    func interstitialWillDismissScreen(_ ad: GADInterstitial) {
+      print("interstitialWillDismissScreen")
+    }
+
+    // Tells the delegate the interstitial had been animated off the screen.
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+      print("interstitialDidDismissScreen")
+    }
+
+    // Tells the delegate that a user click will open another app
+    // (such as the App Store), backgrounding the current app.
+    func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
+      print("interstitialWillLeaveApplication")
     }
     
 }
 
 extension DRRouletteViewController: AVAudioPlayerDelegate {
+    
     fileprivate func playSound(name: String) {
         guard let path = Bundle.main.path(forResource: name, ofType: "mp3") else {
             return
@@ -311,4 +376,5 @@ extension DRRouletteViewController: AVAudioPlayerDelegate {
             print("Error...")
         }
     }
+    
 }

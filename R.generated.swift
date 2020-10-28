@@ -119,10 +119,10 @@ struct R: Rswift.Validatable {
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `Main`.
     static let main = _R.storyboard.main()
+    /// Storyboard `Modal`.
+    static let modal = _R.storyboard.modal()
     /// Storyboard `Popup`.
     static let popup = _R.storyboard.popup()
-    /// Storyboard `Sub`.
-    static let sub = _R.storyboard.sub()
 
     #if os(iOS) || os(tvOS)
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
@@ -139,16 +139,16 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIStoryboard(name: "Popup", bundle: ...)`
-    static func popup(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.popup)
+    /// `UIStoryboard(name: "Modal", bundle: ...)`
+    static func modal(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.modal)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIStoryboard(name: "Sub", bundle: ...)`
-    static func sub(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.sub)
+    /// `UIStoryboard(name: "Popup", bundle: ...)`
+    static func popup(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.popup)
     }
     #endif
 
@@ -206,12 +206,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 2 images.
+  /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
     /// Image `arrow1`.
     static let arrow1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow1")
     /// Image `arrow2`.
     static let arrow2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow2")
+    /// Image `setting`.
+    static let setting = Rswift.ImageResource(bundle: R.hostingBundle, name: "setting")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "arrow1", bundle: ..., traitCollection: ...)`
@@ -226,6 +228,33 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.arrow2, compatibleWith: traitCollection)
     }
     #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "setting", bundle: ..., traitCollection: ...)`
+    static func setting(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.setting, compatibleWith: traitCollection)
+    }
+    #endif
+
+    fileprivate init() {}
+  }
+
+  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  struct nib {
+    /// Nib `DRPopupWithBalloonView`.
+    static let drPopupWithBalloonView = _R.nib._DRPopupWithBalloonView()
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "DRPopupWithBalloonView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.drPopupWithBalloonView) instead")
+    static func drPopupWithBalloonView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.drPopupWithBalloonView)
+    }
+    #endif
+
+    static func drPopupWithBalloonView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.drPopupWithBalloonView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
 
     fileprivate init() {}
   }
@@ -259,6 +288,23 @@ struct _R: Rswift.Validatable {
   }
 
   #if os(iOS) || os(tvOS)
+  struct nib {
+    struct _DRPopupWithBalloonView: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "DRPopupWithBalloonView"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+
+      fileprivate init() {}
+    }
+
+    fileprivate init() {}
+  }
+  #endif
+
+  #if os(iOS) || os(tvOS)
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       #if os(iOS) || os(tvOS)
@@ -268,10 +314,10 @@ struct _R: Rswift.Validatable {
       try main.validate()
       #endif
       #if os(iOS) || os(tvOS)
-      try popup.validate()
+      try modal.validate()
       #endif
       #if os(iOS) || os(tvOS)
-      try sub.validate()
+      try popup.validate()
       #endif
     }
 
@@ -309,10 +355,31 @@ struct _R: Rswift.Validatable {
       }
 
       static func validate() throws {
+        if UIKit.UIImage(named: "setting", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'setting' is used in storyboard 'Main', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
         if _R.storyboard.main().drRouletteCellTableViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drRouletteCellTableViewController' could not be loaded from storyboard 'Main' as 'DRRouletteCellTableViewController'.") }
         if _R.storyboard.main().drRouletteViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drRouletteViewController' could not be loaded from storyboard 'Main' as 'DRRouletteViewController'.") }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    struct modal: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let drRouletteSettingViewController = StoryboardViewControllerResource<DRRouletteSettingViewController>(identifier: "DRRouletteSettingViewController")
+      let name = "Modal"
+
+      func drRouletteSettingViewController(_: Void = ()) -> DRRouletteSettingViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drRouletteSettingViewController)
+      }
+
+      static func validate() throws {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+        if _R.storyboard.modal().drRouletteSettingViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drRouletteSettingViewController' could not be loaded from storyboard 'Modal' as 'DRRouletteSettingViewController'.") }
       }
 
       fileprivate init() {}
@@ -333,26 +400,6 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
         if _R.storyboard.popup().drResultViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drResultViewController' could not be loaded from storyboard 'Popup' as 'DRResultViewController'.") }
-      }
-
-      fileprivate init() {}
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    struct sub: Rswift.StoryboardResourceType, Rswift.Validatable {
-      let bundle = R.hostingBundle
-      let drRouletteSettingViewController = StoryboardViewControllerResource<DRRouletteSettingViewController>(identifier: "DRRouletteSettingViewController")
-      let name = "Sub"
-
-      func drRouletteSettingViewController(_: Void = ()) -> DRRouletteSettingViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drRouletteSettingViewController)
-      }
-
-      static func validate() throws {
-        if #available(iOS 11.0, tvOS 11.0, *) {
-        }
-        if _R.storyboard.sub().drRouletteSettingViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drRouletteSettingViewController' could not be loaded from storyboard 'Sub' as 'DRRouletteSettingViewController'.") }
       }
 
       fileprivate init() {}

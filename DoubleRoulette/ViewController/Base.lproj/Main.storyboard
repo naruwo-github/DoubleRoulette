@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -127,6 +127,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZs-t6-Sbs" userLabel="Balloon View" customClass="DRPopupWithBalloonView" customModule="DoubleRoulette" customModuleProvider="target">
+                                <rect key="frame" x="269" y="93" width="140" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="bGO-Hr-57p"/>
+                                    <constraint firstAttribute="width" constant="140" id="tWL-yp-7RY"/>
+                                </constraints>
+                            </view>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6D-nP-cWa" userLabel="Outer Chart View" customClass="MyPieChartView" customModule="DoubleRoulette" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </view>
@@ -199,6 +207,7 @@
                         <constraints>
                             <constraint firstItem="S6D-nP-cWa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1hk-R7-e4G"/>
                             <constraint firstItem="l40-z0-66b" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4ab-tV-xcL"/>
+                            <constraint firstItem="rZs-t6-Sbs" firstAttribute="top" secondItem="JKy-1s-ggH" secondAttribute="top" constant="5" id="Bt0-Cx-pvt"/>
                             <constraint firstItem="aeH-X5-t4e" firstAttribute="centerX" secondItem="JKy-1s-ggH" secondAttribute="centerX" id="HeH-R0-Dln"/>
                             <constraint firstItem="l40-z0-66b" firstAttribute="leading" secondItem="JKy-1s-ggH" secondAttribute="leading" id="Izm-Q4-oDq"/>
                             <constraint firstItem="S6D-nP-cWa" firstAttribute="trailing" secondItem="JKy-1s-ggH" secondAttribute="trailing" id="M1D-mL-c4W"/>
@@ -206,6 +215,7 @@
                             <constraint firstItem="XKR-hp-RI6" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.4" id="avF-Uz-c8N"/>
                             <constraint firstItem="aeH-X5-t4e" firstAttribute="trailing" secondItem="JKy-1s-ggH" secondAttribute="trailing" id="ch7-7t-muk"/>
                             <constraint firstItem="S6D-nP-cWa" firstAttribute="leading" secondItem="JKy-1s-ggH" secondAttribute="leading" id="eZv-Mk-kP8"/>
+                            <constraint firstItem="JKy-1s-ggH" firstAttribute="trailing" secondItem="rZs-t6-Sbs" secondAttribute="trailing" constant="5" id="jjt-2g-zmg"/>
                             <constraint firstItem="l40-z0-66b" firstAttribute="centerX" secondItem="JKy-1s-ggH" secondAttribute="centerX" id="k2a-2u-80n"/>
                             <constraint firstItem="S6D-nP-cWa" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="mDu-Sq-mMd"/>
                             <constraint firstItem="aeH-X5-t4e" firstAttribute="bottom" secondItem="JKy-1s-ggH" secondAttribute="bottom" id="mZ3-rQ-GN5"/>
@@ -216,20 +226,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Roulette" id="G6T-NX-6v1">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="action" id="Qnj-c0-6je">
-                                <connections>
-                                    <action selector="shareButton:" destination="BYZ-38-t0r" id="1Ez-Yo-bN7"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="compose" id="vaC-ph-i3I">
-                                <connections>
-                                    <action selector="editAnimationSettingButton:" destination="BYZ-38-t0r" id="x2G-I5-buf"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="setting" id="vaC-ph-i3I">
+                            <connections>
+                                <action selector="editAnimationSettingButton:" destination="BYZ-38-t0r" id="x2G-I5-buf"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="balloonView" destination="rZs-t6-Sbs" id="K09-6D-gt4"/>
                         <outlet property="bottomAdView" destination="FKs-pi-1Ng" id="bxT-pI-veA"/>
                         <outlet property="elementNumLabel" destination="oPD-db-q4y" id="j8p-Hb-gnl"/>
                         <outlet property="innerChartView" destination="l40-z0-66b" id="hAX-wX-Atf"/>
@@ -263,6 +267,7 @@
     </scenes>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
+        <image name="setting" width="24" height="24"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

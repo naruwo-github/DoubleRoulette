@@ -49,14 +49,12 @@ class MyPieChartView: UIView {
     }
     
     private func setCtx(viewCenter: CGPoint) -> CGContext? {
-        if let ctx = UIGraphicsGetCurrentContext() {
-            ctx.setFillColor(UIColor.gray.cgColor)
-            ctx.move(to: CGPoint(x: viewCenter.x, y: viewCenter.y))
-            ctx.addArc(center: CGPoint(x: viewCenter.x, y: viewCenter.y), radius: radius, startAngle: 0, endAngle: 360, clockwise: false)
-            ctx.fillPath()
-            return ctx
-        }
-        return nil
+        guard let ctx = UIGraphicsGetCurrentContext() else { return nil }
+        ctx.setFillColor(UIColor.gray.cgColor)
+        ctx.move(to: CGPoint(x: viewCenter.x, y: viewCenter.y))
+        ctx.addArc(center: CGPoint(x: viewCenter.x, y: viewCenter.y), radius: radius, startAngle: 0, endAngle: 360, clockwise: false)
+        ctx.fillPath()
+        return ctx
     }
     
 }

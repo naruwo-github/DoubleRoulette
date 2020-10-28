@@ -1,5 +1,5 @@
 //
-//  Extentions.swift
+//  Extensions.swift
 //  DoubleRoulette
 //
 //  Created by Narumi Nogawa on 2020/04/30.
@@ -61,22 +61,6 @@ extension UIColor {
     class func convertToRGB(_ color: UIColor) -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         let components = color.cgColor.components!
         return (red: components[0], green: components[1], blue: components[2], alpha: components[3])
-    }
-}
-
-extension UIView {
-    // TODO: 回転後をUIImageとして書き出せない問題が残っている
-    func getScreenShot(windowFrame: CGRect, adFrame: CGRect?, backgroundColor: UIColor) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(windowFrame.size, false, 0.0)
-        let context: CGContext = UIGraphicsGetCurrentContext()!
-        layer.render(in: context)
-        if let frame = adFrame {
-            context.setFillColor(backgroundColor.cgColor)
-            context.fill(frame)
-        }
-        let capturedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return capturedImage
     }
 }
 

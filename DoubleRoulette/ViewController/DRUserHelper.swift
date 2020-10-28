@@ -13,8 +13,21 @@ class DRUserHelper {
     
     // アニメーションのセッティングを管理
     enum AnimationSettingKey: String {
+        case isShownAnimationSettingView = "dr.isShownAnimationSettingView"
+        
+        case isShownPopup = "dr.isShownPopup"
         case playSound = "dr.playSound"
         case displayResult = "dr.displayResult"
+    }
+    
+    // 表示回数など、動作の回数を管理
+    enum CounterKey: String {
+        case backToCellSettingFromRoulette = "dr.backToCellSettingFromRoulette"
+    }
+    
+    class func sync() {
+        let userDefault = UserDefaults.standard
+        userDefault.synchronize()
     }
     
     // データ保存のクラス関数
@@ -66,4 +79,35 @@ class DRUserHelper {
             DRUserHelper.save(DRUserHelper.AnimationSettingKey.displayResult.rawValue, value: newValue)
         }
     }
+    
+    // ルーレット画面からセル設定画面に戻るナビゲーションボタンを押した回数
+    static var backToCellSettingFromRouletteCount: Int {
+        get {
+            return DRUserHelper.load(DRUserHelper.CounterKey.backToCellSettingFromRoulette.rawValue, returnClass: Int.self) ?? 0
+        }
+        set {
+            DRUserHelper.save(DRUserHelper.CounterKey.backToCellSettingFromRoulette.rawValue, value: newValue)
+        }
+    }
+    
+    // Animation Setting画面を表示したかどうかのフラグ
+    static var isShownAnimationSettingView: Bool {
+        get {
+            return DRUserHelper.load(DRUserHelper.AnimationSettingKey.isShownAnimationSettingView.rawValue, returnClass: Bool.self) ?? false
+        }
+        set {
+            DRUserHelper.save(DRUserHelper.AnimationSettingKey.isShownAnimationSettingView.rawValue, value: newValue)
+        }
+    }
+    
+    // Animation Setting明示のポップアップを表示したかどうかのフラグ
+    static var isShownPopupOfAnimationSetting: Bool {
+        get {
+            return DRUserHelper.load(DRUserHelper.AnimationSettingKey.isShownPopup.rawValue, returnClass: Bool.self) ?? false
+        }
+        set {
+            DRUserHelper.save(DRUserHelper.AnimationSettingKey.isShownPopup.rawValue, value: newValue)
+        }
+    }
+    
 }
