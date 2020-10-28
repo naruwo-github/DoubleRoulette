@@ -119,10 +119,10 @@ struct R: Rswift.Validatable {
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `Main`.
     static let main = _R.storyboard.main()
+    /// Storyboard `Modal`.
+    static let modal = _R.storyboard.modal()
     /// Storyboard `Popup`.
     static let popup = _R.storyboard.popup()
-    /// Storyboard `Sub`.
-    static let sub = _R.storyboard.sub()
 
     #if os(iOS) || os(tvOS)
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
@@ -139,16 +139,16 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIStoryboard(name: "Popup", bundle: ...)`
-    static func popup(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.popup)
+    /// `UIStoryboard(name: "Modal", bundle: ...)`
+    static func modal(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.modal)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIStoryboard(name: "Sub", bundle: ...)`
-    static func sub(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.sub)
+    /// `UIStoryboard(name: "Popup", bundle: ...)`
+    static func popup(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.popup)
     }
     #endif
 
@@ -277,10 +277,10 @@ struct _R: Rswift.Validatable {
       try main.validate()
       #endif
       #if os(iOS) || os(tvOS)
-      try popup.validate()
+      try modal.validate()
       #endif
       #if os(iOS) || os(tvOS)
-      try sub.validate()
+      try popup.validate()
       #endif
     }
 
@@ -330,6 +330,26 @@ struct _R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    struct modal: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let drRouletteSettingViewController = StoryboardViewControllerResource<DRRouletteSettingViewController>(identifier: "DRRouletteSettingViewController")
+      let name = "Modal"
+
+      func drRouletteSettingViewController(_: Void = ()) -> DRRouletteSettingViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drRouletteSettingViewController)
+      }
+
+      static func validate() throws {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+        if _R.storyboard.modal().drRouletteSettingViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drRouletteSettingViewController' could not be loaded from storyboard 'Modal' as 'DRRouletteSettingViewController'.") }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     struct popup: Rswift.StoryboardResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let drResultViewController = StoryboardViewControllerResource<DRResultViewController>(identifier: "DRResultViewController")
@@ -343,26 +363,6 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
         if _R.storyboard.popup().drResultViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drResultViewController' could not be loaded from storyboard 'Popup' as 'DRResultViewController'.") }
-      }
-
-      fileprivate init() {}
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    struct sub: Rswift.StoryboardResourceType, Rswift.Validatable {
-      let bundle = R.hostingBundle
-      let drRouletteSettingViewController = StoryboardViewControllerResource<DRRouletteSettingViewController>(identifier: "DRRouletteSettingViewController")
-      let name = "Sub"
-
-      func drRouletteSettingViewController(_: Void = ()) -> DRRouletteSettingViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drRouletteSettingViewController)
-      }
-
-      static func validate() throws {
-        if #available(iOS 11.0, tvOS 11.0, *) {
-        }
-        if _R.storyboard.sub().drRouletteSettingViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drRouletteSettingViewController' could not be loaded from storyboard 'Sub' as 'DRRouletteSettingViewController'.") }
       }
 
       fileprivate init() {}

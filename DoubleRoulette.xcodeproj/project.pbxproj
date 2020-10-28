@@ -10,7 +10,7 @@
 		0519C9FD245A71B7004356DF /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0519C9FC245A71B7004356DF /* Extentions.swift */; };
 		051A32FC24B7F5B1004A134A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051A32FB24B7F5B1004A134A /* R.generated.swift */; };
 		0520973C24B7652C00E32BEE /* DRResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520973B24B7652C00E32BEE /* DRResultViewController.swift */; };
-		0522625C24BDAB6F005AA88C /* Sub.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0522625B24BDAB6F005AA88C /* Sub.storyboard */; };
+		0522625C24BDAB6F005AA88C /* Modal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0522625B24BDAB6F005AA88C /* Modal.storyboard */; };
 		0522625E24BDABEF005AA88C /* DRRouletteSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0522625D24BDABEF005AA88C /* DRRouletteSettingViewController.swift */; };
 		0522626124BE8F6E005AA88C /* DRUserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0522626024BE8F6E005AA88C /* DRUserHelper.swift */; };
 		0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529A99822CC991400F5ECB6 /* MyPieChartView.swift */; };
@@ -22,6 +22,7 @@
 		05775ABF245A9506009BAD29 /* RouletteObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05775ABE245A9506009BAD29 /* RouletteObject.swift */; };
 		058D5B8E22FC51AB0064A91D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */; };
 		0590A0C822D7F38D004BB8CA /* roulette-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */; };
+		0594A0632549C68300EE9247 /* DRBalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594A0622549C68300EE9247 /* DRBalloonView.swift */; };
 		059C9F9B24453D0D00B11797 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9924453D0D00B11797 /* Realm.framework */; };
 		059C9F9C24453D0D00B11797 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9924453D0D00B11797 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		059C9F9D24453D0D00B11797 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9A24453D0D00B11797 /* RealmSwift.framework */; };
@@ -78,7 +79,7 @@
 		0519C9FC245A71B7004356DF /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		051A32FB24B7F5B1004A134A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0520973B24B7652C00E32BEE /* DRResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRResultViewController.swift; sourceTree = "<group>"; };
-		0522625B24BDAB6F005AA88C /* Sub.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sub.storyboard; sourceTree = "<group>"; };
+		0522625B24BDAB6F005AA88C /* Modal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Modal.storyboard; sourceTree = "<group>"; };
 		0522625D24BDABEF005AA88C /* DRRouletteSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRRouletteSettingViewController.swift; sourceTree = "<group>"; };
 		0522626024BE8F6E005AA88C /* DRUserHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRUserHelper.swift; sourceTree = "<group>"; };
 		0529A99822CC991400F5ECB6 /* MyPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPieChartView.swift; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 		05775ABE245A9506009BAD29 /* RouletteObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteObject.swift; sourceTree = "<group>"; };
 		058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0590A0C722D7F38D004BB8CA /* roulette-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "roulette-sound.mp3"; sourceTree = "<group>"; };
+		0594A0622549C68300EE9247 /* DRBalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRBalloonView.swift; sourceTree = "<group>"; };
 		059C9F9924453D0D00B11797 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		059C9F9A24453D0D00B11797 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		05AF43E022C974D2007A236D /* DoubleRoulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoubleRoulette.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,8 +179,9 @@
 			isa = PBXGroup;
 			children = (
 				0594A0422549C23800EE9247 /* Main */,
-				0593171C2544F44700C066B1 /* Sub */,
+				0593171C2544F44700C066B1 /* Modal */,
 				0594A0452549C34A00EE9247 /* Popup */,
+				0594A05E2549C59000EE9247 /* Parts */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -211,13 +214,13 @@
 			path = DoubleRouletteUITests;
 			sourceTree = "<group>";
 		};
-		0593171C2544F44700C066B1 /* Sub */ = {
+		0593171C2544F44700C066B1 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-				0522625B24BDAB6F005AA88C /* Sub.storyboard */,
+				0522625B24BDAB6F005AA88C /* Modal.storyboard */,
 				0522625D24BDABEF005AA88C /* DRRouletteSettingViewController.swift */,
 			);
-			name = Sub;
+			name = Modal;
 			sourceTree = "<group>";
 		};
 		0594A0422549C23800EE9247 /* Main */ = {
@@ -237,6 +240,22 @@
 				0520973B24B7652C00E32BEE /* DRResultViewController.swift */,
 			);
 			name = Popup;
+			sourceTree = "<group>";
+		};
+		0594A05E2549C59000EE9247 /* Parts */ = {
+			isa = PBXGroup;
+			children = (
+				0594A0612549C64600EE9247 /* Balloon */,
+			);
+			name = Parts;
+			sourceTree = "<group>";
+		};
+		0594A0612549C64600EE9247 /* Balloon */ = {
+			isa = PBXGroup;
+			children = (
+				0594A0622549C68300EE9247 /* DRBalloonView.swift */,
+			);
+			name = Balloon;
 			sourceTree = "<group>";
 		};
 		05A82FFB237502BA00613F97 /* Delegate */ = {
@@ -451,7 +470,7 @@
 				05579308245A653A0081DA16 /* Colors.xcassets in Resources */,
 				05AF43EB22C974D4007A236D /* Assets.xcassets in Resources */,
 				05AF43E922C974D2007A236D /* Main.storyboard in Resources */,
-				0522625C24BDAB6F005AA88C /* Sub.storyboard in Resources */,
+				0522625C24BDAB6F005AA88C /* Modal.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,6 +657,7 @@
 			files = (
 				0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */,
 				05D3D9D722C9D475007D24FF /* TableViewCell.swift in Sources */,
+				0594A0632549C68300EE9247 /* DRBalloonView.swift in Sources */,
 				0522626124BE8F6E005AA88C /* DRUserHelper.swift in Sources */,
 				05775ABF245A9506009BAD29 /* RouletteObject.swift in Sources */,
 				05AF43E622C974D2007A236D /* DRRouletteViewController.swift in Sources */,

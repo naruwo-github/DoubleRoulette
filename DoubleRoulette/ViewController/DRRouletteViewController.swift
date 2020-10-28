@@ -294,7 +294,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     @IBAction private func editAnimationSettingButton(_ sender: Any) {
-        guard let vc = R.storyboard.sub.drRouletteSettingViewController() else { return }
+        guard let vc = R.storyboard.modal.drRouletteSettingViewController() else { return }
         self.present(vc, animated: true, completion: nil)
     }
     
