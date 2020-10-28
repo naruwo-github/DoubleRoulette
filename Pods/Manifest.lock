@@ -12,6 +12,9 @@ PODS:
     - FirebaseAnalytics (= 7.0.0)
   - Firebase/CoreOnly (7.0.0):
     - FirebaseCore (= 7.0.0)
+  - Firebase/Crashlytics (7.0.0):
+    - Firebase/CoreOnly
+    - FirebaseCrashlytics (~> 7.0.0)
   - FirebaseAnalytics (7.0.0):
     - FirebaseCore (~> 7.0)
     - FirebaseInstallations (~> 7.0)
@@ -30,6 +33,12 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/Logger (~> 7.0)
     - nanopb (~> 2.30906.0)
+  - FirebaseCrashlytics (7.0.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstallations (~> 7.0)
+    - GoogleDataTransport (~> 8.0)
+    - nanopb (~> 2.30906.0)
+    - PromisesObjC (~> 1.2)
   - FirebaseInstallations (7.0.0):
     - FirebaseCore (~> 7.0)
     - GoogleUtilities/Environment (~> 7.0)
@@ -83,6 +92,7 @@ DEPENDENCIES:
   - Firebase/AdMob
   - Firebase/Analytics
   - Firebase/Core
+  - Firebase/Crashlytics
   - R.swift
   - SwiftLint
 
@@ -93,6 +103,7 @@ SPEC REPOS:
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseCoreDiagnostics
+    - FirebaseCrashlytics
     - FirebaseInstallations
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
@@ -111,6 +122,7 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: c1166b7990bae464c6436132510bb718c6680f80
   FirebaseCore: cf3122185fce1cf71cedbbc498ea84d2b3e7cb69
   FirebaseCoreDiagnostics: 5f4aa04fdb04923693cc704c7ef9158bdf41a48b
+  FirebaseCrashlytics: bd430b7323e8b49492a93e563e81899d0615f917
   FirebaseInstallations: c28d4bcbb5c6884d1a39afbc0bd7fc590e31e9b7
   Google-Mobile-Ads-SDK: 4c11bba9a823ed16c42f14d42feebc7678fbfd6a
   GoogleAppMeasurement: 7790ef975d1d463c8614cd949a847e612edf087a
@@ -123,6 +135,6 @@ SPEC CHECKSUMS:
   R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
   SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
 
-PODFILE CHECKSUM: e2d7b56ff822b0afd37d74f7f68cd396af2fc039
+PODFILE CHECKSUM: 5652faa7716e0774febccff33c0e9a55c6857371
 
 COCOAPODS: 1.10.0
