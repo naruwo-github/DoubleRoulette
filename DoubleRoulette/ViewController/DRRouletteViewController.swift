@@ -39,6 +39,8 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupAdvertisementView()
+        
         self.rouletteCells = DRRealmHelper.init().getRouletteData()
         
         self.setupInnerOuterData()
@@ -170,13 +172,23 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func setupAdvertisementView() {
+        interstitial = GADInterstitial(adUnitID: INTERSTITIAL_AD_UNIT_ID)
+        interstitial.load(GADRequest())
+        
         self.bannerView.translatesAutoresizingMaskIntoConstraints = true
         self.bottomAdView.addSubview(self.bannerView)
         self.bannerView.center.x = self.view.center.x
-        self.bannerView.adUnitID = self.AD_UNIT_ID
+        self.bannerView.adUnitID = self.BANNER_AD_UNIT_ID
         self.bannerView.rootViewController = self
         self.bannerView.load(GADRequest())
         self.bannerView.delegate = self
+    }
+    
+    private func showInterstitialAd() {
+        guard let ad = interstitial else { return }
+        if ad.isReady {
+            ad.present(fromRootViewController: self)
+        }
     }
     
     private func soundOnIfNeed() {
