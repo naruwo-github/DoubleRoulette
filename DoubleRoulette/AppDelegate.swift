@@ -25,10 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.synchronize()
 
         let count = UserDefaults.standard.integer(forKey: key)
-        if count == 20 {
-            if #available(iOS 10.3, *) {
-                SKStoreReviewController.requestReview()
-            }
+        if count == 10 || count == 30 || count == 60 {
+            SKStoreReviewController.requestReview()
         }
         
         return true
