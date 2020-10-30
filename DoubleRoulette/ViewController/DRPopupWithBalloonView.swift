@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK: - <ルーレット画面の右上ボタンが設定であることを示すオレンジポップアップ画面>
 class DRPopupWithBalloonView: UIView {
     
     @IBOutlet private weak var balloonView: DRBalloonView!
@@ -53,17 +54,4 @@ class DRPopupWithBalloonView: UIView {
         let view: UIView = R.nib.drPopupWithBalloonView.firstView(owner: self, options: nil)!
         addSubviewWithConstraintAround(view)
     }
-}
-
-extension UIView {
-    
-    func addSubviewWithConstraintAround(_ subview: UIView) {
-        self.addSubview(subview)
-        subview.translatesAutoresizingMaskIntoConstraints = false
-        subview.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        subview.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        subview.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        subview.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-    }
-
 }

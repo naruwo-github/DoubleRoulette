@@ -8,7 +8,7 @@
 
 import Foundation
 
-// ユーザの情報を保存するためのクラス
+// MARK: - <ユーザの情報をUserDefaultsを使って保存するためのクラス>
 class DRUserHelper {
     
     // アニメーションのセッティングを管理

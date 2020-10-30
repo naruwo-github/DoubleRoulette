@@ -8,7 +8,8 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell, UITextFieldDelegate {
+// MARK: - <ルーレットセルのクラス>
+class TableViewCell: UITableViewCell {
     @IBOutlet private weak var itemName: UITextField! // tag = 1
     @IBOutlet private weak var itemColor: UIButton! // tag = 2
     @IBOutlet private weak var itemType: UISegmentedControl! // tag = 3
@@ -47,6 +48,9 @@ class TableViewCell: UITableViewCell, UITextFieldDelegate {
         self.endEditing(true)
     }
     
+}
+
+extension TableViewCell: UITextFieldDelegate {
     internal func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
         self.itemName.resignFirstResponder()
         return true

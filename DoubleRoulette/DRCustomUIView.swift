@@ -9,6 +9,7 @@
 import UIKit
 
 @IBDesignable
+// MARK: - <カスタムしたUIViewのクラス>
 class DRCustomUIView: UIView {
     
     @IBInspectable var cornerRadius: CGFloat = 0 {
