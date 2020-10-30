@@ -7,12 +7,14 @@
 //
 
 import UIKit
+
 import AMColorPicker
-import GoogleMobileAds
 import CellAnimator
+import GoogleMobileAds
 import RealmSwift
 
-class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDelegate, GADBannerViewDelegate {
+// MARK: - <ルーレットセルの設定画面(初期画面)>
+class DRRouletteCellTableViewController: UITableViewController, GADBannerViewDelegate {
     
     @IBOutlet private weak var adView: UIView!
     @IBOutlet private weak var addCellButton: UIBarButtonItem!
@@ -74,12 +76,7 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
            let cell = superview.superview as? TableViewCell {
             self.indexPath = tableView.indexPath(for: cell) as NSIndexPath?
         }
-        
-        let colorPickerViewController = AMColorPickerViewController()
-        colorPickerViewController.selectedColor = UIColor.red
-        colorPickerViewController.delegate = self
-        self.present(colorPickerViewController, animated: true, completion: nil)
-        
+        self.showColorPicker()
     }
     
     @IBAction private func segmentedControlTapped(_ sender: UISegmentedControl) {
@@ -142,10 +139,13 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         self.bannerView.delegate = self
     }
     
+}
+
+// MARK: - <AMColorPickerを使うための拡張>
+extension DRRouletteCellTableViewController: AMColorPickerDelegate {
+    
     internal func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
-        guard self.indexPath != nil else {
-            return
-        }
+        guard self.indexPath != nil else { return }
         
         var r: CGFloat = 0
         var g: CGFloat = 0
@@ -153,10 +153,17 @@ class DRRouletteCellTableViewController: UITableViewController, AMColorPickerDel
         var a: CGFloat = 0
         color.getRed(&r, green: &g, blue: &b, alpha: &a)
         
-        let cell = rouletteCells[self.indexPath!.row]
+        let cell = self.rouletteCells[self.indexPath!.row]
         DRRealmHelper.init().colorButtonUpdate(cell: cell, hexColor: UIColor.rgbToHex(red: Int(r * 255), green: Int(g * 255), blue: Int(b * 255)))
         let modifiedCell = self.tableView.cellForRow(at: self.indexPath! as IndexPath)
         (modifiedCell?.viewWithTag(2) as! UIButton).backgroundColor = UIColor(red: r, green: g, blue: b, alpha: a)
+    }
+    
+    fileprivate func showColorPicker() {
+        let colorPickerViewController = AMColorPickerViewController()
+        colorPickerViewController.selectedColor = UIColor.red
+        colorPickerViewController.delegate = self
+        self.present(colorPickerViewController, animated: true, completion: nil)
     }
     
 }
