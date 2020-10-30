@@ -7,9 +7,11 @@
 //
 
 import UIKit
+
 import Firebase
 
 @UIApplicationMain
+// MARK: - <APP DELEGATEクラス>
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?

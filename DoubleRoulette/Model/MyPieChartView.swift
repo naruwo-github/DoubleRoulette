@@ -13,6 +13,7 @@ struct Segment {
     var value: CGFloat
 }
 
+// MARK: - <ルーレットチャートの画面(色分けした円)>
 class MyPieChartView: UIView {
     var radius = CGFloat(1)
     

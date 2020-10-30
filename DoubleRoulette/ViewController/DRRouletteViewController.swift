@@ -6,12 +6,13 @@
 //  Copyright © 2019 Narumi Nogawa. All rights reserved.
 //
 
-import UIKit
 import AVFoundation
+import UIKit
+
 import GoogleMobileAds
-import Accounts
 import RealmSwift
 
+// MARK: - <ルーレット画面のクラス>
 class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     
     @IBOutlet private weak var bottomAdView: UIView!
@@ -57,10 +58,8 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         self.drawArrow()
     }
     
-    // NavigationController の「戻る/進む」で呼ばれる
     override func willMove(toParent parent: UIViewController?) {
-        if parent == nil {
-            // 戻る場合
+        if parent == nil { // 戻る場合
             super.willMove(toParent: nil)
             showInterstitialAd()
             return
@@ -204,12 +203,6 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
             }
         }
         DRUserHelper.backToCellSettingFromRouletteCount = backCount + 1
-    }
-    
-    private func soundOnIfNeed() {
-        if DRUserHelper.isAuthorizedPlaySound {
-            self.playSound(name: "roulette-sound")
-        }
     }
     
     private func setupOuterChartView() {
@@ -361,6 +354,7 @@ extension DRRouletteViewController: GADInterstitialDelegate {
     
 }
 
+// MARK: - <音楽再生機能のための拡張>
 extension DRRouletteViewController: AVAudioPlayerDelegate {
     
     fileprivate func playSound(name: String) {
@@ -373,6 +367,12 @@ extension DRRouletteViewController: AVAudioPlayerDelegate {
             self.audioPlayer.play()
         } catch {
             print("Error...")
+        }
+    }
+    
+    fileprivate func soundOnIfNeed() {
+        if DRUserHelper.isAuthorizedPlaySound {
+            self.playSound(name: "roulette-sound")
         }
     }
     

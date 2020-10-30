@@ -6,10 +6,11 @@
 //  Copyright © 2020 Narumi Nogawa. All rights reserved.
 //
 
-import Foundation
 import UIKit
+
 import RealmSwift
 
+// MARK: - <ユーザの情報をRealmを使って保存するためのクラス>
 final class DRRealmHelper {
     private let realm = try! Realm()
     

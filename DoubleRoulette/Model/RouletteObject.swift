@@ -7,8 +7,10 @@
 //
 
 import Foundation
+
 import RealmSwift
 
+// MARK: - <realmに保存するデータのクラス>
 class RouletteObject: Object {
     @objc dynamic var id = 0
     @objc dynamic var type: Int = 0

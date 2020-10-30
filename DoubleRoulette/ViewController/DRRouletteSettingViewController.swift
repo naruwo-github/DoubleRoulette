@@ -8,7 +8,9 @@
 
 import UIKit
 
+// MARK: - <ルーレット画面右上ボタンより表示する設定画面のクラス>
 class DRRouletteSettingViewController: UIViewController {
+    
     @IBOutlet private weak var soundOnOffLabel: UILabel!
     @IBOutlet private weak var soundSwitch: UISwitch!
     @IBOutlet private weak var resultOnOffLabel: UILabel!
@@ -17,7 +19,6 @@ class DRRouletteSettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.setupSwitch()
         // 一度この画面にきたら下記フラグをtrueに設置する
         if !DRUserHelper.isShownAnimationSettingView {

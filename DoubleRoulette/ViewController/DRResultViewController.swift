@@ -8,7 +8,9 @@
 
 import UIKit
 
+// MARK: - <ルーレットが止まった後に表示される結果モーダル画面のクラス>
 class DRResultViewController: UIViewController {
+    
     @IBOutlet private weak var alphaView: UIView!
     @IBOutlet private weak var resultView: UIView!
     @IBOutlet private weak var resultLabel: UILabel!

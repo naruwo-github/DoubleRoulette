@@ -8,16 +8,9 @@
 
 import UIKit
 
+// MARK: - <デフォルトモジュールの拡張>
+
 extension UIColor {
-    
-    // これは現状使っていない
-//    convenience init(hex: String, alpha: CGFloat = 1) {
-//        let v = Int("000000" + hex, radix: 16) ?? 0
-//        let r = CGFloat(v / Int(powf(256, 2)) % 256) / 255
-//        let g = CGFloat(v / Int(powf(256, 1)) % 256) / 255
-//        let b = CGFloat(v / Int(powf(256, 0)) % 256) / 255
-//        self.init(red: r, green: g, blue: b, alpha: min(max(alpha, 0), 1))
-//    }
     
     class func hexToRGB(hex color: String) -> [Int] {
         var rgb: [Int] = []
@@ -33,22 +26,6 @@ extension UIColor {
         }
         return rgb
     }
-    
-    // 使われていない
-//    class func hexToUIColor(color: String, alpha: CGFloat = 1) -> UIColor {
-//        let code = color
-//        let scanner = Scanner(string: code as String)
-//        var color: UInt32 = 0
-//        if scanner.scanHexInt32(&color) {
-//            let r = (color & 0xFF0000) >> 16
-//            let g = (color & 0x00FF00) >> 8
-//            let b = (color & 0x0000FF)
-//            return UIColor(red: CGFloat(r), green: CGFloat(g), blue: CGFloat(b), alpha: alpha)
-//        } else {
-//            print("invalid hex string")
-//            return UIColor.clear
-//        }
-//    }
     
     class func rgbToHex(red r: Int, green g: Int, blue b: Int) -> String {
         return String(NSString(format: "%02X%02X%02X", r, g, b))
@@ -81,4 +58,17 @@ extension String {
                 NSAttributedString.Key.kern: kern
                 ])
     }
+}
+
+extension UIView {
+    
+    func addSubviewWithConstraintAround(_ subview: UIView) {
+        self.addSubview(subview)
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        subview.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        subview.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        subview.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        subview.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+    }
+
 }

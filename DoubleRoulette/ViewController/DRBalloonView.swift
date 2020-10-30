@@ -15,6 +15,7 @@ enum TriangleDirection {
     case Right
 }
 
+// MARK: - <吹き出しの三角形を管理するクラス>
 class DRBalloonView: UIView {
     
     private var triangleDirection = TriangleDirection.Left
