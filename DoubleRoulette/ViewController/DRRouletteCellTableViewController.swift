@@ -10,6 +10,7 @@ import UIKit
 
 import AMColorPicker
 import CellAnimator
+import Firebase
 import GoogleMobileAds
 import RealmSwift
 
@@ -42,6 +43,7 @@ class DRRouletteCellTableViewController: UITableViewController, GADBannerViewDel
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.configureAdvertisementView()
+        Analytics.logEvent("show_cell_setting_view", parameters: nil)
     }
     
     @IBAction private func allClearButtonTapped(_ sender: Any) {
@@ -49,6 +51,7 @@ class DRRouletteCellTableViewController: UITableViewController, GADBannerViewDel
         self.tableView.reloadData()
         self.newCellId = 0
         DRUserHelper.save("id", value: 0)
+        Analytics.logEvent("all_clear_button", parameters: nil)
     }
     
     @IBAction private func addCellButtonTapped(_ sender: Any) {
@@ -63,6 +66,7 @@ class DRRouletteCellTableViewController: UITableViewController, GADBannerViewDel
         DRRealmHelper.init().add(object: newCell)
         self.tableView.reloadData()
         self.tableView.scrollToRow(at: IndexPath(row: rouletteCells.count - 1, section: 0), at: .bottom, animated: true)
+        Analytics.logEvent("add_cell_button", parameters: nil)
     }
     
     @IBAction private func moveToRouletteButtonTapped(_ sender: Any) {
@@ -77,6 +81,7 @@ class DRRouletteCellTableViewController: UITableViewController, GADBannerViewDel
             self.indexPath = tableView.indexPath(for: cell) as NSIndexPath?
         }
         self.showColorPicker()
+        Analytics.logEvent("show_color_picker_button", parameters: nil)
     }
     
     @IBAction private func segmentedControlTapped(_ sender: UISegmentedControl) {
@@ -84,6 +89,7 @@ class DRRouletteCellTableViewController: UITableViewController, GADBannerViewDel
         guard let indexPath = self.tableView.indexPathForRow(at: point) else { return }
         let cell = rouletteCells[indexPath.row]
         DRRealmHelper.init().segmentControlUpdate(cell: cell, segment: sender)
+        Analytics.logEvent("segment_controll_tapped", parameters: nil)
     }
     
     @IBAction private func textField(_ sender: UITextField) {
@@ -91,6 +97,7 @@ class DRRouletteCellTableViewController: UITableViewController, GADBannerViewDel
         guard let indexPath = self.tableView.indexPathForRow(at: point) else { return }
         let cell = rouletteCells[indexPath.row]
         DRRealmHelper.init().textFieldUpdate(cell: cell, textField: sender)
+        Analytics.logEvent("text_field_tapped", parameters: nil)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

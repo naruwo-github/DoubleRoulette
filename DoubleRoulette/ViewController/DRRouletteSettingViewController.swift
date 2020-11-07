@@ -8,6 +8,8 @@
 
 import UIKit
 
+import Firebase
+
 // MARK: - <ルーレット画面右上ボタンより表示する設定画面のクラス>
 class DRRouletteSettingViewController: UIViewController {
     
@@ -19,11 +21,13 @@ class DRRouletteSettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.setupSwitch()
         // 一度この画面にきたら下記フラグをtrueに設置する
         if !DRUserHelper.isShownAnimationSettingView {
             DRUserHelper.isShownAnimationSettingView = true
         }
+        Analytics.logEvent("show_animation_setting_view", parameters: nil)
     }
     
     override func viewDidLayoutSubviews() {
@@ -53,12 +57,14 @@ class DRRouletteSettingViewController: UIViewController {
         let flag = (sender as! UISwitch).isOn
         self.soundOnOffLabel.text = flag ? "ON":"OFF"
         DRUserHelper.isAuthorizedPlaySound = flag
+        Analytics.logEvent("sound_on_off_switch", parameters: nil)
     }
     
     @IBAction private func resultOnOffSwitch(_ sender: Any) {
         let flag = (sender as! UISwitch).isOn
         self.resultOnOffLabel.text = flag ? "ON":"OFF"
         DRUserHelper.isAuthorizedResultView = flag
+        Analytics.logEvent("result_on_off_switch", parameters: nil)
     }
     
 }
