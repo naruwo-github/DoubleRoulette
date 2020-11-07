@@ -131,3 +131,4 @@ Pods/*
 *.swp
 !.gitkeep
 .DS_Store
+*.generated.swift

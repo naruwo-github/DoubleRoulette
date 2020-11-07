@@ -9,6 +9,7 @@
 import AVFoundation
 import UIKit
 
+import Firebase
 import GoogleMobileAds
 import RealmSwift
 
@@ -43,6 +44,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupAdvertisementView()
         
         self.rouletteCells = DRRealmHelper.init().getRouletteData()
@@ -69,6 +71,8 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        Analytics.logEvent("show_roulette_view", parameters: nil)
         guard !DRUserHelper.isShownAnimationSettingView else { return }
         
         if !DRUserHelper.isShownPopupOfAnimationSetting {
@@ -296,6 +300,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         }
         
         self.showResultLabelIfNeed(outerResult: outerResult, innerResult: innerResult)
+        Analytics.logEvent("start_button", parameters: nil)
     }
     
     @IBAction private func editAnimationSettingButton(_ sender: Any) {
