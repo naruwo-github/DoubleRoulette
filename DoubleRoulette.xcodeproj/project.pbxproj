@@ -943,7 +943,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.3.6;
+				CURRENT_PROJECT_VERSION = 2.3.7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UMBT5JZV43;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -956,7 +956,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.6;
+				MARKETING_VERSION = 2.3.7;
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-Xfrontend -warn-long-function-bodies=100";
 				Other_Swift_Flags = "-Xfrontend -warn-long-function-bodies=100";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.kero0711tennis.DoubleRoulette;
@@ -972,7 +972,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.3.6;
+				CURRENT_PROJECT_VERSION = 2.3.7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UMBT5JZV43;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -985,7 +985,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.6;
+				MARKETING_VERSION = 2.3.7;
 				Other_Swift_Flags = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.kero0711tennis.DoubleRoulette;
 				PRODUCT_NAME = "$(TARGET_NAME)";
