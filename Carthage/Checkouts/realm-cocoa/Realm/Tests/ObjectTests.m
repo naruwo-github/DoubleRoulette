@@ -268,6 +268,8 @@ RLM_ARRAY_TYPE(CycleObject)
     NSData *bin2 = [[NSData alloc] initWithBytes:bin length:sizeof bin];
     NSDate *timeNow = [NSDate dateWithTimeIntervalSince1970:1000000];
     NSDate *timeZero = [NSDate dateWithTimeIntervalSince1970:0];
+    RLMObjectId *objectId1 = [RLMObjectId objectId];
+    RLMObjectId *objectId2 = [RLMObjectId objectId];
 
     AllTypesObject *c = [[AllTypesObject alloc] init];
 
@@ -280,13 +282,16 @@ RLM_ARRAY_TYPE(CycleObject)
     c.dateCol = timeZero;
     c.cBoolCol = false;
     c.longCol = 99;
+    c.decimalCol = [RLMDecimal128 decimalWithNumber:@1];
+    c.objectIdCol = objectId1;
     c.objectCol = [[StringObject alloc] init];
     c.objectCol.stringCol = @"c";
 
     [realm addObject:c];
 
     [AllTypesObject createInRealm:realm withValue:@[@YES, @506, @7.7f, @8.8, @"banach", bin2,
-                                                     timeNow, @YES, @(-20), NSNull.null]];
+                                                    timeNow, @YES, @(-20), [RLMDecimal128 decimalWithNumber:@2],
+                                                    objectId2, NSNull.null]];
     [realm commitWriteTransaction];
 
     AllTypesObject *row1 = [AllTypesObject allObjects][0];
@@ -310,6 +315,10 @@ RLM_ARRAY_TYPE(CycleObject)
     XCTAssertEqual(row2.cBoolCol, true,                 @"row2.cBoolCol");
     XCTAssertEqual(row1.longCol, 99L,                   @"row1.IntCol");
     XCTAssertEqual(row2.longCol, -20L,                  @"row2.IntCol");
+    XCTAssertEqualObjects(row1.decimalCol, [RLMDecimal128 decimalWithNumber:@1]);
+    XCTAssertEqualObjects(row2.decimalCol, [RLMDecimal128 decimalWithNumber:@2]);
+    XCTAssertEqualObjects(row1.objectIdCol, objectId1);
+    XCTAssertEqualObjects(row2.objectIdCol, objectId2);
     XCTAssertTrue([row1.objectCol.stringCol isEqual:@"c"], @"row1.objectCol");
     XCTAssertNil(row2.objectCol,                        @"row2.objectCol");
 
@@ -325,11 +334,13 @@ RLM_ARRAY_TYPE(CycleObject)
     AllTypesObject *o = [[AllTypesObject alloc] initWithValue:row1];
     o.floatCol = NAN;
     o.doubleCol = NAN;
+    o.decimalCol = [RLMDecimal128 decimalWithNumber:[NSDecimalNumber notANumber]];
     [realm transactionWithBlock:^{
         [realm addObject:o];
     }];
     XCTAssertTrue(isnan(o.floatCol));
     XCTAssertTrue(isnan(o.doubleCol));
+    XCTAssertTrue(o.decimalCol.isNaN);
 }
 
 - (void)testObjectSubclass {
@@ -756,27 +767,13 @@ static void addProperty(Class cls, const char *name, const char *type, size_t si
 - (void)testCreateInRealmValidationForDictionary {
     RLMRealm *realm = [RLMRealm defaultRealm];
 
-    const char bin[4] = { 0, 1, 2, 3 };
-    NSData *bin1 = [[NSData alloc] initWithBytes:bin length:sizeof bin / 2];
-    NSDate *timeNow = [NSDate dateWithTimeIntervalSince1970:1000000];
-    NSDictionary * const dictValidAllTypes = @{@"boolCol"   : @NO,
-                                               @"intCol"    : @54,
-                                               @"floatCol"  : @0.7f,
-                                               @"doubleCol": @0.8,
-                                               @"stringCol": @"foo",
-                                               @"binaryCol": bin1,
-                                               @"dateCol"   : timeNow,
-                                               @"cBoolCol"  : @NO,
-                                               @"longCol"   : @(99),
-                                               @"objectCol": NSNull.null};
-
+    NSDictionary *dictValidAllTypes = [AllTypesObject values:0 stringObject:nil];
     [realm beginWriteTransaction];
 
-    // Test NSDictonary
     XCTAssertNoThrow(([AllTypesObject createInRealm:realm withValue:dictValidAllTypes]),
                      @"Creating object with valid value types should not throw exception");
 
-    for (NSString *keyToInvalidate in dictValidAllTypes.allKeys) {
+    for (NSString *keyToInvalidate in dictValidAllTypes) {
         NSMutableDictionary *invalidInput = [dictValidAllTypes mutableCopy];
         id obj = @"invalid";
         if ([keyToInvalidate isEqualToString:@"stringCol"]) {
@@ -788,7 +785,6 @@ static void addProperty(Class cls, const char *name, const char *type, size_t si
         RLMAssertThrowsWithReasonMatching([AllTypesObject createInRealm:realm withValue:invalidInput],
                                           @"Invalid value '.*'");
     }
-
 
     [realm commitWriteTransaction];
 }
@@ -804,7 +800,11 @@ static void addProperty(Class cls, const char *name, const char *type, size_t si
     const char bin[4] = { 0, 1, 2, 3 };
     NSData *bin1 = [[NSData alloc] initWithBytes:bin length:sizeof bin / 2];
     NSDate *timeNow = [NSDate dateWithTimeIntervalSince1970:1000000];
-    NSArray *const arrayValidAllTypes = @[@NO, @54, @0.7f, @0.8, @"foo", bin1, timeNow, @NO, @(99), to];
+    NSArray *const arrayValidAllTypes = @[@NO, @54, @0.7f, @0.8, @"foo", bin1,
+                                          timeNow, @NO, @(99),
+                                          [RLMDecimal128 decimalWithNumber:@2],
+                                          [RLMObjectId objectId],
+                                          to];
 
     [realm beginWriteTransaction];
 
@@ -1398,6 +1398,9 @@ static IntObject *managedObject() {
 - (void)testMutateFrozenObject {
     IntObject *obj = managedObject();
     IntObject *frozen = obj.freeze;
+
+    RLMRealm *realm = frozen.realm;
+    RLMAssertThrowsWithReason([realm beginWriteTransaction], @"Can't perform transactions on a frozen Realm");
     XCTAssertThrows(frozen.intCol = 1);
 }
 
@@ -1467,6 +1470,84 @@ static IntObject *managedObject() {
     // Frozen objects have the value of the object at the start of the transaction
     XCTAssertEqual(obj.freeze.intCol, 1);
     [realm cancelWriteTransaction];
+}
+
+- (void)testThaw {
+    IntObject *frozen = [managedObject() freeze];
+    XCTAssertTrue([frozen isFrozen]);
+
+    IntObject *live = [frozen thaw];
+    XCTAssertFalse([live isFrozen]);
+
+    RLMRealm *liveRealm = live.realm;
+    [liveRealm beginWriteTransaction];
+    live.intCol = 1;
+    [liveRealm commitWriteTransaction];
+    XCTAssertNotEqual(live.intCol, frozen.intCol);
+}
+
+- (void)testThawDeleted {
+    IntObject *obj = managedObject();
+    IntObject *frozen = [obj freeze];
+    XCTAssertTrue([frozen isFrozen]);
+
+    RLMRealm *realm = obj.realm;
+    [realm beginWriteTransaction];
+    [realm deleteObject:obj];
+    [realm commitWriteTransaction];
+    
+    IntObject *thawed = [frozen thaw];
+    XCTAssertNil(thawed, @"Thaw should return nil when object was deleted");
+}
+
+- (void)testThawPreviousVersion {
+    IntObject *obj = managedObject();
+    IntObject *frozen = [obj freeze];
+    XCTAssertTrue([frozen isFrozen]);
+    XCTAssertEqual(obj.intCol, frozen.intCol);
+    
+    RLMRealm *realm = obj.realm;
+    [realm beginWriteTransaction];
+    obj.intCol = 1;
+    [realm commitWriteTransaction];
+    XCTAssertNotEqual(obj.intCol, frozen.intCol, @"Frozen object shouldn't mutate");
+    
+    IntObject *thawed = [frozen thaw];
+    XCTAssertFalse(thawed.frozen);
+    XCTAssertEqual(thawed.intCol, obj.intCol, @"Thawed object should reflect transactions since the original reference was frozen.");
+}
+
+- (void)testThawUpdatedOnDifferentThread {
+    IntObject *obj = managedObject();
+    RLMThreadSafeReference *tsr = [RLMThreadSafeReference referenceWithThreadConfined:obj];
+
+    __block IntObject *frozen;
+    [self dispatchAsyncAndWait:^{
+        IntObject *obj = [RLMRealm.defaultRealm resolveThreadSafeReference:tsr];
+        [RLMRealm.defaultRealm beginWriteTransaction];
+        obj.intCol = 1;
+        [RLMRealm.defaultRealm commitWriteTransaction];
+        frozen = [obj freeze];
+    }];
+
+    IntObject* thawed = [frozen thaw];
+    XCTAssertEqual(thawed.intCol, 0, @"Thaw shouldn't reflect background transactions until main thread realm is refreshed");
+    [RLMRealm.defaultRealm refresh];
+    XCTAssertEqual(thawed.intCol, 1);
+}
+
+- (void)testThawCreatedOnDifferentThread {
+    XCTAssertEqual([[IntObject allObjects] count], 0);
+
+    __block IntObject *frozen;
+    [self dispatchAsyncAndWait:^{
+        IntObject *obj = managedObject();
+        frozen = [obj freeze];
+    }];
+    XCTAssertNil([frozen thaw]);
+    XCTAssertEqual([[IntObject allObjects] count], 0);
+    [RLMRealm.defaultRealm refresh];
+    XCTAssertEqual([[IntObject allObjects] count], 1);
 }
 
 @end

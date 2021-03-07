@@ -26,10 +26,6 @@
 		0594A0692549C9DA00EE9247 /* DRPopupWithBalloonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0594A0682549C9DA00EE9247 /* DRPopupWithBalloonView.xib */; };
 		0594A06D2549CA0600EE9247 /* DRPopupWithBalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594A06C2549CA0600EE9247 /* DRPopupWithBalloonView.swift */; };
 		0594A08D254A20C900EE9247 /* DRCustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594A08C254A20C900EE9247 /* DRCustomUIView.swift */; };
-		059C9F9B24453D0D00B11797 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9924453D0D00B11797 /* Realm.framework */; };
-		059C9F9C24453D0D00B11797 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9924453D0D00B11797 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		059C9F9D24453D0D00B11797 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9A24453D0D00B11797 /* RealmSwift.framework */; };
-		059C9F9E24453D0D00B11797 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 059C9F9A24453D0D00B11797 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05AF43E422C974D2007A236D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AF43E322C974D2007A236D /* AppDelegate.swift */; };
 		05AF43E622C974D2007A236D /* DRRouletteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AF43E522C974D2007A236D /* DRRouletteViewController.swift */; };
 		05AF43E922C974D2007A236D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05AF43E722C974D2007A236D /* Main.storyboard */; };
@@ -38,10 +34,8 @@
 		05D3D9D422C9D431007D24FF /* DRRouletteCellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */; };
 		05D3D9D722C9D475007D24FF /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3D9D522C9D475007D24FF /* TableViewCell.swift */; };
 		05DC270324B75BDC00657D2E /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05DC270224B75BDC00657D2E /* Popup.storyboard */; };
-		05F24F2A25273F4A0005577F /* AMColorPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; };
-		05F24F2B25273F4A0005577F /* AMColorPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 050016622445593B00F3B87F /* AMColorPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		18D3217A7E609E7DFF081944 /* Pods_DoubleRoulette.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 900A8DDB992024885EAA9F37 /* Pods_DoubleRoulette.framework */; };
-		8B5A228DB3F9F4DD46BE8BC0 /* Pods_DoubleRouletteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2359A6B6A922EDF3737179 /* Pods_DoubleRouletteUITests.framework */; };
+		46057CC9DE01F75567A10708 /* Pods_DoubleRouletteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C388FE44B7C19783BC50B800 /* Pods_DoubleRouletteUITests.framework */; };
+		4FC1A4A7B3D9DBB4B78FB8DA /* Pods_DoubleRoulette.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592C85F9F62B59216CE3D36E /* Pods_DoubleRoulette.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,22 +54,6 @@
 			remoteInfo = DoubleRoulette;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		059C9F9F24453D0D00B11797 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				059C9F9E24453D0D00B11797 /* RealmSwift.framework in Embed Frameworks */,
-				059C9F9C24453D0D00B11797 /* Realm.framework in Embed Frameworks */,
-				05F24F2B25273F4A0005577F /* AMColorPicker.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		050016622445593B00F3B87F /* AMColorPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMColorPicker.framework; path = Carthage/Build/iOS/AMColorPicker.framework; sourceTree = "<group>"; };
@@ -114,12 +92,12 @@
 		05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRRouletteCellTableViewController.swift; sourceTree = "<group>"; };
 		05D3D9D522C9D475007D24FF /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		05DC270224B75BDC00657D2E /* Popup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Popup.storyboard; sourceTree = "<group>"; };
-		2D1E8F670281D253E3F70D58 /* Pods-DoubleRoulette.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRoulette.debug.xcconfig"; path = "Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette.debug.xcconfig"; sourceTree = "<group>"; };
-		36EE6086EEE02E7A46E91FD9 /* Pods-DoubleRouletteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRouletteUITests.release.xcconfig"; path = "Target Support Files/Pods-DoubleRouletteUITests/Pods-DoubleRouletteUITests.release.xcconfig"; sourceTree = "<group>"; };
-		900A8DDB992024885EAA9F37 /* Pods_DoubleRoulette.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubleRoulette.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		93214C384C1F68552E28F145 /* Pods-DoubleRoulette.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRoulette.release.xcconfig"; path = "Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette.release.xcconfig"; sourceTree = "<group>"; };
-		CD2359A6B6A922EDF3737179 /* Pods_DoubleRouletteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubleRouletteUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D80EE1ADBEBB07EA622753BC /* Pods-DoubleRouletteUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRouletteUITests.debug.xcconfig"; path = "Target Support Files/Pods-DoubleRouletteUITests/Pods-DoubleRouletteUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4B82B33192E0D5ADAA4F9527 /* Pods-DoubleRoulette.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRoulette.debug.xcconfig"; path = "Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette.debug.xcconfig"; sourceTree = "<group>"; };
+		592C85F9F62B59216CE3D36E /* Pods_DoubleRoulette.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubleRoulette.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EC8E4FADFC8DB8B319EA122 /* Pods-DoubleRoulette.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRoulette.release.xcconfig"; path = "Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette.release.xcconfig"; sourceTree = "<group>"; };
+		C388FE44B7C19783BC50B800 /* Pods_DoubleRouletteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubleRouletteUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CADD678F9E003D7189D67A00 /* Pods-DoubleRouletteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRouletteUITests.release.xcconfig"; path = "Target Support Files/Pods-DoubleRouletteUITests/Pods-DoubleRouletteUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F73C472AD9A3194A869F8580 /* Pods-DoubleRouletteUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRouletteUITests.debug.xcconfig"; path = "Target Support Files/Pods-DoubleRouletteUITests/Pods-DoubleRouletteUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B5A228DB3F9F4DD46BE8BC0 /* Pods_DoubleRouletteUITests.framework in Frameworks */,
+				46057CC9DE01F75567A10708 /* Pods_DoubleRouletteUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,10 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				059C9F9B24453D0D00B11797 /* Realm.framework in Frameworks */,
-				18D3217A7E609E7DFF081944 /* Pods_DoubleRoulette.framework in Frameworks */,
-				05F24F2A25273F4A0005577F /* AMColorPicker.framework in Frameworks */,
-				059C9F9D24453D0D00B11797 /* RealmSwift.framework in Frameworks */,
+				4FC1A4A7B3D9DBB4B78FB8DA /* Pods_DoubleRoulette.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,10 +316,10 @@
 		AC0B03B588244F2B8D54DF3F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2D1E8F670281D253E3F70D58 /* Pods-DoubleRoulette.debug.xcconfig */,
-				93214C384C1F68552E28F145 /* Pods-DoubleRoulette.release.xcconfig */,
-				D80EE1ADBEBB07EA622753BC /* Pods-DoubleRouletteUITests.debug.xcconfig */,
-				36EE6086EEE02E7A46E91FD9 /* Pods-DoubleRouletteUITests.release.xcconfig */,
+				4B82B33192E0D5ADAA4F9527 /* Pods-DoubleRoulette.debug.xcconfig */,
+				5EC8E4FADFC8DB8B319EA122 /* Pods-DoubleRoulette.release.xcconfig */,
+				F73C472AD9A3194A869F8580 /* Pods-DoubleRouletteUITests.debug.xcconfig */,
+				CADD678F9E003D7189D67A00 /* Pods-DoubleRouletteUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -355,8 +330,8 @@
 				050016622445593B00F3B87F /* AMColorPicker.framework */,
 				059C9F9924453D0D00B11797 /* Realm.framework */,
 				059C9F9A24453D0D00B11797 /* RealmSwift.framework */,
-				900A8DDB992024885EAA9F37 /* Pods_DoubleRoulette.framework */,
-				CD2359A6B6A922EDF3737179 /* Pods_DoubleRouletteUITests.framework */,
+				592C85F9F62B59216CE3D36E /* Pods_DoubleRoulette.framework */,
+				C388FE44B7C19783BC50B800 /* Pods_DoubleRouletteUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -386,11 +361,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0576835B24DAA09100BF1F1C /* Build configuration list for PBXNativeTarget "DoubleRouletteUITests" */;
 			buildPhases = (
-				A4F67C4ECA53C848A9F5A889 /* [CP] Check Pods Manifest.lock */,
+				D2EAB308735A4BDA555D4E83 /* [CP] Check Pods Manifest.lock */,
 				0576835024DAA09100BF1F1C /* Sources */,
 				0576835124DAA09100BF1F1C /* Frameworks */,
 				0576835224DAA09100BF1F1C /* Resources */,
-				5F1EF9ED0A6CBA0C6CCAE2E3 /* [CP] Embed Pods Frameworks */,
+				705121D286E524D01AB524BD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -406,16 +381,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05AF43F222C974D4007A236D /* Build configuration list for PBXNativeTarget "DoubleRoulette" */;
 			buildPhases = (
-				CC3180F0EFD224095355A8EE /* [CP] Check Pods Manifest.lock */,
+				ED2B36FADB689873F320DB9D /* [CP] Check Pods Manifest.lock */,
 				051A32FA24B7F368004A134A /* ShellScript */,
 				05AF43DC22C974D2007A236D /* Sources */,
 				05AF43DD22C974D2007A236D /* Frameworks */,
 				05AF43DE22C974D2007A236D /* Resources */,
-				2CB2E6CE60E36187D41B0B5E /* [CP] Embed Pods Frameworks */,
-				059C9F9F24453D0D00B11797 /* Embed Frameworks */,
-				059C9FA024453D1600B11797 /* ShellScript */,
 				05C3C4A8253520B400AC0D5A /* SwiftLint */,
 				058FCD0E254903D8002A499F /* Crashlytics */,
+				A3B2BE07C9EA67884E781326 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -542,26 +515,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
-		059C9FA024453D1600B11797 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/AMColorPicker.framework",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 		05C3C4A8253520B400AC0D5A /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -580,24 +533,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n${PODS_ROOT}/SwiftLint/swiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		2CB2E6CE60E36187D41B0B5E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5F1EF9ED0A6CBA0C6CCAE2E3 /* [CP] Embed Pods Frameworks */ = {
+		705121D286E524D01AB524BD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -614,7 +550,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubleRouletteUITests/Pods-DoubleRouletteUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A4F67C4ECA53C848A9F5A889 /* [CP] Check Pods Manifest.lock */ = {
+		A3B2BE07C9EA67884E781326 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2EAB308735A4BDA555D4E83 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -636,7 +589,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CC3180F0EFD224095355A8EE /* [CP] Check Pods Manifest.lock */ = {
+		ED2B36FADB689873F320DB9D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -779,7 +732,7 @@
 		};
 		0576835C24DAA09100BF1F1C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D80EE1ADBEBB07EA622753BC /* Pods-DoubleRouletteUITests.debug.xcconfig */;
+			baseConfigurationReference = F73C472AD9A3194A869F8580 /* Pods-DoubleRouletteUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UMBT5JZV43;
@@ -800,7 +753,7 @@
 		};
 		0576835D24DAA09100BF1F1C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 36EE6086EEE02E7A46E91FD9 /* Pods-DoubleRouletteUITests.release.xcconfig */;
+			baseConfigurationReference = CADD678F9E003D7189D67A00 /* Pods-DoubleRouletteUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UMBT5JZV43;
@@ -939,7 +892,7 @@
 		};
 		05AF43F322C974D4007A236D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D1E8F670281D253E3F70D58 /* Pods-DoubleRoulette.debug.xcconfig */;
+			baseConfigurationReference = 4B82B33192E0D5ADAA4F9527 /* Pods-DoubleRoulette.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -968,7 +921,7 @@
 		};
 		05AF43F422C974D4007A236D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93214C384C1F68552E28F145 /* Pods-DoubleRoulette.release.xcconfig */;
+			baseConfigurationReference = 5EC8E4FADFC8DB8B319EA122 /* Pods-DoubleRoulette.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

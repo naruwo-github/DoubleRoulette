@@ -13,6 +13,8 @@ target 'DoubleRoulette' do
   pod 'CellAnimator'
   pod 'R.swift'
   pod 'SwiftLint'
+  pod 'RealmSwift'
+  pod 'AMColorPicker'
 
   # Pods for DoubleRoulette
   target 'DoubleRouletteUITests' do

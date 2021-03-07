@@ -189,10 +189,23 @@ class RealmTests: TestCase {
 
     func testInitCustomClassList() {
         let configuration = Realm.Configuration(fileURL: Realm.Configuration.defaultConfiguration.fileURL,
-            objectTypes: [SwiftStringObject.self])
-        XCTAssert(configuration.objectTypes! is [SwiftStringObject.Type])
+                                                objectTypes: [
+                                                    EmbeddedTreeObject1.self,
+                                                    EmbeddedTreeObject2.self,
+                                                    EmbeddedTreeObject3.self,
+                                                    EmbeddedParentObject.self,
+                                                    SwiftStringObject.self
+        ])
+        let sorted = configuration.objectTypes!.sorted { $0.className() < $1.className() }
+        XCTAssertTrue(sorted[0] is EmbeddedParentObject.Type)
+        XCTAssertTrue(sorted[1] is EmbeddedTreeObject1.Type)
+        XCTAssertTrue(sorted[2] is EmbeddedTreeObject2.Type)
+        XCTAssertTrue(sorted[3] is EmbeddedTreeObject3.Type)
+        XCTAssertTrue(sorted[4] is SwiftStringObject.Type)
+
         let realm = try! Realm(configuration: configuration)
-        XCTAssertEqual(["SwiftStringObject"], realm.schema.objectSchema.map { $0.className })
+        XCTAssertEqual(["EmbeddedParentObject", "EmbeddedTreeObject1", "EmbeddedTreeObject2", "EmbeddedTreeObject3", "SwiftStringObject"],
+                       realm.schema.objectSchema.map { $0.className }.sorted())
     }
 
     func testWrite() {
@@ -505,6 +518,10 @@ class RealmTests: TestCase {
 
         XCTAssertEqual(object["boolCol"] as? NSNumber, dictionary["boolCol"] as! NSNumber?)
         XCTAssertEqual(object["intCol"] as? NSNumber, dictionary["intCol"] as! NSNumber?)
+        XCTAssertEqual(object["int8Col"] as? NSNumber, dictionary["int8Col"] as! NSNumber?)
+        XCTAssertEqual(object["int16Col"] as? NSNumber, dictionary["int16Col"] as! NSNumber?)
+        XCTAssertEqual(object["int32Col"] as? NSNumber, dictionary["int32Col"] as! NSNumber?)
+        XCTAssertEqual(object["int64Col"] as? NSNumber, dictionary["int64Col"] as! NSNumber?)
         XCTAssertEqual(object["floatCol"] as! Float, dictionary["floatCol"] as! Float, accuracy: 0.001)
         XCTAssertEqual(object["doubleCol"] as? NSNumber, dictionary["doubleCol"] as! NSNumber?)
         XCTAssertEqual(object["stringCol"] as! String?, dictionary["stringCol"] as! String?)
@@ -532,6 +549,8 @@ class RealmTests: TestCase {
         XCTAssertEqual(object["optNSStringCol"] as! String?, dictionary["optNSStringCol"] as! String?)
         XCTAssertEqual(object["optBinaryCol"] as! NSData?, dictionary["optBinaryCol"] as! NSData?)
         XCTAssertEqual(object["optDateCol"] as! Date?, dictionary["optDateCol"] as! Date?)
+        XCTAssertEqual(object["optDecimalCol"] as! Decimal128?, dictionary["optDecimalCol"] as! Decimal128?)
+        XCTAssertEqual(object["optObjectIdCol"] as! ObjectId?, dictionary["optObjectIdCol"] as! ObjectId?)
         XCTAssertEqual((object["optObjectCol"] as? SwiftBoolObject)?.boolCol, true)
     }
 
@@ -548,6 +567,10 @@ class RealmTests: TestCase {
         for object in objects {
             XCTAssertEqual(object["boolCol"] as? NSNumber, dictionary["boolCol"] as! NSNumber?)
             XCTAssertEqual(object["intCol"] as? NSNumber, dictionary["intCol"] as! NSNumber?)
+            XCTAssertEqual(object["int8Col"] as? NSNumber, dictionary["int8Col"] as! NSNumber?)
+            XCTAssertEqual(object["int16Col"] as? NSNumber, dictionary["int16Col"] as! NSNumber?)
+            XCTAssertEqual(object["int32Col"] as? NSNumber, dictionary["int32Col"] as! NSNumber?)
+            XCTAssertEqual(object["int64Col"] as? NSNumber, dictionary["int64Col"] as! NSNumber?)
             XCTAssertEqual(object["floatCol"] as? NSNumber, dictionary["floatCol"] as! NSNumber?)
             XCTAssertEqual(object["doubleCol"] as? NSNumber, dictionary["doubleCol"] as! NSNumber?)
             XCTAssertEqual(object["stringCol"] as! String?, dictionary["stringCol"] as! String?)
@@ -861,5 +884,23 @@ class RealmTests: TestCase {
         XCTAssertTrue(Realm.fileExists(for: config))
         XCTAssertTrue(try! Realm.deleteFiles(for: config))
         XCTAssertFalse(Realm.fileExists(for: config))
+    }
+
+    func testThaw() {
+        XCTAssertEqual(try! Realm().objects(SwiftBoolObject.self).count, 0)
+        let realm = try! Realm()
+        let frozenRealm = realm.freeze()
+        XCTAssert(frozenRealm.isFrozen)
+
+        dispatchSyncNewThread {
+            let thawedRealm = frozenRealm.thaw()
+            XCTAssertFalse(thawedRealm.isFrozen)
+            try! thawedRealm.write {
+                try! Realm().create(SwiftBoolObject.self, value: ["boolCol": true])
+            }
+        }
+        XCTAssertEqual(try! Realm().objects(SwiftBoolObject.self).count, 0)
+        realm.refresh()
+        XCTAssertEqual(try! Realm().objects(SwiftBoolObject.self).count, 1)
     }
 }

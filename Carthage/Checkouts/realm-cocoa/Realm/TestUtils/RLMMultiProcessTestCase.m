@@ -28,6 +28,10 @@
 @property (nonatomic, strong) NSString *testsPath;
 @end
 
+@interface RLMMultiProcessTestCase (Sync)
+- (NSString *)appId;
+@end
+
 @implementation RLMMultiProcessTestCase
 // Override all of the methods for creating a XCTestCase object to capture the current test name
 + (id)testCaseWithInvocation:(NSInvocation *)invocation {
@@ -56,6 +60,10 @@
         self.testName = NSStringFromSelector(selector);
     }
     return self;
+}
+
+- (BOOL)encryptTests {
+    return NO;
 }
 
 - (void)setUp {
@@ -107,11 +115,15 @@
 }
 
 #if !TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
-- (NSTask *)childTask {
+- (NSTask *)childTaskWithAppIds:(NSArray *)appIds {
     NSString *testName = [NSString stringWithFormat:@"%@/%@", self.className, self.testName];
     NSMutableDictionary *env = [NSProcessInfo.processInfo.environment mutableCopy];
     env[@"RLMProcessIsChild"] = @"true";
     env[@"RLMParentProcessBundleID"] = [NSBundle mainBundle].bundleIdentifier;
+    if (appIds.count) {
+        env[@"RLMParentAppId"] = appIds[0];
+        env[@"RLMParentAppIds"] = [appIds componentsJoinedByString:@","];
+    }
 
     // If we're running with address sanitizer or thread sanitizer we need to
     // explicitly tell dyld to inject the appropriate runtime library into
@@ -137,7 +149,11 @@
     return task;
 }
 
-- (int)runChildAndWait {
+- (NSTask *)childTask {
+    return [self childTaskWithAppIds:@[]];
+}
+
+- (NSPipe *)filterPipe {
     NSPipe *pipe = [NSPipe pipe];
     NSMutableData *buffer = [[NSMutableData alloc] init];
 
@@ -149,7 +165,7 @@
         const char *end = start + buffer.length;
         while ((newline = memchr(start, '\n', end - start))) {
             if (newline < start + 17 ||
-                (memcmp(start, "Test Suite", 10) && memcmp(start, "Test Case", 9) && memcmp(start, "	 Executed 1 test", 17))) {
+                (memcmp(start, "Test Suite", 10) && memcmp(start, "Test Case", 9) && memcmp(start, "     Executed 1 test", 17))) {
                 fwrite(start, newline - start + 1, 1, stderr);
             }
             start = newline + 1;
@@ -158,21 +174,40 @@
         // Remove everything up to the last newline, leaving any data not newline-terminated in the buffer
         [buffer replaceBytesInRange:NSMakeRange(0, start - (char *)buffer.bytes) withBytes:0 length:0];
     };
+    return pipe;
+}
 
-    NSTask *task = [self childTask];
-    task.standardError = pipe;
+- (int)runChildAndWaitWithAppIds:(NSArray *)appIds {
+    NSTask *task = [self childTaskWithAppIds:appIds];
+    task.standardError = self.filterPipe;
     [task launch];
     [task waitUntilExit];
-
     return task.terminationStatus;
 }
+
+- (int)runChildAndWait {
+    NSTask *task = [self childTask];
+    task.standardError = self.filterPipe;
+    [task launch];
+    [task waitUntilExit];
+    return task.terminationStatus;
+}
+
 #else
 - (NSTask *)childTask {
+    return nil;
+}
+- (NSTask *)childTaskWithAppIds:(__unused NSArray *)appIds {
     return nil;
 }
 
 - (int)runChildAndWait {
     return 1;
 }
+
+- (int)runChildAndWaitWithAppIds:(__unused NSArray *)appIds {
+    return 1;
+}
+
 #endif
 @end
