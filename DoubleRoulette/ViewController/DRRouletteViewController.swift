@@ -63,7 +63,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     override func willMove(toParent parent: UIViewController?) {
         if parent == nil { // 戻る場合
             super.willMove(toParent: nil)
-            showInterstitialAd()
+            self.showInterstitialAd()
             return
         }
         // 進む場合
@@ -199,7 +199,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     }
     
     private func showInterstitialAd() {
-        guard let ad = interstitial else { return }
+        guard let ad = self.interstitial else { return }
         let backCount = DRUserHelper.backToCellSettingFromRouletteCount
         if backCount != 0 && backCount % 7 == 0 {
             if ad.isReady {

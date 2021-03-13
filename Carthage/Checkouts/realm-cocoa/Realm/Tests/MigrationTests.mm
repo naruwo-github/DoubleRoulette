@@ -30,11 +30,11 @@
 #import "RLMUtil.hpp"
 #import "RLMRealmUtil.hpp"
 
-#import "object_store.hpp"
-#import "shared_realm.hpp"
-
+#import <realm/object-store/object_store.hpp>
+#import <realm/object-store/shared_realm.hpp>
 #import <realm/table.hpp>
 #import <realm/version.hpp>
+
 #import <objc/runtime.h>
 
 using namespace realm;
@@ -46,7 +46,7 @@ static void RLMAssertRealmSchemaMatchesTable(id self, RLMRealm *realm) {
         for (RLMProperty *property in objectSchema.properties) {
             auto column = info.tableColumn(property);
             XCTAssertEqual(column, table->get_column_key(RLMStringDataWithNSString(property.columnName)));
-            bool indexed = (property.indexed || property.isPrimary) && !(property.isPrimary && property.type == RLMPropertyTypeString);
+            bool indexed = property.indexed && !property.isPrimary;
             XCTAssertEqual(indexed, table->has_search_index(column));
         }
     }
@@ -147,6 +147,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
 - (RLMRealmConfiguration *)config {
     RLMRealmConfiguration *config = [RLMRealmConfiguration new];
     config.fileURL = RLMTestRealmURL();
+    config.encryptionKey = RLMRealmConfiguration.rawDefaultConfiguration.encryptionKey;
     return config;
 }
 
@@ -160,8 +161,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
 
 - (void)createTestRealmWithSchema:(NSArray *)objectSchema block:(void (^)(RLMRealm *realm))block {
     @autoreleasepool {
-        RLMRealmConfiguration *config = [RLMRealmConfiguration new];
-        config.fileURL = RLMTestRealmURL();
+        RLMRealmConfiguration *config = self.config;
         config.customSchema = [self schemaWithObjects:objectSchema];
 
         RLMRealm *realm = [RLMRealm realmWithConfiguration:config error:nil];
@@ -173,8 +173,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
 
 - (RLMRealm *)migrateTestRealmWithBlock:(RLMMigrationBlock)block NS_RETURNS_RETAINED {
     @autoreleasepool {
-        RLMRealmConfiguration *config = [RLMRealmConfiguration new];
-        config.fileURL = RLMTestRealmURL();
+        RLMRealmConfiguration *config = self.config;
         config.schemaVersion = 1;
         config.migrationBlock = block;
         XCTAssertTrue([RLMRealm performMigrationForConfiguration:config error:nil]);
@@ -187,8 +186,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
 
 - (void)failToMigrateTestRealmWithBlock:(RLMMigrationBlock)block {
     @autoreleasepool {
-        RLMRealmConfiguration *config = [RLMRealmConfiguration new];
-        config.fileURL = RLMTestRealmURL();
+        RLMRealmConfiguration *config = self.config;
         config.schemaVersion = 1;
         config.migrationBlock = block;
         XCTAssertFalse([RLMRealm performMigrationForConfiguration:config error:nil]);
@@ -219,7 +217,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
 }
 
 - (void)assertNoMigrationRequiredForChangeFrom:(NSArray *)from to:(NSArray *)to {
-    RLMRealmConfiguration *config = [RLMRealmConfiguration new];
+    RLMRealmConfiguration *config = self.config;
     config.customSchema = [self schemaWithObjects:from];
     @autoreleasepool { [RLMRealm realmWithConfiguration:config error:nil]; }
 
@@ -233,8 +231,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
 }
 
 - (RLMRealmConfiguration *)renameConfigurationWithObjectSchemas:(NSArray *)objectSchemas migrationBlock:(RLMMigrationBlock)block {
-    RLMRealmConfiguration *configuration = [RLMRealmConfiguration new];
-    configuration.fileURL = RLMTestRealmURL();
+    RLMRealmConfiguration *configuration = self.config;
     configuration.schemaVersion = 1;
     configuration.customSchema = [self schemaWithObjects:objectSchemas];
     configuration.migrationBlock = block;
@@ -310,6 +307,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
     RLMValidateRealmError(error, RLMErrorFail, @"Cannot open an uninitialized realm in read-only mode", nil);
 
     RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
+    config.encryptionKey = nil;
     @autoreleasepool { [RLMRealm realmWithConfiguration:config error:nil]; }
     XCTAssertEqual(0U, [RLMRealm schemaVersionAtURL:config.fileURL encryptionKey:nil error:nil]);
 
@@ -326,7 +324,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
     RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
     config.schemaVersion = 10;
     @autoreleasepool { [RLMRealm realmWithConfiguration:config error:nil]; }
-    XCTAssertEqual(10U, [RLMRealm schemaVersionAtURL:config.fileURL encryptionKey:nil error:nil]);
+    XCTAssertEqual(10U, [RLMRealm schemaVersionAtURL:config.fileURL encryptionKey:config.encryptionKey error:nil]);
 
     config.schemaVersion = 5;
     RLMAssertThrowsWithReasonMatching([RLMRealm realmWithConfiguration:config error:nil],
@@ -337,22 +335,22 @@ RLM_ARRAY_TYPE(MigrationTestObject);
     RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
     config.schemaVersion = 10;
     @autoreleasepool { [RLMRealm realmWithConfiguration:config error:nil]; }
-    XCTAssertEqual(10U, [RLMRealm schemaVersionAtURL:config.fileURL encryptionKey:nil error:nil]);
+    XCTAssertEqual(10U, [RLMRealm schemaVersionAtURL:config.fileURL encryptionKey:config.encryptionKey error:nil]);
 
     RLMRealmConfiguration *config2 = [RLMRealmConfiguration defaultConfiguration];
     config2.schemaVersion = 5;
     config2.fileURL = RLMTestRealmURL();
     @autoreleasepool { [RLMRealm realmWithConfiguration:config2 error:nil]; }
-    XCTAssertEqual(5U, [RLMRealm schemaVersionAtURL:config2.fileURL encryptionKey:nil error:nil]);
+    XCTAssertEqual(5U, [RLMRealm schemaVersionAtURL:config2.fileURL encryptionKey:config.encryptionKey error:nil]);
 
     // Should not have been changed
-    XCTAssertEqual(10U, [RLMRealm schemaVersionAtURL:config.fileURL encryptionKey:nil error:nil]);
+    XCTAssertEqual(10U, [RLMRealm schemaVersionAtURL:config.fileURL encryptionKey:config.encryptionKey error:nil]);
 }
 
 #pragma mark - Migration Requirements
 
 - (void)testAddingClassDoesNotRequireMigration {
-    RLMRealmConfiguration *config = [RLMRealmConfiguration new];
+    RLMRealmConfiguration *config = self.config;
     config.objectClasses = @[MigrationTestObject.class];
     @autoreleasepool { [RLMRealm realmWithConfiguration:config error:nil]; }
 
@@ -361,7 +359,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
 }
 
 - (void)testRemovingClassDoesNotRequireMigration {
-    RLMRealmConfiguration *config = [RLMRealmConfiguration new];
+    RLMRealmConfiguration *config = self.config;
     config.objectClasses = @[MigrationTestObject.class, ThreeFieldMigrationTestObject.class];
     @autoreleasepool { [RLMRealm realmWithConfiguration:config error:nil]; }
 
@@ -502,7 +500,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
 
     RLMObjectSchema *to = [RLMObjectSchema schemaForObjectClass:MigrationTwoStringObject.class];
 
-    RLMRealmConfiguration *config = [RLMRealmConfiguration new];
+    RLMRealmConfiguration *config = self.config;
     config.customSchema = [self schemaWithObjects:@[from]];
     @autoreleasepool { [RLMRealm realmWithConfiguration:config error:nil]; }
 
@@ -623,7 +621,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
 #pragma mark - Migration block invocatios
 
 - (void)testMigrationBlockNotCalledForIntialRealmCreation {
-    RLMRealmConfiguration *config = [RLMRealmConfiguration new];
+    RLMRealmConfiguration *config = self.config;
     config.migrationBlock = ^(__unused RLMMigration *migration, __unused uint64_t oldSchemaVersion) {
         XCTFail(@"Migration block should not have been called");
     };
@@ -631,7 +629,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
 }
 
 - (void)testMigrationBlockNotCalledWhenSchemaVersionIsUnchanged {
-    RLMRealmConfiguration *config = [RLMRealmConfiguration new];
+    RLMRealmConfiguration *config = self.config;
     config.schemaVersion = 1;
     @autoreleasepool { XCTAssertNoThrow([RLMRealm realmWithConfiguration:config error:nil]); }
 
@@ -643,7 +641,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
 }
 
 - (void)testMigrationBlockCalledWhenSchemaVersionHasChanged {
-    RLMRealmConfiguration *config = [RLMRealmConfiguration new];
+    RLMRealmConfiguration *config = self.config;
     config.schemaVersion = 1;
     @autoreleasepool { XCTAssertNoThrow([RLMRealm realmWithConfiguration:config error:nil]); }
 
@@ -664,7 +662,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
 #pragma mark - Async Migration
 
 - (void)testAsyncMigration {
-    RLMRealmConfiguration *c = [RLMRealmConfiguration new];
+    RLMRealmConfiguration *c = self.config;
     c.schemaVersion = 1;
     @autoreleasepool { XCTAssertNoThrow([RLMRealm realmWithConfiguration:c error:nil]); }
     XCTAssertNil(RLMGetAnyCachedRealmForPath(c.pathOnDisk.UTF8String));
@@ -1129,28 +1127,26 @@ RLM_ARRAY_TYPE(MigrationTestObject);
     }];
 }
 
-- (void)testEnumerateObjectsAfterDeleteDataForRemovedType {
+- (void)testEnumerateObjectTypeRemovedFromSchema {
     [self createTestRealmWithClasses:@[IntObject.class] block:^(RLMRealm *realm) {
         [IntObject createInRealm:realm withValue:@[@1]];
         [IntObject createInRealm:realm withValue:@[@2]];
     }];
 
-    RLMRealmConfiguration *config = [RLMRealmConfiguration new];
+    RLMRealmConfiguration *config = self.config;
     config.objectClasses = @[StringObject.class];
-    config.fileURL = RLMTestRealmURL();
     config.schemaVersion = 1;
+    __block int enumerateCalls = 0;
     config.migrationBlock = ^(RLMMigration *migration, uint64_t) {
         [migration enumerateObjects:IntObject.className block:^(RLMObject *oldObject, RLMObject *newObject) {
             XCTAssertNotNil(oldObject);
             XCTAssertNil(newObject);
+            ++enumerateCalls;
+            XCTAssertGreaterThan([oldObject[@"intCol"] intValue], 0);
         }];
-        [migration deleteDataForClassName:IntObject.className];
-        [migration enumerateObjects:IntObject.className block:^(RLMObject *, RLMObject *) {
-            XCTFail(@"should not have enumerated any objects");
-        }];
-        [migration deleteDataForClassName:IntObject.className];
     };
     XCTAssertTrue([RLMRealm performMigrationForConfiguration:config error:nil]);
+    XCTAssertEqual(enumerateCalls, 2);
 }
 
 - (void)testEnumerateObjectsAfterDeleteData {
@@ -1321,8 +1317,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
 
     RLMRealm *realm;
     @autoreleasepool {
-        RLMRealmConfiguration *config = [RLMRealmConfiguration new];
-        config.fileURL = RLMTestRealmURL();
+        RLMRealmConfiguration *config = self.config;
         config.customSchema = [self schemaWithObjects:@[ objectSchema ]];
         config.schemaVersion = 1;
         XCTAssertTrue([RLMRealm performMigrationForConfiguration:config error:nil]);
@@ -1365,8 +1360,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
     }];
 
     objectSchema = [RLMObjectSchema schemaForObjectClass:RequiredPropertiesObject.class];
-    RLMRealmConfiguration *config = [RLMRealmConfiguration new];
-    config.fileURL = RLMTestRealmURL();
+    RLMRealmConfiguration *config = self.config;
     config.customSchema = [self schemaWithObjects:@[objectSchema]];
     config.schemaVersion = 1;
     config.migrationBlock = ^(RLMMigration *migration, uint64_t) {
@@ -1404,6 +1398,390 @@ RLM_ARRAY_TYPE(MigrationTestObject);
     }
 }
 
+- (void)testChangeEmptyTableFromTopLevelToEmbedded {
+    RLMProperty *intProperty = [[RLMProperty alloc] initWithName:@"intProperty"
+                                                            type:RLMPropertyTypeInt
+                                                 objectClassName:nil
+                                          linkOriginPropertyName:nil
+                                                         indexed:NO
+                                                        optional:NO];
+    RLMObjectSchema *childObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ChildClass"
+                                                                  objectClass:RLMObject.class
+                                                                   properties:@[intProperty]];
+    RLMProperty *childProperty = [[RLMProperty alloc] initWithName:@"childProperty"
+                                                              type:RLMPropertyTypeObject
+                                                   objectClassName:@"ChildClass"
+                                            linkOriginPropertyName:nil
+                                                           indexed:NO
+                                                          optional:YES];
+    RLMObjectSchema *parentObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ParentClass"
+                                                                   objectClass:RLMObject.class
+                                                                    properties:@[childProperty]];
+    [self createTestRealmWithSchema:@[parentObjectSchema, childObjectSchema] block:^(RLMRealm *realm) {}];
+    
+    childObjectSchema.isEmbedded = YES;
+    
+    RLMRealmConfiguration *realmConfiguration = self.config;
+    realmConfiguration.schemaVersion = 1;
+    realmConfiguration.customSchema = [self schemaWithObjects:@[parentObjectSchema, childObjectSchema]];
+    NSError *error;
+    XCTAssertTrue([RLMRealm performMigrationForConfiguration:realmConfiguration error:&error]);
+    XCTAssertNil(error);
+    XCTAssertTrue(childObjectSchema.isEmbedded);
+}
+
+- (void)testChangeEmptyTableFromEmbeddedToTopLevel {
+    RLMProperty *intProperty = [[RLMProperty alloc] initWithName:@"intProperty"
+                                                            type:RLMPropertyTypeInt
+                                                 objectClassName:nil
+                                          linkOriginPropertyName:nil
+                                                         indexed:NO
+                                                        optional:NO];
+    RLMObjectSchema *childObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ChildClass"
+                                                                  objectClass:RLMEmbeddedObject.class
+                                                                   properties:@[intProperty]];
+    RLMProperty *childProperty = [[RLMProperty alloc] initWithName:@"childProperty"
+                                                              type:RLMPropertyTypeObject
+                                                   objectClassName:@"ChildClass"
+                                            linkOriginPropertyName:nil
+                                                           indexed:NO
+                                                          optional:YES];
+    RLMObjectSchema *parentObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ParentClass"
+                                                                   objectClass:RLMObject.class
+                                                                    properties:@[childProperty]];
+    [self createTestRealmWithSchema:@[parentObjectSchema, childObjectSchema] block:^(RLMRealm *realm) {}];
+    
+    childObjectSchema.isEmbedded = NO;
+    
+    RLMRealmConfiguration *realmConfiguration = self.config;
+    realmConfiguration.schemaVersion = 1;
+    realmConfiguration.customSchema = [self schemaWithObjects:@[parentObjectSchema, childObjectSchema]];
+    NSError *error;
+    XCTAssertTrue([RLMRealm performMigrationForConfiguration:realmConfiguration error:&error]);
+    XCTAssertNil(error);
+    XCTAssertFalse(childObjectSchema.isEmbedded);
+}
+
+- (void)testReApplyEmbeddedFlagToEmbeddedTable {
+    RLMProperty *intProperty = [[RLMProperty alloc] initWithName:@"intProperty"
+                                                            type:RLMPropertyTypeInt
+                                                 objectClassName:nil
+                                          linkOriginPropertyName:nil
+                                                         indexed:NO
+                                                        optional:NO];
+    RLMObjectSchema *childObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ChildClass"
+                                                                  objectClass:RLMEmbeddedObject.class
+                                                                   properties:@[intProperty]];
+    RLMProperty *childProperty = [[RLMProperty alloc] initWithName:@"childProperty"
+                                                              type:RLMPropertyTypeObject
+                                                   objectClassName:@"ChildClass"
+                                            linkOriginPropertyName:nil
+                                                           indexed:NO
+                                                          optional:YES];
+    RLMObjectSchema *parentObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ParentClass"
+                                                                   objectClass:RLMObject.class
+                                                                    properties:@[childProperty]];
+    [self createTestRealmWithSchema:@[parentObjectSchema, childObjectSchema] block:^(RLMRealm *realm) {}];
+    
+    childObjectSchema.isEmbedded = YES;
+    
+    RLMRealmConfiguration *realmConfiguration = self.config;
+    realmConfiguration.schemaVersion = 1;
+    realmConfiguration.customSchema = [self schemaWithObjects:@[parentObjectSchema, childObjectSchema]];
+    NSError *error;
+    XCTAssertTrue([RLMRealm performMigrationForConfiguration:realmConfiguration error:&error]);
+    XCTAssertNil(error);
+    XCTAssertTrue(childObjectSchema.isEmbedded);
+}
+
+- (void)testChangeToEmbeddedWithoutMigrationBlock {
+    RLMProperty *intProperty = [[RLMProperty alloc] initWithName:@"intProperty"
+                                                            type:RLMPropertyTypeInt
+                                                 objectClassName:nil
+                                          linkOriginPropertyName:nil
+                                                         indexed:NO
+                                                        optional:NO];
+    RLMObjectSchema *childObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ChildClass"
+                                                                  objectClass:RLMObject.class
+                                                                   properties:@[intProperty]];
+    RLMProperty *childProperty = [[RLMProperty alloc] initWithName:@"childProperty"
+                                                              type:RLMPropertyTypeObject
+                                                   objectClassName:@"ChildClass"
+                                            linkOriginPropertyName:nil
+                                                           indexed:NO
+                                                          optional:YES];
+    RLMObjectSchema *parentObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ParentClass"
+                                                                   objectClass:RLMObject.class
+                                                                    properties:@[childProperty]];
+    [self createTestRealmWithSchema:@[parentObjectSchema, childObjectSchema] block:^(RLMRealm *realm) {
+        id childObject = [realm createObject:@"ChildClass" withValue:@[@42]];
+        [realm createObject:@"ParentClass" withValue:@[childObject]];
+        [realm createObject:@"ParentClass" withValue:@[childObject]];
+    }];
+    
+    childObjectSchema.isEmbedded = YES;
+    
+    RLMRealmConfiguration *realmConfiguration = self.config;
+    realmConfiguration.customSchema = [self schemaWithObjects:@[parentObjectSchema, childObjectSchema]];
+    realmConfiguration.schemaVersion = 1;
+    NSError *error;
+    XCTAssertFalse([RLMRealm performMigrationForConfiguration:realmConfiguration error:&error]);
+    XCTAssertNotNil(error);
+}
+
+- (void)testChangeTableToEmbeddedWithoutBacklinks {
+    RLMProperty *intProperty = [[RLMProperty alloc] initWithName:@"intProperty"
+                                                            type:RLMPropertyTypeInt
+                                                 objectClassName:nil
+                                          linkOriginPropertyName:nil
+                                                         indexed:NO
+                                                        optional:NO];
+    RLMObjectSchema *childObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ChildClass"
+                                                                  objectClass:RLMEmbeddedObject.class
+                                                                   properties:@[intProperty]];
+    [self createTestRealmWithSchema:@[childObjectSchema] block:^(RLMRealm *realm) {}];
+    
+    childObjectSchema.isEmbedded = YES;
+    
+    RLMRealmConfiguration *realmConfiguration = self.config;
+    realmConfiguration.schemaVersion = 1;
+    realmConfiguration.customSchema = [self schemaWithObjects:@[childObjectSchema]];
+    NSError *error;
+    XCTAssertFalse([RLMRealm performMigrationForConfiguration:realmConfiguration error:&error]);
+    XCTAssertNotNil(error);
+    XCTAssertTrue(childObjectSchema.isEmbedded);
+}
+
+- (void)testChangeTableToEmbeddedWithOnlyOneLinkPerObject {
+    RLMProperty *intProperty = [[RLMProperty alloc] initWithName:@"intProperty"
+                                                            type:RLMPropertyTypeInt
+                                                 objectClassName:nil
+                                          linkOriginPropertyName:nil
+                                                         indexed:NO
+                                                        optional:NO];
+    RLMObjectSchema *childObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ChildClass"
+                                                                  objectClass:RLMObject.class
+                                                                   properties:@[intProperty]];
+    RLMProperty *childProperty = [[RLMProperty alloc] initWithName:@"childProperty"
+                                                              type:RLMPropertyTypeObject
+                                                   objectClassName:@"ChildClass"
+                                            linkOriginPropertyName:nil
+                                                           indexed:NO
+                                                          optional:YES];
+    RLMObjectSchema *parentObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ParentClass"
+                                                                   objectClass:RLMObject.class
+                                                                    properties:@[childProperty]];
+    [self createTestRealmWithSchema:@[parentObjectSchema, childObjectSchema] block:^(RLMRealm *realm) {
+        id childObject1 = [realm createObject:@"ChildClass" withValue:@[@42]];
+        [realm createObject:@"ParentClass" withValue:@[childObject1]];
+        id childObject2 = [realm createObject:@"ChildClass" withValue:@[@43]];
+        [realm createObject:@"ParentClass" withValue:@[childObject2]];
+    }];
+    
+    childObjectSchema.isEmbedded = YES;
+    
+    RLMRealmConfiguration *realmConfiguration = self.config;
+    realmConfiguration.customSchema = [self schemaWithObjects:@[parentObjectSchema, childObjectSchema]];
+    realmConfiguration.schemaVersion = 1;
+    __block int parentEnumerateCalls = 0;
+    __block int childEnumerateCalls = 0;
+    realmConfiguration.migrationBlock = ^(RLMMigration *migration, uint64_t) {
+        [migration enumerateObjects:@"ParentClass" block:^(RLMObject *oldObject, RLMObject *newObject) {
+            parentEnumerateCalls++;
+            XCTAssertNotNil(oldObject);
+            XCTAssertNotNil(newObject);
+            XCTAssertEqual(oldObject[@"childProperty"][@"intProperty"], newObject[@"childProperty"][@"intProperty"]);
+            XCTAssert([newObject[@"childProperty"][@"intProperty"] intValue] == 42 || [newObject[@"childProperty"][@"intProperty"] intValue] == 43);
+        }];
+        [migration enumerateObjects:@"ChildClass" block:^(RLMObject *oldObject, RLMObject *newObject) {
+            childEnumerateCalls++;
+            XCTAssertNotNil(oldObject);
+            XCTAssertNotNil(newObject);
+            XCTAssertEqual([oldObject[@"intProperty"] intValue], [newObject[@"intProperty"] intValue]);
+            XCTAssert([newObject[@"intProperty"] intValue] == 42 || [newObject[@"intProperty"] intValue] == 43);
+        }];
+    };
+    NSError *error;
+    XCTAssertTrue([RLMRealm performMigrationForConfiguration:realmConfiguration error:&error]);
+    XCTAssertNil(error);
+    XCTAssertEqual(parentEnumerateCalls, 2);
+    XCTAssertEqual(childEnumerateCalls, 2);
+    RLMRealm *realm = [RLMRealm realmWithConfiguration:realmConfiguration error:&error];
+    XCTAssertNil(error);
+    RLMResults *parentObjects = RLMGetObjects(realm, @"ParentClass", nil);
+    XCTAssertEqual(parentObjects.count, 2);
+    RLMObject *firstParentObject = parentObjects[0];
+    RLMObject *firstParentsChild = firstParentObject[@"childProperty"];
+    NSLog(@"%@", firstParentsChild[@"intProperty"]);
+    XCTAssertEqual([firstParentsChild[@"intProperty"] intValue], 42);
+    RLMObject *secondParentObject = parentObjects[1];
+    RLMObject *secondParentsChild = secondParentObject[@"childProperty"];
+    XCTAssertEqual([secondParentsChild[@"intProperty"] intValue], 43);
+}
+
+- (void)testChangeToEmbeddedWithMultipleBacklinksWithoutProperMigration {
+    RLMProperty *intProperty = [[RLMProperty alloc] initWithName:@"intProperty"
+                                                            type:RLMPropertyTypeInt
+                                                 objectClassName:nil
+                                          linkOriginPropertyName:nil
+                                                         indexed:NO
+                                                        optional:NO];
+    RLMObjectSchema *childObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ChildClass"
+                                                                  objectClass:RLMObject.class
+                                                                   properties:@[intProperty]];
+    RLMProperty *childProperty = [[RLMProperty alloc] initWithName:@"childProperty"
+                                                              type:RLMPropertyTypeObject
+                                                   objectClassName:@"ChildClass"
+                                            linkOriginPropertyName:nil
+                                                           indexed:NO
+                                                          optional:YES];
+    RLMObjectSchema *parentObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ParentClass"
+                                                                   objectClass:RLMObject.class
+                                                                    properties:@[childProperty]];
+    [self createTestRealmWithSchema:@[parentObjectSchema, childObjectSchema] block:^(RLMRealm *realm) {
+        id childObject = [realm createObject:@"ChildClass" withValue:@[@42]];
+        [realm createObject:@"ParentClass" withValue:@[childObject]];
+        [realm createObject:@"ParentClass" withValue:@[childObject]];
+    }];
+    
+    childObjectSchema.isEmbedded = YES;
+    
+    RLMRealmConfiguration *realmConfiguration = self.config;
+    realmConfiguration.customSchema = [self schemaWithObjects:@[parentObjectSchema, childObjectSchema]];
+    realmConfiguration.schemaVersion = 1;
+    __block int parentEnumerateCalls = 0;
+    __block int childEnumerateCalls = 0;
+    realmConfiguration.migrationBlock = ^(RLMMigration *migration, uint64_t) {
+        [migration enumerateObjects:@"ParentClass" block:^(RLMObject *oldObject, RLMObject *newObject) {
+            parentEnumerateCalls++;
+            XCTAssertNotNil(oldObject);
+            XCTAssertNotNil(newObject);
+            XCTAssertEqual(oldObject[@"childProperty"][@"intProperty"], newObject[@"childProperty"][@"intProperty"]);
+            XCTAssert([newObject[@"childProperty"][@"intProperty"] intValue] == 42 || [newObject[@"childProperty"][@"intProperty"] intValue] == 43);
+        }];
+        [migration enumerateObjects:@"ChildClass" block:^(RLMObject *oldObject, RLMObject *newObject) {
+            childEnumerateCalls++;
+            XCTAssertNotNil(oldObject);
+            XCTAssertNotNil(newObject);
+            XCTAssertEqual([oldObject[@"intProperty"] intValue], [newObject[@"intProperty"] intValue]);
+            XCTAssert([newObject[@"intProperty"] intValue] == 42);
+        }];
+    };
+    NSError *error;
+    XCTAssertFalse([RLMRealm performMigrationForConfiguration:realmConfiguration error:&error]);
+    XCTAssertNotNil(error);
+    XCTAssertEqual(parentEnumerateCalls, 2);
+    XCTAssertEqual(childEnumerateCalls, 1);
+}
+
+- (void)testConvertToEmbeddedWithMultipleIncomingLinksResolvedInMigrationBlock {
+    RLMProperty *intProperty = [[RLMProperty alloc] initWithName:@"intProperty"
+                                                            type:RLMPropertyTypeInt
+                                                 objectClassName:nil
+                                          linkOriginPropertyName:nil
+                                                         indexed:NO
+                                                        optional:NO];
+    RLMObjectSchema *childObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ChildClass"
+                                                                  objectClass:RLMObject.class
+                                                                   properties:@[intProperty]];
+    RLMProperty *childProperty = [[RLMProperty alloc] initWithName:@"childProperty"
+                                                              type:RLMPropertyTypeObject
+                                                   objectClassName:@"ChildClass"
+                                            linkOriginPropertyName:nil
+                                                           indexed:NO
+                                                          optional:YES];
+    RLMObjectSchema *parentObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ParentClass"
+                                                                   objectClass:RLMObject.class
+                                                                    properties:@[childProperty]];
+    [self createTestRealmWithSchema:@[parentObjectSchema, childObjectSchema] block:^(RLMRealm *realm) {
+        id childObject = [realm createObject:@"ChildClass" withValue:@[@42]];
+        [realm createObject:@"ParentClass" withValue:@[childObject]];
+        [realm createObject:@"ParentClass" withValue:@[childObject]];
+    }];
+
+    childObjectSchema.isEmbedded = YES;
+
+    RLMRealmConfiguration *realmConfiguration = self.config;
+    realmConfiguration.customSchema = [self schemaWithObjects:@[parentObjectSchema, childObjectSchema]];
+    realmConfiguration.schemaVersion = 1;
+    __block int parentEnumerateCalls = 0;
+    realmConfiguration.migrationBlock = ^(RLMMigration *migration, uint64_t) {
+        [migration enumerateObjects:@"ParentClass" block:^(RLMObject *oldObject, RLMObject *newObject) {
+            parentEnumerateCalls++;
+            XCTAssertNotNil(oldObject);
+            XCTAssertNotNil(newObject);
+            newObject[@"childProperty"] = nil;
+        }];
+        [migration enumerateObjects:@"ChildClass" block:^(RLMObject *oldObject, RLMObject *newObject) {
+            XCTAssertNotNil(oldObject);
+            XCTAssertNotNil(newObject);
+            [migration deleteObject:newObject];
+        }];
+    };
+    XCTAssertTrue([RLMRealm performMigrationForConfiguration:realmConfiguration error:nil]);
+
+    XCTAssertEqual(parentEnumerateCalls, 2);
+
+    RLMRealm *realm = [RLMRealm realmWithConfiguration:realmConfiguration error:nil];
+    RLMResults *parentObjects = RLMGetObjects(realm, @"ParentClass", nil);
+    XCTAssertEqual(parentObjects.count, 2);
+    RLMObject *firstParentObject = parentObjects[0];
+    RLMObject *firstParentsChild = firstParentObject[@"childProperty"];
+    XCTAssertNil(firstParentsChild);
+    RLMObject *secondParentObject = parentObjects[1];
+    RLMObject *secondParentsChild = secondParentObject[@"childProperty"];
+    XCTAssertNil(secondParentsChild);
+    RLMResults *childObjects = RLMGetObjects(realm, @"ChildClass", nil);
+    XCTAssertEqual(childObjects.count, 0);
+}
+
+- (void)testConvertToEmbeddedAddingMoreLinks {
+    RLMProperty *intProperty = [[RLMProperty alloc] initWithName:@"intProperty"
+                                                            type:RLMPropertyTypeInt
+                                                 objectClassName:nil
+                                          linkOriginPropertyName:nil
+                                                         indexed:NO
+                                                        optional:NO];
+    RLMObjectSchema *childObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ChildClass"
+                                                                  objectClass:RLMObject.class
+                                                                   properties:@[intProperty]];
+    RLMProperty *childProperty = [[RLMProperty alloc] initWithName:@"childProperty"
+                                                              type:RLMPropertyTypeObject
+                                                   objectClassName:@"ChildClass"
+                                            linkOriginPropertyName:nil
+                                                           indexed:NO
+                                                          optional:YES];
+    RLMObjectSchema *parentObjectSchema = [[RLMObjectSchema alloc] initWithClassName:@"ParentClass"
+                                                                   objectClass:RLMObject.class
+                                                                    properties:@[childProperty]];
+    [self createTestRealmWithSchema:@[parentObjectSchema, childObjectSchema] block:^(RLMRealm *realm) {
+        id childObject1 = [realm createObject:@"ChildClass" withValue:@[@42]];
+        [realm createObject:@"ParentClass" withValue:@[childObject1]];
+        id childObject2 = [realm createObject:@"ChildClass" withValue:@[@43]];
+        [realm createObject:@"ParentClass" withValue:@[childObject2]];
+    }];
+
+    childObjectSchema.isEmbedded = YES;
+
+    RLMRealmConfiguration *realmConfiguration = self.config;
+    realmConfiguration.customSchema = [self schemaWithObjects:@[parentObjectSchema, childObjectSchema]];
+    realmConfiguration.schemaVersion = 1;
+    __block int parentEnumerateCalls = 0;
+    realmConfiguration.migrationBlock = ^(RLMMigration *migration, uint64_t) {
+        [migration enumerateObjects:@"ParentClass" block:^(RLMObject *oldObject, RLMObject *newObject) {
+            parentEnumerateCalls++;
+            XCTAssertNotNil(oldObject);
+            XCTAssertNotNil(newObject);
+            RLMObject *childObject = newObject[@"childProperty"];
+            [migration createObject:@"ParentClass" withValue:@[childObject]];
+        }];
+    };
+    NSError *error;
+    XCTAssertFalse([RLMRealm performMigrationForConfiguration:realmConfiguration error:&error]);
+    XCTAssertNotNil(error);
+    XCTAssertEqual(parentEnumerateCalls, 2);
+}
+
 #pragma mark - Property Rename
 
 // Successful Property Rename Tests
@@ -1419,8 +1797,11 @@ RLM_ARRAY_TYPE(MigrationTestObject);
     NSArray *afterProperties = objectSchema.properties;
     objectSchema.properties = beforeProperties;
 
-    NSDate *now = [NSDate dateWithTimeIntervalSince1970:100000];
-    id inputValue = @[@YES, @1, @1.1f, @1.11, @"string", [NSData dataWithBytes:"a" length:1], now, @YES, @11, @[@"a"]];
+    NSDictionary *valueDictionary = [AllTypesObject values:1 stringObject:(id)@[@"a"]];
+    NSMutableArray *inputValue = [NSMutableArray arrayWithCapacity:valueDictionary.count];
+    for (NSString *key in [afterProperties valueForKey:@"name"]) {
+        [inputValue addObject:valueDictionary[key]];
+    }
 
     [self createTestRealmWithSchema:@[objectSchema, stringObjectSchema, linkingObjectsSchema] block:^(RLMRealm *realm) {
         [AllTypesObject createInRealm:realm withValue:inputValue];
@@ -1435,8 +1816,9 @@ RLM_ARRAY_TYPE(MigrationTestObject);
             [migration enumerateObjects:AllTypesObject.className block:^(RLMObject *oldObject, RLMObject *newObject) {
                 XCTAssertNotNil(oldObject[[beforeProperties[idx] name]]);
                 RLMAssertThrowsWithReasonMatching(newObject[[beforeProperties[idx] name]], @"Invalid property name");
-                if (![property.objectClassName isEqualToString:@""]) { return; }
-                XCTAssertEqualObjects(oldObject[[beforeProperties[idx] name]], newObject[property.name]);
+                if ([property.objectClassName isEqualToString:@""]) {
+                    XCTAssertEqualObjects(oldObject[[beforeProperties[idx] name]], newObject[property.name]);
+                }
             }];
         }];
         [migration enumerateObjects:AllTypesObject.className block:^(RLMObject *oldObject, RLMObject *newObject) {
@@ -1462,7 +1844,9 @@ RLM_ARRAY_TYPE(MigrationTestObject);
     XCTAssertEqualObjects(inputValue[6], obj.dateCol);
     XCTAssertEqualObjects(inputValue[7], @(obj.cBoolCol));
     XCTAssertEqualObjects(inputValue[8], @(obj.longCol));
-    XCTAssertEqualObjects(inputValue[9], @[obj.objectCol.stringCol]);
+    XCTAssertEqualObjects(inputValue[9], obj.decimalCol);
+    XCTAssertEqualObjects(inputValue[10], obj.objectIdCol);
+    XCTAssertEqualObjects(inputValue[11], @[obj.objectCol.stringCol]);
 }
 
 - (void)testMultipleMigrationRenameProperty {
@@ -1477,8 +1861,7 @@ RLM_ARRAY_TYPE(MigrationTestObject);
 
     __block bool migrationCalled = false;
 
-    RLMRealmConfiguration *config = [RLMRealmConfiguration new];
-    config.fileURL = RLMTestRealmURL();
+    RLMRealmConfiguration *config = self.config;
     config.customSchema = [self schemaWithObjects:@[schema]];
     config.schemaVersion = 2;
     config.migrationBlock = ^(RLMMigration *migration, uint64_t oldVersion){
