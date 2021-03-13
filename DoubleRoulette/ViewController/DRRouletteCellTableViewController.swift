@@ -11,6 +11,7 @@ import UIKit
 import AMColorPicker
 import CellAnimator
 import Firebase
+import FirebaseAnalytics
 import GoogleMobileAds
 import RealmSwift
 
