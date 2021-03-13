@@ -10,6 +10,7 @@ import AVFoundation
 import UIKit
 
 import Firebase
+import FirebaseAnalytics
 import GoogleMobileAds
 import RealmSwift
 

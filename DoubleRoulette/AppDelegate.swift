@@ -9,6 +9,7 @@
 import UIKit
 
 import Firebase
+import GoogleMobileAds
 
 @UIApplicationMain
 // MARK: - <APP DELEGATEクラス>

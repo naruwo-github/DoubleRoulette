@@ -9,6 +9,7 @@
 import UIKit
 
 import Firebase
+import FirebaseAnalytics
 
 // MARK: - <ルーレット画面右上ボタンより表示する設定画面のクラス>
 class DRRouletteSettingViewController: UIViewController {

@@ -6,11 +6,14 @@
 //  Copyright © 2019 Narumi Nogawa. All rights reserved.
 //
 
+import AdSupport
+import AppTrackingTransparency
 import UIKit
 
 import AMColorPicker
 import CellAnimator
 import Firebase
+import FirebaseAnalytics
 import GoogleMobileAds
 import RealmSwift
 
@@ -44,6 +47,46 @@ class DRRouletteCellTableViewController: UITableViewController, GADBannerViewDel
         super.viewWillAppear(animated)
         self.configureAdvertisementView()
         Analytics.logEvent("show_cell_setting_view", parameters: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if #available(iOS 14, *) { // iOS14.0以降
+            switch ATTrackingManager.trackingAuthorizationStatus {
+            case .authorized:
+                print("IDFA: \(ASIdentifierManager.shared().advertisingIdentifier)")
+            case .denied:
+                print("😭拒否")
+            case .restricted:
+                print("🥺制限")
+            case .notDetermined:
+                self.showRequestTrackingAuthorizationAlert()
+            @unknown default:
+                fatalError()
+            }
+        } else { // iOS14未満
+            if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
+                print("IDFA: \(ASIdentifierManager.shared().advertisingIdentifier)")
+            } else {
+                print("🥺制限")
+            }
+        }
+    }
+    
+    // Alert表示
+    private func showRequestTrackingAuthorizationAlert() {
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+                switch status {
+                case .authorized:
+                    print("IDFA: \(ASIdentifierManager.shared().advertisingIdentifier)")
+                case .denied, .restricted, .notDetermined:
+                    print("😭")
+                @unknown default:
+                    fatalError()
+                }
+            })
+        }
     }
     
     @IBAction private func allClearButtonTapped(_ sender: Any) {

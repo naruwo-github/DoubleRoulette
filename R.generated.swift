@@ -181,6 +181,22 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(watchOS)
+    /// `UIColor(named: "navigationItemColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func navigationItemColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.navigationItemColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "rouletteLabel", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func rouletteLabel(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.rouletteLabel.name)
+    }
+    #endif
+
     fileprivate init() {}
   }
 
