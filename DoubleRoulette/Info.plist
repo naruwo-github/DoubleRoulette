@@ -24,6 +24,13 @@
 	<string>ca-app-pub-6492692627915720~1982254255</string>
 	<key>GADIsAdManagerApp</key>
 	<true/>
+    <key>SKAdNetworkItems</key>
+      <array>
+        <dict>
+          <key>SKAdNetworkIdentifier</key>
+          <string>cstr6suwn9.skadnetwork</string>
+        </dict>
+      </array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
