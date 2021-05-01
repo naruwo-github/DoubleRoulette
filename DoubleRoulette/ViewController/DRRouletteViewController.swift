@@ -25,14 +25,11 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet private weak var innerChartView: MyPieChartView!
     @IBOutlet private weak var balloonView: DRPopupWithBalloonView!
     
-    private let INTERSTITIAL_AD_UNIT_ID: String = "ca-app-pub-6492692627915720/3278021023"
     private var interstitial: GADInterstitial!
-    private let BANNER_AD_UNIT_ID: String = "ca-app-pub-6492692627915720/3283423713"
     private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
     private let popupWindow: UIWindow = .init(frame: UIScreen.main.bounds)
     private let labelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
     private let popupDuration: Double = 1.0
-    
     private var rouletteCells: Results<RouletteObject>!
     private var currentChangedOuterAngle: CGFloat = 0.0
     private var currentChangedInnerAngle: CGFloat = 0.0
@@ -40,24 +37,17 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     private var outerCellColor: [UIColor] = []
     private var innerCellName: [String] = []
     private var innerCellColor: [UIColor] = []
-    
-    fileprivate var audioPlayer: AVAudioPlayer!
+    private var audioPlayer: AVAudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupAdvertisementView()
-        
+        self.setupAdvertisementView()
         self.rouletteCells = DRRealmHelper.init().getRouletteData()
-        
         self.setupInnerOuterData()
-        
         self.setupResultWindow()
         self.setupElementLabels()
-        
         self.setupOuterRoulette(outerName: self.outerCellName, outerColor: self.outerCellColor)
         self.setupInnerRoulette(innerName: self.innerCellName, innerColor: self.innerCellColor)
-        
         self.drawArrow()
     }
     
@@ -72,7 +62,6 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         Analytics.logEvent("show_roulette_view", parameters: nil)
         guard !DRUserHelper.isShownAnimationSettingView else { return }
         
@@ -182,32 +171,21 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         
         let topImageView = UIImageView()
         topImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width/7, height: self.view.frame.height/14)
-        let topArrow = UIImage(named: "arrow1")
+        let topArrow = R.image.arrow1()
         topImageView.image = topArrow
         topImageView.center = CGPoint(x: self.view.center.x, y: self.view.center.y - self.view.frame.width/2)
         
         let bottomImageView = UIImageView()
         bottomImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width/9, height: self.view.frame.height/4.5)
-        let bottomArrow = UIImage(named: "arrow2")
+        let bottomArrow = R.image.arrow2()
         bottomImageView.image = bottomArrow
         bottomImageView.center = CGPoint(x: self.view.center.x, y: self.view.center.y + self.view.frame.width*3/8)
         
         arrowView.addSubview(topImageView)
         arrowView.addSubview(bottomImageView)
-        
+
         self.view.bringSubviewToFront(arrowView)
         self.view.addSubview(arrowView)
-    }
-    
-    private func showInterstitialAd() {
-        guard let ad = self.interstitial else { return }
-        let backCount = DRUserHelper.backToCellSettingFromRouletteCount
-        if backCount != 0 && backCount % 7 == 0 {
-            if ad.isReady {
-                ad.present(fromRootViewController: self)
-            }
-        }
-        DRUserHelper.backToCellSettingFromRouletteCount = backCount + 1
     }
     
     private func setupOuterChartView() {
@@ -311,20 +289,32 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     
 }
 
+// MARK: - <インタースティシャル広告利用のための拡張>
 extension DRRouletteViewController: GADInterstitialDelegate {
     
-    fileprivate func setupAdvertisementView() {
-        self.interstitial = GADInterstitial(adUnitID: self.INTERSTITIAL_AD_UNIT_ID)
+    private func setupAdvertisementView() {
+        self.interstitial = GADInterstitial(adUnitID: DRStringSource.init().RouletteVCInterstitialAdID)
         self.interstitial.load(GADRequest())
         self.interstitial.delegate = self
         
         self.bannerView.translatesAutoresizingMaskIntoConstraints = true
         self.bottomAdView.addSubview(self.bannerView)
         self.bannerView.center.x = self.view.center.x
-        self.bannerView.adUnitID = self.BANNER_AD_UNIT_ID
+        self.bannerView.adUnitID = DRStringSource.init().RouletteVCBottomAdID
         self.bannerView.rootViewController = self
         self.bannerView.load(GADRequest())
         self.bannerView.delegate = self
+    }
+    
+    private func showInterstitialAd() {
+        guard let ad = self.interstitial else { return }
+        let backCount = DRUserHelper.backToCellSettingFromRouletteCount
+        if backCount != 0 && backCount % 7 == 0 {
+            if ad.isReady {
+                ad.present(fromRootViewController: self)
+            }
+        }
+        DRUserHelper.backToCellSettingFromRouletteCount = backCount + 1
     }
     
     // Tells the delegate an ad request succeeded.
@@ -363,7 +353,7 @@ extension DRRouletteViewController: GADInterstitialDelegate {
 // MARK: - <音楽再生機能のための拡張>
 extension DRRouletteViewController: AVAudioPlayerDelegate {
     
-    fileprivate func playSound(name: String) {
+    private func playSound(name: String) {
         guard let path = Bundle.main.path(forResource: name, ofType: "mp3") else {
             return
         }
@@ -376,7 +366,7 @@ extension DRRouletteViewController: AVAudioPlayerDelegate {
         }
     }
     
-    fileprivate func soundOnIfNeed() {
+    private func soundOnIfNeed() {
         if DRUserHelper.isAuthorizedPlaySound {
             self.playSound(name: "roulette-sound")
         }
