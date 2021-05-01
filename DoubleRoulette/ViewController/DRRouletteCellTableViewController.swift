@@ -22,7 +22,6 @@ class DRRouletteCellTableViewController: UITableViewController, GADBannerViewDel
     @IBOutlet private weak var addCellButton: UIBarButtonItem!
     @IBOutlet private weak var moveToRouletteButton: UIBarButtonItem!
     
-    private let AD_UNIT_ID: String = "ca-app-pub-6492692627915720/2967728941"
     private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
     private let colorStock = ColorStock()
     
@@ -141,7 +140,7 @@ class DRRouletteCellTableViewController: UITableViewController, GADBannerViewDel
         self.bannerView.translatesAutoresizingMaskIntoConstraints = true
         self.adView.addSubview(self.bannerView)
         self.bannerView.center.x = self.view.center.x
-        self.bannerView.adUnitID = self.AD_UNIT_ID
+        self.bannerView.adUnitID = DRStringSource.init().CellTableVCBottomAdID
         self.bannerView.rootViewController = self
         self.bannerView.load(GADRequest())
         self.bannerView.delegate = self

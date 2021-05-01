@@ -14,6 +14,7 @@
 		0522625E24BDABEF005AA88C /* DRRouletteSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0522625D24BDABEF005AA88C /* DRRouletteSettingViewController.swift */; };
 		0522626124BE8F6E005AA88C /* DRUserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0522626024BE8F6E005AA88C /* DRUserHelper.swift */; };
 		0529A99922CC991400F5ECB6 /* MyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529A99822CC991400F5ECB6 /* MyPieChartView.swift */; };
+		05383362263D909300CE0719 /* DRStringSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05383361263D909300CE0719 /* DRStringSource.swift */; };
 		053D814823914D0900ACCAEE /* ColorStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D814723914D0900ACCAEE /* ColorStock.swift */; };
 		05579308245A653A0081DA16 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05579307245A653A0081DA16 /* Colors.xcassets */; };
 		0568E032252DF33100C5EC48 /* DRRealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0568E031252DF33100C5EC48 /* DRRealmHelper.swift */; };
@@ -64,6 +65,7 @@
 		0522625D24BDABEF005AA88C /* DRRouletteSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRRouletteSettingViewController.swift; sourceTree = "<group>"; };
 		0522626024BE8F6E005AA88C /* DRUserHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRUserHelper.swift; sourceTree = "<group>"; };
 		0529A99822CC991400F5ECB6 /* MyPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPieChartView.swift; sourceTree = "<group>"; };
+		05383361263D909300CE0719 /* DRStringSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRStringSource.swift; sourceTree = "<group>"; };
 		053D814723914D0900ACCAEE /* ColorStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStock.swift; sourceTree = "<group>"; };
 		05579307245A653A0081DA16 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		0568E031252DF33100C5EC48 /* DRRealmHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRRealmHelper.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				0594A08B254A20AE00EE9247 /* Custom Class View */,
 				0594A088254A206A00EE9247 /* Extension */,
 				05D3D9D522C9D475007D24FF /* TableViewCell.swift */,
+				05383361263D909300CE0719 /* DRStringSource.swift */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 				05D3D9D422C9D431007D24FF /* DRRouletteCellTableViewController.swift in Sources */,
 				0594A06D2549CA0600EE9247 /* DRPopupWithBalloonView.swift in Sources */,
 				051A32FC24B7F5B1004A134A /* R.generated.swift in Sources */,
+				05383362263D909300CE0719 /* DRStringSource.swift in Sources */,
 				0519C9FD245A71B7004356DF /* Extensions.swift in Sources */,
 				0520973C24B7652C00E32BEE /* DRResultViewController.swift in Sources */,
 			);
