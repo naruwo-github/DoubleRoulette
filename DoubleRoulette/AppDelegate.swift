@@ -9,6 +9,7 @@
 import AdSupport
 import AppTrackingTransparency
 import UIKit
+import StoreKit
 
 import Firebase
 import GoogleMobileAds

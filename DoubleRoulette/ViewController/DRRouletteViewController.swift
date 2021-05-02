@@ -25,7 +25,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet private weak var innerChartView: MyPieChartView!
     @IBOutlet private weak var balloonView: DRPopupWithBalloonView!
     
-    private var interstitial: GADInterstitial!
+    private var interstitial: GADInterstitialAd?
     private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
     private let popupWindow: UIWindow = .init(frame: UIScreen.main.bounds)
     private let labelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
@@ -289,14 +289,10 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     
 }
 
-// MARK: - <インタースティシャル広告利用のための拡張>
-extension DRRouletteViewController: GADInterstitialDelegate {
+// MARK: - <広告利用のための拡張>
+extension DRRouletteViewController: GADFullScreenContentDelegate {
     
     private func setupAdvertisementView() {
-        self.interstitial = GADInterstitial(adUnitID: DRStringSource.init().RouletteVCInterstitialAdID)
-        self.interstitial.load(GADRequest())
-        self.interstitial.delegate = self
-        
         self.bannerView.translatesAutoresizingMaskIntoConstraints = true
         self.bottomAdView.addSubview(self.bannerView)
         self.bannerView.center.x = self.view.center.x
@@ -304,48 +300,46 @@ extension DRRouletteViewController: GADInterstitialDelegate {
         self.bannerView.rootViewController = self
         self.bannerView.load(GADRequest())
         self.bannerView.delegate = self
+        
+        let request = GADRequest()
+        GADInterstitialAd.load(withAdUnitID: DRStringSource.init().RouletteVCInterstitialAdID,
+                                    request: request,
+                          completionHandler: { [self] ad, error in
+                            if let error = error {
+                              print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                              return
+                            }
+                            self.interstitial = ad
+                            self.interstitial?.fullScreenContentDelegate = self
+                          }
+        )
     }
     
     private func showInterstitialAd() {
-        guard let ad = self.interstitial else { return }
         let backCount = DRUserHelper.backToCellSettingFromRouletteCount
         if backCount != 0 && backCount % 7 == 0 {
-            if ad.isReady {
-                ad.present(fromRootViewController: self)
+            if self.interstitial != nil {
+                self.interstitial!.present(fromRootViewController: self)
+            } else {
+                print("Ad wasn't ready")
             }
         }
         DRUserHelper.backToCellSettingFromRouletteCount = backCount + 1
     }
     
-    // Tells the delegate an ad request succeeded.
-    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-      print("interstitialDidReceiveAd")
+    // Tells the delegate that the ad failed to present full screen content.
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+        print("Ad did fail to present full screen content.")
     }
 
-    // Tells the delegate an ad request failed.
-    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
-      print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    // Tells the delegate that the ad presented full screen content.
+    func adDidPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        print("Ad did present full screen content.")
     }
 
-    // Tells the delegate that an interstitial will be presented.
-    func interstitialWillPresentScreen(_ ad: GADInterstitial) {
-      print("interstitialWillPresentScreen")
-    }
-
-    // Tells the delegate the interstitial is to be animated off the screen.
-    func interstitialWillDismissScreen(_ ad: GADInterstitial) {
-      print("interstitialWillDismissScreen")
-    }
-
-    // Tells the delegate the interstitial had been animated off the screen.
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-      print("interstitialDidDismissScreen")
-    }
-
-    // Tells the delegate that a user click will open another app
-    // (such as the App Store), backgrounding the current app.
-    func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
-      print("interstitialWillLeaveApplication")
+    // Tells the delegate that the ad dismissed full screen content.
+    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        print("Ad did dismiss full screen content.")
     }
     
 }
