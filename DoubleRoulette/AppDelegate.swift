@@ -9,6 +9,7 @@
 import AdSupport
 import AppTrackingTransparency
 import UIKit
+import StoreKit
 
 import Firebase
 import GoogleMobileAds
@@ -39,8 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func requestIDFA() {
         if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
-            })
+            ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in })
         }
     }
 
