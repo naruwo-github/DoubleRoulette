@@ -34,7 +34,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeH-X5-t4e" userLabel="TopView">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKs-pi-1Ng" userLabel="AdView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKs-pi-1Ng" userLabel="Bottom Banner Ad View" customClass="GADBannerView">
                                         <rect key="frame" x="0.0" y="768" width="414" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="lYC-1b-yh1"/>
@@ -124,7 +124,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="balloonView" destination="rZs-t6-Sbs" id="K09-6D-gt4"/>
-                        <outlet property="bottomAdView" destination="FKs-pi-1Ng" id="bxT-pI-veA"/>
+                        <outlet property="bottomBannerAdView" destination="FKs-pi-1Ng" id="yqI-SF-WGe"/>
                         <outlet property="elementNumLabel" destination="oPD-db-q4y" id="j8p-Hb-gnl"/>
                         <outlet property="innerChartView" destination="l40-z0-66b" id="hAX-wX-Atf"/>
                         <outlet property="itemsLabel" destination="ChU-WX-ZSz" id="aOe-MS-no7"/>

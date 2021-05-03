@@ -18,7 +18,7 @@ import RealmSwift
 // MARK: - <ルーレット画面のクラス>
 class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     
-    @IBOutlet private weak var bottomAdView: UIView!
+    @IBOutlet private weak var bottomBannerAdView: GADBannerView!
     @IBOutlet private weak var startButton: UIButton!
     @IBOutlet private weak var itemsLabel: UILabel!
     @IBOutlet private weak var elementNumLabel: UILabel!
@@ -27,7 +27,6 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet private weak var balloonView: DRPopupWithBalloonView!
     
     private var interstitial: GADInterstitialAd?
-    private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
     private let popupWindow: UIWindow = .init(frame: UIScreen.main.bounds)
     private let labelFontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 40 : 20
     private let popupDuration: Double = 1.0
@@ -294,13 +293,10 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
 extension DRRouletteViewController: GADFullScreenContentDelegate {
     
     private func setupAdvertisementView() {
-        self.bannerView.translatesAutoresizingMaskIntoConstraints = true
-        self.bottomAdView.addSubview(self.bannerView)
-        self.bannerView.center.x = self.view.center.x
-        self.bannerView.adUnitID = DRStringSource.init().RouletteVCBottomAdID
-        self.bannerView.rootViewController = self
-        self.bannerView.load(GADRequest())
-        self.bannerView.delegate = self
+        self.bottomBannerAdView.adUnitID = DRStringSource.init().RouletteVCBottomAdID
+        self.bottomBannerAdView.rootViewController = self
+        self.bottomBannerAdView.load(GADRequest())
+        self.bottomBannerAdView.delegate = self
         
         let request = GADRequest()
         GADInterstitialAd.load(withAdUnitID: DRStringSource.init().RouletteVCInterstitialAdID,
