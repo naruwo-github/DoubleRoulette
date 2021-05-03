@@ -33,6 +33,8 @@
 		05AF43E922C974D2007A236D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05AF43E722C974D2007A236D /* Main.storyboard */; };
 		05AF43EB22C974D4007A236D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05AF43EA22C974D4007A236D /* Assets.xcassets */; };
 		05AF43EE22C974D4007A236D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05AF43EC22C974D4007A236D /* LaunchScreen.storyboard */; };
+		05C0C74C263FD05600317ED2 /* DRTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C0C74B263FD05600317ED2 /* DRTableViewCell.swift */; };
+		05C0C74E263FD06500317ED2 /* DRTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C0C74D263FD06500317ED2 /* DRTableViewCell.xib */; };
 		05D3D9D422C9D431007D24FF /* DRRouletteCellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */; };
 		05D3D9D722C9D475007D24FF /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3D9D522C9D475007D24FF /* TableViewCell.swift */; };
 		05DC270324B75BDC00657D2E /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05DC270224B75BDC00657D2E /* Popup.storyboard */; };
@@ -92,6 +94,8 @@
 		05AF43EA22C974D4007A236D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05AF43ED22C974D4007A236D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05AF43EF22C974D4007A236D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05C0C74B263FD05600317ED2 /* DRTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRTableViewCell.swift; sourceTree = "<group>"; };
+		05C0C74D263FD06500317ED2 /* DRTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DRTableViewCell.xib; sourceTree = "<group>"; };
 		05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRRouletteCellTableViewController.swift; sourceTree = "<group>"; };
 		05D3D9D522C9D475007D24FF /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TableViewCell.swift; path = ../TableViewCell.swift; sourceTree = "<group>"; };
 		05DC270224B75BDC00657D2E /* Popup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Popup.storyboard; sourceTree = "<group>"; };
@@ -288,6 +292,8 @@
 			isa = PBXGroup;
 			children = (
 				05D3D9D522C9D475007D24FF /* TableViewCell.swift */,
+				05C0C74B263FD05600317ED2 /* DRTableViewCell.swift */,
+				05C0C74D263FD06500317ED2 /* DRTableViewCell.xib */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -443,6 +449,7 @@
 				05DC270324B75BDC00657D2E /* Popup.storyboard in Resources */,
 				05AF43EE22C974D4007A236D /* LaunchScreen.storyboard in Resources */,
 				0594A0692549C9DA00EE9247 /* DRPopupWithBalloonView.xib in Resources */,
+				05C0C74E263FD06500317ED2 /* DRTableViewCell.xib in Resources */,
 				0590A0C822D7F38D004BB8CA /* roulette-sound.mp3 in Resources */,
 				058D5B8E22FC51AB0064A91D /* GoogleService-Info.plist in Resources */,
 				05579308245A653A0081DA16 /* Colors.xcassets in Resources */,
@@ -622,6 +629,7 @@
 				0522625E24BDABEF005AA88C /* DRRouletteSettingViewController.swift in Sources */,
 				0568E032252DF33100C5EC48 /* DRRealmHelper.swift in Sources */,
 				05AF43E422C974D2007A236D /* AppDelegate.swift in Sources */,
+				05C0C74C263FD05600317ED2 /* DRTableViewCell.swift in Sources */,
 				0594A08D254A20C900EE9247 /* DRCustomUIView.swift in Sources */,
 				053D814823914D0900ACCAEE /* ColorModel.swift in Sources */,
 				05D3D9D422C9D431007D24FF /* DRRouletteCellTableViewController.swift in Sources */,
