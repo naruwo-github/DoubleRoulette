@@ -6,8 +6,9 @@
 //  Copyright © 2019 Narumi Nogawa. All rights reserved.
 //
 
+// MARK: - <OS固有フレームワーク>
 import UIKit
-
+// MARK: - <外部フレームワーク>
 import AMColorPicker
 import CellAnimator
 import Firebase

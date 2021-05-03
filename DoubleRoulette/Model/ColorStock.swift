@@ -6,6 +6,7 @@
 //  Copyright © 2019 Narumi Nogawa. All rights reserved.
 //
 
+// MARK: - <OS固有フレームワーク>
 import UIKit
 
 // MARK: - <ルーレットセルを追加した際にその色を自動で返すクラス>

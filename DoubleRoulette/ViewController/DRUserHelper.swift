@@ -6,6 +6,7 @@
 //  Copyright © 2020 Narumi Nogawa. All rights reserved.
 //
 
+// MARK: - <OS固有フレームワーク>
 import Foundation
 
 // MARK: - <ユーザの情報をUserDefaultsを使って保存するためのクラス>
