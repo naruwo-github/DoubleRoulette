@@ -11,6 +11,7 @@ import Foundation
 
 class DRStringSource {
     
+    public let CellTableVCTopAdID: String = "ca-app-pub-6492692627915720/3035604483"
     public let CellTableVCBottomAdID: String = "ca-app-pub-6492692627915720/2967728941"
     
     public let RouletteVCBottomAdID: String = "ca-app-pub-6492692627915720/3283423713"
