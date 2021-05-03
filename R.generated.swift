@@ -89,30 +89,6 @@ struct R: Rswift.Validatable {
   }
 
   #if os(iOS) || os(tvOS)
-  /// This `R.segue` struct is generated, and contains static references to 1 view controllers.
-  struct segue {
-    /// This struct is generated for `DRRouletteCellTableViewController`, and contains static references to 1 segues.
-    struct drRouletteCellTableViewController {
-      /// Segue identifier `toViewController`.
-      static let toViewController: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, DRRouletteCellTableViewController, DRRouletteViewController> = Rswift.StoryboardSegueIdentifier(identifier: "toViewController")
-
-      #if os(iOS) || os(tvOS)
-      /// Optionally returns a typed version of segue `toViewController`.
-      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
-      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func toViewController(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, DRRouletteCellTableViewController, DRRouletteViewController>? {
-        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.drRouletteCellTableViewController.toViewController, segue: segue)
-      }
-      #endif
-
-      fileprivate init() {}
-    }
-
-    fileprivate init() {}
-  }
-  #endif
-
-  #if os(iOS) || os(tvOS)
   /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
   struct storyboard {
     /// Storyboard `LaunchScreen`.
@@ -289,14 +265,6 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
-  struct reuseIdentifier {
-    /// Reuse identifier `customCell`.
-    static let customCell: Rswift.ReuseIdentifier<TableViewCell> = Rswift.ReuseIdentifier(identifier: "customCell")
-
-    fileprivate init() {}
-  }
-
   fileprivate struct intern: Rswift.Validatable {
     fileprivate static func validate() throws {
       try _R.validate()
@@ -383,13 +351,8 @@ struct _R: Rswift.Validatable {
       typealias InitialController = UIKit.UINavigationController
 
       let bundle = R.hostingBundle
-      let drRouletteCellTableViewController = StoryboardViewControllerResource<DRRouletteCellTableViewController>(identifier: "DRRouletteCellTableViewController")
       let drRouletteViewController = StoryboardViewControllerResource<DRRouletteViewController>(identifier: "DRRouletteViewController")
       let name = "Main"
-
-      func drRouletteCellTableViewController(_: Void = ()) -> DRRouletteCellTableViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drRouletteCellTableViewController)
-      }
 
       func drRouletteViewController(_: Void = ()) -> DRRouletteViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drRouletteViewController)
@@ -399,7 +362,6 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "setting", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'setting' is used in storyboard 'Main', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
-        if _R.storyboard.main().drRouletteCellTableViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drRouletteCellTableViewController' could not be loaded from storyboard 'Main' as 'DRRouletteCellTableViewController'.") }
         if _R.storyboard.main().drRouletteViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drRouletteViewController' could not be loaded from storyboard 'Main' as 'DRRouletteViewController'.") }
       }
 

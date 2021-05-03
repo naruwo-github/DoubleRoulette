@@ -9,116 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Setting-->
-        <scene sceneID="cRn-g9-CVp">
-            <objects>
-                <tableViewController storyboardIdentifier="DRRouletteCellTableViewController" id="MY0-81-ssA" customClass="DRRouletteCellTableViewController" customModule="DoubleRoulette" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="d7U-Ek-pkL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="HUc-Zf-GnY">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </view>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" id="mn9-py-mnx" customClass="TableViewCell" customModule="DoubleRoulette" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="68.5" width="414" height="48.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mn9-py-mnx" id="hZy-nG-ON0">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="48.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <segmentedControl opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g2S-0W-uWo">
-                                            <rect key="frame" x="20" y="7" width="124" height="35.5"/>
-                                            <segments>
-                                                <segment title="Outer"/>
-                                                <segment title="Inner"/>
-                                            </segments>
-                                            <connections>
-                                                <action selector="segmentedControlTapped:" destination="MY0-81-ssA" eventType="valueChanged" id="Tvw-ay-rrM"/>
-                                            </connections>
-                                        </segmentedControl>
-                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RzQ-a8-dcs">
-                                            <rect key="frame" x="352.5" y="7" width="41.5" height="34.5"/>
-                                            <state key="normal" title="Color"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="10"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="cellColorButtonTapped:" destination="MY0-81-ssA" eventType="touchUpInside" id="akA-ec-mKD"/>
-                                            </connections>
-                                        </button>
-                                        <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RC6-Ju-gGT">
-                                            <rect key="frame" x="152" y="7" width="192.5" height="34.5"/>
-                                            <color key="tintColor" systemColor="labelColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <action selector="textField:" destination="MY0-81-ssA" eventType="editingDidEnd" id="FZ6-C4-GoM"/>
-                                            </connections>
-                                        </textField>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="g2S-0W-uWo" firstAttribute="top" secondItem="hZy-nG-ON0" secondAttribute="top" constant="7" id="4LK-mM-kAz"/>
-                                        <constraint firstItem="g2S-0W-uWo" firstAttribute="width" secondItem="hZy-nG-ON0" secondAttribute="width" multiplier="0.3" id="Ehu-dD-nvE"/>
-                                        <constraint firstItem="RzQ-a8-dcs" firstAttribute="width" secondItem="hZy-nG-ON0" secondAttribute="width" multiplier="0.1" id="KM7-wH-syG"/>
-                                        <constraint firstItem="g2S-0W-uWo" firstAttribute="leading" secondItem="hZy-nG-ON0" secondAttribute="leadingMargin" id="UFS-p9-WZ6"/>
-                                        <constraint firstItem="RzQ-a8-dcs" firstAttribute="top" secondItem="RC6-Ju-gGT" secondAttribute="top" id="VCx-MN-SAT"/>
-                                        <constraint firstItem="g2S-0W-uWo" firstAttribute="centerY" secondItem="hZy-nG-ON0" secondAttribute="centerY" id="Ynr-iU-qWX"/>
-                                        <constraint firstItem="RzQ-a8-dcs" firstAttribute="top" secondItem="hZy-nG-ON0" secondAttribute="top" constant="7" id="Zm2-8R-6tm"/>
-                                        <constraint firstItem="g2S-0W-uWo" firstAttribute="centerY" secondItem="RC6-Ju-gGT" secondAttribute="centerY" id="aKz-UG-GBK"/>
-                                        <constraint firstItem="g2S-0W-uWo" firstAttribute="centerY" secondItem="RzQ-a8-dcs" secondAttribute="centerY" id="eVH-pa-e6a"/>
-                                        <constraint firstItem="RC6-Ju-gGT" firstAttribute="leading" secondItem="g2S-0W-uWo" secondAttribute="trailing" constant="8" symbolic="YES" id="gZg-BL-OfQ"/>
-                                        <constraint firstItem="RzQ-a8-dcs" firstAttribute="trailing" secondItem="hZy-nG-ON0" secondAttribute="trailingMargin" id="hZH-Y9-1rK"/>
-                                        <constraint firstItem="RzQ-a8-dcs" firstAttribute="leading" secondItem="RC6-Ju-gGT" secondAttribute="trailing" constant="8" symbolic="YES" id="p1f-BZ-Eu3"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="itemColor" destination="RzQ-a8-dcs" id="Jdz-I3-eGc"/>
-                                    <outlet property="itemName" destination="RC6-Ju-gGT" id="yMx-Ew-MbR"/>
-                                    <outlet property="itemType" destination="g2S-0W-uWo" id="Vya-4S-x3s"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="MY0-81-ssA" id="xRC-At-vMV"/>
-                            <outlet property="delegate" destination="MY0-81-ssA" id="fxd-eP-ucv"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Setting" id="yO3-7a-iuY">
-                        <barButtonItem key="leftBarButtonItem" title="ClearAll" id="sEO-p6-iIs">
-                            <connections>
-                                <action selector="allClearButtonTapped:" destination="MY0-81-ssA" id="kDh-48-Bst"/>
-                            </connections>
-                        </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem style="done" systemItem="play" id="7qy-oi-phI">
-                                <connections>
-                                    <action selector="moveToRouletteButtonTapped:" destination="MY0-81-ssA" id="qQ9-tn-SNG"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toViewController" id="HBe-Ce-Atd"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem style="done" systemItem="add" id="3Tw-0u-AfB">
-                                <connections>
-                                    <action selector="addCellButtonTapped:" destination="MY0-81-ssA" id="liP-jD-wKf"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="adView" destination="HUc-Zf-GnY" id="2yV-7l-TmY"/>
-                        <outlet property="addCellButton" destination="3Tw-0u-AfB" id="2hw-Zo-FEY"/>
-                        <outlet property="moveToRouletteButton" destination="7qy-oi-phI" id="OMR-8I-bxb"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bKd-e9-BFt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1043" y="-510"/>
-        </scene>
         <!--Roulette-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -128,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZs-t6-Sbs" userLabel="Balloon View" customClass="DRPopupWithBalloonView" customModule="DoubleRoulette" customModuleProvider="target">
-                                <rect key="frame" x="269" y="93" width="140" height="50"/>
+                                <rect key="frame" x="269" y="49" width="140" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="bGO-Hr-57p"/>
@@ -142,16 +32,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeH-X5-t4e" userLabel="TopView">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKs-pi-1Ng" userLabel="AdView">
-                                        <rect key="frame" x="0.0" y="724" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="768" width="414" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="lYC-1b-yh1"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKR-hp-RI6">
-                                        <rect key="frame" x="124" y="664" width="166" height="50"/>
+                                        <rect key="frame" x="124" y="708" width="166" height="50"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="sRH-01-OYz"/>
@@ -244,7 +134,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1917" y="-510"/>
+            <point key="canvasLocation" x="1901" y="-1227"/>
         </scene>
         <!--Setting-->
         <scene sceneID="LiZ-lW-mbu">
@@ -344,24 +234,6 @@
             <point key="canvasLocation" x="1055.072463768116" y="-1227.4553571428571"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="tYv-8l-WJa">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tE1-cL-ep2" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FiA-Kg-fGs">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="MY0-81-ssA" kind="relationship" relationship="rootViewController" id="4ZH-5p-Jod"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bhZ-xT-9ZB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="145" y="-510"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="lpB-UD-SDp">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GdP-ce-xBC" sceneMemberID="viewController">
@@ -383,9 +255,6 @@
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="setting" width="24" height="24"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
