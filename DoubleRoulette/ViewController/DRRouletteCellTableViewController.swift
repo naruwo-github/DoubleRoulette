@@ -24,7 +24,7 @@ class DRRouletteCellTableViewController: UITableViewController, GADBannerViewDel
     @IBOutlet private weak var moveToRouletteButton: UIBarButtonItem!
     
     private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
-    private let colorStock = ColorStock()
+    private let colorStock = ColorModel()
     
     private var indexPath: NSIndexPath?
     private var newCellId: Int = 0
