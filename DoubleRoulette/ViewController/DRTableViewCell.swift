@@ -13,7 +13,8 @@ import UIKit
 class DRTableViewCell: UITableViewCell {
     
     public var segmentedControlAction: ((RouletteObject, UISegmentedControl) -> Void)?
-    public var textFieldAction: ((RouletteObject, UITextField) -> Void)?
+    public var textFieldEdittingAction: ((RouletteObject, UITextField) -> Void)?
+    public var textFieldFocusedAction: ((UITextField) -> Void)?
     public var colorButtonAction: ((RouletteObject) -> Void)?
     
     private var cellData: RouletteObject!
@@ -68,7 +69,11 @@ class DRTableViewCell: UITableViewCell {
     }
     
     @IBAction private func textFieldEdittingChanged(_ sender: UITextField) {
-        self.textFieldAction?(self.cellData, sender)
+        self.textFieldEdittingAction?(self.cellData, sender)
+    }
+    
+    @IBAction private func textFieldDidBegin(_ sender: UITextField) {
+        self.textFieldFocusedAction?(sender)
     }
     
     @IBAction private func colorButtonTapped(_ sender: Any) {

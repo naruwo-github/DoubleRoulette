@@ -47,6 +47,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+                                    <action selector="textFieldDidBegin:" destination="ec2-xL-cRc" eventType="editingDidBegin" id="HWd-tc-fjR"/>
                                     <action selector="textFieldEdittingChanged:" destination="ec2-xL-cRc" eventType="editingChanged" id="Wtz-3R-7Hh"/>
                                 </connections>
                             </textField>

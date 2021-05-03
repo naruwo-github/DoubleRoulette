@@ -32,6 +32,13 @@ class DRSettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // キーボードが閉じる際のイベントを受け取るNotification
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.keyboardWillHide(sender:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
         
         self.navigationController?.navigationBar.tintColor = R.color.navigationItemColor()
         self.setupAdvertisement()
@@ -45,14 +52,15 @@ class DRSettingViewController: UIViewController {
     }
     
     // MARK: - <public関数>
+    
     // MARK: - <private関数>
     
     private func setupAdvertisement() {
-        self.topBannerAdView.adUnitID = "ca-app-pub-3940256099942544/2934735716" // TODO: DRStringSource.init().CellTableVCTopAdID
+        self.topBannerAdView.adUnitID = DRStringSource.init().CellTableVCTopAdID
         self.topBannerAdView.rootViewController = self
         self.topBannerAdView.load(GADRequest())
         
-        self.bottomBannerAdView.adUnitID = "ca-app-pub-3940256099942544/2934735716" // TODO: DRStringSource.init().CellTableVCBottomAdID
+        self.bottomBannerAdView.adUnitID = DRStringSource.init().CellTableVCBottomAdID
         self.bottomBannerAdView.rootViewController = self
         self.bottomBannerAdView.load(GADRequest())
     }
@@ -66,6 +74,28 @@ class DRSettingViewController: UIViewController {
         self.rouletteData = DRRealmHelper.init().getRouletteData()
         self.newCellId = DRUserHelper.load("id", returnClass: Int.self) ?? 0
         self.tableView.reloadData()
+    }
+    
+    private func preventHidingTextField(sender: UITextField) {
+        let point = self.tableView.convert(sender.center, from: sender)
+        let fieldY = point.y + 100 + self.view.safeAreaInsets.top
+        if fieldY > self.view.center.y {
+            let diff = fieldY - self.view.center.y - self.tableView.contentOffset.y
+            UIView.animate(withDuration: TimeInterval(0.5), animations: { [unowned self] () -> Void in
+                let transform = CGAffineTransform(translationX: 0, y: -diff)
+                self.view.transform = transform
+            })
+        }
+    }
+    
+    // キーボードが閉じられた時
+    @objc private func keyboardWillHide(sender: NSNotification) {
+        guard let userInfo = sender.userInfo else { return }
+        let duration: Float = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).floatValue
+        UIView.animate(withDuration: TimeInterval(duration), animations: { [unowned self] () -> Void in
+            // 画面をずらした分を元に戻す
+            self.view.transform = CGAffineTransform.identity
+        })
     }
     
     // MARK: - <イベント登録(IBAction)>
@@ -112,19 +142,24 @@ extension DRSettingViewController: UITableViewDelegate, UITableViewDataSource {
         let rgb = UIColor.hexToRGB(hex: object.color)
         cell.setupCell(object: object, type: object.type, name: object.item, color: UIColor.rgbToUIColor(red: rgb[0], green: rgb[1], blue: rgb[2]))
         // セグメントをタップした際の挙動
-        cell.segmentedControlAction = { object, sender in
+        cell.segmentedControlAction = { [unowned self] object, sender in
             self.edittingData = object
             DRRealmHelper.init().segmentControlUpdate(cell: object, segment: sender)
             Analytics.logEvent("segment_controll_tapped", parameters: nil)
         }
         // テキストフィールド編集時の挙動
-        cell.textFieldAction = { object, sender in
+        cell.textFieldEdittingAction = { [unowned self] object, sender in
             self.edittingData = object
             DRRealmHelper.init().textFieldUpdate(cell: object, textField: sender)
             Analytics.logEvent("text_field_tapped", parameters: nil)
         }
+        // テキストフィールドタップ時の挙動
+        cell.textFieldFocusedAction = { [unowned self] sender in
+            // テキストフィールドがキーボードで隠れないようにする
+            self.preventHidingTextField(sender: sender)
+        }
         // セルのカラーボタンをタップした際の挙動
-        cell.colorButtonAction = { object in
+        cell.colorButtonAction = { [unowned self] object in
             self.edittingData = object
             self.showColorPicker()
             Analytics.logEvent("show_color_picker_button", parameters: nil)
