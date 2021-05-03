@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ec2-xL-cRc" customClass="DRTableViewCell" customModule="DoubleRoulette" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ec2-xL-cRc" id="iRc-hI-ZrU">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ph-DO-uaR" userLabel="Left View">
+                        <rect key="frame" x="0.0" y="0.0" width="145" height="55"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="TZf-Vb-iwA">
+                                <rect key="frame" x="10" y="7" width="125" height="42"/>
+                                <segments>
+                                    <segment title="Outer"/>
+                                    <segment title="Inner"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlValueChanged:" destination="ec2-xL-cRc" eventType="valueChanged" id="xp7-uy-ecj"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="TZf-Vb-iwA" firstAttribute="top" secondItem="0Ph-DO-uaR" secondAttribute="top" constant="7" id="89h-M6-yi3"/>
+                            <constraint firstItem="TZf-Vb-iwA" firstAttribute="leading" secondItem="0Ph-DO-uaR" secondAttribute="leading" constant="10" id="ShJ-Ke-xPh"/>
+                            <constraint firstItem="TZf-Vb-iwA" firstAttribute="centerY" secondItem="0Ph-DO-uaR" secondAttribute="centerY" id="cpx-VI-aEy"/>
+                            <constraint firstItem="TZf-Vb-iwA" firstAttribute="centerX" secondItem="0Ph-DO-uaR" secondAttribute="centerX" id="v9D-IM-pSG"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Epe-oD-dnO" userLabel="Center View">
+                        <rect key="frame" x="145" y="0.0" width="186" height="55"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1E1-y4-oPS" userLabel="Item Name Text Field">
+                                <rect key="frame" x="10" y="7" width="166" height="41"/>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldDidBegin:" destination="ec2-xL-cRc" eventType="editingDidBegin" id="HWd-tc-fjR"/>
+                                    <action selector="textFieldEdittingChanged:" destination="ec2-xL-cRc" eventType="editingChanged" id="Wtz-3R-7Hh"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="1E1-y4-oPS" firstAttribute="leading" secondItem="Epe-oD-dnO" secondAttribute="leading" constant="10" id="5Ch-3o-68N"/>
+                            <constraint firstItem="1E1-y4-oPS" firstAttribute="centerX" secondItem="Epe-oD-dnO" secondAttribute="centerX" id="67J-hA-J0B"/>
+                            <constraint firstItem="1E1-y4-oPS" firstAttribute="centerY" secondItem="Epe-oD-dnO" secondAttribute="centerY" id="87d-AC-nkl"/>
+                            <constraint firstItem="1E1-y4-oPS" firstAttribute="top" secondItem="Epe-oD-dnO" secondAttribute="top" constant="7" id="XNu-vJ-5uX"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1bi-qG-CzZ" userLabel="Right View">
+                        <rect key="frame" x="331" y="0.0" width="83" height="55"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xn-bA-aU3" userLabel="Color Button">
+                                <rect key="frame" x="21" y="7" width="41" height="41"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2xn-bA-aU3" secondAttribute="height" multiplier="1:1" id="1tn-Ir-CR7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Color"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="colorButtonTapped:" destination="ec2-xL-cRc" eventType="touchUpInside" id="7QO-0g-hvk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="2xn-bA-aU3" firstAttribute="top" secondItem="1bi-qG-CzZ" secondAttribute="top" constant="7" id="Jcn-u7-Qu0"/>
+                            <constraint firstItem="2xn-bA-aU3" firstAttribute="centerY" secondItem="1bi-qG-CzZ" secondAttribute="centerY" id="ggr-kZ-xeA"/>
+                            <constraint firstItem="2xn-bA-aU3" firstAttribute="centerX" secondItem="1bi-qG-CzZ" secondAttribute="centerX" id="jtl-Sp-8IS"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Epe-oD-dnO" firstAttribute="top" secondItem="iRc-hI-ZrU" secondAttribute="top" id="0G8-im-xDQ"/>
+                    <constraint firstItem="0Ph-DO-uaR" firstAttribute="leading" secondItem="iRc-hI-ZrU" secondAttribute="leading" id="6LI-z1-gxp"/>
+                    <constraint firstItem="1bi-qG-CzZ" firstAttribute="top" secondItem="iRc-hI-ZrU" secondAttribute="top" id="6mP-g8-aRs"/>
+                    <constraint firstItem="0Ph-DO-uaR" firstAttribute="top" secondItem="iRc-hI-ZrU" secondAttribute="top" id="8wV-b6-h8s"/>
+                    <constraint firstAttribute="trailing" secondItem="1bi-qG-CzZ" secondAttribute="trailing" id="DEQ-VE-arl"/>
+                    <constraint firstItem="1bi-qG-CzZ" firstAttribute="width" secondItem="iRc-hI-ZrU" secondAttribute="width" multiplier="0.2" id="N5M-uo-ILQ"/>
+                    <constraint firstItem="Epe-oD-dnO" firstAttribute="leading" secondItem="0Ph-DO-uaR" secondAttribute="trailing" id="SAO-b4-Mpl"/>
+                    <constraint firstItem="1bi-qG-CzZ" firstAttribute="leading" secondItem="Epe-oD-dnO" secondAttribute="trailing" id="dKG-7k-7mi"/>
+                    <constraint firstAttribute="bottom" secondItem="Epe-oD-dnO" secondAttribute="bottom" id="h2W-aM-29z"/>
+                    <constraint firstAttribute="bottom" secondItem="1bi-qG-CzZ" secondAttribute="bottom" id="lC2-fh-WyF"/>
+                    <constraint firstItem="0Ph-DO-uaR" firstAttribute="width" secondItem="iRc-hI-ZrU" secondAttribute="width" multiplier="0.35" id="pkX-8z-bix"/>
+                    <constraint firstAttribute="bottom" secondItem="0Ph-DO-uaR" secondAttribute="bottom" id="zcI-tB-Fnx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="colorButton" destination="2xn-bA-aU3" id="MyB-vf-pMn"/>
+                <outlet property="itemNameTextField" destination="1E1-y4-oPS" id="fLT-9G-ZVQ"/>
+                <outlet property="segmentedControl" destination="TZf-Vb-iwA" id="5Rf-33-06s"/>
+            </connections>
+            <point key="canvasLocation" x="178" y="68"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
