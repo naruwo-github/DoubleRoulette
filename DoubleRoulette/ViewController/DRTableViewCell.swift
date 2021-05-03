@@ -12,6 +12,11 @@ import UIKit
 // MARK: - <ルーレットセルのクラス>
 class DRTableViewCell: UITableViewCell {
     
+    public var segmentedControlAction: ((RouletteObject, UISegmentedControl) -> Void)?
+    public var textFieldAction: ((RouletteObject, UITextField) -> Void)?
+    public var colorButtonAction: ((RouletteObject) -> Void)?
+    
+    private var cellData: RouletteObject!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
     @IBOutlet private weak var itemNameTextField: UITextField!
     @IBOutlet private weak var colorButton: UIButton!
@@ -25,7 +30,8 @@ class DRTableViewCell: UITableViewCell {
     
     // MARK: - <public関数>
     
-    public func setupCell(type: Int, name: String, color: UIColor) {
+    public func setupCell(object: RouletteObject, type: Int, name: String, color: UIColor) {
+        self.cellData = object
         self.segmentedControl.selectedSegmentIndex = type
         self.itemNameTextField.text = name
         self.colorButton.backgroundColor = color
@@ -53,6 +59,20 @@ class DRTableViewCell: UITableViewCell {
     
     @objc private func cancelPressed() {
         self.endEditing(true)
+    }
+    
+    // MARK: - <イベント関数(IBAction)>
+    
+    @IBAction private func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        self.segmentedControlAction?(self.cellData, sender)
+    }
+    
+    @IBAction private func textFieldEdittingChanged(_ sender: UITextField) {
+        self.textFieldAction?(self.cellData, sender)
+    }
+    
+    @IBAction private func colorButtonTapped(_ sender: Any) {
+        self.colorButtonAction?(self.cellData)
     }
     
 }

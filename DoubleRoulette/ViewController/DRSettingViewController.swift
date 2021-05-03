@@ -9,7 +9,7 @@
 // MARK: - <OS固有フレームワーク>
 import UIKit
 // MARK: - <外部フレームワーク>
-//import AMColorPicker
+import AMColorPicker
 import CellAnimator
 import Firebase
 import FirebaseAnalytics
@@ -26,6 +26,7 @@ class DRSettingViewController: UIViewController {
     private let colorStock = ColorModel()
     private var rouletteData: Results<RouletteObject>!
     private var newCellId: Int = 0
+    private var edittingData: RouletteObject?
     
     // MARK: - <ライフサイクル>
     
@@ -109,7 +110,26 @@ extension DRSettingViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RouletteCell") as! DRTableViewCell
         let object = self.rouletteData[indexPath.row]
         let rgb = UIColor.hexToRGB(hex: object.color)
-        cell.setupCell(type: object.type, name: object.item, color: UIColor.rgbToUIColor(red: rgb[0], green: rgb[1], blue: rgb[2]))
+        cell.setupCell(object: object, type: object.type, name: object.item, color: UIColor.rgbToUIColor(red: rgb[0], green: rgb[1], blue: rgb[2]))
+        // セグメントをタップした際の挙動
+        cell.segmentedControlAction = { object, sender in
+            self.edittingData = object
+            DRRealmHelper.init().segmentControlUpdate(cell: object, segment: sender)
+            Analytics.logEvent("segment_controll_tapped", parameters: nil)
+        }
+        // テキストフィールド編集時の挙動
+        cell.textFieldAction = { object, sender in
+            self.edittingData = object
+            DRRealmHelper.init().textFieldUpdate(cell: object, textField: sender)
+            Analytics.logEvent("text_field_tapped", parameters: nil)
+        }
+        // セルのカラーボタンをタップした際の挙動
+        cell.colorButtonAction = { object in
+            self.edittingData = object
+            self.showColorPicker()
+            Analytics.logEvent("show_color_picker_button", parameters: nil)
+        }
+        
         return cell
     }
     
@@ -123,6 +143,31 @@ extension DRSettingViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.reloadData()
         }
+    }
+    
+}
+
+// MARK: - <AMColorPickerを使うための拡張>
+extension DRSettingViewController: AMColorPickerDelegate {
+    
+    func colorPicker(_ colorPicker: AMColorPicker, didSelect color: UIColor) {
+        guard let object = self.edittingData else { return }
+
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        color.getRed(&r, green: &g, blue: &b, alpha: &a)
+        
+        DRRealmHelper.init().colorButtonUpdate(cell: object, hexColor: UIColor.rgbToHex(red: Int(r * 255), green: Int(g * 255), blue: Int(b * 255)))
+        self.tableView.reloadData()
+    }
+    
+    private func showColorPicker() {
+        let colorPickerViewController = AMColorPickerViewController()
+        colorPickerViewController.selectedColor = UIColor.red
+        colorPickerViewController.delegate = self
+        self.present(colorPickerViewController, animated: true, completion: nil)
     }
     
 }

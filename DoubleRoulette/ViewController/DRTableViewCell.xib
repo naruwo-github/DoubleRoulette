@@ -26,6 +26,9 @@
                                     <segment title="Outer"/>
                                     <segment title="Inner"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentedControlValueChanged:" destination="ec2-xL-cRc" eventType="valueChanged" id="xp7-uy-ecj"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <constraints>
@@ -43,6 +46,9 @@
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldEdittingChanged:" destination="ec2-xL-cRc" eventType="editingChanged" id="Wtz-3R-7Hh"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <constraints>
@@ -68,6 +74,9 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="colorButtonTapped:" destination="ec2-xL-cRc" eventType="touchUpInside" id="7QO-0g-hvk"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
