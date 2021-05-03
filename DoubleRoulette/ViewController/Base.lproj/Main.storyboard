@@ -315,10 +315,22 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Setting" id="eLe-cy-pik">
-                        <barButtonItem key="leftBarButtonItem" title="ClearAll" id="0DU-Ai-8aC" userLabel="ClearAll"/>
+                        <barButtonItem key="leftBarButtonItem" title="ClearAll" id="0DU-Ai-8aC" userLabel="ClearAll">
+                            <connections>
+                                <action selector="clearAllButtonTapped:" destination="CJi-Pz-gFs" id="c7h-nE-ggM"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="play" id="gIi-Nz-kWh" userLabel="Play"/>
-                            <barButtonItem systemItem="add" id="N4W-ev-g8E" userLabel="Add"/>
+                            <barButtonItem systemItem="play" id="gIi-Nz-kWh" userLabel="Play">
+                                <connections>
+                                    <action selector="playButtonTapped:" destination="CJi-Pz-gFs" id="p2g-T5-ykR"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="N4W-ev-g8E" userLabel="Add">
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="CJi-Pz-gFs" id="EHm-tn-dMz"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
