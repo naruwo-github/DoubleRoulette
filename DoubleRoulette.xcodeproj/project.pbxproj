@@ -93,7 +93,7 @@
 		05AF43ED22C974D4007A236D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05AF43EF22C974D4007A236D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRRouletteCellTableViewController.swift; sourceTree = "<group>"; };
-		05D3D9D522C9D475007D24FF /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		05D3D9D522C9D475007D24FF /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TableViewCell.swift; path = ../TableViewCell.swift; sourceTree = "<group>"; };
 		05DC270224B75BDC00657D2E /* Popup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Popup.storyboard; sourceTree = "<group>"; };
 		19AB394B5A1FCB87729BEC79 /* Pods_DoubleRouletteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubleRouletteUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C649195FE7E16EF4D56C3F7 /* Pods_DoubleRoulette.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubleRoulette.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,8 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				0594A08B254A20AE00EE9247 /* Custom Class View */,
-				0594A088254A206A00EE9247 /* Extension */,
-				05D3D9D522C9D475007D24FF /* TableViewCell.swift */,
+				0519C9FC245A71B7004356DF /* Extensions.swift */,
 				05383361263D909300CE0719 /* DRStringSource.swift */,
 			);
 			name = Source;
@@ -230,6 +229,7 @@
 		0594A05E2549C59000EE9247 /* Parts */ = {
 			isa = PBXGroup;
 			children = (
+				05C0C74A263FC9C100317ED2 /* TableViewCell */,
 				0594A0612549C64600EE9247 /* Balloon */,
 			);
 			name = Parts;
@@ -245,14 +245,6 @@
 			name = Balloon;
 			sourceTree = "<group>";
 		};
-		0594A088254A206A00EE9247 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				0519C9FC245A71B7004356DF /* Extensions.swift */,
-			);
-			name = Extension;
-			sourceTree = "<group>";
-		};
 		0594A08B254A20AE00EE9247 /* Custom Class View */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,20 +253,13 @@
 			name = "Custom Class View";
 			sourceTree = "<group>";
 		};
-		05A82FFB237502BA00613F97 /* Delegate */ = {
+		05A82FFC237502D100613F97 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
 				05AF43E322C974D2007A236D /* AppDelegate.swift */,
-			);
-			name = Delegate;
-			sourceTree = "<group>";
-		};
-		05A82FFC237502D100613F97 /* StoryBoard */ = {
-			isa = PBXGroup;
-			children = (
 				05AF43EC22C974D4007A236D /* LaunchScreen.storyboard */,
 			);
-			path = StoryBoard;
+			path = Launch;
 			sourceTree = "<group>";
 		};
 		05AF43D722C974D2007A236D = {
@@ -306,14 +291,21 @@
 				056A4D5523AA617F008CC263 /* ViewController */,
 				056A4D5623AA6216008CC263 /* Model */,
 				0519C9FB245A7181004356DF /* Source */,
-				05A82FFC237502D100613F97 /* StoryBoard */,
+				05A82FFC237502D100613F97 /* Launch */,
 				0522625F24BE8F28005AA88C /* Storage */,
-				05A82FFB237502BA00613F97 /* Delegate */,
 				05579309245A65620081DA16 /* Assets */,
 				05AF43EF22C974D4007A236D /* Info.plist */,
 				058D5B8D22FC51AB0064A91D /* GoogleService-Info.plist */,
 			);
 			path = DoubleRoulette;
+			sourceTree = "<group>";
+		};
+		05C0C74A263FC9C100317ED2 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				05D3D9D522C9D475007D24FF /* TableViewCell.swift */,
+			);
+			name = TableViewCell;
 			sourceTree = "<group>";
 		};
 		AC0B03B588244F2B8D54DF3F /* Pods */ = {
