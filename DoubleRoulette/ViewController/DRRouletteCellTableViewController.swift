@@ -6,8 +6,9 @@
 //  Copyright © 2019 Narumi Nogawa. All rights reserved.
 //
 
+// MARK: - <OS固有フレームワーク>
 import UIKit
-
+// MARK: - <外部フレームワーク>
 import AMColorPicker
 import CellAnimator
 import Firebase
@@ -23,7 +24,7 @@ class DRRouletteCellTableViewController: UITableViewController, GADBannerViewDel
     @IBOutlet private weak var moveToRouletteButton: UIBarButtonItem!
     
     private let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeBanner)
-    private let colorStock = ColorStock()
+    private let colorStock = ColorModel()
     
     private var indexPath: NSIndexPath?
     private var newCellId: Int = 0

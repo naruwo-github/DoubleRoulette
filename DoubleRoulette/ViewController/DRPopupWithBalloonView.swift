@@ -6,6 +6,7 @@
 //  Copyright © 2020 Narumi Nogawa. All rights reserved.
 //
 
+// MARK: - <OS固有フレームワーク>
 import UIKit
 
 // MARK: - <ルーレット画面の右上ボタンが設定であることを示すオレンジポップアップ画面>

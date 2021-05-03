@@ -1,11 +1,12 @@
 //
-//  MyPieChartView.swift
+//  PieChartView.swift
 //  DoubleRoulette
 //
 //  Created by Narumi Nogawa on 2019/07/03.
 //  Copyright © 2019 Narumi Nogawa. All rights reserved.
 //
 
+// MARK: - <OS固有フレームワーク>
 import UIKit
 
 struct Segment {
@@ -14,7 +15,7 @@ struct Segment {
 }
 
 // MARK: - <ルーレットチャートの画面(色分けした円)>
-class MyPieChartView: UIView {
+class PieChartView: UIView {
     var radius = CGFloat(1)
     
     var segments = [Segment]() {

@@ -1,15 +1,16 @@
 //
-//  ColorStock.swift
+//  ColorModel.swift
 //  DoubleRoulette
 //
 //  Created by Narumi Nogawa on 2019/11/29.
 //  Copyright © 2019 Narumi Nogawa. All rights reserved.
 //
 
+// MARK: - <OS固有フレームワーク>
 import UIKit
 
 // MARK: - <ルーレットセルを追加した際にその色を自動で返すクラス>
-class ColorStock {
+class ColorModel {
     let colorDic: [UIColor] =
         [UIColor(red: 1, green: 0, blue: 0, alpha: 1), // 赤
          UIColor(red: 1, green: 0.4, blue: 0, alpha: 1), // オレンジ

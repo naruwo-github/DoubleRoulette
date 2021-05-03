@@ -6,9 +6,10 @@
 //  Copyright © 2019 Narumi Nogawa. All rights reserved.
 //
 
+// MARK: - <OS固有フレームワーク>
 import AVFoundation
 import UIKit
-
+// MARK: - <外部フレームワーク>
 import Firebase
 import FirebaseAnalytics
 import GoogleMobileAds
@@ -21,8 +22,8 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet private weak var startButton: UIButton!
     @IBOutlet private weak var itemsLabel: UILabel!
     @IBOutlet private weak var elementNumLabel: UILabel!
-    @IBOutlet private weak var outerChartView: MyPieChartView!
-    @IBOutlet private weak var innerChartView: MyPieChartView!
+    @IBOutlet private weak var outerChartView: PieChartView!
+    @IBOutlet private weak var innerChartView: PieChartView!
     @IBOutlet private weak var balloonView: DRPopupWithBalloonView!
     
     private var interstitial: GADInterstitialAd?

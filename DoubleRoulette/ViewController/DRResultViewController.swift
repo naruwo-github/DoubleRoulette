@@ -6,6 +6,7 @@
 //  Copyright © 2020 Narumi Nogawa. All rights reserved.
 //
 
+// MARK: - <OS固有フレームワーク>
 import UIKit
 
 // MARK: - <ルーレットが止まった後に表示される結果モーダル画面のクラス>

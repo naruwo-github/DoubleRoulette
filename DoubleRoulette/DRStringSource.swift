@@ -6,6 +6,7 @@
 //  Copyright © 2021 Narumi Nogawa. All rights reserved.
 //
 
+// MARK: - <OS固有フレームワーク>
 import Foundation
 
 class DRStringSource {
