@@ -35,6 +35,7 @@
 		05AF43EE22C974D4007A236D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05AF43EC22C974D4007A236D /* LaunchScreen.storyboard */; };
 		05C0C74C263FD05600317ED2 /* DRTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C0C74B263FD05600317ED2 /* DRTableViewCell.swift */; };
 		05C0C74E263FD06500317ED2 /* DRTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C0C74D263FD06500317ED2 /* DRTableViewCell.xib */; };
+		05C0C750263FD47700317ED2 /* DRSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C0C74F263FD47700317ED2 /* DRSettingViewController.swift */; };
 		05D3D9D422C9D431007D24FF /* DRRouletteCellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */; };
 		05D3D9D722C9D475007D24FF /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3D9D522C9D475007D24FF /* TableViewCell.swift */; };
 		05DC270324B75BDC00657D2E /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05DC270224B75BDC00657D2E /* Popup.storyboard */; };
@@ -96,6 +97,7 @@
 		05AF43EF22C974D4007A236D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05C0C74B263FD05600317ED2 /* DRTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRTableViewCell.swift; sourceTree = "<group>"; };
 		05C0C74D263FD06500317ED2 /* DRTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DRTableViewCell.xib; sourceTree = "<group>"; };
+		05C0C74F263FD47700317ED2 /* DRSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRSettingViewController.swift; sourceTree = "<group>"; };
 		05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRRouletteCellTableViewController.swift; sourceTree = "<group>"; };
 		05D3D9D522C9D475007D24FF /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TableViewCell.swift; path = ../TableViewCell.swift; sourceTree = "<group>"; };
 		05DC270224B75BDC00657D2E /* Popup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Popup.storyboard; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 		0594A0422549C23800EE9247 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				05C0C74F263FD47700317ED2 /* DRSettingViewController.swift */,
 				05AF43E722C974D2007A236D /* Main.storyboard */,
 				05D3D9D322C9D431007D24FF /* DRRouletteCellTableViewController.swift */,
 				05AF43E522C974D2007A236D /* DRRouletteViewController.swift */,
@@ -627,6 +630,7 @@
 				05775ABF245A9506009BAD29 /* RouletteObject.swift in Sources */,
 				05AF43E622C974D2007A236D /* DRRouletteViewController.swift in Sources */,
 				0522625E24BDABEF005AA88C /* DRRouletteSettingViewController.swift in Sources */,
+				05C0C750263FD47700317ED2 /* DRSettingViewController.swift in Sources */,
 				0568E032252DF33100C5EC48 /* DRRealmHelper.swift in Sources */,
 				05AF43E422C974D2007A236D /* AppDelegate.swift in Sources */,
 				05C0C74C263FD05600317ED2 /* DRTableViewCell.swift in Sources */,

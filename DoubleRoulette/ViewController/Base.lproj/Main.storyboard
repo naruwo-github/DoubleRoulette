@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tE1-cL-ep2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GdP-ce-xBC">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -246,6 +246,28 @@
             </objects>
             <point key="canvasLocation" x="1917" y="-510"/>
         </scene>
+        <!--Setting-->
+        <scene sceneID="LiZ-lW-mbu">
+            <objects>
+                <viewController id="CJi-Pz-gFs" customClass="DRSettingViewController" customModule="DoubleRoulette" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AcD-DU-TwV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="FK2-ff-2bE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Setting" id="eLe-cy-pik">
+                        <barButtonItem key="leftBarButtonItem" title="ClearAll" id="0DU-Ai-8aC" userLabel="ClearAll"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="play" id="gIi-Nz-kWh" userLabel="Play"/>
+                            <barButtonItem systemItem="add" id="N4W-ev-g8E" userLabel="Add"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ALe-pg-if4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1055.072463768116" y="-1227.4553571428571"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="tYv-8l-WJa">
             <objects>
@@ -263,6 +285,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhZ-xT-9ZB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="145" y="-510"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lpB-UD-SDp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GdP-ce-xBC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fh8-TY-DYP">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CJi-Pz-gFs" kind="relationship" relationship="rootViewController" id="wnz-Uj-uvO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pLI-kB-P1f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="144.92753623188406" y="-1227.4553571428571"/>
         </scene>
     </scenes>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

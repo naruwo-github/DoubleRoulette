@@ -255,10 +255,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
   struct nib {
     /// Nib `DRPopupWithBalloonView`.
     static let drPopupWithBalloonView = _R.nib._DRPopupWithBalloonView()
+    /// Nib `DRTableViewCell`.
+    static let drTableViewCell = _R.nib._DRTableViewCell()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "DRPopupWithBalloonView", in: bundle)`
@@ -268,8 +270,20 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "DRTableViewCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.drTableViewCell) instead")
+    static func drTableViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.drTableViewCell)
+    }
+    #endif
+
     static func drPopupWithBalloonView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.drPopupWithBalloonView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
+
+    static func drTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DRTableViewCell? {
+      return R.nib.drTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DRTableViewCell
     }
 
     fileprivate init() {}
@@ -316,6 +330,17 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
 
+    struct _DRTableViewCell: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "DRTableViewCell"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DRTableViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DRTableViewCell
+      }
+
+      fileprivate init() {}
+    }
+
     fileprivate init() {}
   }
   #endif
@@ -355,7 +380,7 @@ struct _R: Rswift.Validatable {
 
     #if os(iOS) || os(tvOS)
     struct main: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = UIKit.UINavigationController
+      typealias InitialController = DRSettingViewController
 
       let bundle = R.hostingBundle
       let drRouletteCellTableViewController = StoryboardViewControllerResource<DRRouletteCellTableViewController>(identifier: "DRRouletteCellTableViewController")

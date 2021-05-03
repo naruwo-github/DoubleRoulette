@@ -12,6 +12,10 @@ import UIKit
 // MARK: - <ルーレットセルのクラス>
 class DRTableViewCell: UITableViewCell {
     
+    @IBOutlet private weak var segmentedControl: UISegmentedControl!
+    @IBOutlet private weak var itemNameTextField: UITextField!
+    @IBOutlet private weak var colorButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
