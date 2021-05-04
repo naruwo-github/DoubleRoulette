@@ -25,7 +25,6 @@ class DRSettingViewController: UIViewController {
     
     private let colorStock = ColorModel()
     private var rouletteData: Results<RouletteObject>!
-    private var newCellId: Int = 0
     private var edittingData: RouletteObject?
     
     // MARK: - <ライフサイクル>
@@ -72,7 +71,6 @@ class DRSettingViewController: UIViewController {
     
     private func roadData() {
         self.rouletteData = DRRealmHelper.init().getRouletteData()
-        self.newCellId = DRUserHelper.load("id", returnClass: Int.self) ?? 0
         self.tableView.reloadData()
     }
     
@@ -102,8 +100,6 @@ class DRSettingViewController: UIViewController {
     @IBAction private func clearAllButtonTapped(_ sender: Any) {
         DRRealmHelper.init().deleteAll()
         self.tableView.reloadData()
-        self.newCellId = 0
-        DRUserHelper.save("id", value: 0)
         Analytics.logEvent("all_clear_button", parameters: nil)
     }
     
@@ -114,10 +110,7 @@ class DRSettingViewController: UIViewController {
     
     @IBAction private func addButtonTapped(_ sender: Any) {
         let newCell = RouletteObject()
-        newCell.id = self.newCellId
-        
-        self.newCellId += 1
-        DRUserHelper.save("id", value: self.newCellId)
+        newCell.id = DRRealmHelper.init().getLastRouletteObjectId() + 1
         
         let colorRGB = UIColor.convertToRGB(self.colorStock.proposeColor(index: self.rouletteData.count))
         newCell.color = UIColor.rgbToHex(red: Int(colorRGB.red * 255), green: Int(colorRGB.green * 255), blue: Int(colorRGB.blue * 255))
