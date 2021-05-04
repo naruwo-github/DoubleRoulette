@@ -19,7 +19,8 @@ class DRRouletteSettingViewController: UIViewController {
     @IBOutlet private weak var soundSwitch: UISwitch!
     @IBOutlet private weak var resultOnOffLabel: UILabel!
     @IBOutlet private weak var resultSwitch: UISwitch!
-    private let showCloseDuration: Double = 1.0
+    
+    // MARK: - <ライフサイクル>
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +33,7 @@ class DRRouletteSettingViewController: UIViewController {
         Analytics.logEvent("show_animation_setting_view", parameters: nil)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.view.layer.cornerRadius = 20.0
-    }
+    // MARK: - <private関数>
     
     private func setupSwitch() {
         let soundFlag = DRUserHelper.isAuthorizedPlaySound
@@ -46,13 +44,10 @@ class DRRouletteSettingViewController: UIViewController {
         self.resultSwitch.setOn(resultFlag, animated: true)
     }
     
+    // MARK: - <イベント登録(IBAction)>
+    
     @IBAction private func closeButtonTapped(_ sender: Any) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + self.showCloseDuration) {
-            self.dismiss(animated: true, completion: nil)
-        }
-        UIView.animate(withDuration: self.showCloseDuration) {
-            self.view.layer.position.y += self.view.frame.height / 2.0
-        }
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction private func soundOnOffSwitch(_ sender: Any) {
