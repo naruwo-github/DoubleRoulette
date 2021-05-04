@@ -18,11 +18,19 @@ final class DRRealmHelper {
     init() {
     }
     
-    func getRouletteData() -> Results<RouletteObject> {
+    public func getRouletteData() -> Results<RouletteObject> {
         return self.realm.objects(RouletteObject.self)
     }
     
-    func deleteAll() {
+    public func getLastRouletteObjectId() -> Int {
+        var rtn = 0
+        if let last = self.realm.objects(RouletteObject.self).sorted(byKeyPath: "id", ascending: true).last {
+            rtn = last.id
+        }
+        return rtn
+    }
+    
+    public func deleteAll() {
         do {
             try self.realm.write {
                 self.realm.deleteAll()
@@ -32,7 +40,7 @@ final class DRRealmHelper {
         }
     }
     
-    func add(object: Object) {
+    public func add(object: Object) {
         do {
             try self.realm.write({ () -> Void in
                 self.realm.add(object)
@@ -42,7 +50,7 @@ final class DRRealmHelper {
         }
     }
     
-    func delete(object: Object) {
+    public func delete(object: Object) {
         do {
             try self.realm.write {
                 self.realm.delete(object)
@@ -52,7 +60,7 @@ final class DRRealmHelper {
         }
     }
     
-    func segmentControlUpdate(cell: RouletteObject, segment: UISegmentedControl) {
+    public func segmentControlUpdate(cell: RouletteObject, segment: UISegmentedControl) {
         do {
             try self.realm.write({ () -> Void in
                 cell.type = segment.selectedSegmentIndex
@@ -63,7 +71,7 @@ final class DRRealmHelper {
         }
     }
     
-    func textFieldUpdate(cell: RouletteObject, textField: UITextField) {
+    public func textFieldUpdate(cell: RouletteObject, textField: UITextField) {
         do {
             try self.realm.write({ () -> Void in
                 cell.item = textField.text ?? "Item"
@@ -74,7 +82,7 @@ final class DRRealmHelper {
         }
     }
     
-    func colorButtonUpdate(cell: RouletteObject, hexColor: String) {
+    public func colorButtonUpdate(cell: RouletteObject, hexColor: String) {
         do {
             try self.realm.write({ () -> Void in
                 cell.color = hexColor
