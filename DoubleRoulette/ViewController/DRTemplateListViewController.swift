@@ -24,12 +24,16 @@ class DRTemplateListViewController: UIViewController {
     
     private var templateData: Results<RouletteListObject>!
     
+    // MARK: - <ライフサイクル>
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupAdvertisement()
         self.setupTableView()
         self.templateData = DRRealmHelper.init().getTemplateData()
     }
+    
+    // MARK: - <private関数>
     
     private func setupAdvertisement() {
         self.bottomBannerAdView.adUnitID = DRStringSource.init().TemplateVCBottomAdID
@@ -40,6 +44,12 @@ class DRTemplateListViewController: UIViewController {
     private func setupTableView() {
         self.tableView.register(UINib(resource: R.nib.drTemplateTableViewCell), forCellReuseIdentifier: "TemplateCell")
         self.tableView.rowHeight = UIDevice.current.userInterfaceIdiom == .pad ? 300 : 150
+    }
+    
+    // MARK: - <イベント登録(IBAction)>
+    
+    @IBAction private func closeButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

@@ -98,6 +98,7 @@ class DRSettingViewController: UIViewController {
     }
     
     // MARK: - <イベント登録(IBAction)>
+    
     @IBAction private func clearAllButtonTapped(_ sender: Any) {
         self.rouletteData.forEach({
             DRRealmHelper.init().delete(object: $0)

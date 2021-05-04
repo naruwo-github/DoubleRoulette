@@ -51,7 +51,7 @@
                                             <constraint firstItem="aY5-2o-Fha" firstAttribute="top" secondItem="vC5-7j-XA7" secondAttribute="top" constant="8" id="v1h-3E-g8G"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAv-le-mpX">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAv-le-mpX" userLabel="Close Button">
                                         <rect key="frame" x="358" y="5" width="46" height="33"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <state key="normal" title="Close">
@@ -258,18 +258,45 @@ after the roulette rotation.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gnj-Vu-Ntl" userLabel="Top View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZAB-ag-53u" userLabel="Line View">
+                                                <rect key="frame" x="124" y="8" width="166" height="4"/>
+                                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="4" id="qNM-fE-gAC"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Templates" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="EZW-Cn-ljL">
                                                 <rect key="frame" x="103.5" y="20.5" width="207" height="41"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBk-uR-5hB" userLabel="Close Button">
+                                                <rect key="frame" x="358" y="5" width="46" height="33"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <state key="normal" title="Close">
+                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="closeButtonTapped:" destination="vSO-iH-Jdy" eventType="touchUpInside" id="KW2-Xh-6LA"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="EZW-Cn-ljL" firstAttribute="height" secondItem="Gnj-Vu-Ntl" secondAttribute="height" multiplier="0.5" id="C9z-ew-SGg"/>
                                             <constraint firstItem="EZW-Cn-ljL" firstAttribute="centerY" secondItem="Gnj-Vu-Ntl" secondAttribute="centerY" id="Jee-UC-MI4"/>
                                             <constraint firstItem="EZW-Cn-ljL" firstAttribute="centerX" secondItem="Gnj-Vu-Ntl" secondAttribute="centerX" id="Mpe-Ph-gEh"/>
                                             <constraint firstItem="EZW-Cn-ljL" firstAttribute="width" secondItem="Gnj-Vu-Ntl" secondAttribute="width" multiplier="0.5" id="RBA-Px-QDw"/>
+                                            <constraint firstItem="ZAB-ag-53u" firstAttribute="top" secondItem="Gnj-Vu-Ntl" secondAttribute="top" constant="8" id="VOO-5n-9xe"/>
+                                            <constraint firstItem="ZAB-ag-53u" firstAttribute="width" secondItem="Gnj-Vu-Ntl" secondAttribute="width" multiplier="0.400966" id="eJM-e8-w09"/>
+                                            <constraint firstItem="ZAB-ag-53u" firstAttribute="centerX" secondItem="Gnj-Vu-Ntl" secondAttribute="centerX" id="i8k-dZ-dhY"/>
+                                            <constraint firstAttribute="trailing" secondItem="KBk-uR-5hB" secondAttribute="trailing" constant="10" id="tDm-Dg-qJN"/>
+                                            <constraint firstItem="KBk-uR-5hB" firstAttribute="top" secondItem="Gnj-Vu-Ntl" secondAttribute="top" constant="5" id="xOH-oR-o9y"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BWu-fg-CgX" userLabel="Bottom View">
