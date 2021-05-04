@@ -130,22 +130,21 @@ class DRSettingViewController: UIViewController {
     
     // 現在のセルのデータをテンプレートとして保存する機能
     @IBAction private func saveButtonTapped(_ sender: Any) {
+        // セルが一つも追加されてない場合はsaveボタンの挙動を行わない
+        guard self.rouletteData.count > 0 else { return }
+        
         // 遷移先のポップアップの表示と挙動の設定
         let vc = R.storyboard.popup.drSaveTemplateViewController()!
         vc.saveAction = { [unowned self] text in
             let templateData = RouletteListObject()
             templateData.title = text
-            var lastId = DRRealmHelper.init().getLastRouletteObjectId()
             self.rouletteData.forEach({
-                let copyObject = RouletteObject()
-                copyObject.id = lastId + 1
-                copyObject.type = $0.type
-                copyObject.item = $0.item
-                copyObject.item = $0.color
-                templateData.rouletteList.append(copyObject)
-                lastId += 1
+                let cellInfo = RouletteCellInfoObject()
+                cellInfo.type = $0.type
+                cellInfo.item = $0.item
+                cellInfo.color = $0.color
+                templateData.rouletteList.append(cellInfo)
             })
-            // TODO: セルが複製されるが、その全てが表示されてしまうので、うまく行ってない
             DRRealmHelper.init().add(object: templateData)
             self.view.window?.makeKeyAndVisible()
         }

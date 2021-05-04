@@ -51,11 +51,7 @@ extension DRTemplateListViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TemplateCell") as! DRTemplateTableViewCell
-        let template = self.templateData[indexPath.row]
-        template.rouletteList.forEach({
-            print($0)
-        })
-        cell.setup(title: template.title)
+        cell.setup(title: self.templateData[indexPath.row].title)
         return cell
     }
     
@@ -65,7 +61,12 @@ extension DRTemplateListViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            DRRealmHelper.init().delete(object: self.templateData[indexPath.row])
+            let template = self.templateData[indexPath.row]
+            template.rouletteList.forEach({
+                DRRealmHelper.init().delete(object: $0)// templateに紐づくオブジェクトを削除
+            })
+            DRRealmHelper.init().delete(object: template) // templateオブジェクト自体を削除
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.reloadData()
         }

@@ -29,7 +29,15 @@ class RouletteObject: Object {
 class RouletteListObject: Object {
     
     @objc dynamic var title: String = "template"
+    let rouletteList = List<RouletteCellInfoObject>()
     
-    let rouletteList = List<RouletteObject>()
+}
+
+// MARK: - <単体のセルの情報を持つクラス>
+class RouletteCellInfoObject: Object {
+    
+    @objc dynamic var type: Int = 0
+    @objc dynamic var item: String = "item"
+    @objc dynamic var color: String = "FF0000"
     
 }
