@@ -22,6 +22,18 @@ final class DRRealmHelper {
         return self.realm.objects(RouletteObject.self)
     }
     
+    func getTemplateData() -> Results<RouletteListObject> {
+        return self.realm.objects(RouletteListObject.self)
+    }
+    
+    func getLastRouletteObjectId() -> Int {
+        if let last = self.realm.objects(RouletteObject.self).sorted(byKeyPath: "id", ascending: true).last {
+            return last.id
+        } else {
+            return 0
+        }
+    }
+    
     func deleteAll() {
         do {
             try self.realm.write {

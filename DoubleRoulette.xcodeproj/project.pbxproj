@@ -38,6 +38,8 @@
 		05C0C74E263FD06500317ED2 /* DRTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C0C74D263FD06500317ED2 /* DRTableViewCell.xib */; };
 		05C0C750263FD47700317ED2 /* DRSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C0C74F263FD47700317ED2 /* DRSettingViewController.swift */; };
 		05D292FE2640CD7C00241834 /* DRTemplateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D292FD2640CD7C00241834 /* DRTemplateListViewController.swift */; };
+		05D293002640D4EB00241834 /* DRTemplateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D292FF2640D4EB00241834 /* DRTemplateTableViewCell.swift */; };
+		05D293022640D4FB00241834 /* DRTemplateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05D293012640D4FB00241834 /* DRTemplateTableViewCell.xib */; };
 		05DC270324B75BDC00657D2E /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05DC270224B75BDC00657D2E /* Popup.storyboard */; };
 		AE64E43BF50AA96CC4ADB6A1 /* Pods_DoubleRoulette.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C649195FE7E16EF4D56C3F7 /* Pods_DoubleRoulette.framework */; };
 /* End PBXBuildFile section */
@@ -100,6 +102,8 @@
 		05C0C74D263FD06500317ED2 /* DRTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DRTableViewCell.xib; sourceTree = "<group>"; };
 		05C0C74F263FD47700317ED2 /* DRSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRSettingViewController.swift; sourceTree = "<group>"; };
 		05D292FD2640CD7C00241834 /* DRTemplateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRTemplateListViewController.swift; sourceTree = "<group>"; };
+		05D292FF2640D4EB00241834 /* DRTemplateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRTemplateTableViewCell.swift; sourceTree = "<group>"; };
+		05D293012640D4FB00241834 /* DRTemplateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DRTemplateTableViewCell.xib; sourceTree = "<group>"; };
 		05DC270224B75BDC00657D2E /* Popup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Popup.storyboard; sourceTree = "<group>"; };
 		19AB394B5A1FCB87729BEC79 /* Pods_DoubleRouletteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubleRouletteUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C649195FE7E16EF4D56C3F7 /* Pods_DoubleRoulette.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubleRoulette.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -297,6 +301,8 @@
 			children = (
 				05C0C74B263FD05600317ED2 /* DRTableViewCell.swift */,
 				05C0C74D263FD06500317ED2 /* DRTableViewCell.xib */,
+				05D292FF2640D4EB00241834 /* DRTemplateTableViewCell.swift */,
+				05D293012640D4FB00241834 /* DRTemplateTableViewCell.xib */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -452,6 +458,7 @@
 				05DC270324B75BDC00657D2E /* Popup.storyboard in Resources */,
 				05AF43EE22C974D4007A236D /* LaunchScreen.storyboard in Resources */,
 				0594A0692549C9DA00EE9247 /* DRPopupWithBalloonView.xib in Resources */,
+				05D293022640D4FB00241834 /* DRTemplateTableViewCell.xib in Resources */,
 				05C0C74E263FD06500317ED2 /* DRTableViewCell.xib in Resources */,
 				0590A0C822D7F38D004BB8CA /* roulette-sound.mp3 in Resources */,
 				058D5B8E22FC51AB0064A91D /* GoogleService-Info.plist in Resources */,
@@ -640,6 +647,7 @@
 				051A32FC24B7F5B1004A134A /* R.generated.swift in Sources */,
 				05383362263D909300CE0719 /* DRStringSource.swift in Sources */,
 				0519C9FD245A71B7004356DF /* Extensions.swift in Sources */,
+				05D293002640D4EB00241834 /* DRTemplateTableViewCell.swift in Sources */,
 				0520973C24B7652C00E32BEE /* DRResultViewController.swift in Sources */,
 				05074A4C26403C3900F14CAB /* DRSaveTemplateViewController.swift in Sources */,
 			);

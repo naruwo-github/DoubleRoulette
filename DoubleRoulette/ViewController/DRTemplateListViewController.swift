@@ -10,7 +10,9 @@
 import UIKit
 
 // MARK: - <外部フレームワーク>
+import CellAnimator
 import GoogleMobileAds
+import RealmSwift
 
 // MARK: - <ルーレット画面右上ボタンより表示する設定画面のクラス>
 class DRTemplateListViewController: UIViewController {
@@ -18,9 +20,13 @@ class DRTemplateListViewController: UIViewController {
     @IBOutlet private weak var bottomBannerAdView: GADBannerView!
     @IBOutlet private weak var tableView: UITableView!
     
+    private var templateData: Results<RouletteListObject>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupAdvertisement()
+        self.setupTableView()
+        self.templateData = DRRealmHelper.init().getTemplateData()
     }
     
     private func setupAdvertisement() {
@@ -29,20 +35,40 @@ class DRTemplateListViewController: UIViewController {
         self.bottomBannerAdView.load(GADRequest())
     }
     
+    private func setupTableView() {
+        self.tableView.register(UINib(resource: R.nib.drTemplateTableViewCell), forCellReuseIdentifier: "TemplateCell")
+        self.tableView.rowHeight = UIDevice.current.userInterfaceIdiom == .pad ? 200 : 100
+    }
+    
 }
 
 // MARK: - <テーブルビューを扱うための拡張>
 extension DRTemplateListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO
-        return 3
+        return self.templateData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // TODO:
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TemplateCell") as! DRTemplateTableViewCell
+        let template = self.templateData[indexPath.row]
+        template.rouletteList.forEach({
+            print($0)
+        })
+        cell.setup(title: template.title)
+        return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        CellAnimator.animateCell(cell: cell, withTransform: CellAnimator.TransformTilt, andDuration: 1)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            DRRealmHelper.init().delete(object: self.templateData[indexPath.row])
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.tableView.reloadData()
+        }
+    }
     
 }

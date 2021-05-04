@@ -231,12 +231,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
   struct nib {
     /// Nib `DRPopupWithBalloonView`.
     static let drPopupWithBalloonView = _R.nib._DRPopupWithBalloonView()
     /// Nib `DRTableViewCell`.
     static let drTableViewCell = _R.nib._DRTableViewCell()
+    /// Nib `DRTemplateTableViewCell`.
+    static let drTemplateTableViewCell = _R.nib._DRTemplateTableViewCell()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "DRPopupWithBalloonView", in: bundle)`
@@ -254,12 +256,24 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "DRTemplateTableViewCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.drTemplateTableViewCell) instead")
+    static func drTemplateTableViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.drTemplateTableViewCell)
+    }
+    #endif
+
     static func drPopupWithBalloonView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.drPopupWithBalloonView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
     static func drTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DRTableViewCell? {
       return R.nib.drTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DRTableViewCell
+    }
+
+    static func drTemplateTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DRTemplateTableViewCell? {
+      return R.nib.drTemplateTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DRTemplateTableViewCell
     }
 
     fileprivate init() {}
@@ -304,6 +318,17 @@ struct _R: Rswift.Validatable {
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DRTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DRTableViewCell
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _DRTemplateTableViewCell: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "DRTemplateTableViewCell"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DRTemplateTableViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DRTemplateTableViewCell
       }
 
       fileprivate init() {}

@@ -26,7 +26,6 @@ class DRSettingViewController: UIViewController {
     private let popupWindow: UIWindow = .init(frame: UIScreen.main.bounds)
     private let colorStock = ColorModel()
     private var rouletteData: Results<RouletteObject>!
-    private var newCellId: Int = 0
     private var edittingData: RouletteObject?
     
     // MARK: - <ライフサイクル>
@@ -73,7 +72,6 @@ class DRSettingViewController: UIViewController {
     
     private func roadData() {
         self.rouletteData = DRRealmHelper.init().getRouletteData()
-        self.newCellId = DRUserHelper.load("id", returnClass: Int.self) ?? 0
         self.tableView.reloadData()
     }
     
@@ -101,10 +99,10 @@ class DRSettingViewController: UIViewController {
     
     // MARK: - <イベント登録(IBAction)>
     @IBAction private func clearAllButtonTapped(_ sender: Any) {
-        DRRealmHelper.init().deleteAll()
+        self.rouletteData.forEach({
+            DRRealmHelper.init().delete(object: $0)
+        })
         self.tableView.reloadData()
-        self.newCellId = 0
-        DRUserHelper.save("id", value: 0)
         Analytics.logEvent("all_clear_button", parameters: nil)
     }
     
@@ -115,11 +113,7 @@ class DRSettingViewController: UIViewController {
     
     @IBAction private func addButtonTapped(_ sender: Any) {
         let newCell = RouletteObject()
-        newCell.id = self.newCellId
-        
-        self.newCellId += 1
-        DRUserHelper.save("id", value: self.newCellId)
-        
+        newCell.id = DRRealmHelper.init().getLastRouletteObjectId() + 1
         let colorRGB = UIColor.convertToRGB(self.colorStock.proposeColor(index: self.rouletteData.count))
         newCell.color = UIColor.rgbToHex(red: Int(colorRGB.red * 255), green: Int(colorRGB.green * 255), blue: Int(colorRGB.blue * 255))
         DRRealmHelper.init().add(object: newCell)
@@ -129,7 +123,6 @@ class DRSettingViewController: UIViewController {
     }
     
     @IBAction private func templateButtonTapped(_ sender: Any) {
-        // TODO: テンプレのリストを表示する画面に遷移する
         let vc = R.storyboard.modal.drTemplateListViewController()!
         self.present(vc, animated: true, completion: nil)
     }
@@ -141,10 +134,19 @@ class DRSettingViewController: UIViewController {
         vc.saveAction = { [unowned self] text in
             let templateData = RouletteListObject()
             templateData.title = text
+            var lastId = DRRealmHelper.init().getLastRouletteObjectId()
             self.rouletteData.forEach({
-                templateData.rouletteList.append($0)
+                let copyObject = RouletteObject()
+                copyObject.id = lastId + 1
+                copyObject.type = $0.type
+                copyObject.item = $0.item
+                copyObject.item = $0.color
+                templateData.rouletteList.append(copyObject)
+                lastId += 1
             })
+            // TODO: セルが複製されるが、その全てが表示されてしまうので、うまく行ってない
             DRRealmHelper.init().add(object: templateData)
+            self.view.window?.makeKeyAndVisible()
         }
         vc.cancelAction = {
             self.view.window?.makeKeyAndVisible()
