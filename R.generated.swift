@@ -393,16 +393,23 @@ struct _R: Rswift.Validatable {
     struct popup: Rswift.StoryboardResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let drResultViewController = StoryboardViewControllerResource<DRResultViewController>(identifier: "DRResultViewController")
+      let drSaveTemplateViewController = StoryboardViewControllerResource<DRSaveTemplateViewController>(identifier: "DRSaveTemplateViewController")
       let name = "Popup"
 
       func drResultViewController(_: Void = ()) -> DRResultViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drResultViewController)
       }
 
+      func drSaveTemplateViewController(_: Void = ()) -> DRSaveTemplateViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drSaveTemplateViewController)
+      }
+
       static func validate() throws {
         if #available(iOS 11.0, tvOS 11.0, *) {
+          if UIKit.UIColor(named: "navigationItemColor", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'navigationItemColor' is used in storyboard 'Popup', but couldn't be loaded.") }
         }
         if _R.storyboard.popup().drResultViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drResultViewController' could not be loaded from storyboard 'Popup' as 'DRResultViewController'.") }
+        if _R.storyboard.popup().drSaveTemplateViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drSaveTemplateViewController' could not be loaded from storyboard 'Popup' as 'DRSaveTemplateViewController'.") }
       }
 
       fileprivate init() {}

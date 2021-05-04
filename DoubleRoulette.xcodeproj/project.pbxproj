@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		049FBABA408189B83840D814 /* Pods_DoubleRouletteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19AB394B5A1FCB87729BEC79 /* Pods_DoubleRouletteUITests.framework */; };
+		05074A4C26403C3900F14CAB /* DRSaveTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05074A4B26403C3800F14CAB /* DRSaveTemplateViewController.swift */; };
 		0519C9FD245A71B7004356DF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0519C9FC245A71B7004356DF /* Extensions.swift */; };
 		051A32FC24B7F5B1004A134A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051A32FB24B7F5B1004A134A /* R.generated.swift */; };
 		0520973C24B7652C00E32BEE /* DRResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520973B24B7652C00E32BEE /* DRResultViewController.swift */; };
@@ -60,6 +61,7 @@
 /* Begin PBXFileReference section */
 		024C8B44E37E776CB94B941E /* Pods-DoubleRoulette.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleRoulette.release.xcconfig"; path = "Target Support Files/Pods-DoubleRoulette/Pods-DoubleRoulette.release.xcconfig"; sourceTree = "<group>"; };
 		050016622445593B00F3B87F /* AMColorPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMColorPicker.framework; path = Carthage/Build/iOS/AMColorPicker.framework; sourceTree = "<group>"; };
+		05074A4B26403C3800F14CAB /* DRSaveTemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRSaveTemplateViewController.swift; sourceTree = "<group>"; };
 		0519C9FC245A71B7004356DF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		051A32FB24B7F5B1004A134A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0520973B24B7652C00E32BEE /* DRResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRResultViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			children = (
 				05DC270224B75BDC00657D2E /* Popup.storyboard */,
 				0520973B24B7652C00E32BEE /* DRResultViewController.swift */,
+				05074A4B26403C3800F14CAB /* DRSaveTemplateViewController.swift */,
 			);
 			name = Popup;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 				05383362263D909300CE0719 /* DRStringSource.swift in Sources */,
 				0519C9FD245A71B7004356DF /* Extensions.swift in Sources */,
 				0520973C24B7652C00E32BEE /* DRResultViewController.swift in Sources */,
+				05074A4C26403C3900F14CAB /* DRSaveTemplateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

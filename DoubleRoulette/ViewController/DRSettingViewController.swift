@@ -23,6 +23,7 @@ class DRSettingViewController: UIViewController {
     @IBOutlet private weak var bottomBannerAdView: GADBannerView!
     @IBOutlet private weak var tableView: UITableView!
     
+    private let popupWindow: UIWindow = .init(frame: UIScreen.main.bounds)
     private let colorStock = ColorModel()
     private var rouletteData: Results<RouletteObject>!
     private var newCellId: Int = 0
@@ -125,6 +126,29 @@ class DRSettingViewController: UIViewController {
         self.tableView.reloadData()
         self.tableView.scrollToRow(at: IndexPath(row: rouletteData.count - 1, section: 0), at: .bottom, animated: true)
         Analytics.logEvent("add_cell_button", parameters: nil)
+    }
+    
+    @IBAction private func templateButtonTapped(_ sender: Any) {
+        // TODO: テンプレのリストを表示する画面に遷移する
+    }
+    
+    // 現在のセルのデータをテンプレートとして保存する機能
+    @IBAction private func saveButtonTapped(_ sender: Any) {
+        // 遷移先のポップアップの表示と挙動の設定
+        let vc = R.storyboard.popup.drSaveTemplateViewController()!
+        vc.saveAction = { [unowned self] text in
+            let templateData = RouletteListObject()
+            templateData.title = text
+            self.rouletteData.forEach({
+                templateData.rouletteList.append($0)
+            })
+            DRRealmHelper.init().add(object: templateData)
+        }
+        vc.cancelAction = {
+            self.view.window?.makeKeyAndVisible()
+        }
+        self.popupWindow.rootViewController = vc
+        self.popupWindow.makeKeyAndVisible()
     }
     
 }
