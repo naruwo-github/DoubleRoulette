@@ -37,7 +37,7 @@ class DRTemplateListViewController: UIViewController {
     
     private func setupTableView() {
         self.tableView.register(UINib(resource: R.nib.drTemplateTableViewCell), forCellReuseIdentifier: "TemplateCell")
-        self.tableView.rowHeight = UIDevice.current.userInterfaceIdiom == .pad ? 200 : 100
+        self.tableView.rowHeight = UIDevice.current.userInterfaceIdiom == .pad ? 300 : 150
     }
     
 }
@@ -51,7 +51,7 @@ extension DRTemplateListViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TemplateCell") as! DRTemplateTableViewCell
-        cell.setup(title: self.templateData[indexPath.row].title)
+        cell.setup(template: self.templateData[indexPath.row])
         return cell
     }
     
