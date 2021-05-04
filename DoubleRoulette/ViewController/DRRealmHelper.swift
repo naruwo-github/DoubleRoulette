@@ -22,22 +22,16 @@ final class DRRealmHelper {
         return self.realm.objects(RouletteObject.self)
     }
     
+    public func getTemplateData() -> Results<RouletteListObject> {
+        return self.realm.objects(RouletteListObject.self)
+    }
+    
     public func getLastRouletteObjectId() -> Int {
         var rtn = 0
         if let last = self.realm.objects(RouletteObject.self).sorted(byKeyPath: "id", ascending: true).last {
             rtn = last.id
         }
         return rtn
-    }
-    
-    public func deleteAll() {
-        do {
-            try self.realm.write {
-                self.realm.deleteAll()
-            }
-        } catch {
-            print("Error in deleteAll...")
-        }
     }
     
     public func add(object: Object) {
@@ -57,6 +51,22 @@ final class DRRealmHelper {
             }
         } catch {
             print("Error in delete...")
+        }
+    }
+    
+    public func deleteRouletteData() {
+        self.getRouletteData().forEach({
+            self.delete(object: $0)
+        })
+    }
+    
+    public func deleteAllData() {
+        do {
+            try self.realm.write {
+                self.realm.deleteAll()
+            }
+        } catch {
+            print("Error in deleteAllData...")
         }
     }
     

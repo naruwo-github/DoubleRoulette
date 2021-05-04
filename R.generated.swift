@@ -231,12 +231,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
   struct nib {
     /// Nib `DRPopupWithBalloonView`.
     static let drPopupWithBalloonView = _R.nib._DRPopupWithBalloonView()
     /// Nib `DRTableViewCell`.
     static let drTableViewCell = _R.nib._DRTableViewCell()
+    /// Nib `DRTemplateTableViewCell`.
+    static let drTemplateTableViewCell = _R.nib._DRTemplateTableViewCell()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "DRPopupWithBalloonView", in: bundle)`
@@ -254,12 +256,24 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "DRTemplateTableViewCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.drTemplateTableViewCell) instead")
+    static func drTemplateTableViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.drTemplateTableViewCell)
+    }
+    #endif
+
     static func drPopupWithBalloonView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.drPopupWithBalloonView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
     static func drTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DRTableViewCell? {
       return R.nib.drTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DRTableViewCell
+    }
+
+    static func drTemplateTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DRTemplateTableViewCell? {
+      return R.nib.drTemplateTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DRTemplateTableViewCell
     }
 
     fileprivate init() {}
@@ -304,6 +318,17 @@ struct _R: Rswift.Validatable {
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DRTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DRTableViewCell
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _DRTemplateTableViewCell: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "DRTemplateTableViewCell"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DRTemplateTableViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DRTemplateTableViewCell
       }
 
       fileprivate init() {}
@@ -373,16 +398,22 @@ struct _R: Rswift.Validatable {
     struct modal: Rswift.StoryboardResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let drRouletteSettingViewController = StoryboardViewControllerResource<DRRouletteSettingViewController>(identifier: "DRRouletteSettingViewController")
+      let drTemplateListViewController = StoryboardViewControllerResource<DRTemplateListViewController>(identifier: "DRTemplateListViewController")
       let name = "Modal"
 
       func drRouletteSettingViewController(_: Void = ()) -> DRRouletteSettingViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drRouletteSettingViewController)
       }
 
+      func drTemplateListViewController(_: Void = ()) -> DRTemplateListViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drTemplateListViewController)
+      }
+
       static func validate() throws {
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
         if _R.storyboard.modal().drRouletteSettingViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drRouletteSettingViewController' could not be loaded from storyboard 'Modal' as 'DRRouletteSettingViewController'.") }
+        if _R.storyboard.modal().drTemplateListViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drTemplateListViewController' could not be loaded from storyboard 'Modal' as 'DRTemplateListViewController'.") }
       }
 
       fileprivate init() {}
@@ -393,16 +424,23 @@ struct _R: Rswift.Validatable {
     struct popup: Rswift.StoryboardResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let drResultViewController = StoryboardViewControllerResource<DRResultViewController>(identifier: "DRResultViewController")
+      let drSaveTemplateViewController = StoryboardViewControllerResource<DRSaveTemplateViewController>(identifier: "DRSaveTemplateViewController")
       let name = "Popup"
 
       func drResultViewController(_: Void = ()) -> DRResultViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drResultViewController)
       }
 
+      func drSaveTemplateViewController(_: Void = ()) -> DRSaveTemplateViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drSaveTemplateViewController)
+      }
+
       static func validate() throws {
         if #available(iOS 11.0, tvOS 11.0, *) {
+          if UIKit.UIColor(named: "navigationItemColor", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'navigationItemColor' is used in storyboard 'Popup', but couldn't be loaded.") }
         }
         if _R.storyboard.popup().drResultViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drResultViewController' could not be loaded from storyboard 'Popup' as 'DRResultViewController'.") }
+        if _R.storyboard.popup().drSaveTemplateViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drSaveTemplateViewController' could not be loaded from storyboard 'Popup' as 'DRSaveTemplateViewController'.") }
       }
 
       fileprivate init() {}

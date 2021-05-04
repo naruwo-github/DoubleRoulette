@@ -23,6 +23,7 @@ class DRSettingViewController: UIViewController {
     @IBOutlet private weak var bottomBannerAdView: GADBannerView!
     @IBOutlet private weak var tableView: UITableView!
     
+    private let popupWindow: UIWindow = .init(frame: UIScreen.main.bounds)
     private let colorStock = ColorModel()
     private var rouletteData: Results<RouletteObject>!
     private var edittingData: RouletteObject?
@@ -97,8 +98,11 @@ class DRSettingViewController: UIViewController {
     }
     
     // MARK: - <イベント登録(IBAction)>
+    
     @IBAction private func clearAllButtonTapped(_ sender: Any) {
-        DRRealmHelper.init().deleteAll()
+        self.rouletteData.forEach({
+            DRRealmHelper.init().delete(object: $0)
+        })
         self.tableView.reloadData()
         Analytics.logEvent("all_clear_button", parameters: nil)
     }
@@ -118,6 +122,41 @@ class DRSettingViewController: UIViewController {
         self.tableView.reloadData()
         self.tableView.scrollToRow(at: IndexPath(row: rouletteData.count - 1, section: 0), at: .bottom, animated: true)
         Analytics.logEvent("add_cell_button", parameters: nil)
+    }
+    
+    @IBAction private func templateButtonTapped(_ sender: Any) {
+        let vc = R.storyboard.modal.drTemplateListViewController()!
+        vc.cellSelectedAction = { [unowned self] in
+            self.tableView.reloadData()
+        }
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    // 現在のセルのデータをテンプレートとして保存する機能
+    @IBAction private func saveButtonTapped(_ sender: Any) {
+        // セルが一つも追加されてない場合はsaveボタンの挙動を行わない
+        guard self.rouletteData.count > 0 else { return }
+        
+        // 遷移先のポップアップの表示と挙動の設定
+        let vc = R.storyboard.popup.drSaveTemplateViewController()!
+        vc.saveAction = { [unowned self] text in
+            let templateData = RouletteListObject()
+            templateData.title = text
+            self.rouletteData.forEach({
+                let cellInfo = RouletteCellInfoObject()
+                cellInfo.type = $0.type
+                cellInfo.item = $0.item
+                cellInfo.color = $0.color
+                templateData.rouletteList.append(cellInfo)
+            })
+            DRRealmHelper.init().add(object: templateData)
+            self.view.window?.makeKeyAndVisible()
+        }
+        vc.cancelAction = {
+            self.view.window?.makeKeyAndVisible()
+        }
+        self.popupWindow.rootViewController = vc
+        self.popupWindow.makeKeyAndVisible()
     }
     
 }
