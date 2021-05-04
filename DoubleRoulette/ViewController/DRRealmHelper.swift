@@ -34,16 +34,6 @@ final class DRRealmHelper {
         return rtn
     }
     
-    public func deleteAll() {
-        do {
-            try self.realm.write {
-                self.realm.deleteAll()
-            }
-        } catch {
-            print("Error in deleteAll...")
-        }
-    }
-    
     public func add(object: Object) {
         do {
             try self.realm.write({ () -> Void in
@@ -61,6 +51,22 @@ final class DRRealmHelper {
             }
         } catch {
             print("Error in delete...")
+        }
+    }
+    
+    public func deleteRouletteData() {
+        self.getRouletteData().forEach({
+            self.delete(object: $0)
+        })
+    }
+    
+    public func deleteAllData() {
+        do {
+            try self.realm.write {
+                self.realm.deleteAll()
+            }
+        } catch {
+            print("Error in deleteAllData...")
         }
     }
     

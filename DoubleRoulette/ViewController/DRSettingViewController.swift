@@ -125,6 +125,9 @@ class DRSettingViewController: UIViewController {
     
     @IBAction private func templateButtonTapped(_ sender: Any) {
         let vc = R.storyboard.modal.drTemplateListViewController()!
+        vc.cellSelectedAction = { [unowned self] in
+            self.tableView.reloadData()
+        }
         self.present(vc, animated: true, completion: nil)
     }
     

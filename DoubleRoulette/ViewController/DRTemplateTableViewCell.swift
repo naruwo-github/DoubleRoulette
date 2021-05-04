@@ -48,6 +48,7 @@ class DRTemplateTableViewCell: UITableViewCell {
                                      inner: LazyFilterSequence<List<RouletteCellInfoObject>>) {
         self.outerChartView.radius = self.outerChartView.frame.height / 2.0 - 10
         self.outerChartView.viewCenter = self.outerChartView.center
+        self.outerChartView.segments.removeAll()
         outer.forEach({
             let rgb = UIColor.hexToRGB(hex: $0.color)
             let color = UIColor(red: CGFloat(rgb[0])/255, green: CGFloat(rgb[1])/255, blue: CGFloat(rgb[2])/255, alpha: 1)
@@ -56,6 +57,7 @@ class DRTemplateTableViewCell: UITableViewCell {
         
         self.innerChartView.radius = self.innerChartView.frame.height / 4.0 - 5
         self.innerChartView.viewCenter = self.innerChartView.center
+        self.innerChartView.segments.removeAll()
         inner.forEach({
             let rgb = UIColor.hexToRGB(hex: $0.color)
             let color = UIColor(red: CGFloat(rgb[0])/255, green: CGFloat(rgb[1])/255, blue: CGFloat(rgb[2])/255, alpha: 1)

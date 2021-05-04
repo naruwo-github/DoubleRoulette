@@ -17,6 +17,8 @@ import RealmSwift
 // MARK: - <ルーレット画面右上ボタンより表示する設定画面のクラス>
 class DRTemplateListViewController: UIViewController {
     
+    public var cellSelectedAction: (() -> Void)?
+    
     @IBOutlet private weak var bottomBannerAdView: GADBannerView!
     @IBOutlet private weak var tableView: UITableView!
     
@@ -70,6 +72,23 @@ extension DRTemplateListViewController: UITableViewDelegate, UITableViewDataSour
             tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.reloadData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedData = self.templateData[indexPath.row]
+        DRRealmHelper.init().deleteRouletteData() // 現在のルーレット(全RouletteObject)を削除
+        // selectedDataを元に、RouletteObjectを作成
+        selectedData.rouletteList.forEach({
+            let rouletteCell = RouletteObject()
+            rouletteCell.id = DRRealmHelper.init().getLastRouletteObjectId() + 1
+            rouletteCell.type = $0.type
+            rouletteCell.item = $0.item
+            rouletteCell.color = $0.color
+            DRRealmHelper.init().add(object: rouletteCell)
+        })
+        self.dismiss(animated: true, completion: {
+            self.cellSelectedAction?()
+        })
     }
     
 }

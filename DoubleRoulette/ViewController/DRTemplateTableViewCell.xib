@@ -108,8 +108,12 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="msx-C8-sp2" firstAttribute="top" secondItem="DW6-J9-89X" secondAttribute="top" id="3CG-D5-i6t"/>
+                            <constraint firstItem="J1F-U0-zQg" firstAttribute="height" secondItem="DW6-J9-89X" secondAttribute="height" id="7S3-5J-vU0"/>
+                            <constraint firstItem="msx-C8-sp2" firstAttribute="width" secondItem="DW6-J9-89X" secondAttribute="width" id="C5v-Db-qxh"/>
+                            <constraint firstItem="J1F-U0-zQg" firstAttribute="width" secondItem="DW6-J9-89X" secondAttribute="width" id="D5I-qT-sxn"/>
                             <constraint firstAttribute="bottom" secondItem="J1F-U0-zQg" secondAttribute="bottom" id="J4N-uM-5aQ"/>
                             <constraint firstAttribute="trailing" secondItem="J1F-U0-zQg" secondAttribute="trailing" id="cTO-u5-V2z"/>
+                            <constraint firstItem="msx-C8-sp2" firstAttribute="height" secondItem="DW6-J9-89X" secondAttribute="height" id="dLq-Yc-h0T"/>
                             <constraint firstItem="J1F-U0-zQg" firstAttribute="leading" secondItem="DW6-J9-89X" secondAttribute="leading" id="eJ5-QL-dVS"/>
                             <constraint firstAttribute="trailing" secondItem="msx-C8-sp2" secondAttribute="trailing" id="egd-WL-7F1"/>
                             <constraint firstItem="J1F-U0-zQg" firstAttribute="top" secondItem="DW6-J9-89X" secondAttribute="top" id="faG-u8-dhL"/>
@@ -123,9 +127,12 @@
                     <constraint firstItem="hOY-A4-zKj" firstAttribute="leading" secondItem="xK9-Zx-Uj0" secondAttribute="leading" id="BnK-XS-UZy"/>
                     <constraint firstAttribute="bottom" secondItem="hOY-A4-zKj" secondAttribute="bottom" id="GMX-uf-tWi"/>
                     <constraint firstItem="hOY-A4-zKj" firstAttribute="top" secondItem="xK9-Zx-Uj0" secondAttribute="top" id="PN1-rw-YPQ"/>
+                    <constraint firstItem="hOY-A4-zKj" firstAttribute="height" secondItem="xK9-Zx-Uj0" secondAttribute="height" id="Swx-MZ-oN6"/>
                     <constraint firstItem="DW6-J9-89X" firstAttribute="top" secondItem="xK9-Zx-Uj0" secondAttribute="top" id="Yyw-s7-44H"/>
                     <constraint firstItem="hOY-A4-zKj" firstAttribute="width" secondItem="xK9-Zx-Uj0" secondAttribute="width" multiplier="0.5" id="gVA-xI-rSy"/>
                     <constraint firstItem="DW6-J9-89X" firstAttribute="leading" secondItem="hOY-A4-zKj" secondAttribute="trailing" id="m7l-yh-wmV"/>
+                    <constraint firstItem="DW6-J9-89X" firstAttribute="height" secondItem="xK9-Zx-Uj0" secondAttribute="height" id="rFC-xv-2th"/>
+                    <constraint firstItem="DW6-J9-89X" firstAttribute="width" secondItem="xK9-Zx-Uj0" secondAttribute="width" multiplier="0.5" id="xCW-Ss-dKW"/>
                     <constraint firstAttribute="trailing" secondItem="DW6-J9-89X" secondAttribute="trailing" id="z9L-9g-ntw"/>
                 </constraints>
             </tableViewCellContentView>
