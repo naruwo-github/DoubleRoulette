@@ -37,6 +37,7 @@
 		05C0C74C263FD05600317ED2 /* DRTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C0C74B263FD05600317ED2 /* DRTableViewCell.swift */; };
 		05C0C74E263FD06500317ED2 /* DRTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C0C74D263FD06500317ED2 /* DRTableViewCell.xib */; };
 		05C0C750263FD47700317ED2 /* DRSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C0C74F263FD47700317ED2 /* DRSettingViewController.swift */; };
+		05D292FE2640CD7C00241834 /* DRTemplateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D292FD2640CD7C00241834 /* DRTemplateListViewController.swift */; };
 		05DC270324B75BDC00657D2E /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05DC270224B75BDC00657D2E /* Popup.storyboard */; };
 		AE64E43BF50AA96CC4ADB6A1 /* Pods_DoubleRoulette.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C649195FE7E16EF4D56C3F7 /* Pods_DoubleRoulette.framework */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,7 @@
 		05C0C74B263FD05600317ED2 /* DRTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRTableViewCell.swift; sourceTree = "<group>"; };
 		05C0C74D263FD06500317ED2 /* DRTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DRTableViewCell.xib; sourceTree = "<group>"; };
 		05C0C74F263FD47700317ED2 /* DRSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRSettingViewController.swift; sourceTree = "<group>"; };
+		05D292FD2640CD7C00241834 /* DRTemplateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRTemplateListViewController.swift; sourceTree = "<group>"; };
 		05DC270224B75BDC00657D2E /* Popup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Popup.storyboard; sourceTree = "<group>"; };
 		19AB394B5A1FCB87729BEC79 /* Pods_DoubleRouletteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubleRouletteUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C649195FE7E16EF4D56C3F7 /* Pods_DoubleRoulette.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubleRoulette.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,6 +199,7 @@
 			children = (
 				0522625B24BDAB6F005AA88C /* Modal.storyboard */,
 				0522625D24BDABEF005AA88C /* DRRouletteSettingViewController.swift */,
+				05D292FD2640CD7C00241834 /* DRTemplateListViewController.swift */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 			files = (
 				0529A99922CC991400F5ECB6 /* PieChartView.swift in Sources */,
 				0594A0632549C68300EE9247 /* DRBalloonView.swift in Sources */,
+				05D292FE2640CD7C00241834 /* DRTemplateListViewController.swift in Sources */,
 				0522626124BE8F6E005AA88C /* DRUserHelper.swift in Sources */,
 				05775ABF245A9506009BAD29 /* RouletteObject.swift in Sources */,
 				05AF43E622C974D2007A236D /* DRRouletteViewController.swift in Sources */,

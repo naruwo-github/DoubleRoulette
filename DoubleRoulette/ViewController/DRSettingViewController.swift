@@ -130,6 +130,8 @@ class DRSettingViewController: UIViewController {
     
     @IBAction private func templateButtonTapped(_ sender: Any) {
         // TODO: テンプレのリストを表示する画面に遷移する
+        let vc = R.storyboard.modal.drTemplateListViewController()!
+        self.present(vc, animated: true, completion: nil)
     }
     
     // 現在のセルのデータをテンプレートとして保存する機能

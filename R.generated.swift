@@ -373,16 +373,22 @@ struct _R: Rswift.Validatable {
     struct modal: Rswift.StoryboardResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let drRouletteSettingViewController = StoryboardViewControllerResource<DRRouletteSettingViewController>(identifier: "DRRouletteSettingViewController")
+      let drTemplateListViewController = StoryboardViewControllerResource<DRTemplateListViewController>(identifier: "DRTemplateListViewController")
       let name = "Modal"
 
       func drRouletteSettingViewController(_: Void = ()) -> DRRouletteSettingViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drRouletteSettingViewController)
       }
 
+      func drTemplateListViewController(_: Void = ()) -> DRTemplateListViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: drTemplateListViewController)
+      }
+
       static func validate() throws {
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
         if _R.storyboard.modal().drRouletteSettingViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drRouletteSettingViewController' could not be loaded from storyboard 'Modal' as 'DRRouletteSettingViewController'.") }
+        if _R.storyboard.modal().drTemplateListViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'drTemplateListViewController' could not be loaded from storyboard 'Modal' as 'DRTemplateListViewController'.") }
       }
 
       fileprivate init() {}
