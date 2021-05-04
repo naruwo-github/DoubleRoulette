@@ -114,6 +114,7 @@ class DRSettingViewController: UIViewController {
     @IBAction private func addButtonTapped(_ sender: Any) {
         let newCell = RouletteObject()
         newCell.id = DRRealmHelper.init().getLastRouletteObjectId() + 1
+        
         let colorRGB = UIColor.convertToRGB(self.colorStock.proposeColor(index: self.rouletteData.count))
         newCell.color = UIColor.rgbToHex(red: Int(colorRGB.red * 255), green: Int(colorRGB.green * 255), blue: Int(colorRGB.blue * 255))
         DRRealmHelper.init().add(object: newCell)
