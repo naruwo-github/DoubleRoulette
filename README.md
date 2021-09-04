@@ -2,7 +2,7 @@
 **Free Roulette Application!**
 **Compared with normal roulettes, this one can decide two elements at the same time. Of course, This can be used as general roulette.**
 
-<img src="Pictures/Screen shots.png" >
+<img src="Pictures/Screen Shots.png" >
 
 ### How to use
 - ①Add elements by pressing the plus button on the top right.
