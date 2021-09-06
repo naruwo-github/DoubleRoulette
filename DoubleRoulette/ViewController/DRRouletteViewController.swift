@@ -41,9 +41,9 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupAdvertisementView()
+        self.setupAd()
         self.rouletteCells = DRRealmHelper.init().getRouletteData()
-        self.setupInnerOuterData()
+        self.classifyInnerOuterData()
         self.setupResultWindow()
         self.setupElementLabels()
         self.setupOuterRoulette(outerName: self.outerCellName, outerColor: self.outerCellColor)
@@ -73,7 +73,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         }
     }
     
-    private func setupInnerOuterData() {
+    private func classifyInnerOuterData() {
         for cell in self.rouletteCells {
             let hex = cell.color
             let rgb = UIColor.hexToRGB(hex: hex)
@@ -282,7 +282,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         Analytics.logEvent("start_button", parameters: nil)
     }
     
-    @IBAction private func editAnimationSettingButton(_ sender: Any) {
+    @IBAction private func editAnimationSettingButtonTapped(_ sender: Any) {
         guard let vc = R.storyboard.modal.drRouletteSettingViewController() else { return }
         self.present(vc, animated: true, completion: nil)
     }
@@ -292,7 +292,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
 // MARK: - <広告利用のための拡張>
 extension DRRouletteViewController: GADFullScreenContentDelegate {
     
-    private func setupAdvertisementView() {
+    private func setupAd() {
         self.bottomBannerAdView.adUnitID = DRStringSource.init().RouletteVCBottomAdID
         self.bottomBannerAdView.rootViewController = self
         self.bottomBannerAdView.load(GADRequest())
@@ -322,21 +322,6 @@ extension DRRouletteViewController: GADFullScreenContentDelegate {
             }
         }
         DRUserHelper.backToCellSettingFromRouletteCount = backCount + 1
-    }
-    
-    // Tells the delegate that the ad failed to present full screen content.
-    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
-        print("Ad did fail to present full screen content.")
-    }
-
-    // Tells the delegate that the ad presented full screen content.
-    func adDidPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-        print("Ad did present full screen content.")
-    }
-
-    // Tells the delegate that the ad dismissed full screen content.
-    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-        print("Ad did dismiss full screen content.")
     }
     
 }

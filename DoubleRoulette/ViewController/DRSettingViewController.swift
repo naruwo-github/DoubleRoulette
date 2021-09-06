@@ -41,7 +41,7 @@ class DRSettingViewController: UIViewController {
         )
         
         self.navigationController?.navigationBar.tintColor = R.color.navigationItemColor()
-        self.setupAdvertisement()
+        self.setupAd()
         self.setupTableView()
         self.roadData()
     }
@@ -55,7 +55,7 @@ class DRSettingViewController: UIViewController {
     
     // MARK: - <private関数>
     
-    private func setupAdvertisement() {
+    private func setupAd() {
         self.topBannerAdView.adUnitID = DRStringSource.init().CellTableVCTopAdID
         self.topBannerAdView.rootViewController = self
         self.topBannerAdView.load(GADRequest())
