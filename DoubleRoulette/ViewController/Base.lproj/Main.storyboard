@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GdP-ce-xBC">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -14,11 +12,11 @@
             <objects>
                 <viewController storyboardIdentifier="DRRouletteViewController" id="BYZ-38-t0r" customClass="DRRouletteViewController" customModule="DoubleRoulette" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZs-t6-Sbs" userLabel="Balloon View" customClass="DRPopupWithBalloonView" customModule="DoubleRoulette" customModuleProvider="target">
-                                <rect key="frame" x="269" y="49" width="140" height="50"/>
+                                <rect key="frame" x="455" y="5" width="140" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="bGO-Hr-57p"/>
@@ -26,22 +24,22 @@
                                 </constraints>
                             </view>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6D-nP-cWa" userLabel="Outer Chart View" customClass="PieChartView" customModule="DoubleRoulette" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </view>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l40-z0-66b" customClass="PieChartView" customModule="DoubleRoulette" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeH-X5-t4e" userLabel="TopView">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKs-pi-1Ng" userLabel="Bottom Banner Ad View" customClass="GADBannerView">
-                                        <rect key="frame" x="0.0" y="768" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="550" width="600" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="lYC-1b-yh1"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKR-hp-RI6">
-                                        <rect key="frame" x="124" y="708" width="166" height="50"/>
+                                        <rect key="frame" x="180" y="490" width="240" height="50"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="sRH-01-OYz"/>
@@ -118,7 +116,7 @@
                     <navigationItem key="navigationItem" title="Roulette" id="G6T-NX-6v1">
                         <barButtonItem key="rightBarButtonItem" image="setting" id="vaC-ph-i3I">
                             <connections>
-                                <action selector="editAnimationSettingButton:" destination="BYZ-38-t0r" id="x2G-I5-buf"/>
+                                <action selector="editAnimationSettingButtonTapped:" destination="BYZ-38-t0r" id="x2G-I5-buf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -141,26 +139,26 @@
             <objects>
                 <viewController id="CJi-Pz-gFs" customClass="DRSettingViewController" customModule="DoubleRoulette" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AcD-DU-TwV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VtI-4D-QgC" userLabel="Background View">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6OP-Pb-dsf" userLabel="Top Banner Ad View" customClass="GADBannerView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="UJ7-dS-3mB"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VhQ-e7-mA6" userLabel="Bottom Banner Ad View" customClass="GADBannerView">
-                                        <rect key="frame" x="0.0" y="724" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="506" width="600" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="snj-jY-Ugm"/>
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wbO-uP-i3u" userLabel="Roulette Cell Table View">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="612"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="411.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <connections>
                                             <outlet property="dataSource" destination="CJi-Pz-gFs" id="uP5-oc-oH5"/>
@@ -168,13 +166,13 @@
                                         </connections>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UHZ-5e-pp3" userLabel="Tool View">
-                                        <rect key="frame" x="0.0" y="662" width="414" height="62"/>
+                                        <rect key="frame" x="0.0" y="461.5" width="600" height="44.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9L-qV-a2m" userLabel="Left View">
-                                                <rect key="frame" x="0.0" y="0.0" width="207" height="62"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="44.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwe-oi-wot" userLabel="Template Button">
-                                                        <rect key="frame" x="30" y="10" width="147" height="42"/>
+                                                        <rect key="frame" x="30" y="10" width="240" height="24.5"/>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="22"/>
                                                         <state key="normal" title="Template"/>
@@ -196,10 +194,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uGV-46-uor" userLabel="Right View">
-                                                <rect key="frame" x="207" y="0.0" width="207" height="62"/>
+                                                <rect key="frame" x="300" y="0.0" width="300" height="44.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vSo-Rk-uQc" userLabel="Template Button">
-                                                        <rect key="frame" x="30" y="10" width="147" height="42"/>
+                                                        <rect key="frame" x="30" y="10" width="240" height="24.5"/>
                                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="22"/>
                                                         <state key="normal" title="Save"/>

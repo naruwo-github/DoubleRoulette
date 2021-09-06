@@ -28,14 +28,14 @@ class DRTemplateListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupAdvertisement()
+        self.setupAd()
         self.setupTableView()
         self.templateData = DRRealmHelper.init().getTemplateData()
     }
     
     // MARK: - <private関数>
     
-    private func setupAdvertisement() {
+    private func setupAd() {
         self.bottomBannerAdView.adUnitID = DRStringSource.init().TemplateVCBottomAdID
         self.bottomBannerAdView.rootViewController = self
         self.bottomBannerAdView.load(GADRequest())

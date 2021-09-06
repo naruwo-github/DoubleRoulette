@@ -78,18 +78,4 @@ class DRCustomUIView: UIView {
         }
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        super.touchesBegan(touches, with: event)
-//        if self.isButtonMode {
-//            self.alpha = 0.8
-//            UIView.animate(withDuration: 0.2) { [weak self] () in
-//                self?.alpha = 1
-//            }
-//        }
-//    }
-//
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        super.touchesEnded(touches, with: event)
-//    }
-    
 }
