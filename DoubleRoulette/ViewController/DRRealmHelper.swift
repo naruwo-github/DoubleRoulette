@@ -36,7 +36,7 @@ final class DRRealmHelper {
     
     public func add(object: Object) {
         do {
-            try self.realm.write({ () -> Void in
+            try self.realm.write({ [unowned self] in
                 self.realm.add(object)
             })
         } catch {
@@ -55,9 +55,9 @@ final class DRRealmHelper {
     }
     
     public func deleteRouletteData() {
-        self.getRouletteData().forEach({
+        self.getRouletteData().forEach {
             self.delete(object: $0)
-        })
+        }
     }
     
     public func deleteAllData() {
@@ -72,7 +72,7 @@ final class DRRealmHelper {
     
     public func segmentControlUpdate(cell: RouletteObject, segment: UISegmentedControl) {
         do {
-            try self.realm.write({ () -> Void in
+            try self.realm.write({ [unowned self] in
                 cell.type = segment.selectedSegmentIndex
                 self.realm.add(cell, update: .modified)
             })
@@ -83,7 +83,7 @@ final class DRRealmHelper {
     
     public func textFieldUpdate(cell: RouletteObject, textField: UITextField) {
         do {
-            try self.realm.write({ () -> Void in
+            try self.realm.write({ [unowned self] in
                 cell.item = textField.text ?? "Item"
                 self.realm.add(cell, update: .modified)
             })
@@ -94,7 +94,7 @@ final class DRRealmHelper {
     
     public func colorButtonUpdate(cell: RouletteObject, hexColor: String) {
         do {
-            try self.realm.write({ () -> Void in
+            try self.realm.write({ [unowned self] in
                 cell.color = hexColor
                 self.realm.add(cell, update: .modified)
             })

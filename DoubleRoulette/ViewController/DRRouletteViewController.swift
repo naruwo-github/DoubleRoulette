@@ -300,15 +300,16 @@ extension DRRouletteViewController: GADFullScreenContentDelegate {
         
         let request = GADRequest()
         GADInterstitialAd.load(withAdUnitID: DRStringSource.init().RouletteVCInterstitialAdID,
-                                    request: request,
-                          completionHandler: { [self] ad, error in
-                            if let error = error {
-                              print("Failed to load interstitial ad with error: \(error.localizedDescription)")
-                              return
-                            }
-                            self.interstitial = ad
-                            self.interstitial?.fullScreenContentDelegate = self
-                          }
+                               request: request,
+                               // ここは[unowned self]ではメモリが開放されててエラーになるので[self]とする
+                               completionHandler: { [self] ad, error in
+                                if let error = error {
+                                    print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                                    return
+                                }
+                                self.interstitial = ad
+                                self.interstitial?.fullScreenContentDelegate = self
+                               }
         )
     }
     
