@@ -7,6 +7,7 @@
 //
 
 // MARK: - <OS固有フレームワーク>
+import AppTrackingTransparency
 import UIKit
 // MARK: - <外部フレームワーク>
 import AMColorPicker
@@ -49,6 +50,13 @@ class DRSettingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Analytics.logEvent("show_cell_setting_view", parameters: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in })
+        }
     }
     
     // MARK: - <public関数>
