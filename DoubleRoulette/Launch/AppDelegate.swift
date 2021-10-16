@@ -8,7 +8,6 @@
 
 // MARK: - <OS固有フレームワーク>
 import AdSupport
-import AppTrackingTransparency
 import StoreKit
 import UIKit
 // MARK: - <外部フレームワーク>
@@ -25,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
-        self.requestIDFA()
         
         let key = "startUpCount"
         DRUserHelper.save(key, value: DRUserHelper.load(key, returnClass: Int.self) ?? 0 + 1)
@@ -37,12 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
-    }
-    
-    private func requestIDFA() {
-        if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in })
-        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
