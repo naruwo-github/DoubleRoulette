@@ -227,7 +227,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         vc.inner = innerResult
         self.popupWindow.rootViewController = vc
         
-        UIApplication.shared.beginIgnoringInteractionEvents()
+        self.view.isUserInteractionEnabled = false
         self.popupWindow.makeKeyAndVisible()
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
             UIView.animate(withDuration: self.popupDuration) {
@@ -241,7 +241,7 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 9.5) {
             self.view.window?.makeKeyAndVisible()
-            UIApplication.shared.endIgnoringInteractionEvents()
+            self.view.isUserInteractionEnabled = true
         }
     }
     
@@ -261,20 +261,18 @@ class DRRouletteViewController: UIViewController, GADBannerViewDelegate {
         let outerItemsCount = self.outerCellName.count
         let outerUnitDisplacement = .pi * 2 / CGFloat(outerItemsCount)
         if outerItemsCount > 0 {
-            for i in 0 ..< outerItemsCount {
-                if CGFloat(i) * outerUnitDisplacement ..< CGFloat(i+1)*outerUnitDisplacement ~= outerDisplacement {
-                    outerResult = self.outerCellName[i]
-                }
+            for i in 0 ..< outerItemsCount
+            where CGFloat(i) * outerUnitDisplacement ..< CGFloat(i+1)*outerUnitDisplacement ~= outerDisplacement {
+                outerResult = self.outerCellName[i]
             }
         }
         
         let innerItemsCount = self.innerCellName.count
         let innerUnitDisplacement = .pi * 2 / CGFloat(innerItemsCount)
         if innerItemsCount > 0 {
-            for i in 0 ..< innerItemsCount {
-                if CGFloat(i) * innerUnitDisplacement ..< CGFloat(i+1)*innerUnitDisplacement ~= innerDisplacement {
-                    innerResult = self.innerCellName[i]
-                }
+            for i in 0 ..< innerItemsCount
+            where CGFloat(i) * innerUnitDisplacement ..< CGFloat(i+1)*innerUnitDisplacement ~= innerDisplacement {
+                innerResult = self.innerCellName[i]
             }
         }
         
