@@ -16,10 +16,12 @@ target 'DoubleRoulette' do
   pod 'RealmSwift'
   pod 'AMColorPicker'
 
-  # Pods for DoubleRoulette
+  target 'DoubleRouletteTests' do
+    inherit! :search_paths
+  end
   target 'DoubleRouletteUITests' do
     inherit! :search_paths
-    pod 'Firebase'
+    # pod 'Firebase'
   end
 end
 
