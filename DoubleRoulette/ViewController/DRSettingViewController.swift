@@ -11,7 +11,6 @@ import AppTrackingTransparency
 import UIKit
 // MARK: - <外部フレームワーク>
 import AMColorPicker
-import CellAnimator
 import Firebase
 import FirebaseAnalytics
 import GoogleMobileAds
@@ -206,10 +205,6 @@ extension DRSettingViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        CellAnimator.animateCell(cell: cell, withTransform: CellAnimator.TransformTilt, andDuration: 1)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

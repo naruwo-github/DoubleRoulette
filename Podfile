@@ -10,7 +10,6 @@ target 'DoubleRoulette' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
   pod 'Google-Mobile-Ads-SDK'
-  pod 'CellAnimator'
   pod 'R.swift'
   pod 'SwiftLint'
   pod 'RealmSwift'

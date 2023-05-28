@@ -10,7 +10,6 @@
 import UIKit
 
 // MARK: - <外部フレームワーク>
-import CellAnimator
 import GoogleMobileAds
 import RealmSwift
 
@@ -65,10 +64,6 @@ extension DRTemplateListViewController: UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "TemplateCell") as! DRTemplateTableViewCell
         cell.setup(template: self.templateData[indexPath.row])
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        CellAnimator.animateCell(cell: cell, withTransform: CellAnimator.TransformTilt, andDuration: 1)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
